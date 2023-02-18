@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/17 13:13:52 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/18 17:56:45 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror -Wshadow -Wconversion
+CFLAGS		= -Wall -Wextra -Werror # -Wshadow -Wconversion
 
 # **************************************************************************** #
 #                                                                              #
@@ -28,17 +28,28 @@ CFLAGS		= -Wall -Wextra -Werror -Wshadow -Wconversion
 #                                                                              #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR)
+I_HEADERS	= -I $(INC_DIR) -I mlx
+
+#L_LIB		= -Lmlx -lmlx -lXext -lX11 -lm -lz
+L_LIB		= -L mlx -l mlx -framework OpenGL -framework AppKit
 
 HEADERS		= $(shell find include/ -type f)
 
-NAME_FILE	= main
+NAME_FILE	= main																\
+			  my_mlx_pixel_put													\
+			  init_point														\
+			  init_vector														\
+			  t_tuple_plus														\
+			  t_tuple_minus														\
+			  t_tuple_nega														\
+			  t_tuple_multi_scal												\
+			  t_tuple_div_scal													\
+			  magnitude_vector													\
+			  normalization_vector												\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
-
--include $(DEPENDS)
 
 # **************************************************************************** #
 #                                                                              #
@@ -54,17 +65,17 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 #                                                                              #
 #   Relink si les headers ou le Makfile sont changés                           #
 #                                                                              #
-# ***************************vvvvvvvvvvvvvvvvvvv****************************** #
+# **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-	@cd mlx; make >> /dev/null 2 >> /dev/null; cd ..
+	@cd mlx; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(I_HEADERS) -o $(NAME)
+	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
 	cd mlx; make clean
@@ -76,3 +87,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEPENDS)
