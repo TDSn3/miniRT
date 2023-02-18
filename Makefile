@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/18 17:56:45 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/18 21:56:10 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,22 @@ L_LIB		= -L mlx -l mlx -framework OpenGL -framework AppKit
 
 HEADERS		= $(shell find include/ -type f)
 
-NAME_FILE	= main																\
-			  my_mlx_pixel_put													\
-			  init_point														\
-			  init_vector														\
-			  t_tuple_plus														\
-			  t_tuple_minus														\
-			  t_tuple_nega														\
-			  t_tuple_multi_scal												\
-			  t_tuple_div_scal													\
-			  magnitude_vector													\
-			  normalization_vector												\
+NAME_FILE	= $(addprefix tuple/,												\
+							    init_point										\
+							    init_vector										\
+							    t_tuple_plus									\
+							    t_tuple_minus									\
+							    t_tuple_nega									\
+							    t_tuple_multi_scal								\
+							    t_tuple_div_scal								\
+							    magnitude_vector								\
+							    normalization_vector							\
+							    scalar_product_vector							\
+								cross_product_vector							\
+			   )																\
+			   main																\
+			   my_mlx_pixel_put													\
+			   equal_float														\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))

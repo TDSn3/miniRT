@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 17:57:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/18 22:26:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,17 @@ typedef struct s_all_data
 }	t_all_data;
 
 void	my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
+int		equal_float(float a, float b);
 void	init_point(t_tuple *tuple, float x, float y, float z);
 void	init_vector(t_tuple *tuple, float x, float y, float z);
-void	t_tuple_plus(t_tuple *left, t_tuple *right);
-void	t_tuple_minus(t_tuple *left, t_tuple *right);
+void	t_tuple_plus(t_tuple *a, t_tuple *left, t_tuple *right);
+void	t_tuple_minus(t_tuple *a, t_tuple *left, t_tuple *right);
 void	t_tuple_nega(t_tuple *tuple);
-void	t_tuple_multi_scal(t_tuple *tuple, float a);
-void	t_tuple_div_scal(t_tuple *tuple, float a);
+void	t_tuple_multi_scal(t_tuple *a, t_tuple *left, float right);
+void	t_tuple_div_scal(t_tuple *a, t_tuple *left, float right);
 float	magnitude_vector(t_tuple *tuple);
 void	normalization_vector(t_tuple *tuple);
+float	scalar_product_vector(t_tuple *a, t_tuple *b);
+void	cross_product_vector(t_tuple *vector, t_tuple *a, t_tuple *b);
 
 #endif

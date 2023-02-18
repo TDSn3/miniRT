@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_tuple_minus.c                                    :+:      :+:    :+:   */
+/*   t_tuple_plus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:12:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 17:17:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/18 22:24:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-void	t_tuple_minus(t_tuple *left, t_tuple *right)
+void	t_tuple_plus(t_tuple *a, t_tuple *left, t_tuple *right)
 {
-	left->x = left->x - right->x;
-	left->y = left->y - right->y;
-	left->z = left->z - right->z;
-	left->w = left->w - right->w;
+	a->x = left->x + right->x;
+	a->y = left->y + right->y;
+	a->z = left->z + right->z;
+	a->w = left->w + right->w;
 }

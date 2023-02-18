@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 17:11:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/18 22:31:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,28 @@ int	gen_new_img(t_all_data *all_data)
 		my_mlx_pixel_put(all_data, i, 0, 0x00FF0000);
 	}	
 
-	t_tuple	a1;
-	t_tuple	a2;
+	t_tuple	start;
+	t_tuple	velocity;
+//	t_tuple	p;
+	t_tuple	gravity;
+	t_tuple	wind;
+//	t_tuple	e;
+//	t_tuple	c;
 
-	init_point(&a1, 3, -2, 5);
-	init_point(&a2, -2, 3, 1);
+	init_point(&start, 0, 1, 0);
+	init_vector(&velocity, 1, 1.8, 0);
+	normalization_vector(&velocity);
+	t_tuple_multi_scal(&velocity, &velocity, 8);
+	init_vector(&gravity, 0, -0.1, 0);
+	init_vector(&wind, -0.01, 0, 0);
+	
+	for (int i = 0 ; i < 200; i++)
+	{
+		t_tuple_plus(&start, &start, &velocity);
+		t_tuple_plus(&velocity, &velocity, &gravity);
+		t_tuple_plus(&velocity, &velocity, &wind);
+		my_mlx_pixel_put(all_data, start.x, start.y, 0x00ffffff);
+	}
 
 //	
 	mlx_put_image_to_window(
