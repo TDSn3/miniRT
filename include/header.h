@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 15:03:10 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:58:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	cross_product_vector(t_tuple *vector, t_tuple *a, t_tuple *b);
 int		equal_matrix(t_matrix *a, t_matrix *b);
 int		init_matrix(t_matrix *a, size_t x_size, size_t y_size);
 void	multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right);
+void	multiply_matrix_tuple(t_tuple *a, t_matrix *left, t_tuple *right);
 
 #endif

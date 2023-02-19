@@ -1,44 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiply_matrix.c                                  :+:      :+:    :+:   */
+/*   multiply_matrix_tuple.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 16:16:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:46:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-/* ************************************************************************** */
-/*                                                                            */
-/*   Attention, "a" doit être différent de "left" et "right".				  */
-/*                                                                            */
-/* ************************************************************************** */
-void	multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right)
+static void	copy_stock_in_a(t_tuple *a, t_tuple *stock);
+
+void	multiply_matrix_tuple(t_tuple *a, t_matrix *left, t_tuple *right)
 {
+	t_tuple	stock;
 	size_t	i;
 	size_t	j;
-	size_t	k;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	while (i < left->x_size)
+	stock.tuple[0] = 0;
+	stock.tuple[1] = 0;
+	stock.tuple[2] = 0;
+	stock.tuple[3] = 0;
+	while (i < 4 && i < left->x_size)
 	{
-		while (j < right->y_size)
+		while (j < left->y_size)
 		{
-			while (k < left->y_size)
-			{
-				a->tab[i][j] += left->tab[i][k] * right->tab[k][j];
-				k++;
-			}
-			k = 0;
+			stock.tuple[i] += left->tab[i][j] * right->tuple[j];
 			j++;
 		}
 		j = 0;
+		i++;
+	}
+	copy_stock_in_a(a, &stock);
+}
+
+static void	copy_stock_in_a(t_tuple *a, t_tuple *stock)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		a->tuple[i] = stock->tuple[i];
 		i++;
 	}
 }

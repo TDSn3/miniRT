@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 12:45:07 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:12:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,23 @@
 
 /* ************************************************************************** */
 /*                                                                            */
+/*   big-endian      x y z w                                                  */
+/*   little-endian   w z y x                                                  */
+/*                                                                            */
 /*   w = 1   point                                                            */
-/*   w = 0   vector                                                          */
+/*   w = 0   vector                                                           */
 /*                                                                            */
 /* ************************************************************************** */
-typedef struct s_tuple
+typedef union s_tuple
 {
-	float	x;
-	float	y;
-	float	z;
-	float	w;
+	struct
+	{
+		float	x;
+		float	y;
+		float	z;
+		float	w;
+	};
+	float		tuple[4];
 }	t_tuple;
 
 typedef struct s_matrix
@@ -43,7 +50,7 @@ typedef union s_argb
 		int8_t	g;
 		int8_t	b;
 	};
-	int32_t		rgba;
+	int32_t		argb;
 }	t_argb;
 
 typedef struct s_data_mlx_img

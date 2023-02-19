@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/19 14:16:04 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/19 15:59:05 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 							    equal_matrix									\
 								init_matrix										\
 								multiply_matrix									\
+								multiply_matrix_tuple							\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\
