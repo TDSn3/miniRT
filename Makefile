@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/19 20:11:33 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/19 21:10:03 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 								determinant_matrix								\
 								sub_matrix										\
 								minor_matrix									\
+								cofactor_matrix									\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\
