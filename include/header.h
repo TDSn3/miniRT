@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:02:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:21:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ float		scalar_product_vector(t_tuple *a, t_tuple *b);
 void		cross_product_vector(t_tuple *vector, t_tuple *a, t_tuple *b);
 
 t_matrix	*new_matrix(size_t x_size, size_t y_size);
+t_matrix	*new_identity_matrix(void);
 int			init_matrix(t_matrix *a, size_t x_size, size_t y_size);
 int			free_matrix(t_matrix *a);
 void		copy_matrix(t_matrix *src, t_matrix *dst);
@@ -54,5 +55,8 @@ float		minor_matrix(t_matrix *src, size_t x_del, size_t y_del);
 float		cofactor_matrix(t_matrix *src, size_t x_row, size_t y_column);
 int			is_invertible_matrix(t_matrix *a);
 t_matrix	*inverse_matrix(t_matrix *src);
+
+t_matrix	*translation(t_tuple *vector);
+int			transform(t_tuple *dst, t_tuple *vector, t_tuple *point);
 
 #endif

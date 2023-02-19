@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/19 22:02:13 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/19 23:22:27 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix matrix/,												\
 			 					new_matrix										\
+								new_identity_matrix								\
 								init_matrix										\
 							    free_matrix										\
 								copy_matrix										\
@@ -63,6 +64,10 @@ NAME_FILE	= $(addprefix tuple/,												\
 								cofactor_matrix									\
 								is_invertible_matrix							\
 								inverse_matrix									\
+			   )																\
+			  $(addprefix transformation/,										\
+			 							 translation							\
+										 transform								\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

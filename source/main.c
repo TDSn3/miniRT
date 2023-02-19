@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:27:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:27:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,38 @@ int	gen_new_img(t_all_data *all_data)
 //	pixel_put ***********************************************************************
 
 	t_matrix	matrix1;
-	t_matrix	*matrix2;
+	t_tuple		vect;
+	t_tuple		point;
+	t_tuple		point2;
+
+	init_vector(&vect, 5, -3, 2);
+	init_point(&point, -3, 4, 5);
+	init_point(&point2, 0, 0, 0);
 
 	init_matrix(&matrix1, 4, 4);
+
+	transform(&point2, &vect, &point);
+
+	printf("%f ", point2.x);
+	printf("%f ", point2.y);
+	printf("%f \n", point2.z);
 
 	matrix1.tab[0][0] = 9; matrix1.tab[0][1] = 3; matrix1.tab[0][2] = 0; matrix1.tab[0][3] = 9;
 	matrix1.tab[1][0] = -5; matrix1.tab[1][1] = -2; matrix1.tab[1][2] = -6; matrix1.tab[1][3] = -3;
 	matrix1.tab[2][0] = -4; matrix1.tab[2][1] = 9; matrix1.tab[2][2] = 6; matrix1.tab[2][3] = 4;
 	matrix1.tab[3][0] = -7; matrix1.tab[3][1] = 6; matrix1.tab[3][2] = 6; matrix1.tab[3][3] = 2;
 
-	matrix2 = inverse_matrix(&matrix1);
-	for (int i = 0; i < 4; i++)
-	{
-		for (int j = 0; j < 4; j++)
-			printf("%f ", matrix2->tab[i][j]);
-		printf("\n");
-	}
+//	matrix2 = translation();
+//	for (int i = 0; i < 4; i++)
+//	{
+//		for (int j = 0; j < 4; j++)
+//			printf("%f ", matrix2->tab[i][j]);
+//		printf("\n");
+//	}
 	printf("\n\n");
 
 	free_matrix(&matrix1);
-	free_matrix(matrix2);
+//	free_matrix(matrix2);
 
 //	t_tuple	test;
 //	test.x = 33;
