@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 16:46:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 16:52:03 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	multiply_matrix_tuple(t_tuple *a, t_matrix *left, t_tuple *right)
 	stock.tuple[3] = 0;
 	while (i < 4 && i < left->x_size)
 	{
-		while (j < left->y_size)
+		while (j < 4 && j < left->y_size)
 		{
 			stock.tuple[i] += left->tab[i][j] * right->tuple[j];
 			j++;

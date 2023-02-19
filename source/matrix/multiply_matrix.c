@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 16:16:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:09:17 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right)
 	{
 		while (j < right->y_size)
 		{
+			a->tab[i][j] = 0;
 			while (k < left->y_size)
 			{
 				a->tab[i][j] += left->tab[i][k] * right->tab[k][j];

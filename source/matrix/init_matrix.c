@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 13:02:58 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 14:55:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 17:43:32 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	*ft_calloc(size_t nmemb, size_t size);
 static void	ft_bzero(void *s, size_t n);
-static int	free_function_all(t_matrix *a);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -44,7 +43,7 @@ int	init_matrix(t_matrix *a, size_t x_size, size_t y_size)
 	{
 		a->tab[i] = ft_calloc(y_size, sizeof(float));
 		if (!a->tab[i])
-			return (free_function_all(a));
+			return (free_matrix(a));
 		a->y_size++;
 		i++;
 	}
@@ -72,17 +71,4 @@ static void	ft_bzero(void *s, size_t n)
 		((char *)s)[i] = 0;
 		i++;
 	}
-}
-
-static int	free_function_all(t_matrix *a)
-{
-	size_t	i;
-
-	i = 0;
-	if (a && a->tab && *a->tab)
-		while (i < a->y_size && a->tab[i])
-			free(a->tab[i++]);
-	if (a && a->tab)
-		free(a->tab);
-	return (1);
 }
