@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cofactor_matrix.c                                  :+:      :+:    :+:   */
+/*   is_invertible_matrix.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 20:51:56 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:00:13 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 21:38:57 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/19 22:05:05 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-float	cofactor_matrix(t_matrix *src, size_t x_row, size_t y_column)
+int	is_invertible_matrix(t_matrix *a)
 {
-	float	minor;
-	float	sign;
+	float	det;
 
-	if ((x_row + y_column) % 2 == 0)
-		sign = 1;
+	det = determinant_matrix(a);
+	if (det == NAN)
+		return (-1);
+	else if (det == 0)
+		return (0);
 	else
-		sign = -1;
-	minor = minor_matrix(src, x_row, y_column);
-	return (minor * sign);
+		return (1);
 }
