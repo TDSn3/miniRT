@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/19 18:13:59 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/19 19:57:36 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror -Wshadow -Wconversion -Wno-error=conversion
-
+CFLAGS		= -Wall -Wextra  -Wshadow -Wconversion -Wno-error=conversion
+# -Werror
 # **************************************************************************** #
 #                                                                              #
 #   -I   | Chemin du dossier où trouver un .h								   #
@@ -49,13 +49,16 @@ NAME_FILE	= $(addprefix tuple/,												\
 								cross_product_vector							\
 			   )																\
 			  $(addprefix matrix/,												\
+			 					new_matrix										\
+								init_matrix										\
 							    free_matrix										\
 								copy_matrix										\
 								equal_matrix									\
-								init_matrix										\
 								multiply_matrix									\
 								multiply_matrix_tuple							\
 								transposing_matrix								\
+								determinant_matrix								\
+								sub_matrix										\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

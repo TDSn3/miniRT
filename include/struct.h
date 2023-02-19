@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 16:12:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 19:42:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ typedef union s_argb
 	};
 	int32_t		argb;
 }	t_argb;
+
+typedef struct s_ijkl
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	l;
+}	t_ijkl;
 
 typedef struct s_data_mlx_img
 {
