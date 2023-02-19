@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 21:11:35 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 21:30:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,14 @@ int	gen_new_img(t_all_data *all_data)
 	t_matrix	matrix1;
 
 
-	init_matrix(&matrix1, 3, 3);
+	init_matrix(&matrix1, 4, 4);
 
-	matrix1.tab[0][0] = 3; matrix1.tab[0][1] = 5; matrix1.tab[0][2] = 0;
-	matrix1.tab[1][0] = 2; matrix1.tab[1][1] = -1; matrix1.tab[1][2] = -7;
-	matrix1.tab[2][0] = 6; matrix1.tab[2][1] = -1; matrix1.tab[2][2] = 5;
+	matrix1.tab[0][0] = -2; matrix1.tab[0][1] = -8; matrix1.tab[0][2] = 3; matrix1.tab[0][3] = 5;
+	matrix1.tab[1][0] = -3; matrix1.tab[1][1] = 1; matrix1.tab[1][2] = 7; matrix1.tab[1][3] = 3;
+	matrix1.tab[2][0] = 1; matrix1.tab[2][1] = 2; matrix1.tab[2][2] = -9; matrix1.tab[2][3] = 6;
+	matrix1.tab[3][0] = -6; matrix1.tab[3][1] = 7; matrix1.tab[3][2] = 7; matrix1.tab[3][3] = -9;
 
-	printf("----------->%f\n", cofactor_matrix(&matrix1, 1, 0));
+	printf("----------->%f\n", determinant_matrix(&matrix1));
 
 	free_matrix(&matrix1);
 
