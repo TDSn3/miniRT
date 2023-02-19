@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   determinant_matrix.c                               :+:      :+:    :+:   */
+/*   minor_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 18:53:30 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 20:07:07 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 20:04:52 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/19 20:11:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 /* ************************************************************************** */
 /*                                                                            */
-/*   Matrice de 2x2.														  */
+/*   Matrice de 3x3.														  */
 /*                                                                            */
 /* ************************************************************************** */
-float	determinant_matrix(t_matrix *a)
+float	minor_matrix(t_matrix *src, size_t x_del, size_t y_del)
 {
-	if (a->x_size < 2 || a->y_size < 2)
+	t_matrix	*mtx;
+	float		minor;
+
+	mtx = NULL;
+	mtx = sub_matrix(src, x_del, y_del);
+	if (!mtx)
 		return (NAN);
-	return ((a->tab[0][0] * a->tab[1][1]) - (a->tab[0][1] * a->tab[1][0]));
+	minor = determinant_matrix(mtx);
+	if (minor == NAN)
+		return (NAN);
+	free(mtx);
+	return (minor);
 }

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 19:15:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:11:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right);
 void		multiply_matrix_tuple(t_tuple *a, t_matrix *left, t_tuple *right);
 int			transposing_matrix(t_matrix *a);
 float		determinant_matrix(t_matrix *a);
-t_matrix	*sub_matrix(t_matrix *a, size_t x_del, size_t y_del);
+t_matrix	*sub_matrix(t_matrix *src, size_t x_del, size_t y_del);
+float		minor_matrix(t_matrix *src, size_t x_del, size_t y_del);
 
 #endif

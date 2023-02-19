@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 19:58:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:02:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ int	gen_new_img(t_all_data *all_data)
 	matrix4 = sub_matrix(&matrix3, 2, 3);
 	if (!matrix4)
 		printf("NONO\n");
-//	for (int i = 0; i < 4; i++)
-//	{
-//		for (int j = 0; j < 4; j++)
-//			printf("%f ", matrix3.tab[i][j]);
-//		printf("\n");
-//	}
-//	printf("%d\n", equal_matrix(&matrix3, &matrix2));
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+			printf("%f ", matrix3.tab[i][j]);
+		printf("\n");
+	}
+	printf("%d\n", equal_matrix(&matrix3, &matrix2));
 
 	free_matrix(&matrix1);
 	free_matrix(&matrix2);
