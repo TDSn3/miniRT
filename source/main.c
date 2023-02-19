@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 22:31:54 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:11:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,36 @@ int	gen_new_img(t_all_data *all_data)
 			&mwi -> data_img -> bits_per_pixel,
 			&mwi -> data_img -> line_length,
 			&mwi -> data_img -> endian);
-//	pixel_put
+//	pixel_put ***********************************************************************
 
+	t_matrix	matrix1;
+	t_matrix	matrix2;
+	t_matrix	matrix3;
+
+	init_matrix(&matrix1, 4, 4);
+	init_matrix(&matrix2, 4, 4);
+	init_matrix(&matrix3, 4, 4);
+
+	matrix1.tab[0][0] = 1; matrix1.tab[0][1] = 2; matrix1.tab[0][2] = 3; matrix1.tab[0][3] = 4;
+	matrix1.tab[1][0] = 5; matrix1.tab[1][1] = 6; matrix1.tab[1][2] = 7; matrix1.tab[1][3] = 8;
+	matrix1.tab[2][0] = 9; matrix1.tab[2][1] = 8; matrix1.tab[2][2] = 7; matrix1.tab[2][3] = 6;
+	matrix1.tab[3][0] = 5; matrix1.tab[3][1] = 4; matrix1.tab[3][2] = 3; matrix1.tab[3][3] = 2;
+
+	matrix2.tab[0][0] = -2; matrix2.tab[0][1] = 1; matrix2.tab[0][2] = 2; matrix2.tab[0][3] = 3;
+	matrix2.tab[1][0] = 3; matrix2.tab[1][1] = 2; matrix2.tab[1][2] = 1; matrix2.tab[1][3] = -1;
+	matrix2.tab[2][0] = 4; matrix2.tab[2][1] = 3; matrix2.tab[2][2] = 6; matrix2.tab[2][3] = 5;
+	matrix2.tab[3][0] = 1; matrix2.tab[3][1] = 2; matrix2.tab[3][2] = 7; matrix2.tab[3][3] = 8;
+
+	multiply_matrix(&matrix3, &matrix1, &matrix2);
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+			printf("%f ", matrix3.tab[i][j]);
+		printf("\n");
+	}
+	printf("%d\n", equal_matrix(&matrix1, &matrix2));
+
+//	*********************************************************************************
 
 	for (int i = -10 ; i < 10; i++)
 	{
@@ -85,7 +113,7 @@ int	gen_new_img(t_all_data *all_data)
 	t_tuple_multi_scal(&velocity, &velocity, 8);
 	init_vector(&gravity, 0, -0.1, 0);
 	init_vector(&wind, -0.01, 0, 0);
-	
+
 	for (int i = 0 ; i < 200; i++)
 	{
 		t_tuple_plus(&start, &start, &velocity);
@@ -94,7 +122,7 @@ int	gen_new_img(t_all_data *all_data)
 		my_mlx_pixel_put(all_data, start.x, start.y, 0x00ffffff);
 	}
 
-//	
+//	*********************************************************************************
 	mlx_put_image_to_window(
 		mwi -> mlx,
 		mwi -> win,

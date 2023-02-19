@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 22:26:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 15:03:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,58 +19,12 @@
 # include <stdlib.h>
 # include <stddef.h>
 # include <fcntl.h>
+# include <stdio.h>
+
+//# include <struct.h>
+# include "struct.h"
 
 # define EPSILON 0.00001
-
-/* ************************************************************************** */
-/*                                                                            */
-/*   w = 1   point                                                            */
-/*   w = 0   vector                                                          */
-/*                                                                            */
-/* ************************************************************************** */
-typedef struct s_tuple
-{
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-}	t_tuple;
-
-typedef union s_argb
-{
-	struct
-	{
-		int8_t	a;
-		int8_t	r;
-		int8_t	g;
-		int8_t	b;
-	};
-	int32_t		rgba;
-}	t_argb;
-
-typedef struct s_data_mlx_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data_mlx_img;
-
-typedef struct s_mlx_win_img
-{
-	void			*mlx;
-	void			*win;
-	t_data_mlx_img	*data_img;
-	int				win_widht;
-	int				win_height;
-}	t_mwi;
-
-typedef struct s_all_data
-{
-	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
-}	t_all_data;
 
 void	my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int		equal_float(float a, float b);
@@ -85,5 +39,8 @@ float	magnitude_vector(t_tuple *tuple);
 void	normalization_vector(t_tuple *tuple);
 float	scalar_product_vector(t_tuple *a, t_tuple *b);
 void	cross_product_vector(t_tuple *vector, t_tuple *a, t_tuple *b);
+int		equal_matrix(t_matrix *a, t_matrix *b);
+int		init_matrix(t_matrix *a, size_t x_size, size_t y_size);
+void	multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right);
 
 #endif

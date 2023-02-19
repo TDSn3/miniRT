@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/18 21:56:10 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/19 14:16:04 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra -Werror # -Wshadow -Wconversion
+CFLAGS		= -Wall -Wextra -Werror -Wshadow -Wconversion -Wno-error=conversion
 
 # **************************************************************************** #
 #                                                                              #
@@ -47,6 +47,11 @@ NAME_FILE	= $(addprefix tuple/,												\
 							    normalization_vector							\
 							    scalar_product_vector							\
 								cross_product_vector							\
+			   )																\
+			  $(addprefix matrix/,												\
+							    equal_matrix									\
+								init_matrix										\
+								multiply_matrix									\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\
