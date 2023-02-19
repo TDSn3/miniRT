@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 23:21:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:47:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ float		minor_matrix(t_matrix *src, size_t x_del, size_t y_del);
 float		cofactor_matrix(t_matrix *src, size_t x_row, size_t y_column);
 int			is_invertible_matrix(t_matrix *a);
 t_matrix	*inverse_matrix(t_matrix *src);
+t_matrix	*inverse_matrix_free(t_matrix *src);
 
+int			transform(t_tuple *dst, t_matrix *mtx, t_tuple *point);
 t_matrix	*translation(t_tuple *vector);
-int			transform(t_tuple *dst, t_tuple *vector, t_tuple *point);
+t_matrix	*scaling(t_tuple *vector);
 
 #endif

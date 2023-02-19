@@ -6,20 +6,28 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 23:21:42 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/19 23:48:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	transform(t_tuple *dst, t_tuple *vector, t_tuple *point)
+/* ************************************************************************** */
+/*                                                                            */
+/*   t_tuple	vect;														  */
+/*   t_tuple	point;														  */
+/*   t_tuple	point2;														  */
+/*                                                                            */
+/*   init_vector(&vect, 5, -3, 2);											  */
+/*   init_point(&point, -3, 4, 5);											  */
+/*   init_point(&point2, 0, 0, 0);											  */
+/*   transform(&point2, translation(&vect), &point);						  */
+/*   transform(&point2, scaling(&vect), &point);							  */
+/*   transform(&point2, inverse_matrix_free(scaling(&vect)), &point);		  */
+/*                                                                            */
+/* ************************************************************************** */
+int	transform(t_tuple *dst, t_matrix *mtx, t_tuple *point)
 {
-	t_matrix	*mtx;
-
-	mtx = NULL;
-	mtx = translation(vector);
-	if (!mtx)
-		return (NULL);
 	multiply_matrix_tuple(dst, mtx, point);
 	free(mtx);
 	return (0);
