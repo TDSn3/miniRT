@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 01:32:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 02:37:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,39 +64,16 @@ int	gen_new_img(t_all_data *all_data)
 			&mwi -> data_img -> endian);
 //	pixel_put ***********************************************************************
 
-	t_matrix	matrix1;
-	t_tuple		vect;
-	t_tuple		point;
-	t_tuple		point2;
+	t_tuple	point[2];
 
-	init_vector(&vect, 2, 3, 4);
-	init_point(&point, 0, 1, 0);
-	init_point(&point2, 0, 0, 0);
+	init_vector(&point[0], 1, 0, 0);
+	init_point(&point[1], 2, 3, 4);
 
-	init_matrix(&matrix1, 4, 4);
-
-	transform(&point2, rotation_x(45), &point);
-
-	printf("%f ", point2.x);
-	printf("%f ", point2.y);
-	printf("%f \n", point2.z);
-
-	matrix1.tab[0][0] = 9; matrix1.tab[0][1] = 3; matrix1.tab[0][2] = 0; matrix1.tab[0][3] = 9;
-	matrix1.tab[1][0] = -5; matrix1.tab[1][1] = -2; matrix1.tab[1][2] = -6; matrix1.tab[1][3] = -3;
-	matrix1.tab[2][0] = -4; matrix1.tab[2][1] = 9; matrix1.tab[2][2] = 6; matrix1.tab[2][3] = 4;
-	matrix1.tab[3][0] = -7; matrix1.tab[3][1] = 6; matrix1.tab[3][2] = 6; matrix1.tab[3][3] = 2;
-
-//	matrix2 = translation();
-//	for (int i = 0; i < 4; i++)
-//	{
-//		for (int j = 0; j < 4; j++)
-//			printf("%f ", matrix2->tab[i][j]);
-//		printf("\n");
-//	}
-	printf("\n\n");
-
-	free_matrix(&matrix1);
-//	free_matrix(matrix2);
+	for (int i = 0; i < 4; i++)
+	{
+		printf("%f ", position(point, 2.5).tuple[i]);
+	}
+	printf("\n");
 
 //	t_tuple	test;
 //	test.x = 33;
@@ -109,29 +86,6 @@ int	gen_new_img(t_all_data *all_data)
 		my_mlx_pixel_put(all_data, 0, i, 0x00FF0000);
 		my_mlx_pixel_put(all_data, i, 0, 0x00FF0000);
 	}	
-
-	t_tuple	start;
-	t_tuple	velocity;
-//	t_tuple	p;
-	t_tuple	gravity;
-	t_tuple	wind;
-//	t_tuple	e;
-//	t_tuple	c;
-
-	init_point(&start, 0, 1, 0);
-	init_vector(&velocity, 1, 1.8, 0);
-	normalization_vector(&velocity);
-	t_tuple_multi_scal(&velocity, &velocity, 8);
-	init_vector(&gravity, 0, -0.1, 0);
-	init_vector(&wind, -0.01, 0, 0);
-
-	for (int i = 0 ; i < 200; i++)
-	{
-		t_tuple_plus(&start, &start, &velocity);
-		t_tuple_plus(&velocity, &velocity, &gravity);
-		t_tuple_plus(&velocity, &velocity, &wind);
-		my_mlx_pixel_put(all_data, start.x, start.y, 0x00ffffff);
-	}
 
 //	*********************************************************************************
 	mlx_put_image_to_window(

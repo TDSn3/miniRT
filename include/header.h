@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 01:39:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 02:34:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,8 @@ t_matrix	*rotation_y(float deg);
 t_matrix	*rotation_z(float deg);
 float		deg_to_rad(float deg);
 float		rad_to_deg(float rad);
+t_tuple		position(t_tuple ray[2], float t);
+
+t_tuple		position(t_tuple ray[2], float t);
 
 #endif
