@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 23:46:30 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:32:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int	gen_new_img(t_all_data *all_data)
 	t_tuple		point2;
 
 	init_vector(&vect, 2, 3, 4);
-	init_point(&point, -4, 6, 8);
+	init_point(&point, 0, 1, 0);
 	init_point(&point2, 0, 0, 0);
 
 	init_matrix(&matrix1, 4, 4);
 
-	transform(&point2, scaling(&vect), &point);
+	transform(&point2, rotation_x(45), &point);
 
 	printf("%f ", point2.x);
 	printf("%f ", point2.y);

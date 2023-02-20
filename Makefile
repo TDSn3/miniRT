@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/19 23:48:05 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/20 01:39:44 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,8 @@ NAME_FILE	= $(addprefix tuple/,												\
 										 transform								\
 										 translation							\
 										 scaling								\
+										 rotation_xyz							\
+										 deg_to_rad								\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 23:47:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:39:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,10 @@ t_matrix	*inverse_matrix_free(t_matrix *src);
 int			transform(t_tuple *dst, t_matrix *mtx, t_tuple *point);
 t_matrix	*translation(t_tuple *vector);
 t_matrix	*scaling(t_tuple *vector);
+t_matrix	*rotation_x(float deg);
+t_matrix	*rotation_y(float deg);
+t_matrix	*rotation_z(float deg);
+float		deg_to_rad(float deg);
+float		rad_to_deg(float rad);
 
 #endif

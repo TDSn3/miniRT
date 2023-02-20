@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 23:48:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 01:32:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 /*   transform(&point2, translation(&vect), &point);						  */
 /*   transform(&point2, scaling(&vect), &point);							  */
 /*   transform(&point2, inverse_matrix_free(scaling(&vect)), &point);		  */
+/*   transform(&point2, rotation_x(45), &point);							  */
 /*                                                                            */
 /* ************************************************************************** */
 int	transform(t_tuple *dst, t_matrix *mtx, t_tuple *point)
