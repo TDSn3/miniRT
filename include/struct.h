@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 19:42:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:53:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,31 @@ typedef union s_tuple
 	};
 	float		tuple[4];
 }	t_tuple;
+
+typedef union s_xs
+{
+	struct
+	{
+		float	count;
+		float	a;
+		float	b;
+	};
+	float		xs[3];
+}	t_xs;
+
+typedef union s_6f
+{
+	struct
+	{
+		float	a;
+		float	b;
+		float	c;
+		float	d;
+		float	e;
+		float	f;
+	};
+	float		f[6];
+}	t_6f;
 
 typedef struct s_matrix
 {

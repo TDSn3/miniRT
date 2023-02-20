@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 02:37:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:50:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,14 @@ int	gen_new_img(t_all_data *all_data)
 			&mwi -> data_img -> endian);
 //	pixel_put ***********************************************************************
 
-	t_tuple	point[2];
+	t_tuple	point;
+	t_tuple	point2;
 
-	init_vector(&point[0], 1, 0, 0);
-	init_point(&point[1], 2, 3, 4);
+	init_point(&point, 2, 3, 4);
+	init_point(&point2, 0, 0, 0);
 
-	for (int i = 0; i < 4; i++)
-	{
-		printf("%f ", position(point, 2.5).tuple[i]);
-	}
-	printf("\n");
+	transform(&point2, shearing((t_6f){0, 0, 0, 0, 0, 1}), &point);
+	printf("%f %f %f\n", point2.x, point2.y, point2.z);
 
 //	t_tuple	test;
 //	test.x = 33;

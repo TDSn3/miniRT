@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 02:34:07 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:56:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int			is_invertible_matrix(t_matrix *a);
 t_matrix	*inverse_matrix(t_matrix *src);
 t_matrix	*inverse_matrix_free(t_matrix *src);
 
-int			transform(t_tuple *dst, t_matrix *mtx, t_tuple *point);
+void		transform(t_tuple *dst, t_matrix *mtx, t_tuple *point);
 t_matrix	*translation(t_tuple *vector);
 t_matrix	*scaling(t_tuple *vector);
 t_matrix	*rotation_x(float deg);
@@ -65,8 +65,10 @@ t_matrix	*rotation_y(float deg);
 t_matrix	*rotation_z(float deg);
 float		deg_to_rad(float deg);
 float		rad_to_deg(float rad);
-t_tuple		position(t_tuple ray[2], float t);
+t_matrix	*shearing(t_6f f);
 
-t_tuple		position(t_tuple ray[2], float t);
+t_tuple		position(t_tuple vector, t_tuple point, float t);
+float		sphere(float id);
+float		intersect(float sphere, t_tuple ray[2]);
 
 #endif
