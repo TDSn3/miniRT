@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling.c                                          :+:      :+:    :+:   */
+/*   si_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 23:36:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:32 by tda-silv         ###   ########.fr       */
+/*   Created: 2022/03/17 15:19:08 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 21:32:14 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix	*scaling(t_tuple vector)
+void	si_clear(t_intersection **lst)
 {
-	t_matrix	*mtx;
+	t_intersection	**copysi;
+	t_intersection	*copysi_two;
 
-	mtx = NULL;
-	mtx = new_identity_matrix();
-	if (!mtx)
-		return (NULL);
-	mtx->tab[0][0] = vector.x;
-	mtx->tab[1][1] = vector.y;
-	mtx->tab[2][2] = vector.z;
-	return (mtx);
+	copysi = lst;
+	if (!*lst)
+		return ;
+	while (*copysi)
+	{
+		copysi_two = (*copysi)->next;
+		free(*copysi);
+		*copysi = copysi_two;
+	}
+	*lst = NULL;
 }

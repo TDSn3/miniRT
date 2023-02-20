@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/20 13:15:42 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/20 22:39:34 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,19 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix intersection/,										\
 									   position									\
-									   sphere									\
+									   give_sphere								\
 									   intersect								\
+									   intersection								\
+									   hit										\
+						   $(addprefix s_intersection/,							\
+								   					  si_add_back				\
+													  si_size					\
+													  si_new					\
+													  si_last					\
+													  si_find_content			\
+													  si_clear					\
+													  si_clear_one				\
+						    )													\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

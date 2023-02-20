@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling.c                                          :+:      :+:    :+:   */
+/*   hit.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 23:36:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:32 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/20 22:29:38 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 22:51:11 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix	*scaling(t_tuple vector)
+t_to	hit(t_intersection *list)
 {
-	t_matrix	*mtx;
+	t_to			ret;
+	t_intersection	*copysi;
 
-	mtx = NULL;
-	mtx = new_identity_matrix();
-	if (!mtx)
-		return (NULL);
-	mtx->tab[0][0] = vector.x;
-	mtx->tab[1][1] = vector.y;
-	mtx->tab[2][2] = vector.z;
-	return (mtx);
+	copysi = list;
+	if (!list)
+		return ((t_to){NAN});
+	ret.t = FLT_MAX;
+	while (copysi)
+	{
+		if (copysi->t.b < ret.t && copysi->t.b >= 0)
+		{
+			ret.t = copysi->t.b;
+			ret.object = copysi->object;
+		}
+		if (copysi->t.c < ret.t && copysi->t.c >= 0)
+		{
+			ret.t = copysi->t.c;
+			ret.object = copysi->object;
+		}
+		copysi = copysi->next;
+	}
+	return (ret);
 }

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   deg_to_rad.c                                       :+:      :+:    :+:   */
+/*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 01:20:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 18:09:05 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/20 22:13:04 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 22:17:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
-
 /* ************************************************************************** */
 /*                                                                            */
-/*   rad(π / 2) = 90														  */
-/*   rad(π)     = 180														  */
-/*   rad(π * 2) = 360														  */
+/*   t   distance entre l'origine d'un rayon et l'intersection                */
 /*                                                                            */
 /* ************************************************************************** */
-float	deg_to_rad(float deg)
+t_to	intersection(float t, t_object object)
 {
-	return ((M_PI / 180.0) * deg);
-}
-
-float	rad_to_deg(float rad)
-{
-	return ((180.0 * rad) / M_PI);
+	return ((t_to){t, object});
 }

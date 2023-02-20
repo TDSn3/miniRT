@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling.c                                          :+:      :+:    :+:   */
+/*   si_size.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 23:36:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:32 by tda-silv         ###   ########.fr       */
+/*   Created: 2022/03/16 13:59:36 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 21:20:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix	*scaling(t_tuple vector)
+int	si_size(t_intersection *lst)
 {
-	t_matrix	*mtx;
+	t_intersection	*nextl;
+	size_t			i;
 
-	mtx = NULL;
-	mtx = new_identity_matrix();
-	if (!mtx)
-		return (NULL);
-	mtx->tab[0][0] = vector.x;
-	mtx->tab[1][1] = vector.y;
-	mtx->tab[2][2] = vector.z;
-	return (mtx);
+	i = 0;
+	nextl = lst;
+	if (!lst)
+		return (0);
+	while (nextl)
+	{
+		nextl = nextl->next;
+		i++;
+	}
+	return (i);
 }

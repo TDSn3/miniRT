@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 17:53:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 22:17:05 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 /*   big-endian      x y z w                                                  */
 /*   little-endian   w z y x                                                  */
 /*                                                                            */
-/*   w = 1   point                                                            */
 /*   w = 0   vector                                                           */
+/*   w = 1   point                                                            */
 /*                                                                            */
 /* ************************************************************************** */
 typedef union s_tuple
@@ -34,16 +34,16 @@ typedef union s_tuple
 	float		tuple[4];
 }	t_tuple;
 
-typedef union s_xs
+typedef union s_3f
 {
 	struct
 	{
-		float	count;
 		float	a;
 		float	b;
+		float	c;
 	};
-	float		xs[3];
-}	t_xs;
+	float		f[3];
+}	t_3f;
 
 typedef union s_6f
 {
@@ -56,7 +56,7 @@ typedef union s_6f
 		float	e;
 		float	f;
 	};
-	float		f[6];
+	float		t[6];
 }	t_6f;
 
 typedef struct s_matrix
@@ -85,6 +85,34 @@ typedef struct s_ijkl
 	size_t	k;
 	size_t	l;
 }	t_ijkl;
+
+typedef struct s_object
+{
+	unsigned int	id;
+	t_tuple			position;
+}	t_object;
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   t.a      nombre d'intersection                                           */
+/*   t.b      distance entre l'origine du rayon et l'intersection 1           */
+/*   t.c      distance entre l'origine du rayon et l'intersection 2           */
+/*   object   type de l'objet									              */
+/*                                                                            */
+/* ************************************************************************** */
+typedef struct s_intersection
+{
+	t_3f					t;
+	t_object				object;
+	struct s_intersection	*prev;
+	struct s_intersection	*next;
+}	t_intersection;
+
+typedef struct s_t_and_object
+{
+	float		t;
+	t_object	object;
+}	t_to;
 
 typedef struct s_data_mlx_img
 {

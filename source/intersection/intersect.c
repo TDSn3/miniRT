@@ -6,13 +6,70 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 17:42:01 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 21:44:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-float	intersect(float sphere, t_tuple ray[2])
+static float	give_discri(t_tuple vector,
+					t_tuple point, t_object sphere, t_3f *abc);
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   vector + point = rayon													  */
+/*                                                                            */
+/*   Supposons que l'origine d'une sphère est située à l'origine		  	  */
+/*   du monde (0, 0, 0). Nous supposerons également que ce soit une sphère    */
+/*   unitaire, avec un rayons de 1.								  			  */
+/*                                                                            */
+/* ************************************************************************** */
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object sphere)
 {
-	return (0);
+	t_intersection	ret;
+	t_3f			abc;
+	float			discriminant;
+
+	ret.object = sphere;
+	discriminant = give_discri(vector, point, sphere, &abc);
+	if (discriminant < 0)
+	{
+		ret.t.a = 0;
+		ret.t.b = 0;
+		ret.t.c = 0;
+	}
+	else
+	{
+		ret.t.a = 2;
+		ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
+		ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
+	}
+	printf("\n%f\n%f %f %f\n\n", discriminant, ret.t.a, ret.t.b, ret.t.c);
+	return (ret);
+}
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   vector   direction du rayon											  */
+/*   point    position de l'origine du rayon								  */
+/*                                                                            */
+/*   sphere_to_ray = point - sphere.position                                  */
+/*                                                                            */
+/*   abc->a = (produit scalaire de vector et vector)                          */
+/*   abc->b = 2 * (produit scalaire de vector et sphere_to_ray)               */
+/*   abc->c = (produit scalaire de sphere_to_ray et sphere_to_ray) -1         */
+/*                                                                            */
+/* ************************************************************************** */
+static float	give_discri(t_tuple vector,
+					t_tuple point, t_object sphere, t_3f *abc)
+{
+	float	discriminant;
+	t_tuple	sphere_to_ray;
+
+	t_tuple_minus(&sphere_to_ray, point, sphere.position);
+	abc->a = scalar_product_vector(&vector, &vector);
+	abc->b = 2 * scalar_product_vector(&vector, &sphere_to_ray);
+	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
+	discriminant = powf(abc->b, 2) - 4 * abc->a * abc->c;
+	return (discriminant);
 }

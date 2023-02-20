@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scaling.c                                          :+:      :+:    :+:   */
+/*   give_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 23:36:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 18:10:32 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/20 02:45:48 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 21:14:49 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix	*scaling(t_tuple vector)
+t_object	give_sphere(unsigned int id, t_tuple position)
 {
-	t_matrix	*mtx;
+	t_object	new_sphere;
 
-	mtx = NULL;
-	mtx = new_identity_matrix();
-	if (!mtx)
-		return (NULL);
-	mtx->tab[0][0] = vector.x;
-	mtx->tab[1][1] = vector.y;
-	mtx->tab[2][2] = vector.z;
-	return (mtx);
+	new_sphere.id = id;
+	new_sphere.position = position;
+	return (new_sphere);
 }
