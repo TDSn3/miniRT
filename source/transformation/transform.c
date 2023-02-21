@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 17:41:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/20 23:39:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@
 void	transform(t_tuple *dst, t_matrix *mtx, t_tuple *point)
 {
 	multiply_matrix_tuple(dst, mtx, point);
-	free(mtx);
+//	free(mtx);
 }

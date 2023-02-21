@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 22:17:05 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 00:30:09 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,38 @@ typedef union s_tuple
 	};
 	float		tuple[4];
 }	t_tuple;
+
+typedef union s_ray
+{
+	struct
+	{
+		union
+		{
+			struct
+			{
+				float	x;
+				float	y;
+				float	z;
+				float	w;
+			};
+			float		tab[4];
+			t_tuple		vector;
+		};
+		union
+		{
+			struct
+			{
+				float	x2;
+				float	y2;
+				float	z2;
+				float	w2;
+			};
+			float		tab2[4];
+			t_tuple		point;
+		};
+	};
+	float	ray_tab[8];
+}	t_ray;
 
 typedef union s_3f
 {
@@ -90,6 +122,7 @@ typedef struct s_object
 {
 	unsigned int	id;
 	t_tuple			position;
+	t_matrix		*transform;
 }	t_object;
 
 /* ************************************************************************** */

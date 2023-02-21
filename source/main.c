@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 22:51:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:58:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,39 @@ int	gen_new_img(t_all_data *all_data)
 			&mwi -> data_img -> endian);
 //	pixel_put ***********************************************************************
 
-	t_intersection	*a;
-	t_to			stock;
+	t_tuple	ray_origin = {0, 0, -5, 1};
+	float	wall_z = 10;
+	float	wall_size = 10;
+	float	canvas_pixels = 300;
+	float	pixel_size = wall_size / canvas_pixels;
+	float	half = wall_size / 2;
+	float	world_y;
+	float	world_x;
+	t_tuple	position;
+	t_ray	r;
+	t_tuple stock;
+	t_intersection	inter;
+	t_object		shape = {1, (t_tuple){0,0,0,1}, shearing((t_6f){1,0,0,0,0,0})};
 
-	a = NULL;
-	si_add_back(&a, si_new((t_3f){2, 5, 7}, (t_object){1, (t_tuple){0, 0, 0}}));
-	si_add_back(&a, si_new((t_3f){2, -3, 2}, (t_object){1, (t_tuple){0, 0, 0}}));
-	stock = hit(a);
-	printf("->%f \n", stock.t);
-	if (stock.t == FLT_MAX)
-		printf("ERROR \n", stock.t);
+	r.point = ray_origin;
+	for (float y = 0; y < canvas_pixels; y++)
+	{
+		world_y = half - pixel_size * y;
+		for (float x = 0; x < canvas_pixels; x++)
+		{
+			world_x = -half + pixel_size * x;
+			init_point(&position, world_x, world_y, wall_z);
+			stock = t_tuple_minus(NULL, position, ray_origin);
+			normalization_vector(&stock);
+			r.vector = stock;
+			inter = intersect(r.vector, r.point, shape);
+			if (hit(&inter).t)
+				my_mlx_pixel_put(all_data, x, y, 0x00FF0000);
+		}
+	}
+	free(shape.transform);
 
-//	intersect((t_tuple){0, 0, 1}, (t_tuple){0, 0, 5}, (t_object){1, (t_tuple){0, 0, 0}});
-	si_clear(&a);
-	red_button(mwi);
+//	red_button(mwi);
 //	t_tuple	point;
 //	t_tuple	point2;
 //	t_tuple	point3;
@@ -99,11 +118,11 @@ int	gen_new_img(t_all_data *all_data)
 
 //	*********************************************************************************
 
-	for (int i = -10 ; i < 10; i++)
-	{
-		my_mlx_pixel_put(all_data, 0, i, 0x00FF0000);
-		my_mlx_pixel_put(all_data, i, 0, 0x00FF0000);
-	}	
+//	for (int i = -10 ; i < 10; i++)
+//	{
+//		my_mlx_pixel_put(all_data, 0, i, 0x00FF0000);
+//		my_mlx_pixel_put(all_data, i, 0, 0x00FF0000);
+//	}	
 
 //	*********************************************************************************
 	mlx_put_image_to_window(

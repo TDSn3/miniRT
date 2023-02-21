@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_tuple_minus.c                                    :+:      :+:    :+:   */
+/*   set_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 17:12:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 01:08:21 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/20 23:23:17 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/20 23:34:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_tuple	t_tuple_minus(t_tuple *a, t_tuple left, t_tuple right)
+void	set_transform(t_object *object, t_matrix *t)
 {
-	t_tuple	ret;
-
-	ret.x = left.x - right.x;
-	ret.y = left.y - right.y;
-	ret.z = left.z - right.z;
-	ret.w = left.w - right.w;
-	if (a)
-	{
-		a->x = left.x - right.x;
-		a->y = left.y - right.y;
-		a->z = left.z - right.z;
-		a->w = left.w - right.w;
-	}
-	return (ret);
+	object->transform = &t;
 }

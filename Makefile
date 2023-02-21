@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/20 22:39:34 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/21 00:09:03 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 										 rotation_xyz							\
 										 deg_to_rad								\
 										 shearing								\
+										 transform_ray							\
 			   )																\
 			  $(addprefix intersection/,										\
 									   position									\
@@ -80,6 +81,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 									   intersect								\
 									   intersection								\
 									   hit										\
+									   set_transform							\
 						   $(addprefix s_intersection/,							\
 								   					  si_add_back				\
 													  si_size					\

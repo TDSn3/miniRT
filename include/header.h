@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 22:47:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:08:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				equal_float(float a, float b);
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);
 void			t_tuple_plus(t_tuple *a, t_tuple *left, t_tuple *right);
-void			t_tuple_minus(t_tuple *a, t_tuple left, t_tuple right);
+t_tuple			t_tuple_minus(t_tuple *a, t_tuple left, t_tuple right);
 void			t_tuple_nega(t_tuple *tuple);
 void			t_tuple_multi_scal(t_tuple *a, t_tuple *left, float right);
 void			t_tuple_div_scal(t_tuple *a, t_tuple *left, float right);
@@ -67,12 +67,14 @@ t_matrix		*rotation_z(float deg);
 float			deg_to_rad(float deg);
 float			rad_to_deg(float rad);
 t_matrix		*shearing(t_6f f);
+t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_object		give_sphere(unsigned int id, t_tuple position);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object sphere);
 t_to			intersection(float t, t_object object);
 t_to			hit(t_intersection *list);
+void			set_transform(t_object *object, t_matrix *t);
 
 int				si_add_back(t_intersection **lst, t_intersection *new);
 int				si_size(t_intersection *lst);

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 21:44:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 01:55:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object sphere)
 {
 	t_intersection	ret;
 	t_3f			abc;
+	t_ray			ray;
 	float			discriminant;
 
 	ret.object = sphere;
-	discriminant = give_discri(vector, point, sphere, &abc);
+	ray = transform_ray(vector, point, sphere.transform);
+//	add inverse matrix
+	discriminant = give_discri(ray.vector, ray.point, sphere, &abc);
 	if (discriminant < 0)
 	{
 		ret.t.a = 0;
@@ -44,7 +47,8 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object sphere)
 		ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
 		ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
 	}
-	printf("\n%f\n%f %f %f\n\n", discriminant, ret.t.a, ret.t.b, ret.t.c);
+	ret.next = NULL;
+	ret.prev = NULL;
 	return (ret);
 }
 
