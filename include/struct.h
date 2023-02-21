@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 17:51:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 22:28:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,18 @@ typedef struct s_material
 	float	specular;
 	float	shininess;
 }	t_material;
+
+typedef union s_bgra
+{
+	struct
+	{
+		int8_t	b;
+		int8_t	g;
+		int8_t	r;
+		int8_t	a;
+	};
+	int32_t		bgra;
+}	t_bgra;
 
 typedef union s_3f
 {

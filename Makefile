@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/21 18:05:01 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/21 22:30:58 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,21 @@ CFLAGS		= -Wall -Wextra  -Wshadow -Wconversion -Wno-error=conversion
 #                                                                              #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-#I_HEADERS	= -I $(INC_DIR) -I mlx
+# **************************************************************************** #
+#   Linux                                                                      #
+# **************************************************************************** #
+#
+#I_HEADERS	= -I $(INC_DIR) -I mlx_linux
+#L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+#
+# **************************************************************************** #
+#   MacOs                                                                      #
+# **************************************************************************** #
 
-L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
-#L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
+L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
+I_HEADERS	= -I $(INC_DIR) -I mlx_macos
+
+# **************************************************************************** #
 
 HEADERS		= $(shell find include/ -type f)
 
@@ -102,6 +112,8 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   main																\
 			   my_mlx_pixel_put													\
 			   equal_float														\
+			   print_canvas														\
+			   convert_to_255													\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
@@ -124,7 +136,7 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+#	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
 	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
@@ -135,7 +147,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-	cd mlx_linux; make clean
+#	cd mlx_linux; make clean
 	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 

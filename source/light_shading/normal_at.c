@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 12:50:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 21:19:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ t_tuple	normal_at(t_object sphere, t_tuple world_point)
 	transposing_matrix(cpy);
 	world_normal = multiply_matrix_tuple(cpy, &object_normal);
 	world_normal.w = 0;
-	normalization_vector(&world_normal);
+	world_normal = normalization_vector(world_normal);
 	return (world_normal);
 }
