@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 12:57:23 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:55:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,9 @@ int	gen_new_img(t_all_data *all_data)
 //	}
 //	free(shape.transform);
 
-	t_object		shape = {1, (t_tuple){0,0,0,1}, translation((t_tuple){0,1,0,0})};
+//	t_object		shape = {1, (t_tuple){0,0,0,1}, translation((t_tuple){0,1,0,0})};
 
-	t_tuple n = normal_at(shape, (t_tuple){0, 1.70711, -0.70711, 1});
+	t_tuple n = reflect((t_tuple){0, -1, 0, 0}, (t_tuple){0.70710678118, 0.70710678118, 0, 0});
 	printf("%f %f %f\n", n.x, n.y, n.z);
 
 	red_button(mwi);

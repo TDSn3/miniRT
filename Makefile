@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/21 12:15:49 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/21 16:30:24 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,11 @@ CFLAGS		= -Wall -Wextra  -Wshadow -Wconversion -Wno-error=conversion
 #                                                                              #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR) -I mlx
+I_HEADERS	= -I $(INC_DIR) -I mlx_linux
+#I_HEADERS	= -I $(INC_DIR) -I mlx
 
-#L_LIB		= -Lmlx -lmlx -lXext -lX11 -lm -lz
-L_LIB		= -L mlx -l mlx -framework OpenGL -framework AppKit
+L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+#L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
 
 HEADERS		= $(shell find include/ -type f)
 
@@ -94,6 +95,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix light_shading/,										\
 										normal_at								\
+										reflect									\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\
@@ -120,7 +122,8 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-	@cd mlx; make >> /dev/null 2>> /dev/null; cd ..
+	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
 
@@ -130,7 +133,8 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-	cd mlx; make clean
+	cd mlx_linux; make clean
+	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
