@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 01:08:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:37:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				equal_float(float a, float b);
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);
 void			t_tuple_plus(t_tuple *a, t_tuple *left, t_tuple *right);
-t_tuple			t_tuple_minus(t_tuple *a, t_tuple left, t_tuple right);
+t_tuple			t_tuple_minus(t_tuple left, t_tuple right);
 void			t_tuple_nega(t_tuple *tuple);
 void			t_tuple_multi_scal(t_tuple *a, t_tuple *left, float right);
 void			t_tuple_div_scal(t_tuple *a, t_tuple *left, float right);
@@ -48,7 +48,7 @@ int				free_matrix(t_matrix *a);
 void			copy_matrix(t_matrix *src, t_matrix *dst);
 int				equal_matrix(t_matrix *a, t_matrix *b);
 void			multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right);
-void			multiply_matrix_tuple(t_tuple *a, t_matrix *left, t_tuple *right);
+t_tuple			multiply_matrix_tuple(t_matrix *left, t_tuple *right);
 int				transposing_matrix(t_matrix *a);
 float			determinant_matrix(t_matrix *a);
 t_matrix		*sub_matrix(t_matrix *src, size_t x_del, size_t y_del);
@@ -83,5 +83,7 @@ t_intersection	*si_last(t_intersection *lst);
 t_intersection	*si_find_content(t_intersection *lst, unsigned int object_id);
 void			si_clear(t_intersection **lst);
 void			si_clear_one(t_intersection **lst, unsigned int object_id);
+
+t_tuple			normal_at(t_object sphere, t_tuple world_point);
 
 #endif

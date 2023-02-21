@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/21 00:09:03 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/21 12:15:49 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,9 @@ NAME_FILE	= $(addprefix tuple/,												\
 													  si_clear					\
 													  si_clear_one				\
 						    )													\
+			   )																\
+			  $(addprefix light_shading/,										\
+										normal_at								\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

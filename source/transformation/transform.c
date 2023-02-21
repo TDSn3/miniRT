@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 23:39:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:35:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@
 /* ************************************************************************** */
 void	transform(t_tuple *dst, t_matrix *mtx, t_tuple *point)
 {
-	multiply_matrix_tuple(dst, mtx, point);
+	t_tuple	stock;
+
+	stock = multiply_matrix_tuple(mtx, point);
+	dst->x = stock.x;
+	dst->y = stock.y;
+	dst->z = stock.z;
+	dst->w = stock.w;
 //	free(mtx);
 }

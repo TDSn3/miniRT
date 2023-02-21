@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 01:55:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 12:38:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static float	give_discri(t_tuple vector,
 	float	discriminant;
 	t_tuple	sphere_to_ray;
 
-	t_tuple_minus(&sphere_to_ray, point, sphere.position);
+	sphere_to_ray = t_tuple_minus(point, sphere.position);
 	abc->a = scalar_product_vector(&vector, &vector);
 	abc->b = 2 * scalar_product_vector(&vector, &sphere_to_ray);
 	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
