@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:18:49 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 16:12:18 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:15:02 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_tuple	position(t_tuple vector, t_tuple point, float t)
 
 	init_point(&next_pos, 0, 0, 0);
 	next_pos = t_tuple_multi_scal(vector, t);
-	t_tuple_plus(&next_pos, &point, &next_pos);
+	next_pos = t_tuple_plus(point, next_pos);
 	return (next_pos);
 }

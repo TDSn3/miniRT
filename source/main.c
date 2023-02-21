@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 16:55:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:37:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,30 +96,51 @@ int	gen_new_img(t_all_data *all_data)
 //	}
 //	free(shape.transform);
 
-//	t_object		shape = {1, (t_tuple){0,0,0,1}, translation((t_tuple){0,1,0,0})};
+	t_tuple	ray_origin = {0, 0, -5, 1};
+	float	wall_z = 10;
+	float	wall_size = 10;
+	float	canvas_pixels = 300;
+	float	pixel_size = wall_size / canvas_pixels;
+	float	half = wall_size / 2;
+	float	world_y;
+	float	world_x;
 
-	t_tuple n = reflect((t_tuple){0, -1, 0, 0}, (t_tuple){0.70710678118, 0.70710678118, 0, 0});
-	printf("%f %f %f\n", n.x, n.y, n.z);
+	t_tuple	stock_position;
+	t_tuple	point;
+	t_ray	r;
+	t_to	stock_hit;
+	t_tuple stock;
+	t_intersection	inter;
+	t_object		shape = {1, (t_tuple){0,0,0,1}, shearing((t_6f){1,0,0,0,0,0})}; //
+	t_material		mat;
+	t_light			light;
+	t_tuple			stock_normal;
 
-	red_button(mwi);
-//	t_tuple	point;
-//	t_tuple	point2;
-//	t_tuple	point3;
-//	t_tuple	point4;
-//
-//	init_point(&point, 1, 0, 1);
-//	init_point(&point2, 0, 0, 0);
-//	init_point(&point3, 0, 0, 0);
-//	init_point(&point4, 0, 0, 0);
-//
-//	transform(&point2, rotation_x(90), &point);
-//	transform(&point3, scaling((t_tuple){5, 5, 5, 0}), &point2);
-//	transform(&point4, translation((t_tuple){10, 5, 7, 0}), &point3);
-//	printf("%f %f %f\n", point4.x, point4.y, point4.z);
+	light.intensity = (t_tuple){1,1,1,0};
+	light.position = (t_tuple){-10,10,-10,1};
+	mat.color = (t_tuple){1, 0.2, 1, 0};
+	shape.material = mat;
 
-//	t_tuple	test;
-//	test.x = 33;
-//	printf("----------->%f\n", test.tuple[0]);
+	r.point = ray_origin;
+	for (float y = 0; y < canvas_pixels; y++)
+	{
+		world_y = half - pixel_size * y;
+		for (float x = 0; x < canvas_pixels; x++)
+		{
+			world_x = -half + pixel_size * x;
+			init_point(&stock_position, world_x, world_y, wall_z);
+			stock = t_tuple_minus(stock_position, ray_origin);
+			normalization_vector(&stock);
+			r.vector = stock;
+			inter = intersect(r.vector, r.point, shape);
+			stock_hit = hit(&inter);
+			if (stock_hit.t)
+				my_mlx_pixel_put(all_data, x, y, 0x00FF0000);
+			point = position(r.vector, r.point, stock_hit.t);
+			stock_normal = normal_at(stock_hit.object, point);
+		}
+	}
+	free(shape.transform);
 
 //	*********************************************************************************
 

@@ -6,22 +6,13 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 12:52:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:51:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-/* ************************************************************************** */
-/*                                                                            */
-/*   big-endian      x y z w                                                  */
-/*   little-endian   w z y x                                                  */
-/*                                                                            */
-/*   w = 0   vector                                                           */
-/*   w = 1   point                                                            */
-/*                                                                            */
-/* ************************************************************************** */
 typedef union s_tuple
 {
 	struct
@@ -66,6 +57,47 @@ typedef union s_ray
 	float	ray_tab[8];
 }	t_ray;
 
+typedef union s_light
+{
+	struct
+	{
+		union
+		{
+			struct
+			{
+				float	x;
+				float	y;
+				float	z;
+				float	w;
+			};
+			float		tab[4];
+			t_tuple		intensity;
+		};
+		union
+		{
+			struct
+			{
+				float	x2;
+				float	y2;
+				float	z2;
+				float	w2;
+			};
+			float		tab2[4];
+			t_tuple		position;
+		};
+	};
+	float	light_tab[8];
+}	t_light;
+
+typedef struct s_material
+{
+	t_tuple	color;
+	float	ambient;
+	float	diffuse;
+	float	specular;
+	float	shininess;
+}	t_material;
+
 typedef union s_3f
 {
 	struct
@@ -98,18 +130,6 @@ typedef struct s_matrix
 	size_t	y_size;
 }	t_matrix;
 
-typedef union s_argb
-{
-	struct
-	{
-		int8_t	a;
-		int8_t	r;
-		int8_t	g;
-		int8_t	b;
-	};
-	int32_t		argb;
-}	t_argb;
-
 typedef struct s_ijkl
 {
 	size_t	i;
@@ -117,6 +137,11 @@ typedef struct s_ijkl
 	size_t	k;
 	size_t	l;
 }	t_ijkl;
+
+typedef enum e_type
+{
+	SPHERE,
+}	t_type;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -127,8 +152,10 @@ typedef struct s_ijkl
 typedef struct s_object
 {
 	unsigned int	id;
+	t_type			type;
 	t_tuple			position;
 	t_matrix		*transform;
+	t_material		material;
 }	t_object;
 
 /* ************************************************************************** */

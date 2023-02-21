@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/21 16:30:24 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/21 18:05:01 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 							    t_tuple_nega									\
 							    t_tuple_multi_scal								\
 							    t_tuple_div_scal								\
+								t_tuple_multi									\
 							    magnitude_vector								\
 							    normalization_vector							\
 							    scalar_product_vector							\
@@ -96,6 +97,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 			  $(addprefix light_shading/,										\
 										normal_at								\
 										reflect									\
+										lighting								\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

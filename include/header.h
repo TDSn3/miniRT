@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 16:30:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:14:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,16 @@ void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int				equal_float(float a, float b);
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);
-void			t_tuple_plus(t_tuple *a, t_tuple *left, t_tuple *right);
+t_tuple			t_tuple_plus(t_tuple left, t_tuple right);
 t_tuple			t_tuple_minus(t_tuple left, t_tuple right);
 void			t_tuple_nega(t_tuple *tuple);
 t_tuple			t_tuple_multi_scal(t_tuple left, float right);
 void			t_tuple_div_scal(t_tuple *a, t_tuple *left, float right);
+t_tuple			t_tuple_multi(t_tuple left, t_tuple right);
 float			magnitude_vector(t_tuple *tuple);
 void			normalization_vector(t_tuple *tuple);
 float			scalar_product_vector(t_tuple *a, t_tuple *b);
-void			cross_product_vector(t_tuple *vector, t_tuple *a, t_tuple *b);
+t_tuple			cross_product_vector(t_tuple a, t_tuple b);
 
 t_matrix		*new_matrix(size_t x_size, size_t y_size);
 t_matrix		*new_identity_matrix(void);
@@ -86,5 +87,6 @@ void			si_clear_one(t_intersection **lst, unsigned int object_id);
 
 t_tuple			normal_at(t_object sphere, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
+t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector);
 
 #endif
