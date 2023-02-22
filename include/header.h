@@ -3,28 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:35:11 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:49:56 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-# include <mlx.h>
-# include <math.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stddef.h>
+# include <errno.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <float.h>
+# include <math.h>
+# include <mlx.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
 
 //# include <struct.h>
-# include "struct.h"
 # include "color.h"
+# include "libft.h"
+# include "struct.h"
 
 # define EPSILON 0.00001
 
@@ -91,7 +94,8 @@ void			si_clear_one(t_intersection **lst, unsigned int object_id);
 
 t_tuple			normal_at(t_object sphere, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
-t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector);
+t_tuple			lighting(t_material material, t_light light, t_tuple point,
+					t_tuple eyev_vector, t_tuple nomralv_vector);
 
 t_to			*intersect_world(t_world *world, t_ray ray);
 
@@ -107,5 +111,13 @@ t_to			*sto_last(t_to *lst);
 size_t			sto_size(t_to *lst);
 void			sto_clear(t_to **lst);
 void			sto_sort(t_to **lst);
+
+char			*parse_scene(char *filename, t_world *scene);
+char			*parse_sphere(t_world *scene, char *line);
+char			*parse_plane(t_world *scene, char *line);
+char			*parse_cylinder(t_world *scene, char *line);
+char			*parse_ambient(t_world *scene, char *line);
+char			*parse_camera(t_world *scene, char *line);
+char			*parse_light(t_world *scene, char *line);
 
 #endif

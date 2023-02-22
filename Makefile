@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
+#    By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 15:28:25 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 22:39:58 by rcatini          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME		= miniRT
 SRC_DIR		= source/
 OBJ_DIR		= object/
 INC_DIR		= include/
-
 CC			= gcc
 
 CFLAGS		= -Wall -Wextra  -Wshadow
@@ -32,8 +31,8 @@ CFLAGS		= -Wall -Wextra  -Wshadow
 #   Linux                                                                      #
 # **************************************************************************** #
 #
-I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+I_HEADERS	= -I $(INC_DIR) -I mlx_linux -I libft
+L_LIB		= -Lmlx_linux -Llibft -lmlx_Linux -lft -lXext -lX11 -lm -lz 
 #
 # **************************************************************************** #
 #   MacOs                                                                      #
@@ -132,6 +131,9 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   equal_float														\
 			   print_canvas														\
 			   convert_to_255													\
+			   parser/parse_file												\
+			   parser/parse_objects												\
+			   parser/parse_globals												\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
@@ -170,9 +172,11 @@ clean:
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
+	rm -f $(LIBFT)
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean
+	$(MAKE) all
 
 leaks: $(NAME)
 	@leaks --atExit -- ./$(NAME)
