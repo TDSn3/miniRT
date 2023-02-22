@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_invertible_matrix.c                             :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 21:38:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:05:05 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/22 18:24:15 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 21:30:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <header.h>
+#ifndef MATRIX_H
+# define MATRIX_H
 
-int	is_invertible_matrix(t_matrix *a)
+typedef struct s_matrix4
 {
-	float	det;
+	float	tab[4][4];
+}	t_matrix4;
 
-	det = determinant_matrix(a);
-	if (det == NAN)
-		return (-1);
-	else if (det == 0)
-		return (0);
-	else
-		return (1);
-}
+typedef struct s_matrix3
+{
+	float	tab[3][3];
+}	t_matrix3;
+
+typedef struct s_matrix2
+{
+	float	tab[2][2];
+}	t_matrix2;
+
+#endif

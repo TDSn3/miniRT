@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   copy_matrix.c                                      :+:      :+:    :+:   */
+/*   give_identity_matrix4.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 17:45:35 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 18:12:20 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 22:41:41 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 22:13:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-void	copy_matrix(t_matrix *src, t_matrix *dst)
+t_matrix4	give_identity_matrix4(void)
 {
-	size_t	i;
-	size_t	j;
+	t_matrix4	mtx;
 
-	i = 0;
-	j = 0;
-	if (src->x_size != dst->x_size || src->y_size != dst->y_size)
-		return ;
-	while (i < src->x_size)
-	{
-		while (j < src->y_size)
-		{
-			dst->tab[i][j] = src->tab[i][j];
-			j++;
-		}
-		j = 0;
-		i++;
-	}
+	mtx = (t_matrix4){0};
+	mtx.tab[0][0] = 1;
+	mtx.tab[1][1] = 1;
+	mtx.tab[2][2] = 1;
+	mtx.tab[3][3] = 1;
+	return (mtx);
 }

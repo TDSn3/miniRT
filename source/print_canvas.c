@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:54:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:10:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:34:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	print_canvas(t_all_data *all_data)
 	shape.id = 1;
 	shape.type = SPHERE;
 	shape.position = (t_tuple){{0, 0, 0, 1}};
-	shape.transform = new_identity_matrix();
+	shape.transform = give_identity_matrix4();
 
 	shape.material.color = (t_tuple){{1, 0.2, 1, 0}};
 	shape.material.ambient = 0.1;
@@ -94,5 +94,4 @@ void	print_canvas(t_all_data *all_data)
 		x = 0;
 		y++;
 	}
-	free(shape.transform);
 }

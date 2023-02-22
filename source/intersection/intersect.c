@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:24:19 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:32:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere)
 	t_intersection	ret;
 	t_3f			abc;
 	t_ray			ray;
-	t_matrix		*inv_mtx;
+	t_matrix4		inv_mtx;
 	float			discriminant;
 
 	ret.object = sphere;
-	inv_mtx = inverse_matrix(sphere->transform);
-	ray = transform_ray(vector, point, inv_mtx);
-	// inverse matrix lag
+	inverse_matrix4(sphere->transform, &inv_mtx);
+	ray = transform_ray(vector, point, &inv_mtx);
 	discriminant = give_discri(ray.vector, ray.point, *sphere, &abc);
 	if (discriminant < 0)
 	{
@@ -51,7 +50,6 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere)
 	}
 	ret.next = NULL;
 	ret.prev = NULL;
-	free(inv_mtx);
 	return (ret);
 }
 

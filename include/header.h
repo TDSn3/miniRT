@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:35:11 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:27:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # include <float.h>
 
-//# include <struct.h>
+# include "matrix.h"
 # include "struct.h"
 # include "color.h"
 
@@ -32,6 +32,7 @@ void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int				equal_float(float a, float b);
 void			print_canvas(t_all_data *all_data);
 t_bgra			convert_to_255(t_tuple color);
+void			print_canvas(t_all_data *all_data);
 
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);
@@ -46,40 +47,40 @@ t_tuple			normalization_vector(t_tuple tuple);
 float			scalar_product_vector(t_tuple *a, t_tuple *b);
 t_tuple			cross_product_vector(t_tuple a, t_tuple b);
 
-t_matrix		*new_matrix(size_t x_size, size_t y_size);
-t_matrix		*new_identity_matrix(void);
-int				init_matrix(t_matrix *a, size_t x_size, size_t y_size);
-int				free_matrix(t_matrix *a);
-void			copy_matrix(t_matrix *src, t_matrix *dst);
-int				equal_matrix(t_matrix *a, t_matrix *b);
-void			multiply_matrix(t_matrix *a, t_matrix *left, t_matrix *right);
-t_tuple			multiply_matrix_tuple(t_matrix *left, t_tuple *right);
-int				transposing_matrix(t_matrix *a);
-float			determinant_matrix(t_matrix *a);
-t_matrix		*sub_matrix(t_matrix *src, size_t x_del, size_t y_del);
-float			minor_matrix(t_matrix *src, size_t x_del, size_t y_del);
-float			cofactor_matrix(t_matrix *src, size_t x_row, size_t y_column);
-int				is_invertible_matrix(t_matrix *a);
-t_matrix		*inverse_matrix(t_matrix *src);
-t_matrix		*inverse_matrix_free(t_matrix *src);
+int				equal_matrix4(t_matrix4 a, t_matrix4 b);
+t_matrix4		multiply_matrix4(t_matrix4 left, t_matrix4 right);
+t_tuple			multiply_matrix4_tuple(t_matrix4 left, t_tuple right);
+t_matrix4		give_identity_matrix4(void);
+t_matrix4		transpose_matrix4(t_matrix4 a);
+float			determinant_matrix2(t_matrix2 a);
+float			determinant_matrix3(t_matrix3 a);
+float			determinant_matrix4(t_matrix4 a);
+t_matrix3		sub_matrix4(t_matrix4 src, size_t x_del, size_t y_del);
+t_matrix2		sub_matrix3(t_matrix3 src, size_t x_del, size_t y_del);
+float			minor_matrix3(t_matrix3 src, size_t x_del, size_t y_del);
+float			cofactor_matrix3(t_matrix3 src, size_t x_row, size_t y_column);
+float			cofactor_matrix4(t_matrix4 src, size_t x_row, size_t y_column);
+float			minor_matrix4(t_matrix4 src, size_t x_del, size_t y_del);
+int				is_invertible_matrix4(t_matrix4 a);
+t_matrix4		*inverse_matrix4(t_matrix4 src, t_matrix4 *dst);
 
-void			transform(t_tuple *dst, t_matrix *mtx, t_tuple *point);
-t_matrix		*translation(t_tuple vector);
-t_matrix		*scaling(t_tuple vector);
-t_matrix		*rotation_x(float deg);
-t_matrix		*rotation_y(float deg);
-t_matrix		*rotation_z(float deg);
+t_tuple			transform(t_matrix4 mtx, t_tuple point);
+t_matrix4		translation(t_tuple vector);
+t_matrix4		scaling(t_tuple vector);
+t_matrix4		rotation_x(float deg);
+t_matrix4		rotation_y(float deg);
+t_matrix4		rotation_z(float deg);
 float			deg_to_rad(float deg);
 float			rad_to_deg(float rad);
-t_matrix		*shearing(t_6f f);
-t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix *mtx);
+t_matrix4		shearing(t_6f f);
+t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix4 *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_object		give_sphere(unsigned int id, t_tuple position);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere);
 t_to			intersection(float t, t_object *object);
 t_to			hit(t_intersection *list);
-void			set_transform(t_object *object, t_matrix *t);
+void			set_transform(t_object *object, t_matrix4 *t);
 
 int				si_add_back(t_intersection **lst, t_intersection *new);
 size_t			si_size(t_intersection *lst);

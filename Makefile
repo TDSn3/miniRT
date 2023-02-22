@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 15:28:25 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 23:28:31 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra  -Wshadow
+CFLAGS		= -Wall -Wextra -Wshadow -g
 # -Werror -Wconversion -Wno-error=conversion
 # **************************************************************************** #
 #                                                                              #
@@ -31,17 +31,17 @@ CFLAGS		= -Wall -Wextra  -Wshadow
 # **************************************************************************** #
 #   Linux                                                                      #
 # **************************************************************************** #
-#
-#I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-#L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
-#
+
+I_HEADERS	= -I $(INC_DIR) -I mlx_linux
+L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+
 # **************************************************************************** #
 #   MacOs                                                                      #
 # **************************************************************************** #
-
-L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
-I_HEADERS	= -I $(INC_DIR) -I mlx_macos
-
+#
+#L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
+#I_HEADERS	= -I $(INC_DIR) -I mlx_macos
+#
 # **************************************************************************** #
 
 HEADERS		= $(shell find include/ -type f)
@@ -61,22 +61,17 @@ NAME_FILE	= $(addprefix tuple/,												\
 								cross_product_vector							\
 			   )																\
 			  $(addprefix matrix/,												\
-			 					new_matrix										\
-								new_identity_matrix								\
-								init_matrix										\
-							    free_matrix										\
-								copy_matrix										\
-								equal_matrix									\
-								multiply_matrix									\
-								multiply_matrix_tuple							\
-								transposing_matrix								\
-								determinant_matrix								\
-								sub_matrix										\
-								minor_matrix									\
-								cofactor_matrix									\
-								is_invertible_matrix							\
-								inverse_matrix									\
-								inverse_matrix_free								\
+								 equal_matrix									\
+								 multiply_matrix4								\
+								 multiply_matrix4_tuple							\
+								 give_identity_matrix4							\
+								 transpose_matrix4								\
+								 determinant_matrix								\
+								 sub_matrix										\
+								 minor_matrix									\
+								 cofactor_matrix								\
+								 is_invertible_matrix4							\
+								 inverse_matrix4								\
 			   )																\
 			  $(addprefix transformation/,										\
 										 transform								\
@@ -130,11 +125,20 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   main																\
 			   my_mlx_pixel_put													\
 			   equal_float														\
-			   print_canvas														\
 			   convert_to_255													\
+			   print_canvas														\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
+
+
+
+
+
+
+
+
+
 DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 
 # **************************************************************************** #
@@ -154,8 +158,8 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-#	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
-	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
+	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+#	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
 
@@ -165,8 +169,8 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-#	cd mlx_linux; make clean
-	cd mlx_macos; make clean
+	cd mlx_linux; make clean
+#	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
@@ -174,9 +178,18 @@ fclean: clean
 
 re: fclean all
 
+valgrind: $(OBJ)
+	valgrind --tool=memcheck --track-origins=yes --leak-check=full --show-leak-kinds=all --track-fds=yes ./$(NAME)
+
+# **************************************************************************** #
+#   MacOs                                                                      #
+# **************************************************************************** #
+
 leaks: $(NAME)
 	@leaks --atExit -- ./$(NAME)
 
-.PHONY: all clean fclean re leaks
+# **************************************************************************** #
+
+.PHONY: all clean fclean re valgrind leaks
 
 -include $(DEPENDS)

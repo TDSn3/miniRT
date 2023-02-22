@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:23:42 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 19:49:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,13 +135,6 @@ typedef union s_6f
 	float		t[6];
 }	t_6f;
 
-typedef struct s_matrix
-{
-	float	**tab;
-	size_t	x_size;
-	size_t	y_size;
-}	t_matrix;
-
 typedef struct s_ijkl
 {
 	size_t	i;
@@ -165,7 +158,7 @@ typedef struct s_object
 	unsigned int	id;
 	t_type			type;
 	t_tuple			position;
-	t_matrix		*transform;
+	t_matrix4		transform;
 	t_material		material;
 	struct s_object	*prev;
 	struct s_object	*next;

@@ -1,48 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   inverse_matrix.c                                   :+:      :+:    :+:   */
+/*   inverse_matrix4.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:54:20 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:20:23 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:30:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static void	cofactor_all(t_matrix *src, t_matrix *mtx);
-static void	div_by_det_all(t_matrix *src, t_matrix *mtx);
+static void	cofactor_all(t_matrix4 *src, t_matrix4 *mtx);
+static void	div_by_det_all(t_matrix4 *src, t_matrix4 *mtx);
 
-t_matrix	*inverse_matrix(t_matrix *src)
+t_matrix4	*inverse_matrix4(t_matrix4 src, t_matrix4 *dst)
 {
-	t_matrix	*mtx;
+	t_matrix4	mtx;
 
-	if (is_invertible_matrix(src) < 1)
+	if (is_invertible_matrix4(src) < 1)
 		return (NULL);
-	mtx = NULL;
-	mtx = new_matrix(src->x_size, src->y_size);
-	if (!mtx)
-		return (NULL);
-	cofactor_all(src, mtx);
-	transposing_matrix(mtx);
-	div_by_det_all(src, mtx);
-	return (mtx);
+	mtx = (t_matrix4){0};
+	cofactor_all(&src, &mtx);
+	*dst = transpose_matrix4(mtx);
+	div_by_det_all(&src, dst);
+	return (dst);
 }
 
-static void	cofactor_all(t_matrix *src, t_matrix *mtx)
+static void	cofactor_all(t_matrix4 *src, t_matrix4 *mtx)
 {
 	size_t		i;
 	size_t		j;
 
 	i = 0;
 	j = 0;
-	while (i < src->x_size)
+	while (i < 4)
 	{
-		while (j < src->y_size)
+		while (j < 4)
 		{
-			mtx->tab[i][j] = cofactor_matrix(src, i, j);
+			mtx->tab[i][j] = cofactor_matrix4(*src, i, j);
 			j++;
 		}
 		j = 0;
@@ -50,7 +47,7 @@ static void	cofactor_all(t_matrix *src, t_matrix *mtx)
 	}
 }
 
-static void	div_by_det_all(t_matrix *src, t_matrix *mtx)
+static void	div_by_det_all(t_matrix4 *src, t_matrix4 *mtx)
 {
 	size_t		i;
 	size_t		j;
@@ -58,10 +55,10 @@ static void	div_by_det_all(t_matrix *src, t_matrix *mtx)
 
 	i = 0;
 	j = 0;
-	det = determinant_matrix(src);
-	while (i < src->x_size)
+	det = determinant_matrix4(*src);
+	while (i < 4)
 	{
-		while (j < src->y_size)
+		while (j < 4)
 		{
 			mtx->tab[i][j] = mtx->tab[i][j] / det;
 			j++;
