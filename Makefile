@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 14:12:05 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 14:35:19 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 											   sto_new							\
 											   sto_last							\
 											   sto_clear						\
+											   sto_sort							\
 					 )															\
 			   )																\
 			   main																\

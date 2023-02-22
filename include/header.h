@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:05:47 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:35:11 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int				sto_add_back(t_to **lst, t_to *new);
 t_to			*sto_last(t_to *lst);
 size_t			sto_size(t_to *lst);
 void			sto_clear(t_to **lst);
+void			sto_sort(t_to **lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:49:27 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:36:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ t_to	*intersect_world(t_world *world, t_ray ray)
 		sto_add_back(&ret, sto_new(t.t.c, cpy));
 		cpy = cpy->next;
 	}
+	sto_sort(&ret);
 	return (ret);
 }
