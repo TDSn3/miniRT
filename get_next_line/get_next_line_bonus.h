@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_file.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/02/22 19:48:10 by rcatini          ###   ########.fr       */
+/*   Created: 2022/05/07 11:35:14 by rcatini           #+#    #+#             */
+/*   Updated: 2022/05/07 11:35:17 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+# include <string.h>
 
-int	ft_parse_file(char *file, t_world *world)
-{
-	int		fd;
-	char	*line;
-	int		ret;
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+void	*ft_memchr(const void *s, int c, size_t n);
+char	*ft_strdup(char *s);
+char	*ft_strchr(const char *s, int c);
+void	*ft_memmove(void *dest, const void *src, size_t n);
+void	ft_strcpy(char *dest, char *src);
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		return (0);
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-		if (ft_parse_line(line, world) == 0)
-			return (0);
-		free(line);
-	}
-	if (ret == -1)
-		return (0);
-	close(fd);
-	return (1);
-}
+#endif
