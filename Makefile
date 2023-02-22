@@ -32,15 +32,15 @@ CFLAGS		= -Wall -Wextra  -Wshadow
 #   Linux                                                                      #
 # **************************************************************************** #
 #
-#I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-#L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+I_HEADERS	= -I $(INC_DIR) -I mlx_linux
+L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 #
 # **************************************************************************** #
 #   MacOs                                                                      #
 # **************************************************************************** #
 
-L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
-I_HEADERS	= -I $(INC_DIR) -I mlx_macos
+# L_LIB		= -Lmlx_macos -lmlx -framework OpenGL -framework AppKit
+# I_HEADERS	= -I $(INC_DIR) -I mlx_macos
 
 # **************************************************************************** #
 
@@ -154,8 +154,8 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-#	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
-	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
+	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+#	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
 
@@ -165,8 +165,8 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-#	cd mlx_linux; make clean
-	cd mlx_macos; make clean
+	cd mlx_linux; make clean
+#	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
