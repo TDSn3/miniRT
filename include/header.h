@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 22:30:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:28:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 //# include <struct.h>
 # include "struct.h"
+# include "color.h"
 
 # define EPSILON 0.00001
 

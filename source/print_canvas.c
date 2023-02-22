@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:54:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 22:39:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 11:13:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ void	print_canvas(t_all_data *all_data)
 	shape.type = SPHERE;
 	shape.position = (t_tuple){0, 0, 0, 1};
 	shape.transform = new_identity_matrix();
-	shape.material = (t_material){(t_tuple){1, 0.2, 1, 1}, 1, 1, 1, 1};
+
+	shape.material.color = (t_tuple){1, 0.2, 1, 0};
+	shape.material.ambient = 0.1;
+	shape.material.diffuse = 0.9;
+	shape.material.specular = 0.9;
+	shape.material.shininess = 200;
 
 	t_tuple			ray_origin;
 	float			wall_z;
@@ -54,7 +59,7 @@ void	print_canvas(t_all_data *all_data)
 	ray_origin = (t_tuple){0, 0, -5, 1};
 	wall_z = 10;
 	wall_size = 7;
-	canvas_pixels = 100;
+	canvas_pixels = 200;
 	pixel_size = wall_size / canvas_pixels;
 	half = wall_size / 2;
 	world_x = 0;
@@ -63,7 +68,7 @@ void	print_canvas(t_all_data *all_data)
 	y = 0;
 	r.point = ray_origin;
 
-	light.position = (t_tuple){-10, 10, -10, 1};
+	light.position = (t_tuple){-10, -10, -10, 1};
 	light.intensity = (t_tuple){1, 1, 1, 0};
 
 	while (y < canvas_pixels)

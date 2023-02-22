@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/21 22:30:58 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 10:59:20 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -156,6 +156,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+leaks: $(NAME)
+	@leaks --atExit -- ./$(NAME)
+
+.PHONY: all clean fclean re leaks
 
 -include $(DEPENDS)
