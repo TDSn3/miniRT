@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:50:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:10:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,28 +78,28 @@ int	gen_new_img(t_all_data *all_data)
 		t_ray		r;
 		t_to		*xs;
 
-		light.position = (t_tuple){-10, 10, -10, 1};
-		light.intensity = (t_tuple){1, 1, 1, 0};
+		light.position = (t_tuple){{-10, 10, -10, 1}};
+		light.intensity = (t_tuple){{1, 1, 1, 0}};
 
 		s1 = so_new(1, SPHERE);
 		s2 = so_new(2, SPHERE);
 
-		s1->material.color = (t_tuple){0.8, 1.0, 0.6};
+		s1->material.color = (t_tuple){{0.8, 1.0, 0.6, 0}};
 		s1->material.ambient = 0.1;
 		s1->material.diffuse = 0.7;
 		s1->material.specular = 0.2;
 
 		free(s2->transform);
-		s2->transform = scaling((t_tuple){0.5, 0.5, 0.5});
-		s2->material.color = (t_tuple){1, 0.2, 1, 0};
+		s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
+		s2->material.color = (t_tuple){{1, 0.2, 1, 0}};
 
 		so_add_back(&s1, s2);
 
 		w.light = light;
 		w.lst_object = s1;
 
-		r.vector = (t_tuple){0, 0, 1, 0};
-		r.point = (t_tuple){0, 0, -5, 1};
+		r.vector = (t_tuple){{0, 0, 1, 0}};
+		r.point = (t_tuple){{0, 0, -5, 1}};
 
 		xs = NULL;
 		xs = intersect_world(&w, r);

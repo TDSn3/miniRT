@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:21:21 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 22:30:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:11:40 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ t_bgra	convert_to_255(t_tuple color)
 	t_bgra	converted_color;
 
 	if (color.x * 255 > 255)
-		converted_color.r = 255;
+		converted_color.r = (int8_t)255;
 	else
 		converted_color.r = color.x * 255;
 
 	if (color.y * 255 > 255)
-		converted_color.g = 255;
+		converted_color.g = (int8_t)255;
 	else
 		converted_color.g = color.y * 255;
 
 	if (color.z * 255 > 255)
-		converted_color.b = 255;
+		converted_color.b = (int8_t)255;
 	else
 		converted_color.b = color.z * 255;
 	return (converted_color);

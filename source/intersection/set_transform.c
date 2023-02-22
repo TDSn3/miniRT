@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 23:23:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 23:34:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:08:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	set_transform(t_object *object, t_matrix *t)
 {
-	object->transform = &t;
+	object->transform = t;
 }

@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 13:12:23 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 14:12:05 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra  -Wshadow -Wconversion -Wno-error=conversion
-# -Werror
+CFLAGS		= -Wall -Wextra  -Wshadow
+# -Werror -Wconversion -Wno-error=conversion
 # **************************************************************************** #
 #                                                                              #
 #   -I   | Chemin du dossier où trouver un .h								   #

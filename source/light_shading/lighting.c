@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 10:58:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 14:09:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	refelctv = reflect(t_tuple_nega(lightv), normalv_vector);
 	reflect_dot_eye = scalar_product_vector(&refelctv, &eyev_vector);
 	if (reflect_dot_eye <= 0)
-		specular = (t_tuple){0, 0, 0, 0};
+		specular = (t_tuple){{0, 0, 0, 0}};
 	else
 	{
 		factor = powf(reflect_dot_eye, material.shininess);
