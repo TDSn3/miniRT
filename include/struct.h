@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 21:01:24 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/02/22 23:18:42 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ typedef struct s_ijkl
 typedef enum e_type
 {
 	SPHERE,
+	PLANE,
+	CYLINDER,
 }							t_type;
 
 /* ************************************************************************** */
@@ -182,7 +184,7 @@ typedef struct s_world
 /*   t.a      nombre d'intersection                                           */
 /*   t.b      distance entre l'origine du rayon et l'intersection 1           */
 /*   t.c      distance entre l'origine du rayon et l'intersection 2           */
-/*   object   type de l'objet										           */
+/*   object   type de l'objet														*/
 /*                                                                            */
 /* ************************************************************************** */
 typedef struct s_intersection
@@ -224,5 +226,70 @@ typedef struct s_all_data
 	t_mwi					*mwi;
 	t_data_mlx_img			*data_img;
 }							t_all_data;
+
+typedef struct s_vector
+{
+	double					x;
+	double					y;
+	double					z;
+}							t_vector;
+
+typedef union u_color
+{
+	struct
+	{
+		unsigned char		b;
+		unsigned char		g;
+		unsigned char		r;
+		unsigned char		a;
+	};
+	unsigned char			argb;
+}							t_color;
+
+typedef struct s_ambient
+{
+	int						initialized;
+	double					intensity;
+	t_color					color;
+}							t_ambient;
+
+typedef struct s_camera
+{
+	int						initialized;
+	int						width;
+	int						height;
+	t_vector				up;
+	t_vector				position;
+	t_vector				direction;
+	double					fov;
+	t_vector				*rays;
+}							t_camera;
+
+typedef struct s_luce
+{
+	int						initialized;
+	t_vector				position;
+	double					intensity;
+	t_color					color;
+}							t_luce;
+
+typedef struct s_shape
+{
+	t_type					type;
+	t_vector				position;
+	t_color					color;
+	t_vector				direction;
+	double					radius;
+	double					height;
+	struct s_shape			*next;
+}							t_shape;
+
+typedef struct s_scene
+{
+	t_ambient				ambient;
+	t_camera				camera;
+	t_luce					light;
+	t_shape					*shapes;
+}							t_scene;
 
 #endif
