@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:38:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 15:55:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,6 @@ int	gen_new_img(t_all_data *all_data)
 
 		for (t_to *cpy = xs; cpy; cpy = cpy->next)
 			printf("%f\n", cpy->t);
-
-//		t_intersection	t1;
-//		t_intersection	t2;
-//
-//		t1 = intersect(r.vector, r.point, *s1);
-//		t2 = intersect(r.vector, r.point, *s2);
-//		printf("%f\n", t1.t.b);
-//		printf("%f\n", t1.t.c);
-//		printf("%f\n", t2.t.b);
-//		printf("%f\n", t2.t.c);
 
 		so_clear(&s1);
 		sto_clear(&xs);
