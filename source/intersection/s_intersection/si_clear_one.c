@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 08:58:51 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 21:34:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:26:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	si_clear_one(t_intersection **lst, unsigned int object_id)
 		si_clear(lst);
 		return ;
 	}	
-	while (si_cpy && si_cpy->object.id != object_id)
+	while (si_cpy && si_cpy->object->id != object_id)
 		si_cpy = si_cpy->next;
-	if (si_cpy->object.id == object_id)
+	if (si_cpy->object->id == object_id)
 	{
 		if (si_cpy->prev)
 			si_cpy->prev->next = si_cpy->next;

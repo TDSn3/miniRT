@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 22:13:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 22:17:45 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:08:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*   t   distance entre l'origine d'un rayon et l'intersection                */
 /*                                                                            */
 /* ************************************************************************** */
-t_to	intersection(float t, t_object object)
+t_to	intersection(float t, t_object *object)
 {
 	return ((t_to){t, object});
 }

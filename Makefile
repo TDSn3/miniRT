@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 10:59:20 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/22 13:12:23 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,6 +108,23 @@ NAME_FILE	= $(addprefix tuple/,												\
 										normal_at								\
 										reflect									\
 										lighting								\
+			   )																\
+			  $(addprefix world/,												\
+								intersect_world									\
+					$(addprefix s_object/,										\
+								   		 so_add_back							\
+										 so_size								\
+										 so_new									\
+										 so_last								\
+										 so_clear								\
+					 )															\
+					$(addprefix s_t_and_object/,								\
+								   			   sto_add_back						\
+											   sto_size							\
+											   sto_new							\
+											   sto_last							\
+											   sto_clear						\
+					 )															\
 			   )																\
 			   main																\
 			   my_mlx_pixel_put													\

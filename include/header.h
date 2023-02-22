@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 11:28:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:26:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_object		give_sphere(unsigned int id, t_tuple position);
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object sphere);
-t_to			intersection(float t, t_object object);
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere);
+t_to			intersection(float t, t_object *object);
 t_to			hit(t_intersection *list);
 void			set_transform(t_object *object, t_matrix *t);
 
 int				si_add_back(t_intersection **lst, t_intersection *new);
-int				si_size(t_intersection *lst);
-t_intersection	*si_new(t_3f t, t_object object);
+size_t			si_size(t_intersection *lst);
+t_intersection	*si_new(t_3f t, t_object *object);
 t_intersection	*si_last(t_intersection *lst);
 t_intersection	*si_find_content(t_intersection *lst, unsigned int object_id);
 void			si_clear(t_intersection **lst);
@@ -92,5 +92,19 @@ void			si_clear_one(t_intersection **lst, unsigned int object_id);
 t_tuple			normal_at(t_object sphere, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
 t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector);
+
+t_to			*intersect_world(t_world *world, t_ray ray);
+
+t_object		*so_new(unsigned int id, t_type type);
+int				so_add_back(t_object **lst, t_object *new);
+t_object		*so_last(t_object *lst);
+size_t			so_size(t_object *lst);
+void			so_clear(t_object **lst);
+
+t_to			*sto_new(float t, t_object *object);
+int				sto_add_back(t_to **lst, t_to *new);
+t_to			*sto_last(t_to *lst);
+size_t			sto_size(t_to *lst);
+void			sto_clear(t_to **lst);
 
 #endif

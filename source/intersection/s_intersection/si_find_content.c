@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 21:06:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 21:29:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:26:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_intersection	*si_find_content(t_intersection *lst, unsigned int object_id)
 		return (0);
 	while (nextl)
 	{
-		if (nextl->object.id == object_id)
+		if (nextl->object->id == object_id)
 			return (nextl);
 		nextl = nextl->next;
 		i++;

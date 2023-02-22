@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   si_new.c                                           :+:      :+:    :+:   */
+/*   intersect_world.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:26:01 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 13:49:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_intersection	*si_new(t_3f t, t_object *object)
+t_to	*intersect_world(t_world *world, t_ray ray)
 {
-	t_intersection	*ln;
+	t_to			*ret;
+	t_object		*cpy;
+	t_intersection	t;
 
-	ln = malloc(sizeof(t_intersection));
-	if (!ln)
-		return (NULL);
-	ln->t = t;
-	ln->object = object;
-	ln->next = NULL;
-	ln->prev = NULL;
-	return (ln);
+	ret = NULL;
+	cpy = world->lst_object;
+	while (cpy)
+	{
+		t = intersect(ray.vector, ray.point, cpy);
+		sto_add_back(&ret, sto_new(t.t.b, cpy));
+		sto_add_back(&ret, sto_new(t.t.c, cpy));
+		cpy = cpy->next;
+	}
+	return (ret);
 }

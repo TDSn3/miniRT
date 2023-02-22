@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:54:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 11:13:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:27:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ void	print_canvas(t_all_data *all_data)
 			world_x = -half + pixel_size * x;
 			init_point(&position_point_wall, world_x, world_y, wall_z);
 			r.vector = normalization_vector(t_tuple_minus(position_point_wall, ray_origin));
-			list_intersection = intersect(r.vector, r.point, shape);
+			list_intersection = intersect(r.vector, r.point, &shape);
 			list_hit = hit(&list_intersection);
 			if (list_hit.t)
 			{
 				point = position(r.vector, r.point, list_hit.t);
-				normal = normal_at(list_hit.object, point);
+				normal = normal_at(*list_hit.object, point);
 				eye = t_tuple_nega(r.vector);
-				color = lighting(list_hit.object.material, light, point, eye, normal);
+				color = lighting(list_hit.object->material, light, point, eye, normal);
 				my_mlx_pixel_put(all_data, x - canvas_pixels / 2, y - canvas_pixels / 2, convert_to_255(color).bgra);
 			}
 			x++;

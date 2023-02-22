@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 22:28:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 13:23:42 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ typedef enum e_type
 /*   Par défaut   transform = new_identity_matrix()                           */
 /*                                                                            */
 /* ************************************************************************** */
-
 typedef struct s_object
 {
 	unsigned int	id;
@@ -168,7 +167,15 @@ typedef struct s_object
 	t_tuple			position;
 	t_matrix		*transform;
 	t_material		material;
+	struct s_object	*prev;
+	struct s_object	*next;
 }	t_object;
+
+typedef struct s_world
+{
+	t_object	*lst_object;
+	t_light		light;
+}	t_world;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -181,15 +188,17 @@ typedef struct s_object
 typedef struct s_intersection
 {
 	t_3f					t;
-	t_object				object;
+	t_object				*object;
 	struct s_intersection	*prev;
 	struct s_intersection	*next;
 }	t_intersection;
 
 typedef struct s_t_and_object
 {
-	float		t;
-	t_object	object;
+	float					t;
+	t_object				*object;
+	struct s_t_and_object	*prev;
+	struct s_t_and_object	*next;
 }	t_to;
 
 typedef struct s_data_mlx_img
