@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_matrix.c                                      :+:      :+:    :+:   */
+/*   is_invertible_matrix.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 17:41:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 17:42:21 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 21:38:57 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 22:06:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	free_matrix(t_matrix *a)
+int	is_invertible_matrix4(t_matrix4 a)
 {
-	size_t	i;
+	float	det;
 
-	i = 0;
-	if (a && a->tab && *a->tab)
-		while (i < a->y_size && a->tab[i])
-			free(a->tab[i++]);
-	if (a && a->tab)
-		free(a->tab);
-	return (1);
+	det = determinant_matrix4(a);
+	if (det == NAN)
+		return (-1);
+	else if (det == 0)
+		return (0);
+	else
+		return (1);
 }

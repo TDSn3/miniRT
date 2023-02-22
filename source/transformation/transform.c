@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 12:35:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 22:31:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,17 @@
 /*   init_vector(&vect, 5, -3, 2);											  */
 /*   init_point(&point, -3, 4, 5);											  */
 /*   init_point(&point2, 0, 0, 0);											  */
-/*   transform(&point2, translation(&vect), &point);						  */
-/*   transform(&point2, scaling(&vect), &point);							  */
-/*   transform(&point2, inverse_matrix_free(scaling(&vect)), &point);		  */
-/*   transform(&point2, rotation_x(45), &point);							  */
-/*   transform(&point2, shearing((t_xyz){0, 1, 0, 0, 0, 0}), &point);		  */
+/*   point2 = transform(translation(&vect), &point);			 			  */
+/*   point2 = transform(scaling(&vect), &point);							  */
+/*   point2 = transform(inverse_matrix_free(scaling(&vect)), &point);		  */
+/*   point2 = transform(rotation_x(45), &point);							  */
+/*   point2 = transform(shearing((t_xyz){0, 1, 0, 0, 0, 0}), &point);		  */
 /*                                                                            */
 /* ************************************************************************** */
-void	transform(t_tuple *dst, t_matrix *mtx, t_tuple *point)
+t_tuple	transform(t_matrix4 mtx, t_tuple point)
 {
 	t_tuple	stock;
 
-	stock = multiply_matrix_tuple(mtx, point);
-	dst->x = stock.x;
-	dst->y = stock.y;
-	dst->z = stock.z;
-	dst->w = stock.w;
-//	free(mtx);
+	stock = multiply_matrix4_tuple(mtx, point);
+	return (stock);
 }

@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_identity_matrix.c                              :+:      :+:    :+:   */
+/*   transpose_matrix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 22:41:41 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 22:45:09 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 16:58:48 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 22:04:35 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix	*new_identity_matrix(void)
+t_matrix4	transpose_matrix4(t_matrix4 a)
 {
-	t_matrix	*mtx;
+	t_matrix4	mtx;
+	size_t		i;
+	size_t		j;
 
-	mtx = NULL;
-	mtx = new_matrix(4, 4);
-	if (!mtx)
-		return (NULL);
-	mtx->tab[0][0] = 1;
-	mtx->tab[1][1] = 1;
-	mtx->tab[2][2] = 1;
-	mtx->tab[3][3] = 1;
+	i = 0;
+	j = 0;
+	mtx = (t_matrix4){0};
+	while (i < 4)
+	{
+		while (j < 4)
+		{
+			mtx.tab[i][j] = a.tab[j][i];
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 	return (mtx);
 }

@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transposing_matrix.c                               :+:      :+:    :+:   */
+/*   multiply_matrix_tuple.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/19 16:58:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/19 18:15:04 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/22 22:03:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	transposing_matrix(t_matrix *a)
+t_tuple	multiply_matrix4_tuple(t_matrix4 left, t_tuple right)
 {
-	t_matrix	new_matrix;
-	size_t		i;
-	size_t		j;
+	t_tuple	ret;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
-	if (init_matrix(&new_matrix, a->y_size, a->x_size))
-		return (1);
-	while (i < a->y_size)
+	ret.tuple[0] = 0;
+	ret.tuple[1] = 0;
+	ret.tuple[2] = 0;
+	ret.tuple[3] = 0;
+	while (i < 4 && i < 4)
 	{
-		while (j < a->x_size)
+		while (j < 4 && j < 4)
 		{
-			new_matrix.tab[i][j] = a->tab[j][i];
+			ret.tuple[i] += left.tab[i][j] * right.tuple[j];
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-	free_matrix(a);
-	if (init_matrix(a, new_matrix.x_size, new_matrix.y_size))
-		return (1);
-	copy_matrix(&new_matrix, a);
-	free_matrix(&new_matrix);
-	return (0);
+	return (ret);
 }
+

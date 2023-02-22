@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 15:55:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/22 23:28:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	red_button(t_mwi *mwi)
 	if (mwi->data_img->img)
 		mlx_destroy_image(mwi->mlx, mwi->data_img->img);
 	mlx_destroy_window(mwi->mlx, mwi->win);
-//	mlx_destroy_display(mwi->mlx);
+	mlx_destroy_display(mwi->mlx); //
 	free(mwi->mlx);
 	exit (0);
 	return (0);
@@ -71,46 +71,13 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-		t_world		w;
-		t_light		light;
-		t_object	*s1;
-		t_object	*s2;
-		t_ray		r;
-		t_to		*xs;
+	t_matrix4 mtx = {.tab = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}}};
+	t_matrix4 mtx2;
 
-		light.position = (t_tuple){{-10, 10, -10, 1}};
-		light.intensity = (t_tuple){{1, 1, 1, 0}};
-
-		s1 = so_new(1, SPHERE);
-		s2 = so_new(2, SPHERE);
-
-		s1->material.color = (t_tuple){{0.8, 1.0, 0.6, 0}};
-		s1->material.ambient = 0.1;
-		s1->material.diffuse = 0.7;
-		s1->material.specular = 0.2;
-
-		free(s2->transform);
-		s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
-		s2->material.color = (t_tuple){{1, 0.2, 1, 0}};
-
-		so_add_back(&s1, s2);
-
-		w.light = light;
-		w.lst_object = s1;
-
-		r.vector = (t_tuple){{0, 0, 1, 0}};
-		r.point = (t_tuple){{0, 0, -5, 1}};
-
-		xs = NULL;
-		xs = intersect_world(&w, r);
-
-		for (t_to *cpy = xs; cpy; cpy = cpy->next)
-			printf("%f\n", cpy->t);
-
-		so_clear(&s1);
-		sto_clear(&xs);
-
-		print_canvas(all_data);
+	printf("%f\n", determinant_matrix4(mtx));
+	inverse_matrix4(mtx, &mtx2);
+	printf("%f\n", mtx.tab[3][3]);
+	print_canvas(all_data);
 
 //	*********************************************************************************
 
@@ -126,4 +93,3 @@ int	gen_new_img(t_all_data *all_data)
 	}
 	return (0);
 }
-
