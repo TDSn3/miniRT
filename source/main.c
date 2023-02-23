@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:19:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:35:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,45 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-//	t_matrix4 mtx = {.tab = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}}};
-//	t_matrix4 mtx2;
-//
-//	printf("%f\n", determinant_matrix4(mtx));
-//	inverse_matrix4(mtx, &mtx2);
-//	printf("%f\n", mtx.tab[3][3]);
-	print_canvas(all_data);
+		t_world		w;
+		t_light		light;
+		t_object	*s1;
+		t_object	*s2;
+		t_ray		r;
+		t_comps		comps;
+		t_to		t;
+
+		light.position = (t_tuple){{-10, 10, -10, 1}};
+		light.intensity = (t_tuple){{1, 1, 1, 0}};
+
+		s1 = so_new(1, SPHERE);
+		s2 = so_new(2, SPHERE);
+
+		s1->material.color = (t_tuple){{0.8, 1.0, 0.6, 0}};
+		s1->material.ambient = 0.1;
+		s1->material.diffuse = 0.7;
+		s1->material.specular = 0.2;
+
+		s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
+		s2->material.color = (t_tuple){{1, 0.2, 1, 0}};
+
+		so_add_back(&s1, s2);
+
+		w.light = light;
+		w.lst_object = s1;
+
+		r.vector = (t_tuple){{0, 0, 1, 0}};
+		r.point = (t_tuple){{0, 0, -5, 1}};
+
+		t = intersection(4, s1);
+		comps = prepare_computations(r, &t);
+		printf("%f %f %f\n", comps.point.x, comps.point.y, comps.point.z);
+		printf("%f %f %f\n", comps.eyev_vector.x, comps.eyev_vector.y, comps.eyev_vector.z);
+		printf("%f %f %f\n", comps.normalv_vector.x, comps.normalv_vector.y, comps.normalv_vector.z);
+
+		so_clear(&s1);
+
+		print_canvas(all_data);
 
 //	*********************************************************************************
 

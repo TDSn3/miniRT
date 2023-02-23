@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/23 00:18:33 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/23 13:19:36 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,6 +106,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix world/,												\
 								intersect_world									\
+								prepare_computations							\
 					$(addprefix s_object_/,										\
 								   		  so_add_back							\
 										  so_size								\
