@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 22:29:38 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 14:08:30 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 17:54:51 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,27 @@ t_to	hit(t_intersection *list)
 			ret.object = copysi->object;
 		}
 		copysi = copysi->next;
+	}
+	return (ret);
+}
+
+t_to	hit_to(t_to *list)
+{
+	t_to	ret;
+	t_to	*copyto;
+
+	copyto = list;
+	if (!list)
+		return ((t_to){NAN, NULL, NULL, NULL});
+	ret.t = FLT_MAX;
+	while (copyto)
+	{
+		if (copyto->t < ret.t && copyto->t >= 0)
+		{
+			ret.t = copyto->t;
+			ret.object = copyto->object;
+		}
+		copyto = copyto->next;
 	}
 	return (ret);
 }
