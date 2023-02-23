@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 20:01:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 23:23:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,16 @@ static void	test(void)
 
 		t_tuple	stock_co = color_at(&w, r);
 		printf("%f %f %f\n", stock_co.x, stock_co.y, stock_co.z);
+		printf("---------\n");
 
+		t_matrix4 stock = view_transform((t_tuple){{0, 0, 0, 0}}, (t_tuple){{0, 0, -1, 0}}, (t_tuple){{0, 1, 0, 0}});
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				printf("%f ", stock.tab[i][j]);
+			}
+			printf("\n");
+		}
 		so_clear(&s1);
 }

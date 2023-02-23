@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/23 17:10:39 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/23 23:23:57 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 								prepare_computations							\
 								shade_hit										\
 								color_at										\
+								view_transform									\
 					$(addprefix s_object_/,										\
 								   		  so_add_back							\
 										  so_size								\
