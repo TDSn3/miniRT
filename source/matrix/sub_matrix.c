@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 19:01:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 21:54:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:34:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_matrix2	sub_matrix3(t_matrix3 src, size_t x_del, size_t y_del)
 	t_matrix2	submtx;
 
 	init_var(&z);
-	while (z.k < 4)
+	while (z.k < 3)
 	{
 		while (z.l < 3 && z.k != x_del)
 		{

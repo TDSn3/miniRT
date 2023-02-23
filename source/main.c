@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 23:28:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/23 00:19:14 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	red_button(t_mwi *mwi)
 	if (mwi->data_img->img)
 		mlx_destroy_image(mwi->mlx, mwi->data_img->img);
 	mlx_destroy_window(mwi->mlx, mwi->win);
-	mlx_destroy_display(mwi->mlx); //
+//	mlx_destroy_display(mwi->mlx); //
 	free(mwi->mlx);
 	exit (0);
 	return (0);
@@ -71,12 +71,12 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-	t_matrix4 mtx = {.tab = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}}};
-	t_matrix4 mtx2;
-
-	printf("%f\n", determinant_matrix4(mtx));
-	inverse_matrix4(mtx, &mtx2);
-	printf("%f\n", mtx.tab[3][3]);
+//	t_matrix4 mtx = {.tab = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}}};
+//	t_matrix4 mtx2;
+//
+//	printf("%f\n", determinant_matrix4(mtx));
+//	inverse_matrix4(mtx, &mtx2);
+//	printf("%f\n", mtx.tab[3][3]);
 	print_canvas(all_data);
 
 //	*********************************************************************************
