@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 23:23:07 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:15:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,13 @@ static void	test(void)
 			}
 			printf("\n");
 		}
+
+		printf("++++++++++\n");
+		t_camera	c = give_camera(201, 101, M_PI / 2);
+		c.transform = multiply_matrix4(rotation_y(M_PI / 4), translation((t_tuple){{0, -2, 5, 0}}));
+		t_ray		rr = ray_for_pixel(c, 100, 50);
+		printf("%f %f %f %f \n", rr.point.x, rr.point.y, rr.point.z, rr.point.w);
+		printf("%f %f %f %f \n", rr.vector.x, rr.vector.y, rr.vector.z, rr.vector.w);
+		
 		so_clear(&s1);
 }
