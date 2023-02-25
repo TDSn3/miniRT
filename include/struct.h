@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 19:49:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:29:50 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,24 @@ typedef enum e_type
 {
 	SPHERE,
 }	t_type;
+
+/* ************************************************************************** */
+/*                                                                            */
+/*   hsize   		 taille horizontale du canevas en pixels                  */
+/*   vsize   		 taille verticale du canevas du canevas                   */
+/*   field_of_view   angle qui décrit ce que la caméra peut voir              */
+/*                                                                            */
+/* ************************************************************************** */
+typedef struct s_camera
+{
+	float		hsize;
+	float		vsize;
+	float		field_of_view;
+	t_matrix4	transform;
+	float		half_width;
+	float		half_height;
+	float		pixel_size;
+}	t_camera;
 
 /* ************************************************************************** */
 /*                                                                            */

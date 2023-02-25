@@ -6,19 +6,21 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:19:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:51:13 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	red_button(t_mwi *mwi);
-int	gen_new_img(t_all_data *all_data);
+int			red_button(t_mwi *mwi);
+int			gen_new_img(t_all_data *all_data);
+static void	test(void);
 
 int	i_img;
 
 int	main(void)
 {
+//	test();
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_all_data		all_data;
@@ -71,13 +73,49 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-//	t_matrix4 mtx = {.tab = {{8, -5, 9, 2}, {7, 5, 6, 1}, {-6, 0, 9, 6}, {-3, 0, -9, -4}}};
-//	t_matrix4 mtx2;
-//
-//	printf("%f\n", determinant_matrix4(mtx));
-//	inverse_matrix4(mtx, &mtx2);
-//	printf("%f\n", mtx.tab[3][3]);
-	print_canvas(all_data);
+		t_camera	c;
+		t_world		w;
+		t_light		light;
+		t_object	*s1;
+		t_object	*s2;
+		t_object	*s3;
+
+		c = give_camera(300, 110, M_PI / 3);
+		c.transform = view_transform(
+				(t_tuple){{0, 1.5, -5, 1}},
+				(t_tuple){{0, 1, 0, 1}},
+				(t_tuple){{0, 1, 0, 0}});
+		c.hsize = 400;
+		c.vsize = 400;
+
+		light.position = (t_tuple){{-10, -10, -10, 1}};
+		light.intensity = (t_tuple){{1, 1, 1, 0}};
+		w.light = light;
+
+		s1 = so_new(1, SPHERE);
+		s1->transform = translation((t_tuple){{-0.5, 1, 0.5, 0}});
+		s1->material.color = (t_tuple){{0.1, 1, 0.5, 0}};
+		s1->material.diffuse = 0.7;
+		s1->material.specular = 0.3;
+
+		s2 = so_new(2, SPHERE);
+		s2->transform = multiply_matrix4(translation((t_tuple){{1.5, 0.5, -0.5, 0}}), scaling((t_tuple){{0.5, 0.5, 0.5, 0}}));
+		s2->material.color = (t_tuple){{0.5, 1, 0.1, 0}};
+		s2->material.diffuse = 0.7;
+		s2->material.specular = 0.3;
+
+		s3 = so_new(3, SPHERE);
+		s3->transform = multiply_matrix4(translation((t_tuple){{-1.5, 0.33, -0.75, 0}}), scaling((t_tuple){{0.33, 0.33, 0.33, 0}}));
+		s3->material.color = (t_tuple){{1, 0.8, 0.1, 0}};
+		s3->material.diffuse = 0.7;
+		s3->material.specular = 0.3;
+
+		so_add_back(&s1, s2);
+		so_add_back(&s1, s3);
+		w.lst_object = s1;
+
+		render(all_data, c, &w);
+		so_clear(&s1);
 
 //	*********************************************************************************
 
@@ -92,4 +130,67 @@ int	gen_new_img(t_all_data *all_data)
 		i_img++;
 	}
 	return (0);
+}
+
+static void	test(void)
+{
+		t_world		w;
+		t_light		light;
+		t_object	*s1;
+		t_object	*s2;
+		t_ray		r;
+		t_comps		comps;
+		t_to		t;
+
+		light.position = (t_tuple){{-10, 10, -10, 1}};
+		light.intensity = (t_tuple){{1, 1, 1, 0}};
+
+		s1 = so_new(1, SPHERE);
+		s2 = so_new(2, SPHERE);
+
+		s1->material.color = (t_tuple){{0.8, 1.0, 0.6, 0}};
+		s1->material.ambient = 0.1;
+		s1->material.diffuse = 0.7;
+		s1->material.specular = 0.2;
+
+		s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
+//		s2->material.color = (t_tuple){{1, 0.2, 1, 0}};
+
+		so_add_back(&s1, s2);
+
+		w.light = light;
+		w.lst_object = s1;
+
+		r.vector = (t_tuple){{0, 0, 1, 0}};
+		r.point = (t_tuple){{0, 0, -5, 1}};
+
+		t = intersection(1, s1);
+		comps = prepare_computations(r, &t);
+		printf("%f %f %f\n", comps.point.x, comps.point.y, comps.point.z);
+		printf("%f %f %f\n", comps.eyev_vector.x, comps.eyev_vector.y, comps.eyev_vector.z);
+		printf("%f %f %f\n", comps.normalv_vector.x, comps.normalv_vector.y, comps.normalv_vector.z);
+		printf("%d\n", comps.inside);
+
+		t_tuple	stock_co = color_at(&w, r);
+		printf("%f %f %f\n", stock_co.x, stock_co.y, stock_co.z);
+		printf("---------\n");
+
+		t_matrix4 stock = view_transform((t_tuple){{0, 0, 0, 0}}, (t_tuple){{0, 0, -1, 0}}, (t_tuple){{0, 1, 0, 0}});
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				printf("%f ", stock.tab[i][j]);
+			}
+			printf("\n");
+		}
+
+		printf("++++++++++\n");
+		t_camera	c = give_camera(201, 101, M_PI / 2);
+		c.transform = multiply_matrix4(rotation_y(M_PI / 4), translation((t_tuple){{0, -2, 5, 0}}));
+		t_ray		rr = ray_for_pixel(c, 100, 50);
+		printf("%f %f %f %f \n", rr.point.x, rr.point.y, rr.point.z, rr.point.w);
+		printf("%f %f %f %f \n", rr.vector.x, rr.vector.y, rr.vector.z, rr.vector.w);
+		
+		so_clear(&s1);
 }

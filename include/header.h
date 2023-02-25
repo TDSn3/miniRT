@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 23:27:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:41:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 # include <float.h>
 
 # include "matrix.h"
+# include "comps.h"
 # include "struct.h"
-# include "color.h"
+# include "colors.h"
 
 # define EPSILON 0.00001
 
@@ -93,8 +94,16 @@ void			si_clear_one(t_intersection **lst, unsigned int object_id);
 t_tuple			normal_at(t_object sphere, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
 t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector);
+t_tuple			color_at(t_world *w, t_ray r);
 
 t_to			*intersect_world(t_world *world, t_ray ray);
+t_comps			prepare_computations(t_ray r, t_to *i);
+t_tuple			shade_hit(t_world w, t_comps comps);
+t_to			*hit_to(t_to *list);
+t_matrix4		view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_camera		give_camera(float hsize, float vsize, float field_of_view);
+t_ray			ray_for_pixel(t_camera camera, float px, float py);
+void			render(t_all_data *all_data, t_camera camera, t_world *world);
 
 t_object		*so_new(unsigned int id, t_type type);
 int				so_add_back(t_object **lst, t_object *new);
