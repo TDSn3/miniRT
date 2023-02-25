@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_at.c                                         :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 09:28:38 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/24 20:21:09 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/02/25 09:29:03 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_tuple	color_at(t_world *w, t_ray r)
+void	render(t_all_data *all_data, t_camera camera, t_world *world)
 {
-	t_to	*inter;
-	t_to	t;
-	t_comps	comps;
-	t_tuple	ret;
+	t_ray	r;
+	t_tuple	color;
+	size_t	x;
+	size_t	y;
 
-	inter = intersect_world(w, r);
-	if (!inter)
-		return ((t_tuple){0});
-	t = hit_to(inter);
-	if (t.t == NAN || t.t == 0)
-		return ((t_tuple){0});
-	comps = prepare_computations(r, &t);
-	ret = shade_hit(*w, comps);
-	sto_clear(&inter);
-	return (ret);
+	x = 0;
+	y = 0;
+	while (y < camera.vsize)
+	{
+		while (x < camera.hsize)
+		{
+//			printf("X ");
+			r = ray_for_pixel(camera, x, y);
+			color = color_at(world, r);
+			my_mlx_pixel_put(all_data, x - camera.hsize / 2, y - camera.vsize / 2, convert_to_255(color).bgra + 50);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	}
 }

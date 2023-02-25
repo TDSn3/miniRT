@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/24 19:45:31 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 09:27:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ t_to			hit_to(t_to *list);
 t_matrix4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_camera		give_camera(float hsize, float vsize, float field_of_view);
 t_ray			ray_for_pixel(t_camera camera, float px, float py);
+void			render(t_all_data *all_data, t_camera camera, t_world *world);
 
 t_object		*so_new(unsigned int id, t_type type);
 int				so_add_back(t_object **lst, t_object *new);
