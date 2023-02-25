@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 12:56:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:43:31 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,12 @@ t_tuple	color_at(t_world *w, t_ray r)
 	inter = intersect_world(w, r);
 	if (!inter)
 		return ((t_tuple){0});
-//	for (t_to *cpy2 = inter; cpy2; cpy2 = cpy2->next)
-//	{
-//		if (cpy2->t)
-//			printf("%f", cpy2->t);
-//	}
 	t = hit_to(inter);
-	if (t->t)
-		printf("%f", t->t);
 	if (!t || t->t == 0)
 	{
 		free(t);
 		return ((t_tuple){0});
 	}
-//	printf("%f\n", t->t);
 	comps = prepare_computations(r, t);
 	ret = shade_hit(*w, comps);
 	sto_clear(&inter);
