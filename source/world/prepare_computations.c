@@ -6,12 +6,24 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 09:28:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 11:31:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
+/* ************************************************************************** */
+/*                                                                            */
+/*   Précalcule le point (dans l'espace universel) où l'intersection		  */
+/*   s'est produite, le vecteur pointant vers l'œil (ou la caméra)			  */
+/*   "eyev_vector" et le vecteur normal "normalv_vector".					  */
+/*   La variable "inside" sera vrai (1) si le hit se produit à l'intérieur	  */
+/*   de l'objet, et faux sinon (0).											  */
+/*   La normale "normalv_vector" est inversée lorsque l'intersection		  */
+/*   se trouve à l'intérieur d'un objet, pour que la surface soit			  */
+/*   éclairée correctement.													  */
+/*                                                                            */
+/* ************************************************************************** */
 t_comps	prepare_computations(t_ray r, t_to *i)
 {
 	t_comps	comps;

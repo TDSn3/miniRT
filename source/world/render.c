@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:21:09 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 09:29:03 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:34:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,15 @@ void	render(t_all_data *all_data, t_camera camera, t_world *world)
 
 	x = 0;
 	y = 0;
-	while (y < camera.vsize)
+	while (y < camera.vsize - 1)
 	{
-		while (x < camera.hsize)
+		while (x < camera.hsize - 1)
 		{
-//			printf("X ");
 			r = ray_for_pixel(camera, x, y);
 			color = color_at(world, r);
 			my_mlx_pixel_put(all_data, x - camera.hsize / 2, y - camera.vsize / 2, convert_to_255(color).bgra + 50);
 			x++;
 		}
-		printf("\n");
 		x = 0;
 		y++;
 	}

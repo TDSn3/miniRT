@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 09:26:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 12:42:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,19 @@ int	gen_new_img(t_all_data *all_data)
 		w.light = light;
 
 		s1 = so_new(1, SPHERE);
-//		s1->transform = scaling((t_tuple){{3, 3, 3, 0}});
+//		s1->transform = translation((t_tuple){{1.5, 0.5, -0.5, 0}});
 		s1->material.color = (t_tuple){{0.1, 1, 0.5, 0}};
 //		s1->position = (t_tuple){{0, 0, -4, 1}};
 		s1->material.diffuse = 0.7;
 		s1->material.specular = 0.3;
 
-//		s2 = so_new(2, SPHERE);
-//		s2->transform = scaling((t_tuple){{1, 1, 1, 0}});
-//		s2->material.color = (t_tuple){{0.5, 1, 0.1, 0}};
+		s2 = so_new(2, SPHERE);
+		s2->transform = translation((t_tuple){{0.5, -3, 0, 0}});
+//		s2->material.color = (t_tuple){{1, 0, 0, 0}};
 //		s2->material.diffuse = 0.7;
 //		s2->material.specular = 0.3;
 
-//		so_add_back(&s1, s2);
+		so_add_back(&s1, s2);
 		w.lst_object = s1;
 
 		render(all_data, c, &w);

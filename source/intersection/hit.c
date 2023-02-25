@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 22:29:38 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 17:54:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/25 13:19:17 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,68 @@ t_to	hit(t_intersection *list)
 	return (ret);
 }
 
-t_to	hit_to(t_to *list)
+t_to	*hit_to(t_to *list)
 {
-	t_to	ret;
+	t_to	*ret;
 	t_to	*copyto;
 
+	ret = calloc(1, sizeof(t_to));
 	copyto = list;
 	if (!list)
-		return ((t_to){NAN, NULL, NULL, NULL});
-	ret.t = FLT_MAX;
+		return (NULL);
+	ret->t = FLT_MAX;
+	ret->object = NULL;
+	ret->prev = NULL;
+	ret->next = NULL;
+
+
+
+	int	ok = 0;
+	for (t_to *cpy2 = list; cpy2; cpy2 = cpy2->next)
+	{
+		if (cpy2->t)
+		{
+			printf("%f   ", cpy2->t);
+			ok = 1;
+		}
+	}
+	if (ok)
+		printf("\n");
+
+
+
+
+	ok = 0;
+	for (t_to *cpy2 = list; cpy2; cpy2 = cpy2->next)
+		if (cpy2->t)
+			ok = 1;
+	if (!ok)
+	{
+		ret->t = 0;
+		return (ret);
+	}
+
+
+
+	int	i = 0;
 	while (copyto)
 	{
-		if (copyto->t < ret.t && copyto->t >= 0)
+		printf("%d : %s%f   %s", i, COLOR_YELLOW, copyto->t, COLOR_RESET);
+		if (copyto->t < ret->t && copyto->t > 0)
 		{
-			ret.t = copyto->t;
-			ret.object = copyto->object;
+			ret->t = copyto->t;	
+			ret->object = copyto->object;
+			printf("%s%f   %s", COLOR_BLUE, ret->t, COLOR_RESET);
+			printf("%s%f   %s", COLOR_RED, copyto->t, COLOR_RESET);
 		}
+		i++;
 		copyto = copyto->next;
 	}
+
+
+
+	if (ret->t)
+		printf("-->%f ", ret->t);
+
 	return (ret);
 }
