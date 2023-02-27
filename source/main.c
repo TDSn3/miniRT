@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/27 19:09:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:16:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,30 +73,49 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-	t_world	w;
-	t_light	light;
-	t_object	*s1;
-	t_object	*s2;
+		t_camera	c;
+		t_world		w;
+		t_light		light;
+		t_object	*s1;
+		t_object	*s2;
+		t_object	*s3;
 
-	light.position = (t_tuple){{-10, 10, -10, 1}};
-	light.intensity = (t_tuple){{1, 1, 1, 0}};
-	w.light = light;
+		c = give_camera(300, 110, M_PI / 3);
+		c.transform = view_transform(
+				(t_tuple){{0, 1.5, -5, 1}},
+				(t_tuple){{0, 1, 0, 1}},
+				(t_tuple){{0, 1, 0, 0}});
+		c.hsize = 400;
+		c.vsize = 400;
 
-	s1 = so_new(1, SPHERE);
-	s1->transform = translation((t_tuple){{-0.5, 1, 0.5, 0}});
-	s1->material.color = (t_tuple){{0.8, 1, 0.6, 0}};
-	s1->material.diffuse = 0.7;
-	s1->material.specular = 0.2;
+		light.position = (t_tuple){{-10, -10, -10, 1}};
+		light.intensity = (t_tuple){{1, 1, 1, 0}};
+		w.light = light;
 
-	s2 = so_new(2, SPHERE);
-	s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
+		s1 = so_new(1, SPHERE);
+		s1->transform = translation((t_tuple){{-0.5, 1, 0.5, 0}});
+		s1->material.color = (t_tuple){{0.1, 1, 0.5, 0}};
+		s1->material.diffuse = 0.7;
+		s1->material.specular = 0.3;
 
-	so_add_back(&s1, s2);
-	w.lst_object = s1;
+		s2 = so_new(2, SPHERE);
+		s2->transform = multiply_matrix4(translation((t_tuple){{1.5, 0.5, -0.5, 0}}), scaling((t_tuple){{0.5, 0.5, 0.5, 0}}));
+		s2->material.color = (t_tuple){{0.5, 1, 0.1, 0}};
+		s2->material.diffuse = 0.7;
+		s2->material.specular = 0.3;
 
-	printf("%d\n", is_shadowed(&w, (t_tuple){-2, 2, -2, 1}));
+		s3 = so_new(3, SPHERE);
+		s3->transform = multiply_matrix4(translation((t_tuple){{-1.5, 0.33, -0.75, 0}}), scaling((t_tuple){{0.33, 0.33, 0.33, 0}}));
+		s3->material.color = (t_tuple){{1, 0.8, 0.1, 0}};
+		s3->material.diffuse = 0.7;
+		s3->material.specular = 0.3;
 
-	so_clear(&s1);
+		so_add_back(&s1, s2);
+		so_add_back(&s1, s3);
+		w.lst_object = s1;
+
+		render(all_data, c, &w);
+		so_clear(&s1);
 
 //	*********************************************************************************
 

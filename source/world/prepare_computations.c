@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 14:22:09 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:53:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_comps	prepare_computations(t_ray r, t_to *i)
 	}
 	else
 		comps.inside = 0;
+	comps.over_point = t_tuple_plus(comps.point,
+			t_tuple_multi_scal(comps.normalv_vector, EPSILON));
 	return (comps);
 }
