@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 20:54:04 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:36:19 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:04:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	print_canvas(t_all_data *all_data)
 				point = position(r.vector, r.point, list_hit.t);
 				normal = normal_at(*list_hit.object, point);
 				eye = t_tuple_nega(r.vector);
-				color = lighting(list_hit.object->material, light, point, eye, normal);
+				color = lighting(list_hit.object->material, light, point, eye, normal, 0); // 0 a modifier 
 				my_mlx_pixel_put(all_data, x - canvas_pixels / 2, y - canvas_pixels / 2, convert_to_255(color).bgra);
 			}
 			x++;

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:29:58 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 11:33:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:03:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 t_tuple	shade_hit(t_world w, t_comps comps)
 {
 	return (lighting(comps.object.material, w.light, comps.point,
-			comps.eyev_vector, comps.normalv_vector));
+			comps.eyev_vector, comps.normalv_vector, 0)); // valuer in_shadow a modifier
 }
