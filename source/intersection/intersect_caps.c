@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 13:25:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:16:09 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 			ret->t.b = t;
 		else if (ret->t.c == 0)
 			ret->t.c = t;
-		printf("OK\n");
+		printf("Ok1 %f\n", ret->t.b);
 	}
 	t = (object->cyl_max - ray.point.y) / ray.vector.y;
 	if (check_cap(ray, t))
@@ -36,7 +36,7 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 			ret->t.b = t;
 		else if (ret->t.c == 0)
 			ret->t.c = t;
-		printf("OK\n");
+		printf("Ok2\n");
 	}
 }
 

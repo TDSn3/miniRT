@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 13:25:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:14:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,6 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 		ret.t.c = 0;
 		ret.t.a--;
 	}
-//	intersect_caps(ray, cylinder, &ret);
+	intersect_caps(ray, cylinder, &ret);
 	return (ret);
 }
