@@ -6,14 +6,34 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:35:49 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 07:27:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static float	give_discri(t_tuple vector,
-					t_tuple point, t_object sphere, t_3f *abc);
+static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
+static float			give_discri(t_tuple vector,
+							t_tuple point, t_object sphere, t_3f *abc);
+static t_intersection	intersect_plane(t_ray ray);
+
+
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
+{
+	t_intersection	ret;
+	t_ray			ray;
+	t_matrix4		inv_mtx;
+
+	ret.object = object;
+	inverse_matrix4(object->transform, &inv_mtx);
+	ray = transform_ray(vector, point, &inv_mtx);
+	ret.next = NULL;
+	ret.prev = NULL;
+	if (object->type == SPHERE)
+		return (intersect_sphere(ray, object));
+	else
+		return (intersect_plane(ray));
+}
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -24,17 +44,12 @@ static float	give_discri(t_tuple vector,
 /*   unitaire, avec un rayons de 1.								  			  */
 /*                                                                            */
 /* ************************************************************************** */
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere)
+static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 {
 	t_intersection	ret;
 	t_3f			abc;
-	t_ray			ray;
-	t_matrix4		inv_mtx;
 	float			discriminant;
 
-	ret.object = sphere;
-	inverse_matrix4(sphere->transform, &inv_mtx);
-	ray = transform_ray(vector, point, &inv_mtx);
 	discriminant = give_discri(ray.vector, ray.point, *sphere, &abc);
 	if (discriminant < 0)
 	{
@@ -48,8 +63,6 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere)
 		ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
 		ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
 	}
-	ret.next = NULL;
-	ret.prev = NULL;
 	return (ret);
 }
 
@@ -77,4 +90,27 @@ static float	give_discri(t_tuple vector,
 	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
 	discriminant = powf(abc->b, 2) - 4 * abc->a * abc->c;
 	return (discriminant);
+}
+
+static t_intersection	intersect_plane(t_ray ray)
+{
+	t_intersection	ret;
+	float			stock;
+
+	if (ray.vector.y < EPSILON)
+	{
+		ret.t.a = 0;
+		ret.t.b = 0;
+		ret.t.c = 0;
+	}
+	else
+	{
+		stock = ray.point.y / ray.vector.y;
+		if (stock < 0)
+			stock *= -1; // ATTENTION
+		ret.t.a = 1;
+		ret.t.b = stock;
+		ret.t.c = 0;
+	}
+	return (ret);
 }

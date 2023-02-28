@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/27 17:55:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 06:43:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix4 *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_object		give_sphere(unsigned int id, t_tuple position);
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object *sphere);
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
 t_to			intersection(float t, t_object *object);
 t_to			hit(t_intersection *list);
 void			set_transform(t_object *object, t_matrix4 *t);
@@ -91,7 +91,7 @@ t_intersection	*si_find_content(t_intersection *lst, unsigned int object_id);
 void			si_clear(t_intersection **lst);
 void			si_clear_one(t_intersection **lst, unsigned int object_id);
 
-t_tuple			normal_at(t_object sphere, t_tuple world_point);
+t_tuple			normal_at(t_object object, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
 t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector,  int in_shadow);
 t_tuple			color_at(t_world *w, t_ray r);

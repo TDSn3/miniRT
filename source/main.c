@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/27 19:16:25 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:20:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,12 @@ int	gen_new_img(t_all_data *all_data)
 		t_object	*s1;
 		t_object	*s2;
 		t_object	*s3;
+		t_object	*s4;
+		t_object	*s5;
 
 		c = give_camera(300, 110, M_PI / 3);
 		c.transform = view_transform(
-				(t_tuple){{0, 1.5, -5, 1}},
+				(t_tuple){{0, 1.1, -6, 1}},
 				(t_tuple){{0, 1, 0, 1}},
 				(t_tuple){{0, 1, 0, 0}});
 		c.hsize = 400;
@@ -99,7 +101,7 @@ int	gen_new_img(t_all_data *all_data)
 		s1->material.specular = 0.3;
 
 		s2 = so_new(2, SPHERE);
-		s2->transform = multiply_matrix4(translation((t_tuple){{1.5, 0.5, -0.5, 0}}), scaling((t_tuple){{0.5, 0.5, 0.5, 0}}));
+		s2->transform = multiply_matrix4(translation((t_tuple){{1.5, 0.5, 9, 0}}), scaling((t_tuple){{0.5, 0.5, 0.5, 0}}));
 		s2->material.color = (t_tuple){{0.5, 1, 0.1, 0}};
 		s2->material.diffuse = 0.7;
 		s2->material.specular = 0.3;
@@ -110,8 +112,22 @@ int	gen_new_img(t_all_data *all_data)
 		s3->material.diffuse = 0.7;
 		s3->material.specular = 0.3;
 
+		s4 = so_new(4, PLANE);
+		s4->transform = translation((t_tuple){{0, 0.2, 0, 0}});
+		s4->material.color = (t_tuple){{0.6, 0.6, 0.6, 0}};
+		s4->material.diffuse = 0.7;
+		s4->material.specular = 0.3;
+
+		s5 = so_new(5, PLANE);
+		s5->transform = multiply_matrix4(rotation_x(90), translation((t_tuple){{0, 10, 0, 0}}));
+		s5->material.color = (t_tuple){{0.5, 0.5, 0.5, 0}};
+		s5->material.diffuse = 0.7;
+		s5->material.specular = 0.3;
+
 		so_add_back(&s1, s2);
 		so_add_back(&s1, s3);
+		so_add_back(&s1, s4);
+		so_add_back(&s1, s5);
 		w.lst_object = s1;
 
 		render(all_data, c, &w);
