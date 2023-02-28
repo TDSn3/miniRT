@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 06:43:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:22:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int				equal_float(float a, float b);
 void			print_canvas(t_all_data *all_data);
 t_bgra			convert_to_255(t_tuple color);
-void			print_canvas(t_all_data *all_data);
 
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);

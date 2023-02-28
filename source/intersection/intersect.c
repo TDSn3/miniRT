@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 07:27:29 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 09:34:44 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
 static float			give_discri(t_tuple vector,
 							t_tuple point, t_object sphere, t_3f *abc);
 static t_intersection	intersect_plane(t_ray ray);
+static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
 
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
@@ -31,8 +32,10 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 	ret.prev = NULL;
 	if (object->type == SPHERE)
 		return (intersect_sphere(ray, object));
-	else
+	else if (object->type == PLANE)
 		return (intersect_plane(ray));
+	else
+		return (intersect_cylinder(ray, object));
 }
 
 /* ************************************************************************** */
@@ -112,5 +115,35 @@ static t_intersection	intersect_plane(t_ray ray)
 		ret.t.b = stock;
 		ret.t.c = 0;
 	}
+	return (ret);
+}
+
+static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
+{
+	t_intersection	ret;
+	t_3f			abc;
+	float			discriminant;
+
+	abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
+	if (equal_float(abc.a, 0))
+	{
+		ret.t.a = 0;
+		ret.t.b = 0;
+		ret.t.c = 0;
+		return (ret);
+	}
+	abc.b = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
+	abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
+	discriminant = powf(abc.b, 2) - 4 * abc.a * abc.c;
+	if (discriminant < 0)
+	{
+		ret.t.a = 0;
+		ret.t.b = 0;
+		ret.t.c = 0;
+		return (ret);
+	}
+	ret.t.a = 2;
+	ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
+	ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
 	return (ret);
 }

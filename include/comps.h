@@ -6,14 +6,14 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 12:46:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/27 19:25:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 08:49:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMPS_H
 # define COMPS_H
 
-#include "struct.h"
+# include "struct.h"
 
 typedef struct s_comps
 {

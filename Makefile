@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/27 14:10:51 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/28 08:22:35 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,7 +136,6 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   my_mlx_pixel_put													\
 			   equal_float														\
 			   convert_to_255													\
-			   print_canvas														\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))

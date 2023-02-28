@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 08:20:15 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 10:02:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	i_img;
 
 int	main(void)
 {
-//	test();
+	test();
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_all_data		all_data;
@@ -81,6 +81,7 @@ int	gen_new_img(t_all_data *all_data)
 		t_object	*s3;
 		t_object	*s4;
 		t_object	*s5;
+		t_object	*s6;
 
 		c = give_camera(300, 110, M_PI / 3);
 		c.transform = view_transform(
@@ -124,10 +125,17 @@ int	gen_new_img(t_all_data *all_data)
 		s5->material.diffuse = 0.7;
 		s5->material.specular = 0.3;
 
+		s6 = so_new(6, CYLINDER);
+		s6->transform = translation((t_tuple){{2.5, 0, 0, 0}});
+		s6->material.color = (t_tuple){{0.8, 0.2, 0.7, 0}};
+		s6->material.diffuse = 0.7;
+		s6->material.specular = 0.3;
+
 		so_add_back(&s1, s2);
 		so_add_back(&s1, s3);
 		so_add_back(&s1, s4);
 		so_add_back(&s1, s5);
+		so_add_back(&s1, s6);
 		w.lst_object = s1;
 
 		render(all_data, c, &w);
@@ -150,63 +158,15 @@ int	gen_new_img(t_all_data *all_data)
 
 static void	test(void)
 {
-		t_world		w;
-		t_light		light;
-		t_object	*s1;
-		t_object	*s2;
-		t_ray		r;
-		t_comps		comps;
-		t_to		t;
+	t_object		*s1;
+	t_tuple			direction =  normalization_vector((t_tuple){{0.1, 1, 1, 0}});
+	t_tuple			origin = (t_tuple){{0.5, 0, -5, 1}};
+	t_intersection	stock;
 
-		light.position = (t_tuple){{-10, 10, -10, 1}};
-		light.intensity = (t_tuple){{1, 1, 1, 0}};
-
-		s1 = so_new(1, SPHERE);
-		s2 = so_new(2, SPHERE);
-
-		s1->material.color = (t_tuple){{0.8, 1.0, 0.6, 0}};
-		s1->material.ambient = 0.1;
-		s1->material.diffuse = 0.7;
-		s1->material.specular = 0.2;
-
-		s2->transform = scaling((t_tuple){{0.5, 0.5, 0.5, 0}});
-//		s2->material.color = (t_tuple){{1, 0.2, 1, 0}};
-
-		so_add_back(&s1, s2);
-
-		w.light = light;
-		w.lst_object = s1;
-
-		r.vector = (t_tuple){{0, 0, 1, 0}};
-		r.point = (t_tuple){{0, 0, -5, 1}};
-
-		t = intersection(1, s1);
-		comps = prepare_computations(r, &t);
-		printf("%f %f %f\n", comps.point.x, comps.point.y, comps.point.z);
-		printf("%f %f %f\n", comps.eyev_vector.x, comps.eyev_vector.y, comps.eyev_vector.z);
-		printf("%f %f %f\n", comps.normalv_vector.x, comps.normalv_vector.y, comps.normalv_vector.z);
-		printf("%d\n", comps.inside);
-
-		t_tuple	stock_co = color_at(&w, r);
-		printf("%f %f %f\n", stock_co.x, stock_co.y, stock_co.z);
-		printf("---------\n");
-
-		t_matrix4 stock = view_transform((t_tuple){{0, 0, 0, 0}}, (t_tuple){{0, 0, -1, 0}}, (t_tuple){{0, 1, 0, 0}});
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				printf("%f ", stock.tab[i][j]);
-			}
-			printf("\n");
-		}
-
-		printf("++++++++++\n");
-		t_camera	c = give_camera(201, 101, M_PI / 2);
-		c.transform = multiply_matrix4(rotation_y(M_PI / 4), translation((t_tuple){{0, -2, 5, 0}}));
-		t_ray		rr = ray_for_pixel(c, 100, 50);
-		printf("%f %f %f %f \n", rr.point.x, rr.point.y, rr.point.z, rr.point.w);
-		printf("%f %f %f %f \n", rr.vector.x, rr.vector.y, rr.vector.z, rr.vector.w);
-		
-		so_clear(&s1);
+	s1 = so_new(1, CYLINDER);
+	stock = intersect(direction, origin, s1);
+	printf("%f %f %f\n", stock.t.a, stock.t.b, stock.t.c);
+	t_tuple stock2 = normal_at(*s1, (t_tuple){{0, 5, -2.5, 1}});
+	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+	free(s1);
 }
