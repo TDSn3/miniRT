@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 13:26:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:55:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 	t_tuple		world_normal;
 	t_matrix4	cpy;
 	t_matrix4	stock;
-	float		dist;
+//	float		dist;
 
 	object_point = multiply_matrix4_tuple(*inverse_matrix4(object.transform,
 				&stock), world_point);

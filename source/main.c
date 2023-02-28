@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 14:11:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:56:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			red_button(t_mwi *mwi);
 int			gen_new_img(t_all_data *all_data);
-static void	test(void);
+//static void	test(void);
 
 int	i_img;
 
@@ -48,7 +48,7 @@ int	red_button(t_mwi *mwi)
 	if (mwi->data_img->img)
 		mlx_destroy_image(mwi->mlx, mwi->data_img->img);
 	mlx_destroy_window(mwi->mlx, mwi->win);
-//	mlx_destroy_display(mwi->mlx); //
+	mlx_destroy_display(mwi->mlx); // <------- Ok sur Linux mais pas sur MacOs
 	free(mwi->mlx);
 	exit (0);
 	return (0);
@@ -133,7 +133,6 @@ int	gen_new_img(t_all_data *all_data)
 		s6->cyl_max =-1;
 		s6->cyl_min = -4;
 		s6->cyl_closed = 1;
-		
 
 		so_add_back(&s1, s2);
 		so_add_back(&s1, s3);
@@ -160,6 +159,7 @@ int	gen_new_img(t_all_data *all_data)
 	return (0);
 }
 
+/*
 static void	test(void)
 {
 	t_object		*s1;
@@ -187,3 +187,4 @@ static void	test(void)
 //	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
 	free(s1);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 14:14:08 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:54:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,21 @@
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
 static float			give_discri(t_tuple vector,
 							t_tuple point, t_object sphere, t_3f *abc);
-static t_intersection	intersect_plane(t_ray ray);
+static t_intersection	intersect_plane(t_ray ray, t_object *plane);
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
 
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 {
-	t_intersection	ret;
 	t_ray			ray;
 	t_matrix4		inv_mtx;
 
-	ret.object = object;
 	inverse_matrix4(object->transform, &inv_mtx);
 	ray = transform_ray(vector, point, &inv_mtx);
-	ret.next = NULL;
-	ret.prev = NULL;
 	if (object->type == SPHERE)
 		return (intersect_sphere(ray, object));
 	else if (object->type == PLANE)
-		return (intersect_plane(ray));
+		return (intersect_plane(ray, object));
 	else
 		return (intersect_cylinder(ray, object));
 }
@@ -53,6 +49,9 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 	t_3f			abc;
 	float			discriminant;
 
+	ret.object = sphere;
+	ret.next = NULL;
+	ret.prev = NULL;
 	discriminant = give_discri(ray.vector, ray.point, *sphere, &abc);
 	if (discriminant < 0)
 	{
@@ -95,11 +94,14 @@ static float	give_discri(t_tuple vector,
 	return (discriminant);
 }
 
-static t_intersection	intersect_plane(t_ray ray)
+static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 {
 	t_intersection	ret;
 	float			stock;
 
+	ret.object = plane;
+	ret.next = NULL;
+	ret.prev = NULL;
 	if (ray.vector.y < EPSILON)
 	{
 		ret.t.a = 0;
@@ -127,6 +129,9 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	float			y0;
 	float			y1;
 
+	ret.object = cylinder;
+	ret.next = NULL;
+	ret.prev = NULL;
 	ret.t.a = 0;
 	ret.t.b = 0;
 	ret.t.c = 0;
