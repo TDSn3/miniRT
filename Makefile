@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/28 15:55:13 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/02/28 17:23:57 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Werror -Wall -Wextra -Wshadow -g
+CFLAGS		= -Wall -Wextra -Wshadow -g
 # -Werror -Wconversion -Wno-error=conversion
 # **************************************************************************** #
 #                                                                              #
@@ -87,7 +87,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 									   give_sphere								\
 									   intersect								\
 									   intersection								\
-									   hit										\
+									   hit_to									\
 									   set_transform							\
 									   intersect_caps							\
 						   $(addprefix s_intersection_/,						\

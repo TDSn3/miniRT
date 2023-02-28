@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 12:26:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:42:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_object		give_sphere(unsigned int id, t_tuple position);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
 t_to			intersection(float t, t_object *object);
-t_to			hit(t_intersection *list);
 void			set_transform(t_object *object, t_matrix4 *t);
 void			intersect_caps(t_ray ray, t_object *object, t_intersection *ret);
 

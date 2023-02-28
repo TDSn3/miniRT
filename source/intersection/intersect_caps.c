@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 14:16:09 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 18:19:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,19 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 {
 	float	t;
 
-	if (!object->cyl_closed || equal_float(ray.vector.y, 0))
+	if (!object->cyl_closed || (ray.vector.y >= -0.1 && ray.vector.y <= 0.1)) // ATTENTION
 		return ;
 	t = (object->cyl_min - ray.point.y) / ray.vector.y;
 	if (check_cap(ray, t))
 	{
-		if (ret->t.b == 0)
-			ret->t.b = t;
-		else if (ret->t.c == 0)
+			printf("1 : %f (%f) | %f\n", ret->t.b, ret->t.c, t);
 			ret->t.c = t;
-		printf("Ok1 %f\n", ret->t.b);
 	}
 	t = (object->cyl_max - ray.point.y) / ray.vector.y;
 	if (check_cap(ray, t))
 	{
-		if (ret->t.b == 0)
+			printf("2 : (%f) %f | %f\n", ret->t.b, ret->t.c, t);
 			ret->t.b = t;
-		else if (ret->t.c == 0)
-			ret->t.c = t;
-		printf("Ok2\n");
 	}
 }
 
@@ -47,6 +41,5 @@ static int	check_cap(t_ray ray, float t)
 
 	x = ray.point.x + t * ray.vector.x;
 	z = ray.point.z + t * ray.vector.z;
-	return (powf(x, 2) + powf(z, 2) <= 1
-		|| equal_float(powf(x, 2) + powf(z, 2), 1));
+	return (powf(x, 2) + powf(z, 2) <= 1);
 }
