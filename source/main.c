@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 18:27:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:08:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	red_button(t_mwi *mwi)
 	if (mwi->data_img->img)
 		mlx_destroy_image(mwi->mlx, mwi->data_img->img);
 	mlx_destroy_window(mwi->mlx, mwi->win);
-	mlx_destroy_display(mwi->mlx); // <------- Ok sur Linux mais pas sur MacOs
+//	mlx_destroy_display(mwi->mlx); // <------- Ok sur Linux mais pas sur MacOs
 	free(mwi->mlx);
 	exit (0);
 	return (0);
@@ -83,13 +83,13 @@ int	gen_new_img(t_all_data *all_data)
 		t_object	*s5;
 		t_object	*s6;
 
-		c = give_camera(90, 90, M_PI / 3);
+		c = give_camera(300, 110, M_PI / 3);
 		c.transform = view_transform(
-				(t_tuple){{0, 1.1, -6, 1}},
+				(t_tuple){{0, 1.5, -5, 1}},
 				(t_tuple){{0, 1, 0, 1}},
 				(t_tuple){{0, 1, 0, 0}});
-		c.hsize = 200;
-		c.vsize = 200;
+		c.hsize = 400;
+		c.vsize = 400;
 
 		light.position = (t_tuple){{-10, -10, -10, 1}};
 		light.intensity = (t_tuple){{1, 1, 1, 0}};
@@ -126,12 +126,12 @@ int	gen_new_img(t_all_data *all_data)
 		s5->material.specular = 0.3;
 
 		s6 = so_new(6, CYLINDER);
-		s6->transform = translation((t_tuple){{0, -4, 4, 0}});
+		s6->transform = multiply_matrix4(translation((t_tuple){{0, -4, 4, 0}}), multiply_matrix4(rotation_x(-30), rotation_z(10)));
 		s6->material.color = (t_tuple){{0.8, 0.2, 0.7, 0}};
 		s6->material.diffuse = 0.7;
 		s6->material.specular = 0.3;
-		s6->cyl_max =-1;
-		s6->cyl_min = -4;
+		s6->cyl_max = 2;
+		s6->cyl_min = -2;
 		s6->cyl_closed = 1;
 
 		so_add_back(&s1, s2);
