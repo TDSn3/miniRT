@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+         #
+#    By: roberto <roberto@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/22 22:39:58 by rcatini          ###   ########.fr        #
+#    Updated: 2023/02/28 09:50:45 by roberto          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,8 @@ CFLAGS		= -Wall -Wextra  -Wshadow
 #   Linux                                                                      #
 # **************************************************************************** #
 #
-I_HEADERS	= -I $(INC_DIR) -I mlx_linux -I libft
-L_LIB		= -Lmlx_linux -Llibft -lmlx_Linux -lft -lXext -lX11 -lm -lz 
+I_HEADERS	= -I $(INC_DIR) -I libmlx -I libft
+L_LIB		= -Llibmlx -Llibft -lmlx -lft -lXext -lX11 -lm -lz 
 #
 # **************************************************************************** #
 #   MacOs                                                                      #
@@ -156,7 +156,7 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+#	make -C libmlx
 #	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
@@ -167,7 +167,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-	cd mlx_linux; make clean
+	make -C libmlx clean
 #	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 

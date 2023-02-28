@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_globals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:08:39 by rcatini           #+#    #+#             */
-/*   Updated: 2023/02/22 22:13:25 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/02/28 10:02:11 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*parse_ambient(t_world *scene, char *line)
 {
+	const t_parameter	syntax[] = {DECIMAL, BYTE_3};
+
 	(void)scene;
 	(void)line;
 	// if (scene->ambient.initialized)
@@ -29,6 +31,8 @@ char	*parse_ambient(t_world *scene, char *line)
 
 char	*parse_camera(t_world *scene, char *line)
 {
+	const t_parameter	syntax[] = {DECIMAL_3, DECIMAL_3, INTEGER};
+
 	(void)scene;
 	(void)line;
 	// if (scene->camera.initialized)
@@ -46,6 +50,8 @@ char	*parse_camera(t_world *scene, char *line)
 
 char	*parse_light(t_world *scene, char *line)
 {
+	const t_parameter	syntax[] = {DECIMAL_3, DECIMAL, BYTE_3};
+
 	(void)scene;
 	(void)line;
 	// if (scene->light.initialized)
