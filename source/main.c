@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 10:02:08 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:16:03 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	i_img;
 
 int	main(void)
 {
-	test();
+//	test();
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_all_data		all_data;
@@ -83,13 +83,13 @@ int	gen_new_img(t_all_data *all_data)
 		t_object	*s5;
 		t_object	*s6;
 
-		c = give_camera(300, 110, M_PI / 3);
+		c = give_camera(90, 90, M_PI / 3);
 		c.transform = view_transform(
 				(t_tuple){{0, 1.1, -6, 1}},
 				(t_tuple){{0, 1, 0, 1}},
 				(t_tuple){{0, 1, 0, 0}});
-		c.hsize = 400;
-		c.vsize = 400;
+		c.hsize = 150;
+		c.vsize = 150;
 
 		light.position = (t_tuple){{-10, -10, -10, 1}};
 		light.intensity = (t_tuple){{1, 1, 1, 0}};
@@ -126,10 +126,14 @@ int	gen_new_img(t_all_data *all_data)
 		s5->material.specular = 0.3;
 
 		s6 = so_new(6, CYLINDER);
-		s6->transform = translation((t_tuple){{2.5, 0, 0, 0}});
+		s6->transform = multiply_matrix4(rotation_y(-10), multiply_matrix4(rotation_z(70), translation((t_tuple){{0, -4, -2, 0}})));
 		s6->material.color = (t_tuple){{0.8, 0.2, 0.7, 0}};
 		s6->material.diffuse = 0.7;
 		s6->material.specular = 0.3;
+		s6->cyl_max =-1;
+		s6->cyl_min = -4;
+		s6->cyl_closed = 1;
+		
 
 		so_add_back(&s1, s2);
 		so_add_back(&s1, s3);
@@ -159,14 +163,27 @@ int	gen_new_img(t_all_data *all_data)
 static void	test(void)
 {
 	t_object		*s1;
-	t_tuple			direction =  normalization_vector((t_tuple){{0.1, 1, 1, 0}});
-	t_tuple			origin = (t_tuple){{0.5, 0, -5, 1}};
+	t_tuple			direction =  normalization_vector((t_tuple){{0, -1, 0, 0}});
+	t_tuple			origin = (t_tuple){{0, 3, 0, 1}};
 	t_intersection	stock;
 
 	s1 = so_new(1, CYLINDER);
+	s1->cyl_min = 1;
+	s1->cyl_max = 2;
+	s1->cyl_closed = 1;
 	stock = intersect(direction, origin, s1);
 	printf("%f %f %f\n", stock.t.a, stock.t.b, stock.t.c);
-	t_tuple stock2 = normal_at(*s1, (t_tuple){{0, 5, -2.5, 1}});
-	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	t_tuple stock2 = normal_at(*s1, (t_tuple){{0, 1, 0, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	stock2 = normal_at(*s1, (t_tuple){{0.5, 1, 0, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	stock2 = normal_at(*s1, (t_tuple){{0, 1, 0.5, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	stock2 = normal_at(*s1, (t_tuple){{0, 2, 0, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	stock2 = normal_at(*s1, (t_tuple){{0.5, 2, 0, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
+//	stock2 = normal_at(*s1, (t_tuple){{0, 2, 0.5, 1}});
+//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
 	free(s1);
 }

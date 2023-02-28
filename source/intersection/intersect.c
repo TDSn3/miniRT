@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 09:34:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:25:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,13 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	t_intersection	ret;
 	t_3f			abc;
 	float			discriminant;
+	float			stock;
+	float			y0;
+	float			y1;
 
+	ret.t.a = 0;
+	ret.t.b = 0;
+	ret.t.c = 0;
 	abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
 	if (equal_float(abc.a, 0))
 	{
@@ -145,5 +151,24 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	ret.t.a = 2;
 	ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
 	ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
+	if (ret.t.b > ret.t.c)
+	{
+		stock = ret.t.b;
+		ret.t.b = ret.t.c;
+		ret.t.c = stock;
+	}
+	y0 = ray.point.y + ret.t.b * ray.vector.y;
+	if (!(cylinder->cyl_min < y0 && y0 < cylinder->cyl_max))
+	{
+		ret.t.b = 0;
+		ret.t.a--;
+	}
+	y1 = ray.point.y + ret.t.c * ray.vector.y;
+	if (!(cylinder->cyl_min < y1 && y1 < cylinder->cyl_max))
+	{
+		ret.t.c = 0;
+		ret.t.a--;
+	}
+//	intersect_caps(ray, cylinder, &ret);
 	return (ret);
 }

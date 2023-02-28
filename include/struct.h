@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 08:59:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:16:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,9 @@ typedef struct s_object
 	t_tuple			position;
 	t_matrix4		transform;
 	t_material		material;
+	float			cyl_min;
+	float			cyl_max;
+	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;
 }	t_object;
