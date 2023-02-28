@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 21:08:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 21:40:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	gen_new_img(t_all_data *all_data)
 		s5->material.specular = 0.3;
 
 		s6 = so_new(6, CYLINDER);
-		s6->transform = multiply_matrix4(translation((t_tuple){{0, -4, 4, 0}}), multiply_matrix4(rotation_x(-30), rotation_z(10)));
+		s6->transform = multiply_matrix4(translation((t_tuple){{0, -4, 4, 0}}), multiply_matrix4(rotation_x(-50), rotation_z(20)));
 		s6->material.color = (t_tuple){{0.8, 0.2, 0.7, 0}};
 		s6->material.diffuse = 0.7;
 		s6->material.specular = 0.3;
