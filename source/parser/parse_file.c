@@ -6,32 +6,47 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/02/22 22:49:17 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:22:35 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include "parser.h"
 
-char	*parse_line(char *line, t_world *scene)
+void	clean_line(char *line)
 {
-	if (!ft_strncmp(line, "\n", 2))
-		return (0);
-	if (!ft_strncmp(line, "A ", 2))
-		return (parse_ambient(scene, line + 2));
-	if (!ft_strncmp(line, "C ", 2))
-		return (parse_camera(scene, line + 2));
-	if (!ft_strncmp(line, "L ", 2))
-		return (parse_light(scene, line + 2));
-	if (!ft_strncmp(line, "sp ", 3))
-		return (parse_sphere(scene, line + 3));
-	if (!ft_strncmp(line, "pl ", 3))
-		return (parse_plane(scene, line + 3));
-	if (!ft_strncmp(line, "cy ", 3))
-		return (parse_cylinder(scene, line + 3));
-	return ("Error: Invalid line\n");
+	while (*line)
+	{
+		if (*line >= '\t' && *line <= '\r')
+			*line = ' ';
+		line++;
+	}
 }
 
-char	*parse_scene(char *filename, t_world *scene)
+char	*parse_line(char *line, t_scene *scene)
+{
+	char const	*const types[] = {"A", "C", "L", "sp", "pl", "cy", NULL};
+	char		*(*const parse[])(t_scene *, char **) = {parse_ambient,
+	 	parse_camera, parse_light, parse_sphere, parse_plane, parse_cylinder};
+	char		**tokens;
+	int			i;
+
+	clean_line(line);
+	tokens = ft_split(line, ' ');
+	if (!tokens)
+		return ("Memory allocation error");
+	if (tokens[0] == NULL)
+		return (NULL);
+	i = -1;
+	while (types[++i])
+	{
+		if (!ft_strncmp(tokens[0], types[i], ft_strlen(types[i]) + 1))
+			return (parse[i](scene, tokens + 1));
+	}
+	return ("Unknown object");
+}
+
+int	parse_scene(char *filename, t_scene *scene)
 {
 	int		fd;
 	char	*line;
@@ -39,16 +54,21 @@ char	*parse_scene(char *filename, t_world *scene)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (strerror(errno));
+		return (printf("Error\n%s\n", strerror(errno)));
 	line = get_next_line(fd);
 	while (line)
 	{
 		error_msg = parse_line(line, scene);
-		free(line);
 		if (error_msg)
-			return (error_msg);
+		{
+			close(fd);
+			printf("Error\n%s:\t%s", error_msg, line);
+			free(line);
+			return (1);
+		}
+		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	return (NULL);
+	return (0);
 }

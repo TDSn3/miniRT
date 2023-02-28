@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:49:56 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/02/28 13:34:01 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,5 @@ t_to			*sto_last(t_to *lst);
 size_t			sto_size(t_to *lst);
 void			sto_clear(t_to **lst);
 void			sto_sort(t_to **lst);
-
-char			*parse_scene(char *filename, t_world *scene);
-char			*parse_sphere(t_world *scene, char *line);
-char			*parse_plane(t_world *scene, char *line);
-char			*parse_cylinder(t_world *scene, char *line);
-char			*parse_ambient(t_world *scene, char *line);
-char			*parse_camera(t_world *scene, char *line);
-char			*parse_light(t_world *scene, char *line);
 
 #endif

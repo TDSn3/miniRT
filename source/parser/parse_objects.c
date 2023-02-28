@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 21:08:53 by rcatini           #+#    #+#             */
-/*   Updated: 2023/02/28 11:01:37 by roberto          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:41:23 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,47 +25,32 @@
 #include "header.h"
 #include "parser.h"
 
-int	parse_sphere(t_world *scene, char *line)
+char	*parse_sphere(t_scene *scene, char **tokens)
 {
-	const t_parameter	syntax[] = {DECIMAL_3, DECIMAL, BYTE_3};
-	const void			targets[] = {&shape->center, &shape->radius,
-		&shape->color};
-	shape				*shape;
+	const t_parameter	syntax[] = {DEC_3, DEC, OCT_3};
 
-	shape = malloc(sizeof(*shape));
-	if (!shape)
-		return (NULL);
-	shape->next = scene->shapes;
-	if (parse_line(line, sizeof(syntax), syntax, shape) != sizeof(syntax))
-		return (printf("Error\n", line), free(shape), NULL);
-	return (NULL);
+	(void)scene;
+	(void)tokens;
+	(void)syntax;
+	return (0);
 }
 
-int	parse_plane(t_world *scene, char *line)
+char	*parse_plane(t_scene *scene, char **tokens)
 {
-	const t_parameter	syntax[] = {DECIMAL_3, DECIMAL_3, BYTE_3};
-	shape				*shape;
+	const t_parameter	syntax[] = {DEC_3, DEC_3, OCT_3};
 
-	shape = malloc(sizeof(*shape));
-	if (!shape)
-		return (NULL);
-	shape->next = scene->shapes;
-	if (parse_line(line, sizeof(syntax), syntax, shape) != sizeof(syntax))
-		return (printf("Error\n", line), free(shape), NULL);
-	return (NULL);
+	(void)scene;
+	(void)tokens;
+	(void)syntax;
+	return (0);
 }
 
-int	parse_cylinder(t_world *scene, char *line)
+char	*parse_cylinder(t_scene *scene, char **tokens)
 {
-	const t_parameter	syntax[] = {DECIMAL_3, DECIMAL_3, DECIMAL, DECIMAL,
-		BYTE_3};
-	shape				*shape;
+	const t_parameter	syntax[] = {DEC_3, DEC_3, DEC, DEC, OCT_3};
 
-	shape = malloc(sizeof(*shape));
-	if (!shape)
-		return (NULL);
-	shape->next = scene->shapes;
-	if (parse_line(line, sizeof(syntax), syntax, shape) != sizeof(syntax))
-		return (printf("Error\n", line), free(shape), NULL);
-	return (NULL);
+	(void)scene;
+	(void)tokens;
+	(void)syntax;
+	return (0);
 }

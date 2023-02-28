@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: roberto <roberto@student.42.fr>            +#+  +:+       +#+         #
+#    By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/28 09:50:45 by roberto          ###   ########.fr        #
+#    Updated: 2023/02/28 13:59:42 by rcatini          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OBJ_DIR		= object/
 INC_DIR		= include/
 CC			= gcc
 
-CFLAGS		= -Wall -Wextra  -Wshadow
+CFLAGS		= -Wall -Wextra -Werror -Wshadow -g
 # -Werror -Wconversion -Wno-error=conversion
 # **************************************************************************** #
 #                                                                              #
@@ -167,12 +167,12 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-	make -C libmlx clean
+#	make -C libmlx clean
 #	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(LIBFT)
+#	rm -f $(LIBFT)
 	rm -f $(NAME)
 
 re: fclean

@@ -6,11 +6,12 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 20:51:49 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/02/28 14:37:08 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+#include "parser.h"
 
 int	red_button(t_mwi *mwi);
 int	gen_new_img(t_all_data *all_data);
@@ -19,20 +20,12 @@ int	i_img;
 
 int	main(int argc, char **argv)
 {
-	t_world	scene;
-	char	*error_msg;
+	t_scene	scene;
 
 	if (argc != 2)
-	{
-		printf("Usage: ./miniRT <scene_file.rt>\n");
-		return (1);
-	}
-	error_msg = parse_scene(argv[1], &scene);
-	if (error_msg)
-	{
-		printf("Error: %s\n", error_msg);
-		return (1);
-	}
+		return (printf("Usage: ./miniRT <scene_file.rt>\n"), 1);
+	if (parse_scene(argv[1], &scene))
+		return (2);
 	printf("Scene parsed successfully!\n");
 	// 	t_mwi			mwi;
 	// t_data_mlx_img	data_img;
