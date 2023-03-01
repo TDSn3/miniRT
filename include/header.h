@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 15:57:18 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:10:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,23 @@
 # include "struct.h"
 # include "colors.h"
 
+# define HEIGHT 100
+# define WIDHT 100
 # define EPSILON 0.00001
 
+void			init_all(
+					t_all_data *all_data,
+					t_mwi *mwi,
+					t_data_mlx_img *data_img,
+					t_dk *data_key);
 void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int				equal_float(float a, float b);
 void			print_canvas(t_all_data *all_data);
 t_bgra			convert_to_255(t_tuple color);
 float			conv_color(float color_255);
 int				key_hook(int keycode, t_all_data *d);
+int				red_button(t_mwi *mwi);
+int				gen_new_img(t_all_data *all_data);
 
 void			init_point(t_tuple *tuple, float x, float y, float z);
 void			init_vector(t_tuple *tuple, float x, float y, float z);
@@ -81,7 +90,10 @@ t_tuple			position(t_tuple vector, t_tuple point, float t);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
 t_to			intersection(float t, t_object *object);
 void			set_transform(t_object *object, t_matrix4 *t);
-void			intersect_caps(t_ray ray, t_object *object, t_intersection *ret);
+void			intersect_caps(
+					t_ray ray,
+					t_object *object,
+					t_intersection *ret);
 
 int				si_add_back(t_intersection **lst, t_intersection *new);
 size_t			si_size(t_intersection *lst);
