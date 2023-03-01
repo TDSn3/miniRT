@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/28 20:38:22 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/01 12:32:06 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,6 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix intersection/,										\
 									   position									\
-									   give_sphere								\
 									   intersect								\
 									   intersection								\
 									   hit_to									\
@@ -95,9 +94,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 													   si_size					\
 													   si_new					\
 													   si_last					\
-													   si_find_content			\
 													   si_clear					\
-													   si_clear_one				\
 						    )													\
 			   )																\
 			  $(addprefix light_shading/,										\

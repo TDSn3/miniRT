@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 21:40:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:29:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int			red_button(t_mwi *mwi);
 int			gen_new_img(t_all_data *all_data);
-//static void	test(void);
+static void	test(t_all_data *all_data);
 
 int	i_img;
 
 int	main(void)
 {
-//	test();
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_all_data		all_data;
@@ -73,118 +72,126 @@ int	gen_new_img(t_all_data *all_data)
 
 //	pixel_put ***********************************************************************
 
-		t_camera	c;
-		t_world		w;
-		t_light		light;
-		t_object	*s1;
-		t_object	*s2;
-		t_object	*s3;
-		t_object	*s4;
-		t_object	*s5;
-		t_object	*s6;
+		test(all_data);
 
-		c = give_camera(300, 110, M_PI / 3);
-		c.transform = view_transform(
-				(t_tuple){{0, 1.5, -5, 1}},
-				(t_tuple){{0, 1, 0, 1}},
-				(t_tuple){{0, 1, 0, 0}});
-		c.hsize = 400;
-		c.vsize = 400;
+// //	*********************************************************************************
 
-		light.position = (t_tuple){{-10, -10, -10, 1}};
-		light.intensity = (t_tuple){{1, 1, 1, 0}};
-		w.light = light;
-
-		s1 = so_new(1, SPHERE);
-		s1->transform = translation((t_tuple){{-0.5, 1, 0.5, 0}});
-		s1->material.color = (t_tuple){{0.1, 1, 0.5, 0}};
-		s1->material.diffuse = 0.7;
-		s1->material.specular = 0.3;
-
-		s2 = so_new(2, SPHERE);
-		s2->transform = multiply_matrix4(translation((t_tuple){{1.5, 0.5, 9, 0}}), scaling((t_tuple){{0.5, 0.5, 0.5, 0}}));
-		s2->material.color = (t_tuple){{0.5, 1, 0.1, 0}};
-		s2->material.diffuse = 0.7;
-		s2->material.specular = 0.3;
-
-		s3 = so_new(3, SPHERE);
-		s3->transform = multiply_matrix4(translation((t_tuple){{-1.5, 0.33, -0.75, 0}}), scaling((t_tuple){{0.33, 0.33, 0.33, 0}}));
-		s3->material.color = (t_tuple){{1, 0.8, 0.1, 0}};
-		s3->material.diffuse = 0.7;
-		s3->material.specular = 0.3;
-
-		s4 = so_new(4, PLANE);
-		s4->transform = translation((t_tuple){{0, 0.2, 0, 0}});
-		s4->material.color = (t_tuple){{0.6, 0.6, 0.6, 0}};
-		s4->material.diffuse = 0.7;
-		s4->material.specular = 0.3;
-
-		s5 = so_new(5, PLANE);
-		s5->transform = multiply_matrix4(rotation_x(90), translation((t_tuple){{0, 10, 0, 0}}));
-		s5->material.color = (t_tuple){{0.5, 0.5, 0.5, 0}};
-		s5->material.diffuse = 0.7;
-		s5->material.specular = 0.3;
-
-		s6 = so_new(6, CYLINDER);
-		s6->transform = multiply_matrix4(translation((t_tuple){{0, -4, 4, 0}}), multiply_matrix4(rotation_x(-50), rotation_z(20)));
-		s6->material.color = (t_tuple){{0.8, 0.2, 0.7, 0}};
-		s6->material.diffuse = 0.7;
-		s6->material.specular = 0.3;
-		s6->cyl_max = 2;
-		s6->cyl_min = -2;
-		s6->cyl_closed = 1;
-
-		so_add_back(&s1, s2);
-		so_add_back(&s1, s3);
-		so_add_back(&s1, s4);
-		so_add_back(&s1, s5);
-		so_add_back(&s1, s6);
-		w.lst_object = s1;
-
-		render(all_data, c, &w);
-		so_clear(&s1);
-
-//	*********************************************************************************
-
-		mlx_put_image_to_window(
-			mwi -> mlx,
-			mwi -> win,
-			mwi -> data_img -> img,
-			0,
-			0);
-		mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
-		mwi -> data_img -> img = NULL;
+ 		mlx_put_image_to_window(
+ 			mwi -> mlx,
+ 			mwi -> win,
+ 			mwi -> data_img -> img,
+ 			0,
+ 			0);
+ 		mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
+ 		mwi -> data_img -> img = NULL;
 		i_img++;
 	}
 	return (0);
 }
 
-/*
-static void	test(void)
+static void	test(t_all_data *all_data)
 {
-	t_object		*s1;
-	t_tuple			direction =  normalization_vector((t_tuple){{0, -1, 0, 0}});
-	t_tuple			origin = (t_tuple){{0, 3, 0, 1}};
-	t_intersection	stock;
+	t_world		w;
+	t_camera	c;
+	t_light		light;
+	t_object	*sp1;
+	t_object	*pl1;
+	t_object	*cy1;
+	t_dp		data_parsing;
 
-	s1 = so_new(1, CYLINDER);
-	s1->cyl_min = 1;
-	s1->cyl_max = 2;
-	s1->cyl_closed = 1;
-	stock = intersect(direction, origin, s1);
-	printf("%f %f %f\n", stock.t.a, stock.t.b, stock.t.c);
-//	t_tuple stock2 = normal_at(*s1, (t_tuple){{0, 1, 0, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-//	stock2 = normal_at(*s1, (t_tuple){{0.5, 1, 0, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-//	stock2 = normal_at(*s1, (t_tuple){{0, 1, 0.5, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-//	stock2 = normal_at(*s1, (t_tuple){{0, 2, 0, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-//	stock2 = normal_at(*s1, (t_tuple){{0.5, 2, 0, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-//	stock2 = normal_at(*s1, (t_tuple){{0, 2, 0.5, 1}});
-//	printf("%f %f %f\n", stock2.x, stock2.y, stock2.z);
-	free(s1);
+/* ************************************************************************** */
+/*   Lumière ambiante   A   0.2   255,255,255                                 */
+/* ************************************************************************** */
+	data_parsing.ambient = 0.2;
+
+	data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
+	data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
+	data_parsing.a_color.z = conv_color(255) * data_parsing.ambient;
+	data_parsing.a_color.w = 0;
+
+/* ************************************************************************** */
+/*   Camera   C   0,0,20.6   0,0,1   70		                                  */
+/* ************************************************************************** */
+	data_parsing.c_position.x = 0;
+	data_parsing.c_position.y = 10;
+	data_parsing.c_position.z = -50;
+
+	data_parsing.c_to.x = 0;
+	data_parsing.c_to.y = 0;
+	data_parsing.c_to.z = 1;
+
+	data_parsing.c_fov = 70;
+
+
+	c = give_camera(150, 100, data_parsing.c_fov);
+	c.transform = view_transform(
+			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
+			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
+			(t_tuple){{0, 1, 0, 0}});
+
+/* ************************************************************************** */
+/*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
+/* ************************************************************************** */
+	data_parsing.l_position.x = 0;
+	data_parsing.l_position.y = 20;
+	data_parsing.l_position.z = -50;
+
+	data_parsing.l_i = 1;
+
+	data_parsing.l_color.x = conv_color(10);
+	data_parsing.l_color.y = conv_color(0);
+	data_parsing.l_color.z = conv_color(255);
+
+
+	light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
+	light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
+	w.light = light;
+
+/* ************************************************************************** */
+/*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
+/* ************************************************************************** */
+	float		rayon_sp1;
+
+	sp1 = so_new(SPHERE, data_parsing);
+	rayon_sp1 = 10;
+	sp1->transform = multiply_matrix4(
+			translation((t_tuple){{0, 0, 20, 0}}),
+			scaling((t_tuple){{rayon_sp1, rayon_sp1, rayon_sp1, 0}}));
+	sp1->material.color = (t_tuple){{conv_color(10), conv_color(0), conv_color(255), 0}};
+
+/* ************************************************************************** */
+/*   Plan   pl   0,0,0   0,0,1   0,0,255		                              */
+/* ************************************************************************** */
+	pl1 = so_new(PLANE, data_parsing);
+
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(0 * 180));
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(0 * 180));
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_z(1 * 180));
+	pl1->transform = multiply_matrix4(pl1->transform, translation((t_tuple){{0, -20, 0, 0}}));
+
+	pl1->material.color = (t_tuple){{conv_color(150), conv_color(10), conv_color(10), 0}};
+
+/* ************************************************************************** */
+/*   Cylindre   cy   50,0,6   0,0,1   14.2   21.42   10,0,255		          */
+/* ************************************************************************** */
+	cy1 = so_new(CYLINDER, data_parsing);
+
+	cy1->transform = multiply_matrix4(cy1->transform, rotation_x(40));
+//	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
+//	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
+//	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
+	cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{10, 0, 30, 0}}));
+
+	cy1->cyl_max = 20;
+	cy1->cyl_min = -20;
+	cy1->cyl_closed = 1;
+	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
+
+/* ************************************************************************** */
+	so_add_back(&sp1, pl1);
+	so_add_back(&sp1, cy1);
+	w.lst_object = sp1;
+	render(all_data, c, &w);
+	so_clear(&sp1);
+	printf("end\n");
 }
-*/

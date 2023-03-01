@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:27:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 22:58:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:42:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ static void	init_matrix4_orientation(
 				t_tuple left_vector,
 				t_tuple true_up_vector);
 
+/* ************************************************************************** */
+/*                                                                            */
+/*   from   position de la camera											  */
+/*   to     direction de la camera											  */
+/*   up     direction vers le haut de la camera								  */
+/*                                                                            */
+/* ************************************************************************** */
 t_matrix4	view_transform(t_tuple from, t_tuple to, t_tuple up)
 {
 	t_tuple		forward_vector;

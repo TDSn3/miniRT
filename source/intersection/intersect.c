@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 17:52:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:26:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static float	give_discri(t_tuple vector,
 static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 {
 	t_intersection	ret;
-	float			stock;
+	float			t;
 
 	ret.object = plane;
 	ret.next = NULL;
@@ -111,11 +111,11 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	}
 	else
 	{
-		stock = ray.point.y / ray.vector.y;
-		if (stock < 0)
-			stock *= -1; // ATTENTION
-		ret.t.a = 1;
-		ret.t.b = stock;
+		t = ray.point.y / ray.vector.y; // <----- BIZZARE
+//		if (t < 0)
+//			t *= -1; // ATTENTION
+		ret.t.a = 2;
+		ret.t.b = t;
 		ret.t.c = 0;
 	}
 	return (ret);

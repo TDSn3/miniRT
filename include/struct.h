@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 17:58:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:50:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,6 @@ typedef struct s_camera
 /* ************************************************************************** */
 typedef struct s_object
 {
-	unsigned int	id;
 	t_type			type;
 	t_tuple			position;
 	t_matrix4		transform;
@@ -208,6 +207,18 @@ typedef struct s_t_and_object
 	struct s_t_and_object	*prev;
 	struct s_t_and_object	*next;
 }	t_to;
+
+typedef struct s_data_parsing
+{
+	float	ambient;
+	t_tuple	a_color;
+	t_tuple	c_position;
+	t_tuple	c_to;
+	float	c_fov;
+	t_tuple	l_position;
+	float	l_i;
+	t_tuple	l_color;
+}	t_dp;
 
 typedef struct s_data_mlx_img
 {
