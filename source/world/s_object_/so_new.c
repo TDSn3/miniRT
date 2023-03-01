@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 11:17:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:34:40 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_object	*so_new(t_type type, t_dp dp)
 	ln->cyl_closed = 0;
 	ln->material.color = (t_tuple){{1, 0.2, 1, 0}};
 	ln->material.ambient = dp.ambient;
+	ln->material.a_color = dp.a_color;
 	ln->material.diffuse = 0.9;
 	ln->material.specular = 0.9;
 	ln->material.shininess = 200;

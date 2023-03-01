@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 16:24:45 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:34:22 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_material
 {
 	t_tuple	color;
 	float	ambient;
+	t_tuple	a_color;
 	float	diffuse;
 	float	specular;
 	float	shininess;

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:21:09 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 15:08:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:51:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	render(t_all_data *all_data, t_camera camera, t_world *world)
 
 	x = 0;
 	y = 0;
-	while (y < camera.vsize - 1)
+	while (y < camera.vsize)
 	{
-		while (x < camera.hsize - 1)
+		while (x < camera.hsize)
 		{
 			r = ray_for_pixel(camera, x, y);
 			color = color_at(world, r);

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 17:29:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:03:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Lumière ambiante   A   0.2   255,255,255                                 */
 /* ************************************************************************** */
-	data_parsing.ambient = 0.2;
+	data_parsing.ambient = 0.05;
 
 	data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
 	data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
@@ -141,12 +141,11 @@ static void	test(t_all_data *all_data)
 	data_parsing.l_position.y = -20;
 	data_parsing.l_position.z = 35;
 
-	data_parsing.l_i = 1;
+	data_parsing.l_i = 0.3;
 
 	data_parsing.l_color.x = conv_color(10);
 	data_parsing.l_color.y = conv_color(0);
 	data_parsing.l_color.z = conv_color(255);
-
 
 	light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
 	light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
