@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 13:26:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:28:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,7 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	}
 	else
 	{
-		t = ray.point.y / ray.vector.y; // <----- BIZZARE
-//		if (t < 0)
-//			t *= -1; // ATTENTION
+		t = -ray.point.y / ray.vector.y;
 		ret.t.a = 2;
 		ret.t.b = t;
 		ret.t.c = 0;

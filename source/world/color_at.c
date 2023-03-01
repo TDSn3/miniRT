@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 16:35:32 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:27:07 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_tuple	color_at(t_world *w, t_ray r)
 	if (!inter)
 		return ((t_tuple){0});
 	t = hit_to(inter);
-	if (!t || t->t == 0)
+	if (!t || t->t == 0 || t->t == FLT_MAX)
 	{
 		free(t);
 		return ((t_tuple){0});

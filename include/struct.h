@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 11:50:45 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:24:45 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,23 @@ typedef struct s_t_and_object
 	struct s_t_and_object	*next;
 }	t_to;
 
+//typedef struct s_t_and_direct_object
+//{
+//	float		t;
+//	t_object	object;
+//}	t_tdo;
+
+typedef struct s_data_key
+{
+	float	c_add_pos_x;
+	float	c_add_pos_y;
+	float	c_add_pos_z;
+	float	c_add_to_x;
+	float	c_add_to_y;
+	float	c_add_to_z;
+	float	c_add_fov;
+}	t_dk;
+
 typedef struct s_data_parsing
 {
 	float	ambient;
@@ -242,6 +259,8 @@ typedef struct s_all_data
 {
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;
+	t_dk			*data_key;
+	int				gen_img;
 }	t_all_data;
 
 #endif

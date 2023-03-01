@@ -6,36 +6,40 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 13:29:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 17:29:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+#define _H_ 100
+#define _W_ 100
 
 int			red_button(t_mwi *mwi);
 int			gen_new_img(t_all_data *all_data);
 static void	test(t_all_data *all_data);
-
-int	i_img;
 
 int	main(void)
 {
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_all_data		all_data;
+	t_dk			data_key;
 
-	i_img = 0;
+	data_key = (t_dk){0};
+	all_data.gen_img = 1;
 	mwi.mlx = NULL;
 	mwi.win = NULL;
 	mwi.data_img = &data_img;
 	mwi.data_img->img = NULL;
-	mwi.win_widht = 500;
-	mwi.win_height = 500;
+	mwi.win_widht = _W_;
+	mwi.win_height = _H_;
 	all_data.mwi = &mwi;
 	all_data.data_img = &data_img;
+	all_data.data_key = &data_key;
 
 	mwi.mlx = mlx_init();
 	mwi.win = mlx_new_window(mwi.mlx, mwi.win_widht, mwi.win_height, "miniRT");
+	mlx_key_hook(mwi.win, key_hook, &all_data);
 	mlx_hook(mwi.win, 17, 0L, red_button, &mwi);
 	mlx_loop_hook(mwi.mlx, gen_new_img, &all_data);
 	mlx_loop(mwi.mlx);
@@ -58,7 +62,7 @@ int	gen_new_img(t_all_data *all_data)
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;
 
-	if (i_img == 0)
+	if (all_data->gen_img)
 	{
 		printf("%sNew image%s\n", COLOR_BOLD_YELLOW, COLOR_RESET);
 		data_img = all_data->data_img;
@@ -84,7 +88,7 @@ int	gen_new_img(t_all_data *all_data)
  			0);
  		mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
  		mwi -> data_img -> img = NULL;
-		i_img++;
+		all_data->gen_img = 0;
 	}
 	return (0);
 }
@@ -97,6 +101,7 @@ static void	test(t_all_data *all_data)
 	t_object	*sp1;
 	t_object	*pl1;
 	t_object	*cy1;
+	t_object	*cy2;
 	t_dp		data_parsing;
 
 /* ************************************************************************** */
@@ -112,18 +117,18 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Camera   C   0,0,20.6   0,0,1   70		                                  */
 /* ************************************************************************** */
-	data_parsing.c_position.x = 0;
-	data_parsing.c_position.y = 10;
-	data_parsing.c_position.z = -50;
+	data_parsing.c_position.x = 0 + all_data->data_key->c_add_pos_x;
+	data_parsing.c_position.y = -50 + all_data->data_key->c_add_pos_y;
+	data_parsing.c_position.z = -20 + all_data->data_key->c_add_pos_z;
 
-	data_parsing.c_to.x = 0;
-	data_parsing.c_to.y = 0;
-	data_parsing.c_to.z = 1;
+	data_parsing.c_to.x = 0 + all_data->data_key->c_add_pos_x;
+	data_parsing.c_to.y = 1 + all_data->data_key->c_add_pos_y;
+	data_parsing.c_to.z = 0 + all_data->data_key->c_add_pos_z;
 
 	data_parsing.c_fov = 70;
 
 
-	c = give_camera(150, 100, data_parsing.c_fov);
+	c = give_camera(_H_, _W_, data_parsing.c_fov);
 	c.transform = view_transform(
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
 			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
@@ -133,8 +138,8 @@ static void	test(t_all_data *all_data)
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
 /* ************************************************************************** */
 	data_parsing.l_position.x = 0;
-	data_parsing.l_position.y = 20;
-	data_parsing.l_position.z = -50;
+	data_parsing.l_position.y = -20;
+	data_parsing.l_position.z = 35;
 
 	data_parsing.l_i = 1;
 
@@ -155,7 +160,7 @@ static void	test(t_all_data *all_data)
 	sp1 = so_new(SPHERE, data_parsing);
 	rayon_sp1 = 10;
 	sp1->transform = multiply_matrix4(
-			translation((t_tuple){{0, 0, 20, 0}}),
+			translation((t_tuple){{0, 0, -30, 0}}),
 			scaling((t_tuple){{rayon_sp1, rayon_sp1, rayon_sp1, 0}}));
 	sp1->material.color = (t_tuple){{conv_color(10), conv_color(0), conv_color(255), 0}};
 
@@ -164,12 +169,13 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 	pl1 = so_new(PLANE, data_parsing);
 
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(0 * 180));
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(0 * 180));
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_z(1 * 180));
-	pl1->transform = multiply_matrix4(pl1->transform, translation((t_tuple){{0, -20, 0, 0}}));
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(10));
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(10));
+//	pl1->transform = multiply_matrix4(pl1->transform, rotation_z(90));
+//	pl1->transform = multiply_matrix4(pl1->transform, translation((t_tuple){{0, 0, 0, 0}}));
 
 	pl1->material.color = (t_tuple){{conv_color(150), conv_color(10), conv_color(10), 0}};
+	pl1->material.specular = 0.1;
 
 /* ************************************************************************** */
 /*   Cylindre   cy   50,0,6   0,0,1   14.2   21.42   10,0,255		          */
@@ -180,18 +186,30 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
-	cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{10, 0, 30, 0}}));
+	cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{9, 0, 30, 0}}));
 
 	cy1->cyl_max = 20;
 	cy1->cyl_min = -20;
 	cy1->cyl_closed = 1;
 	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
 
+
+	cy2 = so_new(CYLINDER, data_parsing);
+
+	cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
+	cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
+	cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
+	cy2->cyl_max = 10;
+	cy2->cyl_min = -10;
+	cy2->cyl_closed = 1;
+	cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
+
 /* ************************************************************************** */
 	so_add_back(&sp1, pl1);
 	so_add_back(&sp1, cy1);
+	so_add_back(&sp1, cy2);
 	w.lst_object = sp1;
 	render(all_data, c, &w);
 	so_clear(&sp1);
-	printf("end\n");
+	printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
 }
