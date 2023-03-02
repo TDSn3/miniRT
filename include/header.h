@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 14:21:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:36:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@
 # include "comps.h"
 # include "struct.h"
 # include "colors.h"
-
-# define HEIGHT 500
-# define WIDHT 500
-# define EPSILON 0.00001
 
 void			init_all(
 					t_all_data *all_data,

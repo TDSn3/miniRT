@@ -6,12 +6,16 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 14:09:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:36:50 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# define HEIGHT 500
+# define WIDHT 500
+# define EPSILON 0.00001
 
 typedef enum e_type
 {
@@ -270,6 +274,7 @@ typedef struct s_data_thread
 	t_camera		camera;
 	t_world			*world;
 	int				id_thread;
+	t_bgra			stock_img[HEIGHT][WIDHT];
 	pthread_mutex_t	mutex_print;
 }	t_dt;
 
