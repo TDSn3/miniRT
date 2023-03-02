@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/02/24 21:21:23 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/02 15:03:16 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,19 +84,16 @@ NAME_FILE	= $(addprefix tuple/,												\
 			   )																\
 			  $(addprefix intersection/,										\
 									   position									\
-									   give_sphere								\
 									   intersect								\
 									   intersection								\
-									   hit										\
 									   set_transform							\
+									   intersect_caps							\
 						   $(addprefix s_intersection_/,						\
 								   					   si_add_back				\
 													   si_size					\
 													   si_new					\
 													   si_last					\
-													   si_find_content			\
 													   si_clear					\
-													   si_clear_one				\
 						    )													\
 			   )																\
 			  $(addprefix light_shading/,										\
@@ -113,6 +110,7 @@ NAME_FILE	= $(addprefix tuple/,												\
 								give_camera										\
 								ray_for_pixel									\
 								render											\
+								is_shadowed										\
 					$(addprefix s_object_/,										\
 								   		  so_add_back							\
 										  so_size								\
@@ -129,23 +127,25 @@ NAME_FILE	= $(addprefix tuple/,												\
 											    sto_sort						\
 					 )															\
 			   )																\
+			  $(addprefix util/,												\
+							   init_all 										\
+							   my_mlx_pixel_put									\
+							   equal_float										\
+							   convert_to_255									\
+							   key_hook											\
+							   red_button										\
+							   gen_new_img										\
+			   )																\
+			  $(addprefix thread/,												\
+			 					 main_exec_thread								\
+								 exec_thread_1_4								\
+								 exec_thread_5_8								\
+								 exec_thread_9_12								\
+			   )																\
 			   main																\
-			   my_mlx_pixel_put													\
-			   equal_float														\
-			   convert_to_255													\
-			   print_canvas														\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
 OBJ			= $(addsuffix .o, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
-
-
-
-
-
-
-
-
-
 DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 
 # **************************************************************************** #

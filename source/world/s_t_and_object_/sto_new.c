@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 13:13:58 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:59:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,7 @@ t_to	*sto_new(float t, t_object *object)
 		return (NULL);
 	ln->t = t;
 	ln->object = object;
+	ln->next = NULL;
+	ln->prev = NULL;
 	return (ln);
 }

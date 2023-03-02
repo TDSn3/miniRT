@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:19:08 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 23:24:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:21:29 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	so_clear(t_object **lst)
 	t_object	*copysi_two;
 
 	copysi = lst;
-	if (!*lst)
+	if (!lst || !*lst)
 		return ;
 	while (*copysi)
 	{

@@ -6,12 +6,23 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/25 12:29:50 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:39:51 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+# define HEIGHT 500
+# define WIDHT 500
+# define EPSILON 0.00001
+
+typedef enum e_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER,
+}	t_type;
 
 typedef union s_tuple
 {
@@ -25,74 +36,67 @@ typedef union s_tuple
 	float		tuple[4];
 }	t_tuple;
 
-typedef union s_ray
+typedef struct s_ray
 {
-	struct
+	union
 	{
-		union
+		struct
 		{
-			struct
-			{
-				float	x;
-				float	y;
-				float	z;
-				float	w;
-			};
-			float		tab[4];
-			t_tuple		vector;
+			float	x;
+			float	y;
+			float	z;
+			float	w;
 		};
-		union
-		{
-			struct
-			{
-				float	x2;
-				float	y2;
-				float	z2;
-				float	w2;
-			};
-			float		tab2[4];
-			t_tuple		point;
-		};
+		float		tab[4];
+		t_tuple		vector;
 	};
-	float	ray_tab[8];
+	union
+	{
+		struct
+		{
+			float	x2;
+			float	y2;
+			float	z2;
+			float	w2;
+		};
+		float		tab2[4];
+		t_tuple		point;
+	};
 }	t_ray;
 
-typedef union s_light
+typedef struct s_light
 {
-	struct
+	union
 	{
-		union
+		struct
 		{
-			struct
-			{
-				float	x;
-				float	y;
-				float	z;
-				float	w;
-			};
-			float		tab[4];
-			t_tuple		intensity;
+			float	x;
+			float	y;
+			float	z;
+			float	w;
 		};
-		union
-		{
-			struct
-			{
-				float	x2;
-				float	y2;
-				float	z2;
-				float	w2;
-			};
-			float		tab2[4];
-			t_tuple		position;
-		};
+		float		tab[4];
+		t_tuple		intensity;
 	};
-	float	light_tab[8];
+	union
+	{
+		struct
+		{
+			float	x2;
+			float	y2;
+			float	z2;
+			float	w2;
+		};
+		float		tab2[4];
+		t_tuple		position;
+	};
 }	t_light;
 
 typedef struct s_material
 {
 	t_tuple	color;
 	float	ambient;
+	t_tuple	a_color;
 	float	diffuse;
 	float	specular;
 	float	shininess;
@@ -143,11 +147,6 @@ typedef struct s_ijkl
 	size_t	l;
 }	t_ijkl;
 
-typedef enum e_type
-{
-	SPHERE,
-}	t_type;
-
 /* ************************************************************************** */
 /*                                                                            */
 /*   hsize   		 taille horizontale du canevas en pixels                  */
@@ -173,11 +172,13 @@ typedef struct s_camera
 /* ************************************************************************** */
 typedef struct s_object
 {
-	unsigned int	id;
 	t_type			type;
 	t_tuple			position;
 	t_matrix4		transform;
 	t_material		material;
+	float			cyl_min;
+	float			cyl_max;
+	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;
 }	t_object;
@@ -212,6 +213,35 @@ typedef struct s_t_and_object
 	struct s_t_and_object	*next;
 }	t_to;
 
+//typedef struct s_t_and_direct_object
+//{
+//	float		t;
+//	t_object	object;
+//}	t_tdo;
+
+typedef struct s_data_key
+{
+	float	c_add_pos_x;
+	float	c_add_pos_y;
+	float	c_add_pos_z;
+	float	c_add_to_x;
+	float	c_add_to_y;
+	float	c_add_to_z;
+	float	c_add_fov;
+}	t_dk;
+
+typedef struct s_data_parsing
+{
+	float	ambient;
+	t_tuple	a_color;
+	t_tuple	c_position;
+	t_tuple	c_to;
+	float	c_fov;
+	t_tuple	l_position;
+	float	l_i;
+	t_tuple	l_color;
+}	t_dp;
+
 typedef struct s_data_mlx_img
 {
 	void	*img;
@@ -234,6 +264,28 @@ typedef struct s_all_data
 {
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;
+	t_dk			*data_key;
+	int				gen_img;
+	t_object		**list_object;
 }	t_all_data;
+
+typedef struct s_data_thread
+{
+	t_all_data		*all_data;
+	t_camera		camera;
+	t_world			*world;
+	int				id_thread;
+//	t_bgra			stock_img[HEIGHT][WIDHT];
+	pthread_mutex_t	mutex_print;
+}	t_dt;
+
+typedef struct s_data_main_exec_thread
+{
+	t_dt	*dt;
+	t_ray	r;
+	t_tuple	color;
+	size_t	x;
+	size_t	y;
+}	t_dmet;
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
+/*   convert_to_255.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 13:14:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 21:40:22 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/02/21 22:21:21 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/03/01 11:26:11 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,35 @@
 
 /* ************************************************************************** */
 /*                                                                            */
-/*   Change la couleur d'un pixel dans une image.							  */
-/*   Systèmes de coordonnées ayant pour origine le centre de la fenêtre.	  */
+/*   x   red																  */
+/*   y   green                                                                */
+/*   z   blue																  */
+/*   w   0                                                                    */
 /*                                                                            */
 /* ************************************************************************** */
-void	my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color)
+t_bgra	convert_to_255(t_tuple color)
 {
-	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
-	char			*dst;
-	int				s_x;
-	int				s_y;
+	t_bgra	converted_color;
 
-	data_img = all_data->data_img;
-	mwi = all_data->mwi;
-	if (x < (mwi->win_widht * -1) / 2
-		|| x > mwi->win_widht / 2
-		|| y < (mwi->win_height * -1) / 2
-		|| y > mwi->win_height / 2)
-		return ;
-	s_x = mwi->win_widht / 2 + x;
-	s_y = mwi->win_height / 2 - y;
-	dst = data_img->addr
-		+ (s_y * data_img->line_length + s_x * (data_img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	converted_color.a = 0;
+	if (color.x * 255 > 255)
+		converted_color.r = (int8_t)255;
+	else
+		converted_color.r = color.x * 255;
+
+	if (color.y * 255 > 255)
+		converted_color.g = (int8_t)255;
+	else
+		converted_color.g = color.y * 255;
+
+	if (color.z * 255 > 255)
+		converted_color.b = (int8_t)255;
+	else
+		converted_color.b = color.z * 255;
+	return (converted_color);
+}
+
+float	conv_color(float color_255)
+{
+	return (color_255 / 255);
 }

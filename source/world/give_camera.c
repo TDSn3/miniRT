@@ -6,12 +6,20 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:42:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/24 15:28:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:15:43 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
+/* ************************************************************************** */
+/*                                                                            */
+/*   field_of_view   Angle qui décrit ce que la caméra peut voir.			  */
+/*                                                                            */
+/*   Lorsque le champ de vision est petit, la vue sera zoomée,				  */
+/*   agrandissant une zone plus petite de la scène.							  */
+/*                                                                            */
+/* ************************************************************************** */
 t_camera	give_camera(float hsize, float vsize, float field_of_view)
 {
 	t_camera	ret;
