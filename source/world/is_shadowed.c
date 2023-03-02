@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 21:11:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:35:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,54 @@
 /*   et la source de lumière, et le point est dans l'ombre.					  */
 /*                                                                            */
 /* ************************************************************************** */
+//int	is_shadowed(t_world *world, t_tuple point)
+//{
+//	t_tuple	v;
+//	float	distance;
+//	t_tuple	direction;
+//	t_ray	r;
+//	t_to	*inter;
+//	t_to	*h;
+//
+//	inter = NULL;
+//	h = NULL;
+//	v = t_tuple_minus(world->light.position, point);
+//	distance = magnitude_vector(&v);
+//	direction = normalization_vector(v);
+//	r.point = point;
+//	r.vector = direction;
+//	inter = intersect_world(world, r);
+//	h = hit_to(inter);
+//	if (h && h->t < distance)
+//	{
+//		sto_clear(&h);
+//		free(h);
+//		return (1);
+//	}
+//	else
+//	{
+//		sto_clear(&h);
+//		free(h);
+//		return (0);
+//	}
+//}
+
 int	is_shadowed(t_world *world, t_tuple point)
 {
 	t_tuple	v;
 	float	distance;
 	t_tuple	direction;
 	t_ray	r;
-	t_to	*inter;
-	t_to	*h;
+	t_to	inter;
 
-	inter = NULL;
-	h = NULL;
 	v = t_tuple_minus(world->light.position, point);
 	distance = magnitude_vector(&v);
 	direction = normalization_vector(v);
 	r.point = point;
 	r.vector = direction;
 	inter = intersect_world(world, r);
-	h = hit_to(inter);
-	if (h && h->t < distance)
-	{
-		sto_clear(&h);
-		free(h);
+	if (inter.t < distance && inter.t > 0)
 		return (1);
-	}
 	else
-	{
-		sto_clear(&h);
-		free(h);
 		return (0);
-	}
 }

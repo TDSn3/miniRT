@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 19:10:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:31:51 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include "struct.h"
 # include "colors.h"
 
-# define HEIGHT 100
-# define WIDHT 100
+# define HEIGHT 500
+# define WIDHT 500
 # define EPSILON 0.00001
 
 void			init_all(
@@ -106,7 +106,8 @@ t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
 t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector,  int in_shadow);
 t_tuple			color_at(t_world *w, t_ray r);
 
-t_to			*intersect_world(t_world *world, t_ray ray);
+// t_to			*intersect_world(t_world *world, t_ray ray);
+t_to			intersect_world(t_world *world, t_ray ray);
 t_comps			prepare_computations(t_ray r, t_to *i);
 t_tuple			shade_hit(t_world w, t_comps comps);
 t_to			*hit_to(t_to *list);
