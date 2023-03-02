@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/02 14:21:25 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/02 15:03:16 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,6 @@ NAME_FILE	= $(addprefix tuple/,												\
 									   position									\
 									   intersect								\
 									   intersection								\
-									   hit_to									\
 									   set_transform							\
 									   intersect_caps							\
 						   $(addprefix s_intersection_/,						\

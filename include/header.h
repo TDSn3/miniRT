@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 14:36:47 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:12:22 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			print_canvas(t_all_data *all_data);
 t_bgra			convert_to_255(t_tuple color);
 float			conv_color(float color_255);
 int				key_hook(int keycode, t_all_data *d);
-int				red_button(t_mwi *mwi);
+int				red_button(t_all_data *d);
 int				gen_new_img(t_all_data *all_data);
 
 void			init_point(t_tuple *tuple, float x, float y, float z);
@@ -112,7 +112,6 @@ t_tuple			color_at(t_world *w, t_ray r);
 t_to			intersect_world(t_world *world, t_ray ray);
 t_comps			prepare_computations(t_ray r, t_to *i);
 t_tuple			shade_hit(t_world w, t_comps comps);
-t_to			*hit_to(t_to *list);
 t_matrix4		view_transform(t_tuple from, t_tuple to, t_tuple up);
 t_camera		give_camera(float hsize, float vsize, float field_of_view);
 t_ray			ray_for_pixel(t_camera camera, float px, float py);
