@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 15:22:29 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:42:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ static void	test(t_all_data *all_data)
 	float		rayon_sp1;
 
 	sp1 = so_new(SPHERE, data_parsing);
+	all_data->list_object = &sp1; // IMPORTANT
 
 	rayon_sp1 = 10;
 	sp1->transform = multiply_matrix4(
@@ -169,6 +170,7 @@ static void	test(t_all_data *all_data)
 
 	render(all_data, c, &w);
 	so_clear(&sp1);
+	all_data->list_object = NULL;
 
 	printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
 }
