@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/01 19:15:39 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/02 14:21:25 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -136,6 +136,12 @@ NAME_FILE	= $(addprefix tuple/,												\
 							   key_hook											\
 							   red_button										\
 							   gen_new_img										\
+			   )																\
+			  $(addprefix thread/,												\
+			 					 main_exec_thread								\
+								 exec_thread_1_4								\
+								 exec_thread_5_8								\
+								 exec_thread_9_12								\
 			   )																\
 			   main																\
 

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 12:31:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:21:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <float.h>
+
+# include <string.h>
+# include <pthread.h>
+# include <limits.h>
+# include <sys/time.h>
+# include <errno.h>
 
 # include "matrix.h"
 # include "comps.h"
@@ -130,5 +136,19 @@ void			sto_clear(t_to **lst);
 void			sto_sort(t_to **lst);
 
 int				is_shadowed(t_world *world, t_tuple point);
+
+void			main_exec_thread(t_dmet *dmet);
+void			*exec_thread1(void *data);
+void			*exec_thread2(void *data);
+void			*exec_thread3(void *data);
+void			*exec_thread4(void *data);
+void			*exec_thread5(void *data);
+void			*exec_thread6(void *data);
+void			*exec_thread7(void *data);
+void			*exec_thread8(void *data);
+void			*exec_thread9(void *data);
+void			*exec_thread10(void *data);
+void			*exec_thread11(void *data);
+void			*exec_thread12(void *data);
 
 #endif

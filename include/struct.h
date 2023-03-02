@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 17:34:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:09:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,5 +263,23 @@ typedef struct s_all_data
 	t_dk			*data_key;
 	int				gen_img;
 }	t_all_data;
+
+typedef struct s_data_thread
+{
+	t_all_data		*all_data;
+	t_camera		camera;
+	t_world			*world;
+	int				id_thread;
+	pthread_mutex_t	mutex_print;
+}	t_dt;
+
+typedef struct s_data_main_exec_thread
+{
+	t_dt	*dt;
+	t_ray	r;
+	t_tuple	color;
+	size_t	x;
+	size_t	y;
+}	t_dmet;
 
 #endif

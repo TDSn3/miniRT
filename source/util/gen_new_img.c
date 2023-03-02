@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 19:21:20 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:04:31 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	gen_new_img(t_all_data *all_data)
 
 	if (all_data->gen_img)
 	{
-		printf("%sNew image%s\n", COLOR_BOLD_YELLOW, COLOR_RESET);
 		data_img = all_data->data_img;
 		mwi = all_data->mwi;
 		data_img -> img = mlx_new_image(mwi -> mlx, 1080, 720);
@@ -46,6 +45,7 @@ int	gen_new_img(t_all_data *all_data)
  		mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
  		mwi -> data_img -> img = NULL;
 		all_data->gen_img = 0;
+		printf("%sNew image%s\n", COLOR_BOLD_YELLOW, COLOR_RESET);
 	}
 	return (0);
 }
