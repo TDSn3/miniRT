@@ -6,15 +6,15 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 15:39:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:29:27 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 500
-# define WIDHT 500
+# define HEIGHT 200
+# define WIDHT 200
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -228,6 +228,13 @@ typedef struct s_data_key
 	float	c_add_to_y;
 	float	c_add_to_z;
 	float	c_add_fov;
+	int		key_a;
+	int		key_w;
+	int		key_s;
+	int		key_d;
+	int		key_up;
+	int		key_down;
+	int		key_shift;
 }	t_dk;
 
 typedef struct s_data_parsing

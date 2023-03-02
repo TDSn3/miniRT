@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 15:12:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:49:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ int				equal_float(float a, float b);
 void			print_canvas(t_all_data *all_data);
 t_bgra			convert_to_255(t_tuple color);
 float			conv_color(float color_255);
-int				key_hook(int keycode, t_all_data *d);
+int				key_press_hook(int keycode, t_all_data *d);
+int				key_release_hook(int keycode, t_all_data *d);
+int				mouse_hook(int mousecode, int x, int y, t_all_data *d);
 int				red_button(t_all_data *d);
 int				gen_new_img(t_all_data *all_data);
 

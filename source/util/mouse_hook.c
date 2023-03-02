@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mouse_hook.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 17:48:59 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/03/02 17:44:10 by tda-silv          #+#    #+#             */
+/*   Updated: 2023/03/02 18:42:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	main(void)
+int	mouse_hook(int mousecode, int x, int y, t_all_data *d)
 {
-	t_all_data		all_data;
-	t_mwi			mwi;
-	t_data_mlx_img	data_img;
-	t_dk			data_key;
-
-	init_all(&all_data, &mwi, &data_img, &data_key);
-	mlx_hook(mwi.win, 17, 0L, red_button, &all_data);
-	mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);
-	mlx_hook(mwi.win, 3, 1L << 0L, key_release_hook, &all_data);
-	mlx_mouse_hook(mwi.win, mouse_hook, &all_data);
-	mlx_loop_hook(mwi.mlx, gen_new_img, &all_data);
-	mlx_loop(mwi.mlx);
+	printf("%s%d\tx : %d\t\ty : %d%s\n",
+		COLOR_ID_WHITE, mousecode, x, y, COLOR_RESET);
 	return (0);
 }

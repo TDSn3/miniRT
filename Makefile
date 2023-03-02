@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/02 15:03:16 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/02 17:46:58 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,9 @@ NAME_FILE	= $(addprefix tuple/,												\
 							   my_mlx_pixel_put									\
 							   equal_float										\
 							   convert_to_255									\
-							   key_hook											\
+							   key_press_hook									\
+							   key_release_hook									\
+							   mouse_hook										\
 							   red_button										\
 							   gen_new_img										\
 			   )																\

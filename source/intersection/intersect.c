@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 15:28:04 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:39:57 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	ret.t.a = 2;
 	t0 = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
 	t1 = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
-	if (t0 > t1) // <--------------
+	if (t0 > t1)
 		swap(&t0, &t1);
 	y0 = ray.point.y + t0 * ray.vector.y;
 	if (cylinder->cyl_min < y0 && y0 < cylinder->cyl_max)

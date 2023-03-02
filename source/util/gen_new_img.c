@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 15:42:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:29:55 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ static void	test(t_all_data *all_data)
 	data_parsing.c_position.y = -50 + all_data->data_key->c_add_pos_y;
 	data_parsing.c_position.z = -20 + all_data->data_key->c_add_pos_z;
 
-	data_parsing.c_to.x = 0 + all_data->data_key->c_add_pos_x;
-	data_parsing.c_to.y = 1 + all_data->data_key->c_add_pos_y;
-	data_parsing.c_to.z = 0 + all_data->data_key->c_add_pos_z;
+	data_parsing.c_to.x = 0 + all_data->data_key->c_add_to_x;
+	data_parsing.c_to.y = 1 + all_data->data_key->c_add_to_y;
+	data_parsing.c_to.z = 0 + all_data->data_key->c_add_to_z;
 
-	data_parsing.c_fov = 70;
+	data_parsing.c_fov = 70 + all_data->data_key->c_add_fov;
 
 
 	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
@@ -163,6 +163,7 @@ static void	test(t_all_data *all_data)
 	cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
 
 /* ************************************************************************** */
+
 	so_add_back(&sp1, pl1);
 	so_add_back(&sp1, cy1);
 	so_add_back(&sp1, cy2);
@@ -170,6 +171,7 @@ static void	test(t_all_data *all_data)
 
 	render(all_data, c, &w);
 	so_clear(&sp1);
+
 	all_data->list_object = NULL;
 
 	printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
