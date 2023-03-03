@@ -6,14 +6,13 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 18:37:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:56:47 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
 static void	part_two(int keycode, t_all_data *d);
-static void	part_three(int keycode, t_all_data *d);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -22,14 +21,14 @@ static void	part_three(int keycode, t_all_data *d);
 /*                                                                            */
 /*    53 || 65307     esc													  */
 /*     0 ||    97      A													  */
-/*    13 ||   115      W													  */
-/*     1 ||   119      S													  */
+/*    13 ||   119      W													  */
+/*     1 ||   115      S													  */
 /*     2 ||   100      D													  */
 /*                                          	                          	  */
-/*    31 ||     ?      O													  */
-/*    35 ||     ?      P													  */
+/*    31 ||   111      O													  */
+/*    35 ||   112      P													  */
 /*                                          	                          	  */
-/*   257 ||     ?    shift													  */
+/*   257 || 65505    shift													  */
 /*                                                                            */
 /*   123 || 65361      ←													  */
 /*   126 || 65362      ↑													  */
@@ -45,12 +44,12 @@ int	key_press_hook(int keycode, t_all_data *d)
 		d->data_key->c_add_pos_x -= 1;
 		d->data_key->key_a = 1;
 	}
-	if (keycode == 115 || keycode == 13)
+	if (keycode == 119 || keycode == 13)
 	{
 		d->data_key->c_add_pos_z += 1;
 		d->data_key->key_w = 1;
 	}
-	if (keycode == 119 || keycode == 1)
+	if (keycode == 115 || keycode == 1)
 	{
 		d->data_key->c_add_pos_z -= 1;
 		d->data_key->key_s = 1;
@@ -70,7 +69,7 @@ int	key_press_hook(int keycode, t_all_data *d)
 		d->data_key->c_add_pos_y += 1;
 		d->data_key->key_down = 1;
 	}
-	if (keycode == 257)
+	if (keycode == 65505 || keycode == 257)
 		d->data_key->key_shift = 1;
 	if (d->data_key->key_a && d->data_key->key_shift)
 		d->data_key->c_add_to_x -= 1;
@@ -84,12 +83,11 @@ int	key_press_hook(int keycode, t_all_data *d)
 		d->data_key->c_add_to_y -= 1;
 	if (d->data_key->key_down && d->data_key->key_shift)
 		d->data_key->c_add_to_y += 1;
-	if (keycode == 31)
+	if (keycode == 111 || keycode == 31)
 		d->data_key->c_add_fov += 0.1;
-	if (keycode == 35)
+	if (keycode == 112 || keycode == 35)
 		d->data_key->c_add_fov -= 0.1;
 	part_two(keycode, d);
-	part_three(keycode, d);
 	d->gen_img = 1;
 	return (0);
 }
@@ -101,14 +99,9 @@ static void	part_two(int keycode, t_all_data *d)
 		if (d->mwi->data_img->img)
 			mlx_destroy_image(d->mwi->mlx, d->mwi->data_img->img);
 		mlx_destroy_window(d->mwi->mlx, d->mwi->win);
-//		mlx_destroy_display(d->mlx); // <------- Ok sur Linux mais pas sur MacOs
+		mlx_destroy_display(d->mwi->mlx); // <------- Ok sur Linux mais pas sur MacOs
 		free(d->mwi->mlx);
 		so_clear(d -> list_object);
 		exit (0);
 	}
-}
-
-static void	part_three(int keycode, t_all_data *d)
-{
-
 }
