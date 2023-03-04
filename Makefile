@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/03 19:50:43 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/04 18:08:13 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Werror -Wall -Wextra -Wshadow -g
+CFLAGS		= -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 # -Werror -Wconversion -Wno-error=conversion
+# --tool=helgrind
 # **************************************************************************** #
 #                                                                              #
 #   -I   | Chemin du dossier où trouver un .h								   #
@@ -33,7 +34,7 @@ CFLAGS		= -Werror -Wall -Wextra -Wshadow -g
 # **************************************************************************** #
 
 I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-L_LIB		= -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+L_LIB		= -lpthread -pthread -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
 
 # **************************************************************************** #
 #   MacOs                                                                      #
