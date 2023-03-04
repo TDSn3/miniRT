@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:56:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/24 20:10:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:09:48 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 t_tuple	normalization_vector(t_tuple tuple)
 {
-    t_tuple	ret;
+	t_tuple	ret;
 	float	len;
 
 	len = sqrtf(tuple.x * tuple.x + tuple.y * tuple.y + tuple.z * tuple.z);

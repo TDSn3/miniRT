@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 17:49:20 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 18:53:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,12 @@ void			si_clear(t_intersection **lst);
 
 t_tuple			normal_at(t_object object, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
-t_tuple			lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple nomralv_vector,  int in_shadow);
+t_tuple			lighting(
+					t_material material,
+					t_light light, t_tuple point,
+					t_tuple eyev_vector,
+					t_tuple nomralv_vector,
+					int in_shadow);
 t_tuple			color_at(t_world *w, t_ray r);
 
 // t_to			*intersect_world(t_world *world, t_ray ray);

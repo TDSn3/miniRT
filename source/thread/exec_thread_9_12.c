@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 14:21:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:13:49 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	*exec_thread9(void *data)
 {
 	t_dmet	dmet;
 
-	printf("%sThread 9 created%s\n", COLOR_RED, COLOR_RESET);
 	dmet.dt = data;
 	dmet.x = 0;
 	dmet.y = 0;
@@ -38,7 +37,6 @@ void	*exec_thread10(void *data)
 {
 	t_dmet	dmet;
 
-	printf("%sThread 10 created%s\n", COLOR_RED, COLOR_RESET);
 	dmet.dt = data;
 	dmet.x = 0;
 	dmet.y = 0;
@@ -60,7 +58,6 @@ void	*exec_thread11(void *data)
 {
 	t_dmet	dmet;
 
-	printf("%sThread 11 created%s\n", COLOR_RED, COLOR_RESET);
 	dmet.dt = data;
 	dmet.x = 0;
 	dmet.y = 0;
@@ -82,7 +79,6 @@ void	*exec_thread12(void *data)
 {
 	t_dmet	dmet;
 
-	printf("%sThread 12 created%s\n", COLOR_RED, COLOR_RESET);
 	dmet.dt = data;
 	dmet.x = 0;
 	dmet.y = 0;

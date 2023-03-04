@@ -50,12 +50,6 @@ int	exec_all_thread(t_dt *dt)
 	int			err;
 	int			i;
 
-//	while (i < 12)
-//	{
-//		t[i] = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
-//		i++;
-//	}
-
 	i = 0;
 	while (i < 12)
 	{
@@ -89,33 +83,35 @@ int	exec_all_thread(t_dt *dt)
 	}
 	i = 0;
 	while (i < 12)
+	{
+		printf("%sthread %d%s\n", COLOR_BOLD_RED, i, COLOR_RESET);
 		pthread_join(t[i++], NULL);
+	}
 	return (0);
 }
 
 void	render(t_all_data *all_data, t_camera camera, t_world *world)
 {
 	t_dt	dt;
+	size_t	x;
+	size_t	y;
 
 	dt.all_data = all_data;
 	dt.camera = camera;
 	dt.world = world;
 	exec_all_thread(&dt);
 
- 	 size_t	x;
- 	 size_t	y;
-
-	 x = 0;
-	 y = 0;
-	 while (y < camera.vsize)
-	 {
-	 	while (x < camera.hsize)
-	 	{
-	 		my_mlx_pixel_put(all_data, x - camera.hsize / 2,
-	 			y - camera.vsize / 2, dt.stock_img[x][y].bgra);
-	 		x++;
-	 	}
-	 	x = 0;
-	 	y++;
-	 }
+	x = 0;
+	y = 0;
+	while (y < camera.vsize)
+	{
+		while (x < camera.hsize)
+		{
+			my_mlx_pixel_put(all_data, x - camera.hsize / 2,
+				y - camera.vsize / 2, dt.stock_img[x][y].bgra);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 20:51:56 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:30:31 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:14:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ float	cofactor_matrix4(t_matrix4 src, size_t x_row, size_t y_column)
 	minor = minor_matrix4(src, x_row, y_column);
 	return (minor * sign);
 }
-

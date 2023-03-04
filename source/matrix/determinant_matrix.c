@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:53:30 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:31:18 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:14:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ float	determinant_matrix3(t_matrix3 a)
 	}
 	return (det);
 }
-
 
 float	determinant_matrix4(t_matrix4 a)
 {

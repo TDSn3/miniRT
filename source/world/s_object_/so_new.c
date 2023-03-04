@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/01 17:34:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/04 19:13:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_object	*so_new(t_type type, t_dp dp)
 	ln = malloc(sizeof(t_object));
 	if (!ln)
 		return (NULL);
-
 	ln->type = type;
 	ln->position = (t_tuple){{0, 0, 0, 1}};
 	ln->transform = give_identity_matrix4();
