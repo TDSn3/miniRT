@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 06:39:47 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 07:13:34 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (printf("Usage: ./miniRT <scene_file.rt>\n"), 1);
 	if (parse_scene(argv[1], &scene))
-		return (2);
+		return (free_objects(scene.objects), 2);
 	printf("Scene parsed successfully!\n");
 	printf("ambient: %f %d,%d,%d\n", scene.ambient.intensity, scene.ambient.color.r, scene.ambient.color.g, scene.ambient.color.b);
 	printf("camera: %f,%f,%f, %f,%f,%f %f\n", scene.camera.position.a, scene.camera.position.b, scene.camera.position.c, scene.camera.direction.a, scene.camera.direction.b, scene.camera.direction.c, scene.camera.fov_degrees);

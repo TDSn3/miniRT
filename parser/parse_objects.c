@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 06:37:33 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 07:12:28 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*parse_sphere(t_scene *scene, char **tokens)
 
 	sphere = malloc(sizeof(t_parsed_object));
 	if (!sphere)
-		return (free_tokens(--tokens), "Malloc failed (sphere)");
+		return (free_tokens(--tokens), "Malloc failed (sp)");
 	params[0] = &sphere->position;
 	params[1] = &sphere->radius;
 	params[2] = &sphere->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
-		return (free_tokens(--tokens), "Invalid sphere syntax");
+		return (free_tokens(--tokens), free(sphere), "Invalid sphere syntax");
 	sphere->type = SPHERE;
 	sphere->radius /= 2;
 	sphere->next = scene->objects;
@@ -42,7 +42,7 @@ char	*parse_plane(t_scene *scene, char **tokens)
 
 	plane = malloc(sizeof(t_parsed_object));
 	if (!plane)
-		return (free_tokens(--tokens), "Malloc failed (plane)");
+		return (free_tokens(--tokens), free(plane), "Malloc failed (pl)");
 	params[0] = &plane->position;
 	params[1] = &plane->direction;
 	params[2] = &plane->color;
@@ -62,7 +62,7 @@ char	*parse_cylinder(t_scene *scene, char **tokens)
 
 	cylinder = malloc(sizeof(t_parsed_object));
 	if (!cylinder)
-		return (free_tokens(--tokens), "Malloc failed (cylinder)");
+		return (free_tokens(--tokens), free(cylinder), "Malloc failed (cy)");
 	params[0] = &cylinder->position;
 	params[1] = &cylinder->direction;
 	params[2] = &cylinder->radius;
