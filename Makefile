@@ -4,7 +4,7 @@ CFLAGS		= -Werror -Wall -Wextra -Wshadow -MMD -D_REENTRANT -DLinux -I include -I
 LDFLAGS		= -Llibmlx -Llibft
 LDLIBS		= -lpthread -pthread -lmlx -lXext -lX11 -lm
 
-FILENAMES	=\
+FILENAMES	=							\
 	$(addprefix tuple/,					\
 		init_point						\
 		init_vector						\
@@ -109,11 +109,15 @@ SRC		= $(addsuffix .c, $(FILENAMES))
 OBJ		= $(SRC:.c=.o)
 DEPENDS	= $(SRC:.c=.d)
 
--include $(DEPENDS)
-
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) libmlx/libmlx.a libft/libft.a
+
+libft/libft.a:
+	$(MAKE) -C libft
+
+libmlx/libmlx.a:
+	$(MAKE) -C libmlx
 
 clean:
 	rm -f $(OBJ)
@@ -121,7 +125,10 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C libft fclean
+	$(MAKE) -C libmlx clean
 
 re: fclean
 	$(MAKE)
 
+-include $(DEPENDS)
