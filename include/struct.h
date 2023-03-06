@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 06:24:19 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 15:23:10 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,25 +299,25 @@ typedef struct s_data_main_exec_thread
 
 typedef struct s_parsed_ambient
 {
-	int					initialized;
-	double				intensity;
-	t_bgra				color;
+	double					intensity;
+	t_bgra					color;
+	struct s_parsed_ambient	*next;
 }	t_parsed_ambient;
 
 typedef struct s_parsed_light
 {
-	int					initialized;
-	t_3f				position;
-	double				intensity;
-	t_bgra				color;
+	t_3f					position;
+	double					intensity;
+	t_bgra					color;
+	struct s_parsed_light	*next;
 }	t_parsed_light;
 
 typedef struct s_parsed_camera
 {
-	int					initialized;
-	t_3f				position;
-	t_3f				direction;
-	double				fov_degrees;
+	t_3f					position;
+	t_3f					direction;
+	double					fov_degrees;
+	struct s_parsed_camera	*next;
 }	t_parsed_camera;
 
 typedef struct s_parsed_object
