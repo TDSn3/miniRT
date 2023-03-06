@@ -32,8 +32,8 @@ CFLAGS		= -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 #   Linux                                                                      #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR) -I mlx_linux
-L_LIB		= -lpthread -pthread -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+I_HEADERS	= -I $(INC_DIR) -I libmlx
+L_LIB		= -lpthread -pthread -Llibmlx -lmlx -lXext -lX11 -lm
 
 # **************************************************************************** #
 #   MacOs                                                                      #
@@ -167,7 +167,7 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **********************************vvvvvvvvvvvvvvvvvvv*********************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADERS) Makefile
-	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+	@cd libmlx; make >> /dev/null 2>> /dev/null; cd ..
 #	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
@@ -178,7 +178,7 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
 
 clean:
-	cd mlx_linux; make clean
+	cd mlx; make clean
 #	cd mlx_macos; make clean
 	rm -rf $(OBJ_DIR)
 
