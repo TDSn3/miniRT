@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 07:12:28 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 07:16:36 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*parse_sphere(t_scene *scene, char **tokens)
 
 	sphere = malloc(sizeof(t_parsed_object));
 	if (!sphere)
-		return (free_tokens(--tokens), "Malloc failed (sp)");
+		return (free_tokens(--tokens), "Malloc failed (sphere)");
 	params[0] = &sphere->position;
 	params[1] = &sphere->radius;
 	params[2] = &sphere->color;
@@ -42,12 +42,12 @@ char	*parse_plane(t_scene *scene, char **tokens)
 
 	plane = malloc(sizeof(t_parsed_object));
 	if (!plane)
-		return (free_tokens(--tokens), free(plane), "Malloc failed (pl)");
+		return (free_tokens(--tokens), "Malloc failed (plane)");
 	params[0] = &plane->position;
 	params[1] = &plane->direction;
 	params[2] = &plane->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
-		return (free_tokens(--tokens), "Invalid plane syntax");
+		return (free_tokens(--tokens), free(plane), "Invalid plane syntax");
 	plane->type = PLANE;
 	plane->next = scene->objects;
 	scene->objects = plane;
@@ -62,14 +62,14 @@ char	*parse_cylinder(t_scene *scene, char **tokens)
 
 	cylinder = malloc(sizeof(t_parsed_object));
 	if (!cylinder)
-		return (free_tokens(--tokens), free(cylinder), "Malloc failed (cy)");
+		return (free_tokens(--tokens), "Malloc failed (cylinder)");
 	params[0] = &cylinder->position;
 	params[1] = &cylinder->direction;
 	params[2] = &cylinder->radius;
 	params[3] = &cylinder->height;
 	params[4] = &cylinder->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
-		return (free_tokens(--tokens), "Invalid cylinder syntax");
+		return (free_tokens(--tokens), free(cylinder), "Invalid cylinder syntax");
 	cylinder->type = CYLINDER;
 	cylinder->radius /= 2;
 	cylinder->next = scene->objects;
