@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 07:16:36 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:16:23 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ char	*parse_cylinder(t_scene *scene, char **tokens)
 	params[3] = &cylinder->height;
 	params[4] = &cylinder->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
-		return (free_tokens(--tokens), free(cylinder), "Invalid cylinder syntax");
+		return (free_tokens(--tokens), free(cylinder),
+			"Invalid cylinder syntax");
 	cylinder->type = CYLINDER;
 	cylinder->radius /= 2;
 	cylinder->next = scene->objects;
