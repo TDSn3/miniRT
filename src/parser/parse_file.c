@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/06 03:51:27 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 15:36:56 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 char	*parse_line(char *line, t_scene *scene)
 {
-	char const	*const types[] = {"A", "C", "L", "sp", "pl", "cy", NULL};
-	char		*(*const parse[])(t_scene *, char **) = {parse_ambient,
-	 	parse_camera, parse_light, parse_sphere, parse_plane, parse_cylinder};
-	char		**tokens;
-	int			i;
+	const char		*types[] = {"A", "C", "L", "sp", "pl", "cy", NULL};
+	const t_parse	parse[] = {parse_ambient, parse_camera, parse_light,
+		parse_sphere, parse_plane, parse_cylinder};
+	char			**tokens;
+	int				i;
 
 	clean_line(line);
 	tokens = ft_split(line, ' ');

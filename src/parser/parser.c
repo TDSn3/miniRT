@@ -3,50 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 03:56:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 06:18:47 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 16:10:33 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-#include "parser.h"
-#include "libft.h"
+#include <header.h>
+#include <parser.h>
+#include <libft.h>
 
 t_3f	parse_vec3(char *item)
 {
-	t_3f	vec;
-	char	**tokens;
+	double		x;
+	double		y;
+	double		z;
+	char		**tokens;
+	const t_3f	invalid = (t_3f){.a = NAN, .b = NAN, .c = NAN};
 
-	vec = (t_3f){.a = NAN, .b = NAN, .c = NAN};
 	tokens = ft_split(item, ',');
 	if (!tokens)
-		return (vec);
+		return (invalid);
 	if (count_tokens(tokens) != 3)
-		return (free_tokens(tokens), vec);
-	vec.a = ft_atod(tokens[0]);
-	vec.b = ft_atod(tokens[1]);
-	vec.c = ft_atod(tokens[2]);
-	return (free_tokens(tokens), vec);
+		return (free_tokens(tokens), invalid);
+	x = ft_atod(tokens[0]);
+	y = ft_atod(tokens[1]);
+	z = ft_atod(tokens[2]);
+	if (isnan(x) || isnan(y) || isnan(z))
+		return (free_tokens(tokens), invalid);
+	return (free_tokens(tokens), (t_3f){.a = x, .b = y, .c = z});
 }
 
 t_bgra	parse_color(char *item)
 {
-	t_bgra	color;
-	char	**tokens;
+	char			**tokens;
+	int				r;
+	int				g;
+	int				b;
+	const t_bgra	invalid = (t_bgra){.a = 255};
 
-	color = (t_bgra){.a = 255};
 	tokens = ft_split(item, ',');
 	if (!tokens)
-		return (color);
+		return (invalid);
 	if (count_tokens(tokens) != 3)
-		return (free_tokens(tokens), color);
-	color.r = ft_atoi(tokens[0]);
-	color.g = ft_atoi(tokens[1]);
-	color.b = ft_atoi(tokens[2]);
-	color.a = 0;
-	return (free_tokens(tokens), color);
+		return (free_tokens(tokens), invalid);
+	r = ft_atouc(tokens[0]);
+	g = ft_atouc(tokens[1]);
+	b = ft_atouc(tokens[2]);
+	if (r == -1 || g == -1 || b == -1)
+		return (free_tokens(tokens), invalid);
+	return (free_tokens(tokens), (t_bgra){.a = 0, .r = r, .g = g, .b = b});
 }
 
 int	is_invalid(const t_parameter type, void *param)
