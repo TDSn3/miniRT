@@ -1,6 +1,6 @@
 NAME		= miniRT
 CC			= gcc
-CFLAGS		= -Werror -Wall -Wextra -Wshadow -MMD -D_REENTRANT -DLinux -I include -I libmlx
+CFLAGS		= -g -Werror -Wall -Wextra -Wshadow -MMD -D_REENTRANT -DLinux -I include -I libmlx -I libft
 LDFLAGS		= -Llibmlx -Llibft
 LDLIBS		= -lpthread -pthread -lmlx -lXext -lX11 -lm
 
@@ -103,6 +103,13 @@ FILENAMES	=							\
 		exec_thread_5_8					\
 		exec_thread_9_12				\
 	)									\
+	$(addprefix parser/,				\
+		parser							\
+		parse_file						\
+		parse_globals					\
+		parse_objects					\
+		parse_utils						\
+	)									\
 	miniRT
 
 SRC		= $(addsuffix .c, $(FILENAMES))
@@ -120,11 +127,12 @@ libmlx/libmlx.a:
 	$(MAKE) -C libmlx
 
 clean:
-	rm $(OBJ)
-	rm $(DEPENDS)
+	$(MAKE) -C libft clean
+	rm -f $(OBJ)
+	rm -f $(DEPENDS)
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 	$(MAKE) -C libft fclean
 	$(MAKE) -C libmlx clean
 

@@ -1,7 +1,8 @@
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 OBJS = \
 	ft_atoi.o \
+	ft_atod.o \
 	ft_itoa.o \
 	ft_putnbr_fd.o \
 	ft_strcpy.o \

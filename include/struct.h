@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 17:43:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/06 03:27:10 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ typedef union s_bgra
 {
 	struct
 	{
-		int8_t	b;
-		int8_t	g;
-		int8_t	r;
-		int8_t	a;
+		unsigned char	b;
+		unsigned char	g;
+		unsigned char	r;
+		unsigned char	a;
 	};
-	int32_t		bgra;
+	unsigned int		bgra;
 }	t_bgra;
 
 typedef union s_3f
@@ -294,5 +294,49 @@ typedef struct s_data_main_exec_thread
 	size_t	x;
 	size_t	y;
 }	t_dmet;
+
+// The following structs have to be readapted
+
+typedef struct s_parsed_ambient
+{
+	int					initialized;
+	double				intensity;
+	t_bgra				color;
+}	t_parsed_ambient;
+
+typedef struct s_parsed_light
+{
+	int					initialized;
+	t_3f				position;
+	double				intensity;
+	t_bgra				color;
+}	t_parsed_light;
+
+typedef struct s_parsed_camera
+{
+	int					initialized;
+	t_3f				position;
+	t_3f				direction;
+	double				fov_degrees;
+}	t_parsed_camera;
+
+typedef struct s_parsed_object
+{
+	t_type				type;
+	t_3f				position;
+	t_bgra				color;
+	t_3f				direction;
+	double				radius;
+	double				height;
+	struct s_shape		*next;
+}	t_parsed_object;
+
+typedef struct s_scene
+{
+	t_parsed_object		*objects;
+	t_parsed_light		light;
+	t_parsed_camera		camera;
+	t_parsed_ambient	ambient;
+}	t_scene;
 
 #endif
