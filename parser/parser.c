@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 03:56:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 05:55:44 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 06:18:47 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,18 @@ t_bgra	parse_color(char *item)
 	return (free_tokens(tokens), color);
 }
 
+int	is_invalid(const t_parameter type, void *param)
+{
+	if (type == DEC)
+		return (isnan(*(double *)param));
+	else if (type == DEC_3)
+		return (isnan(((t_3f *)param)->a) || isnan(((t_3f *)param)->b)
+			|| isnan(((t_3f *)param)->c));
+	else if (type == COLOR)
+		return (((t_bgra *)param)->a == 255);
+	return (1);
+}
+
 int	parse_items(int n, char **tokens, const t_parameter *syntax, void **params)
 {
 	int	i;
@@ -64,6 +76,10 @@ int	parse_items(int n, char **tokens, const t_parameter *syntax, void **params)
 			*(t_3f *)params[i] = parse_vec3(tokens[i]);
 		else if (syntax[i] == COLOR)
 			*(t_bgra *)params[i] = parse_color(tokens[i]);
+		else
+			return (1);
+		if (is_invalid(syntax[i], params[i]))
+			return (1);
 	}
 	if (tokens[i])
 		return (1);

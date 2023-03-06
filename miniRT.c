@@ -6,12 +6,39 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 06:12:41 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 06:39:47 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "parser.h"
+
+void	print_objects(t_parsed_object *objects)
+{
+	printf("Printing objects:\n");
+	while (objects)
+	{
+		if (objects->type == SPHERE)
+			printf("\tsphere: %f,%f,%f %f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->radius, objects->color.r, objects->color.g, objects->color.b);
+		else if (objects->type == PLANE)
+			printf("\tplane: %f,%f,%f %f,%f,%f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->direction.a, objects->direction.b, objects->direction.c, objects->color.r, objects->color.g, objects->color.b);
+		else if (objects->type == CYLINDER)
+			printf("\tcylinder: %f,%f,%f %f,%f,%f %f %f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->direction.a, objects->direction.b, objects->direction.c, objects->radius, objects->height, objects->color.r, objects->color.g, objects->color.b);
+		objects = objects->next;
+	}
+}
+
+void	free_objects(t_parsed_object *objects)
+{
+	t_parsed_object	*next;
+
+	while (objects)
+	{
+		next = objects->next;
+		free(objects);
+		objects = next;
+	}
+}
 
 int	main(int argc, char **argv)
 {
@@ -30,6 +57,8 @@ int	main(int argc, char **argv)
 	printf("ambient: %f %d,%d,%d\n", scene.ambient.intensity, scene.ambient.color.r, scene.ambient.color.g, scene.ambient.color.b);
 	printf("camera: %f,%f,%f, %f,%f,%f %f\n", scene.camera.position.a, scene.camera.position.b, scene.camera.position.c, scene.camera.direction.a, scene.camera.direction.b, scene.camera.direction.c, scene.camera.fov_degrees);
 	printf("light: %f,%f,%f %f %d, %d, %d\n", scene.light.position.a, scene.light.position.b, scene.light.position.c, scene.light.intensity, scene.light.color.r, scene.light.color.g, scene.light.color.b);
+	print_objects(scene.objects);
+	free_objects(scene.objects);
 	// init_all(&all_data, &mwi, &data_img, &data_key);
 	// mlx_hook(mwi.win, 17, 0L, red_button, &all_data);
 	// mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);

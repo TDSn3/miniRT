@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 03:27:10 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/06 06:24:19 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -322,13 +322,13 @@ typedef struct s_parsed_camera
 
 typedef struct s_parsed_object
 {
-	t_type				type;
-	t_3f				position;
-	t_bgra				color;
-	t_3f				direction;
-	double				radius;
-	double				height;
-	struct s_shape		*next;
+	t_type						type;
+	t_3f						position;
+	t_bgra						color;
+	t_3f						direction;
+	double						radius;
+	double						height;
+	struct s_parsed_object		*next;
 }	t_parsed_object;
 
 typedef struct s_scene
