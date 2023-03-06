@@ -120,11 +120,11 @@ libmlx/libmlx.a:
 	$(MAKE) -C libmlx
 
 clean:
-	rm -f $(OBJ)
-	rm -f $(DEPENDS)
+	rm $(OBJ)
+	rm $(DEPENDS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm $(NAME)
 	$(MAKE) -C libft fclean
 	$(MAKE) -C libmlx clean
 
