@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:09:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 18:30:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 03:32:23 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	init_all(
 	all_data->mwi = mwi;
 	all_data->data_img = data_img;
 	all_data->data_key = data_key;
-	all_data->gen_img = 1;
 	all_data->list_object = NULL;
 	mwi->mlx = mlx_init();
 	mwi->win = mlx_new_window(mwi->mlx,

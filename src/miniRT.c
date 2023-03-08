@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:31:05 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:34:18 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int	main(int argc, char **argv)
 	mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);
 	mlx_hook(mwi.win, 3, 1L << 1L, key_release_hook, &all_data);
 	mlx_mouse_hook(mwi.win, mouse_hook, &all_data);
+	gen_new_img(&all_data);
 	mlx_loop(mwi.mlx);
 }

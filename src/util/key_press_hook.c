@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:08:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 03:33:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	key_press_hook(int keycode, t_all_data *d)
 		d->data_key->c_add_fov -= 0.1;
 	awsd_shift(keycode, d);
 	part_two(keycode, d);
-	d->gen_img = 1;
+	gen_new_img(d);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:28:46 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:31:58 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,7 +272,6 @@ typedef struct s_all_data
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;
 	t_dk			*data_key;
-	int				gen_img;
 	t_object		**list_object;
 }	t_all_data;
 
