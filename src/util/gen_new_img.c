@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 19:51:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:17:17 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,18 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
-	translation((t_tuple){{9, 0, 30, 0}}, &cy1->transform);
+	t_matrix4 translation1;
+	translation((t_tuple){{9, 0, 30, 0}}, &translation1);
+	t_matrix4 shearing1;
+	// shearing by 20 on the y axis
+	float f6[6]= {20, 0, 0, 0, 0, 0};
+	shearing(f6, &shearing1);
+	multiply_matrix4(&translation1, &shearing1, &cy1->transform);
 	inverse_matrix4(&cy1->transform, &cy1->inverse);
 
-	cy1->cyl_max = 20;
-	cy1->cyl_min = -20;
+	// cy1->cyl_max = 20;
+	// cy1->cyl_min = -20;
+
 	cy1->cyl_closed = 1;
 	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
 
@@ -178,8 +185,8 @@ static void	test(t_all_data *all_data)
 	multiply_matrix4(&rot_x, &rot_z, &tmp);
 	multiply_matrix4(&tmp, &translation_matrix_2, &cy2->transform);
 	inverse_matrix4(&cy2->transform, &cy2->inverse);
-	cy2->cyl_max = 10;
-	cy2->cyl_min = -10;
+	// cy2->cyl_max = 10;
+	// cy2->cyl_min = -10;
 	cy2->cyl_closed = 1;
 	cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
 

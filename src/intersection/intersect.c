@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:03:41 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:10:19 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,10 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	if (t0 > t1)
 		swap(&t0, &t1);
 	y0 = ray.point.y + t0 * ray.vector.y;
-	if (cylinder->cyl_min < y0 && y0 < cylinder->cyl_max)
+	if (-1. < y0 && y0 < +1.)
 		ret.t[1] = t0;
 	y1 = ray.point.y + t1 * ray.vector.y;
-	if (cylinder->cyl_min < y1 && y1 < cylinder->cyl_max)
+	if (-1. < y1 && y1 < +1.)
 		ret.t[2] = t1;
 	intersect_caps(ray, cylinder, &ret);
 	return (ret);
