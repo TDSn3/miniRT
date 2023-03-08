@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 15:38:36 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/08 04:15:20 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,19 @@ t_matrix4		multiply_matrix4(t_matrix4 left, t_matrix4 right);
 t_tuple			multiply_matrix4_tuple(t_matrix4 left, t_tuple right);
 t_matrix4		give_identity_matrix4(void);
 t_matrix4		transpose_matrix4(t_matrix4 a);
-float			determinant_matrix2(t_matrix2 a);
-float			determinant_matrix3(t_matrix3 a);
-float			determinant_matrix4(t_matrix4 a);
-t_matrix3		sub_matrix4(t_matrix4 src, size_t x_del, size_t y_del);
-t_matrix2		sub_matrix3(t_matrix3 src, size_t x_del, size_t y_del);
-float			minor_matrix3(t_matrix3 src, size_t x_del, size_t y_del);
-float			cofactor_matrix3(t_matrix3 src, size_t x_row, size_t y_column);
-float			cofactor_matrix4(t_matrix4 src, size_t x_row, size_t y_column);
-float			minor_matrix4(t_matrix4 src, size_t x_del, size_t y_del);
-int				is_invertible_matrix4(t_matrix4 a);
-t_matrix4		*inverse_matrix4(t_matrix4 src, t_matrix4 *dst);
+float			determinant_matrix2(t_matrix2 const *a);
+float			determinant_matrix3(t_matrix3 const *a);
+float			determinant_matrix4(t_matrix4 const *a);
+t_matrix3		sub_matrix4(t_matrix4 const *src, size_t x_del, size_t y_del);
+t_matrix2		sub_matrix3(t_matrix3 const *src, size_t x_del, size_t y_del);
+float			minor_matrix3(t_matrix3 const *src, size_t x_del, size_t y_del);
+float			cofactor_matrix3(
+					t_matrix3 const *src, size_t x_row, size_t y_column);
+float			cofactor_matrix4(
+					t_matrix4 const *src, size_t x_row, size_t y_column);
+float			minor_matrix4(t_matrix4 const *src, size_t x_del, size_t y_del);
+int				is_invertible_matrix4(t_matrix4 const *a);
+t_matrix4		*inverse_matrix4(t_matrix4 const *src, t_matrix4 *dst);
 
 t_tuple			transform(t_matrix4 mtx, t_tuple point);
 t_matrix4		translation(t_tuple vector);

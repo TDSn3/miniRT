@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   equal_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:00:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:02:31 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 04:03:17 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-int	equal_matrix4(t_matrix4 a, t_matrix4 b)
+int	equal_matrix4(t_matrix4 const a, t_matrix4 const b)
 {
 	size_t	i;
 	size_t	j;

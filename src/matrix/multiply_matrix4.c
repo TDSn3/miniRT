@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multiply_matrix.c                                  :+:      :+:    :+:   */
+/*   multiply_matrix4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:03:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 04:04:58 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix4	multiply_matrix4(t_matrix4 left, t_matrix4 right)
+t_matrix4	multiply_matrix4(t_matrix4 const left, t_matrix4 const right)
 {
 	t_matrix4	ret;
 	size_t		i;

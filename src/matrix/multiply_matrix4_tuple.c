@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   multiply_matrix4_tuple.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:14:10 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 04:04:49 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_tuple	multiply_matrix4_tuple(t_matrix4 left, t_tuple right)
+t_tuple	multiply_matrix4_tuple(t_matrix4 const left, t_tuple const right)
 {
 	t_tuple	ret;
 	size_t	i;

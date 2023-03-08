@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transpose_matrix.c                                 :+:      :+:    :+:   */
+/*   transpose_matrix4.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:58:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:04:35 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 04:05:23 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix4	transpose_matrix4(t_matrix4 a)
+t_matrix4	transpose_matrix4(t_matrix4 const a)
 {
 	t_matrix4	mtx;
 	size_t		i;

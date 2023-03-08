@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sub_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 19:01:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/23 00:34:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 04:12:55 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_var(t_ijkl *z);
 
-t_matrix3	sub_matrix4(t_matrix4 src, size_t x_del, size_t y_del)
+t_matrix3	sub_matrix4(t_matrix4 const *src, size_t x_del, size_t y_del)
 {
 	t_ijkl		z;
 	t_matrix3	submtx;
@@ -26,7 +26,7 @@ t_matrix3	sub_matrix4(t_matrix4 src, size_t x_del, size_t y_del)
 		{
 			if (z.l != y_del)
 			{
-				submtx.tab[z.i][z.j] = src.tab[z.k][z.l];
+				submtx.tab[z.i][z.j] = src->tab[z.k][z.l];
 				z.j++;
 			}
 			z.l++;
@@ -40,7 +40,7 @@ t_matrix3	sub_matrix4(t_matrix4 src, size_t x_del, size_t y_del)
 	return (submtx);
 }
 
-t_matrix2	sub_matrix3(t_matrix3 src, size_t x_del, size_t y_del)
+t_matrix2	sub_matrix3(t_matrix3 const *src, size_t x_del, size_t y_del)
 {
 	t_ijkl		z;
 	t_matrix2	submtx;
@@ -52,7 +52,7 @@ t_matrix2	sub_matrix3(t_matrix3 src, size_t x_del, size_t y_del)
 		{
 			if (z.l != y_del)
 			{
-				submtx.tab[z.i][z.j] = src.tab[z.k][z.l];
+				submtx.tab[z.i][z.j] = src->tab[z.k][z.l];
 				z.j++;
 			}
 			z.l++;
