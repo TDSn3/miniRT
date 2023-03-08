@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 06:24:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:19:40 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ float			minor_matrix4(t_matrix4 const *src, size_t x_del, size_t y_del);
 int				is_invertible_matrix4(t_matrix4 const *a);
 t_matrix4		*inverse_matrix4(t_matrix4 const *src, t_matrix4 *dst);
 
-t_tuple			transform(t_matrix4 const *mtx, t_tuple point);
 t_matrix4		*translation(t_tuple vector, t_matrix4 *dst);
 t_matrix4		*scaling(t_tuple vector, t_matrix4 *dst);
 t_matrix4		*rotation_x(float deg, t_matrix4 *dst);

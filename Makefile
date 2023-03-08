@@ -33,7 +33,6 @@ FILENAMES	=								\
 			inverse_matrix4					\
 		)									\
 		$(addprefix transformation/,		\
-			transform						\
 			translation						\
 			scaling							\
 			rotation_xyz					\

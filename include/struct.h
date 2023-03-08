@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 05:55:00 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:18:59 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,8 @@ typedef union s_tuple
 
 typedef struct s_ray
 {
-	union
-	{
-		struct
-		{
-			float	x;
-			float	y;
-			float	z;
-			float	w;
-		};
-		float		tab[4];
-		t_tuple		vector;
-	};
-	union
-	{
-		struct
-		{
-			float	x2;
-			float	y2;
-			float	z2;
-			float	w2;
-		};
-		float		tab2[4];
-		t_tuple		point;
-	};
+	t_tuple		vector;
+	t_tuple		point;
 }	t_ray;
 
 typedef struct s_light
