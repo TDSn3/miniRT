@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 18:19:40 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:59:19 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ void			intersect_caps(
 					t_object *object,
 					t_intersection *ret);
 
-int				si_add_back(t_intersection **lst, t_intersection *new);
-size_t			si_size(t_intersection *lst);
-t_intersection	*si_new(t_3f t, t_object *object);
-t_intersection	*si_last(t_intersection *lst);
-void			si_clear(t_intersection **lst);
+// int				si_add_back(t_intersection **lst, t_intersection *new);
+// size_t			si_size(t_intersection *lst);
+// t_intersection	*si_new(t_3f t, t_object *object);
+// t_intersection	*si_last(t_intersection *lst);
+// void			si_clear(t_intersection **lst);
 
 t_tuple			normal_at(t_object object, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
