@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   red_button.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:45:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:09:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:14 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	red_button(t_all_data *d)
 	mlx_destroy_window(d -> mwi -> mlx, d -> mwi -> win);
 	mlx_destroy_display(d -> mwi -> mlx);
 	free(d -> mwi -> mlx);
-	so_clear(d -> list_object);
+	so_clear(&d->list_object);
 	exit (0);
 	return (0);
 }

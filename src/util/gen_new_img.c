@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 18:10:05 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:36 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static void	test(t_all_data *all_data)
 	float		rayon_sp1;
 
 	sp1 = so_new(SPHERE, data_parsing);
-	all_data->list_object = &sp1; // IMPORTANT
+	all_data->list_object = sp1; // IMPORTANT
 
 	rayon_sp1 = 10;
 	t_matrix4 translation_matrix;
