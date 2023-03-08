@@ -6,13 +6,13 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:32:12 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:17:50 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 04:19:48 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_ray	ray_for_pixel(t_camera camera, float px, float py)
+t_ray	ray_for_pixel(t_camera const *camera, float px, float py)
 {
 	float		xoffset;
 	float		yoffset;
@@ -24,11 +24,11 @@ t_ray	ray_for_pixel(t_camera camera, float px, float py)
 	t_matrix4	cam_transform_inv;
 	t_ray		ret;
 
-	xoffset = (px + 0.5) * camera.pixel_size;
-	yoffset = (py + 0.5) * camera.pixel_size;
-	world_x = camera.half_width - xoffset;
-	world_y = camera.half_height - yoffset;
-	inverse_matrix4(&camera.transform, &cam_transform_inv);
+	xoffset = (px + 0.5) * camera->pixel_size;
+	yoffset = (py + 0.5) * camera->pixel_size;
+	world_x = camera->half_width - xoffset;
+	world_y = camera->half_height - yoffset;
+	inverse_matrix4(&camera->transform, &cam_transform_inv);
 	pixel = multiply_matrix4_tuple(cam_transform_inv,
 			(t_tuple){{world_x, world_y, -1, 1}});
 	origin = multiply_matrix4_tuple(cam_transform_inv,

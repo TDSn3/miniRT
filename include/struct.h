@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:31:58 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 04:21:39 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,7 +278,7 @@ typedef struct s_all_data
 typedef struct s_data_thread
 {
 	t_all_data		*all_data;
-	t_camera		camera;
+	t_camera const	*camera;
 	t_world			*world;
 	int				id_thread;
 	t_bgra			stock_img[HEIGHT][WIDHT];

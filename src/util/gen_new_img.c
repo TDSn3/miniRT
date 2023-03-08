@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:33:46 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 04:23:36 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ static void	test(t_all_data *all_data)
 	so_add_back(&sp1, cy2);
 	w.lst_object = sp1;
 
-	render(all_data, c, &w);
+	render(all_data, &c, &w);
 	so_clear(&sp1);
 
 	all_data->list_object = NULL;

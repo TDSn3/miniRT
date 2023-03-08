@@ -90,7 +90,7 @@ int	exec_all_thread(t_dt *dt)
 	return (0);
 }
 
-void	render(t_all_data *all_data, t_camera camera, t_world *world)
+void	render(t_all_data *all_data, t_camera const *camera, t_world *world)
 {
 	t_dt	dt;
 	size_t	x;
@@ -103,12 +103,12 @@ void	render(t_all_data *all_data, t_camera camera, t_world *world)
 
 	x = 0;
 	y = 0;
-	while (y < camera.vsize)
+	while (y < camera->vsize)
 	{
-		while (x < camera.hsize)
+		while (x < camera->hsize)
 		{
-			my_mlx_pixel_put(all_data, x - camera.hsize / 2,
-				y - camera.vsize / 2, dt.stock_img[x][y].bgra);
+			my_mlx_pixel_put(all_data, x - camera->hsize / 2,
+				y - camera->vsize / 2, dt.stock_img[x][y].bgra);
 			x++;
 		}
 		x = 0;
