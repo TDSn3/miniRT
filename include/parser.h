@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:37:38 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/08 03:29:58 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:33:59 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,7 @@ typedef enum e_parameter {
 	COLOR,
 }	t_parameter;
 
-typedef union s_parsed_color
-{
-	struct
-	{
-		unsigned char	b;
-		unsigned char	g;
-		unsigned char	r;
-		unsigned char	a;
-	};
-	unsigned int	color;
-}	t_parsed_color;
+typedef t_bgra	t_parsed_color;
 
 typedef struct s_parsed_vector
 {
