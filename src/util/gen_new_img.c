@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 19:13:36 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:51:06 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,8 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 	float		rayon_sp1;
 
-	sp1 = so_new(SPHERE, data_parsing);
+	// sp1 = so_new(SPHERE, data_parsing);
+	sp1 = object_lst_new(SPHERE, &data_parsing);
 	all_data->list_object = sp1; // IMPORTANT
 
 	rayon_sp1 = 10;
@@ -129,7 +130,8 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Plan   pl   0,0,0   0,0,1   0,0,255		                              */
 /* ************************************************************************** */
-	pl1 = so_new(PLANE, data_parsing);
+	// pl1 = so_new(PLANE, data_parsing);
+	pl1 = object_lst_new(PLANE, &data_parsing);
 
 //	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(10));
 //	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(10));
@@ -143,7 +145,8 @@ static void	test(t_all_data *all_data)
 // /* ************************************************************************** */
 // /*   Cylindre   cy   50,0,6   0,0,1   14.2   21.42   10,0,255		          */
 // /* ************************************************************************** */
-	cy1 = so_new(CYLINDER, data_parsing);
+	// cy1 = so_new(CYLINDER, data_parsing);
+	cy1 = object_lst_new(CYLINDER, &data_parsing);
 
 	// t_matrix4 tmp;
 	// multiply_matrix4(cy1->transform, rotation_x(40), &tmp);
@@ -159,7 +162,8 @@ static void	test(t_all_data *all_data)
 	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
 
 
-	cy2 = so_new(CYLINDER, data_parsing);
+	// cy2 = so_new(CYLINDER, data_parsing);
+	cy2 = object_lst_new(CYLINDER, &data_parsing);
 
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
@@ -181,13 +185,17 @@ static void	test(t_all_data *all_data)
 
 /* ************************************************************************** */
 
-	so_add_back(&sp1, pl1);
-	so_add_back(&sp1, cy1);
-	so_add_back(&sp1, cy2);
+	// so_add_back(&sp1, pl1);
+	// so_add_back(&sp1, cy1);
+	// so_add_back(&sp1, cy2);
 	w.lst_object = sp1;
+	sp1->next = pl1;
+	pl1->next = cy1;
+	cy1->next = cy2;
 
 	render(all_data, &c, &w);
-	so_clear(&sp1);
+	// so_clear(&sp1);
+	object_lst_clear(&sp1);
 
 	all_data->list_object = NULL;
 

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 18:59:19 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:48:09 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,13 @@ t_ray			ray_for_pixel(t_camera const *camera, float px, float py);
 void			render(t_all_data *all_data,
 					t_camera const *camera, t_world *world);
 
-t_object		*so_new(t_type type, t_dp dp);
-int				so_add_back(t_object **lst, t_object *new);
-t_object		*so_last(t_object *lst);
-size_t			so_size(t_object *lst);
-void			so_clear(t_object **lst);
+// t_object		*so_new(t_type type, t_dp dp);
+// int				so_add_back(t_object **lst, t_object *new);
+// t_object		*so_last(t_object *lst);
+// size_t			so_size(t_object *lst);
+// void			so_clear(t_object **lst);
+void	object_lst_clear(t_object **lst);
+t_object	*object_lst_new(t_type type, t_dp *dp);
 
 t_to			*sto_new(float t, t_object *object);
 int				sto_add_back(t_to **lst, t_to *new);

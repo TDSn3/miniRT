@@ -61,13 +61,7 @@ FILENAMES	=								\
 			ray_for_pixel					\
 			render							\
 			is_shadowed						\
-			$(addprefix s_object_/,			\
-				so_add_back					\
-				so_size						\
-				so_new						\
-				so_last						\
-				so_clear					\
-			)								\
+			object_lst						\
 			$(addprefix s_t_and_object_/,	\
 				sto_add_back				\
 				sto_size					\
