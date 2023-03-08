@@ -82,12 +82,6 @@ FILENAMES	=								\
 			red_button						\
 			gen_new_img						\
 		)									\
-		$(addprefix thread/,				\
-			main_exec_thread				\
-			exec_thread_1_4					\
-			exec_thread_5_8					\
-			exec_thread_9_12				\
-		)									\
 		$(addprefix parser/,				\
 			parser							\
 			parse_file						\
