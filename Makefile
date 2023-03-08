@@ -63,7 +63,6 @@ FILENAMES	=								\
 		)									\
 		$(addprefix util/,					\
 			init_all 						\
-			my_mlx_pixel_put				\
 			equal_float						\
 			convert_to_255					\
 			key_press_hook					\

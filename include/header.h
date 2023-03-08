@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:42:45 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:58:58 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,8 @@ t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
 t_camera		give_camera(double hsize, double vsize, double field_of_view);
 t_ray			ray_for_pixel(t_camera const *camera, double px, double py);
-void			render(t_all_data *all_data,
-					t_camera const *camera, t_world *world);
+void			render(t_all_data const *all_data,
+					t_camera const *camera, t_world const *world);
 
 void			object_lst_clear(t_object **lst);
 t_object		*object_lst_new(t_type type, t_dp *dp);
