@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:09:27 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:20:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ typedef struct s_object
 	t_matrix4		transform;
 	t_matrix4		inverse;
 	t_material		material;
-	// float			cyl_min;
-	// float			cyl_max;
 	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;
