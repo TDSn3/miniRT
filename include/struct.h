@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:14:08 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:28:46 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -294,68 +294,5 @@ typedef struct s_data_main_exec_thread
 	size_t	x;
 	size_t	y;
 }	t_dmet;
-
-// The following structs have to be readapted
-
-typedef union s_parsed_color
-{
-	struct
-	{
-		unsigned char	b;
-		unsigned char	g;
-		unsigned char	r;
-		unsigned char	a;
-	};
-	unsigned int	color;
-}	t_parsed_color;
-
-typedef struct s_parsed_vector
-{
-	double	x;
-	double	y;
-	double	z;
-}	t_parsed_vector;
-
-typedef struct s_parsed_ambient
-{
-	int					initialized;
-	double				intensity;
-	t_parsed_color		color;
-}	t_parsed_ambient;
-
-typedef struct s_parsed_light
-{
-	int					initialized;
-	t_parsed_vector		position;
-	double				intensity;
-	t_parsed_color		color;
-}	t_parsed_light;
-
-typedef struct s_parsed_camera
-{
-	int					initialized;
-	t_parsed_vector		position;
-	t_parsed_vector		direction;
-	double				fov_degrees;
-}	t_parsed_camera;
-
-typedef struct s_parsed_object
-{
-	t_type						type;
-	t_parsed_vector				position;
-	t_parsed_color				color;
-	t_parsed_vector				direction;
-	double						radius;
-	double						height;
-	struct s_parsed_object		*next;
-}	t_parsed_object;
-
-typedef struct s_scene
-{
-	t_parsed_object		*objects;
-	t_parsed_light		light;
-	t_parsed_camera		camera;
-	t_parsed_ambient	ambient;
-}	t_scene;
 
 #endif

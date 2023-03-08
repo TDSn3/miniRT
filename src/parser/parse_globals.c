@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_globals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:08:39 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/06 15:27:43 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:29:34 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 #include "parser.h"
 
-char	*parse_ambient(t_scene *scene, char **tokens)
+char	*parse_ambient(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC, COLOR};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];
@@ -28,7 +28,7 @@ char	*parse_ambient(t_scene *scene, char **tokens)
 	return (free_tokens(--tokens), NULL);
 }
 
-char	*parse_camera(t_scene *scene, char **tokens)
+char	*parse_camera(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC_3, DEC_3, DEC};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];
@@ -44,7 +44,7 @@ char	*parse_camera(t_scene *scene, char **tokens)
 	return (free_tokens(--tokens), NULL);
 }
 
-char	*parse_light(t_scene *scene, char **tokens)
+char	*parse_light(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC_3, DEC, COLOR};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];

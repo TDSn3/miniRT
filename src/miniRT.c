@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:15:49 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:31:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int	main(int argc, char **argv)
 	t_mwi			mwi;
 	t_data_mlx_img	data_img;
 	t_dk			data_key;
-	t_scene			scene;
+	t_parsed_scene	scene;
 
-	scene = (t_scene){0};
 	if (argc != 2)
 		return (printf("Usage: ./miniRT <scene_file.rt>\n"), 1);
+	scene = (t_parsed_scene){0};
 	if (parse_scene(argv[1], &scene))
 		return (free_objects(scene.objects), 2);
 	printf("Scene parsed successfully!\n");
@@ -64,6 +64,5 @@ int	main(int argc, char **argv)
 	mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);
 	mlx_hook(mwi.win, 3, 1L << 1L, key_release_hook, &all_data);
 	mlx_mouse_hook(mwi.win, mouse_hook, &all_data);
-	mlx_loop_hook(mwi.mlx, gen_new_img, &all_data);
 	mlx_loop(mwi.mlx);
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 16:16:23 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:29:40 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 #include <parser.h>
 
-char	*parse_sphere(t_scene *scene, char **tokens)
+char	*parse_sphere(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC_3, DEC, COLOR};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];
@@ -34,7 +34,7 @@ char	*parse_sphere(t_scene *scene, char **tokens)
 	return (free_tokens(--tokens), NULL);
 }
 
-char	*parse_plane(t_scene *scene, char **tokens)
+char	*parse_plane(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC_3, DEC_3, COLOR};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];
@@ -54,7 +54,7 @@ char	*parse_plane(t_scene *scene, char **tokens)
 	return (free_tokens(--tokens), NULL);
 }
 
-char	*parse_cylinder(t_scene *scene, char **tokens)
+char	*parse_cylinder(t_parsed_scene *scene, char **tokens)
 {
 	const t_parameter	syntax[] = {DEC_3, DEC_3, DEC, DEC, COLOR};
 	void				*params[sizeof(syntax) / sizeof(*syntax)];
