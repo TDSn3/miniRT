@@ -6,13 +6,14 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:09:43 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:01:23 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_matrix4	*multiply_matrix4(t_matrix4 const *left, t_matrix4 const *right, t_matrix4 *dst)
+t_matrix4	*multiply_matrix4(t_matrix4 const *left, t_matrix4 const *right,
+				t_matrix4 *dst)
 {
 	size_t		i;
 	size_t		j;

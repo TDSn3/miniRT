@@ -36,14 +36,12 @@ FILENAMES	=								\
 			translation						\
 			scaling							\
 			rotation_xyz					\
-			deg_to_rad						\
 			shearing						\
 			transform_ray					\
 		)									\
 		$(addprefix intersection/,			\
 			position						\
 			intersect						\
-			set_transform					\
 			intersect_caps					\
 		)									\
 		$(addprefix light_shading/,			\

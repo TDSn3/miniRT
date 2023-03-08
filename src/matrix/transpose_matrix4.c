@@ -6,14 +6,14 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 16:58:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:10:50 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:01:39 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <header.h>
 
-t_matrix4		*transpose_matrix4(t_matrix4 const *a, t_matrix4 *dst)
+t_matrix4	*transpose_matrix4(t_matrix4 const *a, t_matrix4 *dst)
 {
 	size_t		i;
 	size_t		j;
