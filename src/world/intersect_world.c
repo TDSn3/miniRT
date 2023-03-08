@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_world.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 12:31:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:05:03 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 	while (cpy)
 	{
 		t = intersect(ray.vector, ray.point, cpy);
-		if (t.t.b)
-			sto_add_back(&ret, sto_new(t.t.b, cpy));
-		if (t.t.c)
-			sto_add_back(&ret, sto_new(t.t.c, cpy));
+		if (t.t[1])
+			sto_add_back(&ret, sto_new(t.t[1], cpy));
+		if (t.t[2])
+			sto_add_back(&ret, sto_new(t.t[2], cpy));
 		cpy = cpy->next;
 	}
 	sto_sort(&ret);
@@ -53,14 +53,14 @@ t_to	intersect_world(t_world *world, t_ray ray)
 	while (cpy)
 	{
 		t = intersect(ray.vector, ray.point, cpy);
-		if (t.t.b && t.t.b < ret.t)
+		if (t.t[1] && t.t[1] < ret.t)
 		{
-			ret.t = t.t.b;
+			ret.t = t.t[1];
 			ret.object = cpy;
 		}
-		if (t.t.c && t.t.c < ret.t)
+		if (t.t[2] && t.t[2] < ret.t)
 		{
-			ret.t = t.t.c;
+			ret.t = t.t[2];
 			ret.object = cpy;
 		}
 		cpy = cpy->next;

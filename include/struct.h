@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 19:12:25 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:53:34 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ typedef union s_bgra
 	unsigned int		bgra;
 }	t_bgra;
 
-typedef union s_3f
-{
-	struct
-	{
-		float	a;
-		float	b;
-		float	c;
-	};
-	float		f[3];
-}	t_3f;
+// typedef union s_3f
+// {
+// 	struct
+// 	{
+// 		float	a;
+// 		float	b;
+// 		float	c;
+// 	};
+// 	float		f[3];
+// }	t_3f;
 
 typedef union s_6f
 {
@@ -157,7 +157,8 @@ typedef struct s_world
 /* ************************************************************************** */
 typedef struct s_intersection
 {
-	t_3f					t;
+	// t_3f					t;
+	float					t[3];
 	t_object				*object;
 	struct s_intersection	*prev;
 	struct s_intersection	*next;

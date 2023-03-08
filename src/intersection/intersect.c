@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 19:10:46 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:03:41 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
 static float			give_discri(t_tuple vector,
-							t_tuple point, t_object sphere, t_3f *abc);
+							t_tuple point, t_object sphere, float abc[3]);
 static t_intersection	intersect_plane(t_ray ray, t_object *plane);
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
 static void				swap(float *a, float *b);
@@ -47,24 +47,24 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 {
 	t_intersection	ret;
-	t_3f			abc;
+	float			abc[3];
 	float			discriminant;
 
 	ret.object = sphere;
 	ret.next = NULL;
 	ret.prev = NULL;
-	discriminant = give_discri(ray.vector, ray.point, *sphere, &abc);
+	discriminant = give_discri(ray.vector, ray.point, *sphere, abc);
 	if (discriminant < 0)
 	{
-		ret.t.a = 0;
-		ret.t.b = 0;
-		ret.t.c = 0;
+		ret.t[0] = 0;
+		ret.t[1] = 0;
+		ret.t[2] = 0;
 	}
 	else
 	{
-		ret.t.a = 2;
-		ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
-		ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
+		ret.t[0] = 2;
+		ret.t[1] = (-abc[1] - sqrtf(discriminant)) / (2 * abc[0]);
+		ret.t[2] = (-abc[1] + sqrtf(discriminant)) / (2 * abc[0]);
 	}
 	return (ret);
 }
@@ -82,16 +82,16 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 /*                                                                            */
 /* ************************************************************************** */
 static float	give_discri(t_tuple vector,
-					t_tuple point, t_object sphere, t_3f *abc)
+					t_tuple point, t_object sphere, float abc[3])
 {
 	float	discriminant;
 	t_tuple	sphere_to_ray;
 
 	sphere_to_ray = t_tuple_minus(point, sphere.position);
-	abc->a = scalar_product_vector(&vector, &vector);
-	abc->b = 2 * scalar_product_vector(&vector, &sphere_to_ray);
-	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
-	discriminant = abc->b * abc->b - 4 * abc->a * abc->c;
+	abc[0] = scalar_product_vector(&vector, &vector);
+	abc[1] = 2 * scalar_product_vector(&vector, &sphere_to_ray);
+	abc[2] = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
+	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	return (discriminant);
 }
 
@@ -105,16 +105,16 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	ret.prev = NULL;
 	if (ray.vector.y < EPSILON)
 	{
-		ret.t.a = 0;
-		ret.t.b = 0;
-		ret.t.c = 0;
+		ret.t[0] = 0;
+		ret.t[1] = 0;
+		ret.t[2] = 0;
 	}
 	else
 	{
 		t = -ray.point.y / ray.vector.y;
-		ret.t.a = 2;
-		ret.t.b = t;
-		ret.t.c = 0;
+		ret.t[0] = 2;
+		ret.t[1] = t;
+		ret.t[2] = 0;
 	}
 	return (ret);
 }
@@ -122,7 +122,7 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 {
 	t_intersection	ret;
-	t_3f			abc;
+	float			abc[3];
 	float			discriminant;
 	float			t0;
 	float			t1;
@@ -132,31 +132,31 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	ret.object = cylinder;
 	ret.next = NULL;
 	ret.prev = NULL;
-	ret.t.a = 0;
-	ret.t.b = 0;
-	ret.t.c = 0;
-	// abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
-	abc.a = ray.vector.x * ray.vector.x + ray.vector.z * ray.vector.z;
-	if (equal_float(abc.a, 0))
+	ret.t[0] = 0;
+	ret.t[1] = 0;
+	ret.t[2] = 0;
+	// abc[0] = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
+	abc[0] = ray.vector.x * ray.vector.x + ray.vector.z * ray.vector.z;
+	if (equal_float(abc[0], 0))
 		return (ret);
-	abc.b = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
-	// abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
-	abc.c = ray.point.x * ray.point.x + ray.point.z * ray.point.z - 1;
-	// discriminant = powf(abc.b, 2) - 4 * abc.a * abc.c;
-	discriminant = abc.b * abc.b - 4 * abc.a * abc.c;
+	abc[1] = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
+	// abc[2] = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
+	abc[2] = ray.point.x * ray.point.x + ray.point.z * ray.point.z - 1;
+	// discriminant = powf(abc[1], 2) - 4 * abc[0] * abc[2];
+	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discriminant < 0)
 		return (ret);
-	ret.t.a = 2;
-	t0 = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
-	t1 = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
+	ret.t[0] = 2;
+	t0 = (-abc[1] - sqrtf(discriminant)) / (2 * abc[0]);
+	t1 = (-abc[1] + sqrtf(discriminant)) / (2 * abc[0]);
 	if (t0 > t1)
 		swap(&t0, &t1);
 	y0 = ray.point.y + t0 * ray.vector.y;
 	if (cylinder->cyl_min < y0 && y0 < cylinder->cyl_max)
-		ret.t.b = t0;
+		ret.t[1] = t0;
 	y1 = ray.point.y + t1 * ray.vector.y;
 	if (cylinder->cyl_min < y1 && y1 < cylinder->cyl_max)
-		ret.t.c = t1;
+		ret.t[2] = t1;
 	intersect_caps(ray, cylinder, &ret);
 	return (ret);
 }
