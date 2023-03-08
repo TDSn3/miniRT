@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 06:28:44 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:11:04 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 		object_normal = (t_tuple){{0, 1, 0, 0}};
 	else
 	{
-		dist = powf(object_point.x, 2) + powf(object_point.z, 2);
+		// dist = powf(object_point.x, 2) + powf(object_point.z, 2);
+		dist = object_point.x * object_point.x +
+			object_point.z * object_point.z;
 		if (dist < 1 && object_point.y >= object.cyl_max - EPSILON)
 			object_normal = (t_tuple){{0, 1, 0, 0}};
 		else if (dist < 1 && object_point.y <= object.cyl_min + EPSILON)

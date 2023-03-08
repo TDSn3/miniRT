@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_caps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 11:57:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:09:04 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ static int	check_cap(t_ray ray, float t)
 
 	x = ray.point.x + t * ray.vector.x;
 	z = ray.point.z + t * ray.vector.z;
-	return (powf(x, 2) + powf(z, 2) <= 1);
+	// return (powf(x, 2) + powf(z, 2) <= 1);
+	return (x * x + z * z <= 1);
 }

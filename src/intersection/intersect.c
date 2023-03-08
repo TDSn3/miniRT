@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 05:53:49 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:10:46 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static float	give_discri(t_tuple vector,
 	abc->a = scalar_product_vector(&vector, &vector);
 	abc->b = 2 * scalar_product_vector(&vector, &sphere_to_ray);
 	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
-	discriminant = powf(abc->b, 2) - 4 * abc->a * abc->c;
+	discriminant = abc->b * abc->b - 4 * abc->a * abc->c;
 	return (discriminant);
 }
 
@@ -135,12 +135,15 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	ret.t.a = 0;
 	ret.t.b = 0;
 	ret.t.c = 0;
-	abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
+	// abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
+	abc.a = ray.vector.x * ray.vector.x + ray.vector.z * ray.vector.z;
 	if (equal_float(abc.a, 0))
 		return (ret);
 	abc.b = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
-	abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
-	discriminant = powf(abc.b, 2) - 4 * abc.a * abc.c;
+	// abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
+	abc.c = ray.point.x * ray.point.x + ray.point.z * ray.point.z - 1;
+	// discriminant = powf(abc.b, 2) - 4 * abc.a * abc.c;
+	discriminant = abc.b * abc.b - 4 * abc.a * abc.c;
 	if (discriminant < 0)
 		return (ret);
 	ret.t.a = 2;
