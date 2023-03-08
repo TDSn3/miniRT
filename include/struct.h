@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:05:50 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:13:35 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,39 +69,6 @@ typedef union s_bgra
 	};
 	unsigned int		bgra;
 }	t_bgra;
-
-// typedef union s_3f
-// {
-// 	struct
-// 	{
-// 		float	a;
-// 		float	b;
-// 		float	c;
-// 	};
-// 	float		f[3];
-// }	t_3f;
-
-// typedef union s_6f
-// {
-// 	struct
-// 	{
-// 		float	a;
-// 		float	b;
-// 		float	c;
-// 		float	d;
-// 		float	e;
-// 		float	f;
-// 	};
-// 	float		t[6];
-// }	t_6f;
-
-typedef struct s_ijkl
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	l;
-}	t_ijkl;
 
 /* ************************************************************************** */
 /*                                                                            */
