@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:56:41 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:07:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_matrix4		*rotation_y(float deg, t_matrix4 *dst);
 t_matrix4		*rotation_z(float deg, t_matrix4 *dst);
 float			deg_to_rad(float deg);
 float			rad_to_deg(float rad);
-t_matrix4		*shearing(float f[6], t_matrix4 *dst);
+t_matrix4		*shearing(float const f[6], t_matrix4 *dst);
 t_ray			transform_ray(t_tuple vector, t_tuple point,
 					t_matrix4 const *mtx);
 
