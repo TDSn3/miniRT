@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:04:18 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:38:16 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,14 +127,6 @@ typedef struct s_intersection
 	double					t[3];
 	t_object				*object;
 }	t_intersection;
-
-// typedef struct s_t_and_object
-// {
-// 	double					t;
-// 	t_object				*object;
-// 	struct s_t_and_object	*prev;
-// 	struct s_t_and_object	*next;
-// }	t_to;
 
 typedef struct s_data_key
 {

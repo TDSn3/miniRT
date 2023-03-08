@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:44:40 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/08 21:11:41 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:30:17 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ t_object	*object_lst_new(t_type type, t_dp *dp)
 	obj->position = (t_tuple){{0, 0, 0, 1}};
 	give_identity_matrix4(&obj->transform);
 	give_identity_matrix4(&obj->inverse);
-	// obj->cyl_min = -INFINITY;
-	// obj->cyl_max = INFINITY;
 	obj->material.color = (t_tuple){{1, 0.2, 1, 0}};
 	obj->material.ambient = dp->ambient;
 	obj->material.a_color = dp->a_color;

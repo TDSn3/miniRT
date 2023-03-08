@@ -6,33 +6,34 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:30:27 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:40:37 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
+static t_intersection	intersect_sphere(t_ray const *ray,
+							t_object const *sphere);
 static double			give_discri(t_tuple vector,
 							t_tuple point, t_object sphere, double abc[3]);
-static t_intersection	intersect_plane(t_ray ray, t_object *plane);
-static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
+static t_intersection	intersect_plane(t_ray const *ray,
+							t_object const *plane);
+static t_intersection	intersect_cylinder(t_ray const *ray,
+							t_object const *cylinder);
 static void				swap(double *a, double *b);
 
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 {
 	t_ray			ray;
-	// t_matrix4		inv_mtx;
 
-	// inverse_matrix4(&object->transform, &inv_mtx);
 	ray = transform_ray(vector, point, &object->inverse);
 	if (object->type == SPHERE)
-		return (intersect_sphere(ray, object));
+		return (intersect_sphere(&ray, object));
 	else if (object->type == PLANE)
-		return (intersect_plane(ray, object));
+		return (intersect_plane(&ray, object));
 	else
-		return (intersect_cylinder(ray, object));
+		return (intersect_cylinder(&ray, object));
 }
 
 /* ************************************************************************** */
@@ -44,14 +45,15 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 /*   unitaire, avec un rayons de 1.								  			  */
 /*                                                                            */
 /* ************************************************************************** */
-static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
+static t_intersection	intersect_sphere(t_ray const *ray,
+							t_object const *sphere)
 {
 	t_intersection	ret;
 	double			abc[3];
 	double			discriminant;
 
-	ret.object = sphere;
-	discriminant = give_discri(ray.vector, ray.point, *sphere, abc);
+	ret.object = (t_object *)sphere;
+	discriminant = give_discri(ray->vector, ray->point, *sphere, abc);
 	if (discriminant < 0)
 	{
 		ret.t[0] = 0;
@@ -93,13 +95,13 @@ static double	give_discri(t_tuple vector,
 	return (discriminant);
 }
 
-static t_intersection	intersect_plane(t_ray ray, t_object *plane)
+static t_intersection	intersect_plane(t_ray const *ray, t_object const *plane)
 {
 	t_intersection	ret;
 	double			t;
 
-	ret.object = plane;
-	if (ray.vector.y < EPSILON)
+	ret.object = (t_object *)plane;
+	if (ray->vector.y < EPSILON)
 	{
 		ret.t[0] = 0;
 		ret.t[1] = 0;
@@ -107,7 +109,7 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	}
 	else
 	{
-		t = -ray.point.y / ray.vector.y;
+		t = -ray->point.y / ray->vector.y;
 		ret.t[0] = 2;
 		ret.t[1] = t;
 		ret.t[2] = 0;
@@ -115,7 +117,7 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	return (ret);
 }
 
-static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
+static t_intersection	intersect_cylinder(t_ray const *ray, t_object const *cylinder)
 {
 	t_intersection	ret;
 	double			abc[3];
@@ -125,17 +127,17 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	double			y0;
 	double			y1;
 
-	ret.object = cylinder;
+	ret.object = (t_object *)cylinder;
 	ret.t[0] = 0;
 	ret.t[1] = 0;
 	ret.t[2] = 0;
-	// abc[0] = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
-	abc[0] = ray.vector.x * ray.vector.x + ray.vector.z * ray.vector.z;
+	// abc[0] = powf(ray->vector.x, 2) + powf(ray->vector.z, 2);
+	abc[0] = ray->vector.x * ray->vector.x + ray->vector.z * ray->vector.z;
 	if (equal_float(abc[0], 0))
 		return (ret);
-	abc[1] = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
-	// abc[2] = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
-	abc[2] = ray.point.x * ray.point.x + ray.point.z * ray.point.z - 1;
+	abc[1] = 2 * ray->point.x * ray->vector.x + 2 * ray->point.z * ray->vector.z;
+	// abc[2] = powf(ray->point.x, 2) + powf(ray->point.z, 2) - 1;
+	abc[2] = ray->point.x * ray->point.x + ray->point.z * ray->point.z - 1;
 	// discriminant = powf(abc[1], 2) - 4 * abc[0] * abc[2];
 	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discriminant < 0)
@@ -145,10 +147,10 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	t1 = (-abc[1] + sqrtf(discriminant)) / (2 * abc[0]);
 	if (t0 > t1)
 		swap(&t0, &t1);
-	y0 = ray.point.y + t0 * ray.vector.y;
+	y0 = ray->point.y + t0 * ray->vector.y;
 	if (-1. < y0 && y0 < +1.)
 		ret.t[1] = t0;
-	y1 = ray.point.y + t1 * ray.vector.y;
+	y1 = ray->point.y + t1 * ray->vector.y;
 	if (-1. < y1 && y1 < +1.)
 		ret.t[2] = t1;
 	intersect_caps(ray, cylinder, &ret);
