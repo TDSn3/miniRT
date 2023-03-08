@@ -6,13 +6,13 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 14:14:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:04:49 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 07:09:13 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_tuple	multiply_matrix4_tuple(t_matrix4 const left, t_tuple const right)
+t_tuple			multiply_matrix4_tuple(t_matrix4 const *left, t_tuple const right)
 {
 	t_tuple	ret;
 	size_t	i;
@@ -28,7 +28,7 @@ t_tuple	multiply_matrix4_tuple(t_matrix4 const left, t_tuple const right)
 	{
 		while (j < 4 && j < 4)
 		{
-			ret.tuple[i] += left.tab[i][j] * right.tuple[j];
+			ret.tuple[i] += (*left)[i][j] * right.tuple[j];
 			j++;
 		}
 		j = 0;

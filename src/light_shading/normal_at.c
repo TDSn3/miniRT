@@ -6,13 +6,13 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:17:30 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 06:28:44 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static t_tuple	return_wolrd_normal(t_matrix4 cpy, t_tuple object_normal);
+static t_tuple	return_wolrd_normal(t_matrix4 const *cpy, t_tuple object_normal);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -25,11 +25,11 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 	t_tuple		object_point;
 	t_tuple		object_normal;
 	t_matrix4	cpy;
-	t_matrix4	stock;
+	// t_matrix4	stock;
+	t_matrix4	transposed;
 	float		dist;
 
-	object_point = multiply_matrix4_tuple(*inverse_matrix4(&object.transform,
-				&stock), world_point);
+	object_point = multiply_matrix4_tuple(&object.inverse, world_point);
 	if (object.type == SPHERE)
 		object_normal = t_tuple_minus(object_point, object.position);
 	else if (object.type == PLANE)
@@ -45,11 +45,11 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 			object_normal = (t_tuple){{object_point.x, 0, object_point.z, 0}};
 	}
 	inverse_matrix4(&object.transform, &cpy);
-	cpy = transpose_matrix4(cpy);
-	return (return_wolrd_normal(cpy, object_normal));
+	transpose_matrix4(&cpy, &transposed);
+	return (return_wolrd_normal(&transposed, object_normal));
 }
 
-static t_tuple	return_wolrd_normal(t_matrix4 cpy, t_tuple object_normal)
+static t_tuple	return_wolrd_normal(t_matrix4 const *cpy, t_tuple object_normal)
 {
 	t_tuple		world_normal;
 

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 05:51:47 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 06:33:08 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ t_object	*so_new(t_type type, t_dp dp)
 		return (NULL);
 	ln->type = type;
 	ln->position = (t_tuple){{0, 0, 0, 1}};
-	ln->transform = give_identity_matrix4();
-	ln->transform = give_identity_matrix4();
+	give_identity_matrix4(&ln->transform);
+	give_identity_matrix4(&ln->inverse);
+	// ln->transform = give_identity_matrix4();
 	ln->cyl_min = -INFINITY;
 	ln->cyl_max = INFINITY;
 	ln->cyl_closed = 0;

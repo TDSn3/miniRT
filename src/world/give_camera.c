@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:42:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 05:58:15 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 06:40:59 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_camera	give_camera(float hsize, float vsize, float field_of_view)
 	ret.hsize = hsize;
 	ret.vsize = vsize;
 	ret.field_of_view = field_of_view;
-	ret.transform = give_identity_matrix4();
-	ret.inverse = give_identity_matrix4();
+	give_identity_matrix4(&ret.transform);
+	inverse_matrix4(&ret.transform, &ret.inverse);
 	half_view = tanf(field_of_view / 2);
 	aspect = hsize / vsize;
 	if (aspect >= 1)

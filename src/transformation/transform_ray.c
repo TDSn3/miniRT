@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   transform_ray.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:13:32 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:43:30 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 06:24:28 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_ray	transform_ray(t_tuple vector, t_tuple point, t_matrix4 *mtx)
+t_ray	transform_ray(t_tuple vector, t_tuple point, t_matrix4 const *mtx)
 {
 	t_tuple	vector2;
 	t_tuple	point2;
@@ -20,8 +20,8 @@ t_ray	transform_ray(t_tuple vector, t_tuple point, t_matrix4 *mtx)
 
 	if (mtx)
 	{
-		vector2 = transform(*mtx, vector);
-		point2 = transform(*mtx, point);
+		vector2 = transform(mtx, vector);
+		point2 = transform(mtx, point);
 		ret.x = vector2.x;
 		ret.y = vector2.y;
 		ret.z = vector2.z;

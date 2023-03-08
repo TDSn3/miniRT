@@ -6,10 +6,11 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:54:20 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:16:35 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 07:08:24 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft.h>
 #include <header.h>
 
 static void	cofactor_all(t_matrix4 const *src, t_matrix4 *mtx);
@@ -21,9 +22,9 @@ t_matrix4	*inverse_matrix4(t_matrix4 const *src, t_matrix4 *dst)
 
 	if (is_invertible_matrix4(src) < 1)
 		return (NULL);
-	mtx = (t_matrix4){0};
+	ft_bzero(mtx, sizeof(t_matrix4));
 	cofactor_all(src, &mtx);
-	*dst = transpose_matrix4(mtx);
+	transpose_matrix4(&mtx, dst);
 	div_by_det_all(src, dst);
 	return (dst);
 }
@@ -39,7 +40,7 @@ static void	cofactor_all(t_matrix4 const *src, t_matrix4 *mtx)
 	{
 		while (j < 4)
 		{
-			mtx->tab[i][j] = cofactor_matrix4(src, i, j);
+			(*mtx)[i][j] = cofactor_matrix4(src, i, j);
 			j++;
 		}
 		j = 0;
@@ -60,7 +61,7 @@ static void	div_by_det_all(t_matrix4 const *src, t_matrix4 *mtx)
 	{
 		while (j < 4)
 		{
-			mtx->tab[i][j] = mtx->tab[i][j] / det;
+			(*mtx)[i][j] = (*mtx)[i][j] / det;
 			j++;
 		}
 		j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shearing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:53:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 22:55:23 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 07:31:33 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@
 /*   f.f   zy   déplace z proportionnellement à y							  */
 /*                                                                            */
 /* ************************************************************************** */
-t_matrix4	shearing(t_6f f)
+t_matrix4	*shearing(t_6f f, t_matrix4 *dst)
 {
-	t_matrix4	mtx;
-
-	mtx = give_identity_matrix4();
-	mtx.tab[0][1] = f.a;
-	mtx.tab[0][2] = f.b;
-	mtx.tab[1][0] = f.c;
-	mtx.tab[1][2] = f.d;
-	mtx.tab[2][0] = f.e;
-	mtx.tab[2][1] = f.f;
-	return (mtx);
+	give_identity_matrix4(dst);
+	(*dst)[0][1] = f.a;
+	(*dst)[0][2] = f.b;
+	(*dst)[1][0] = f.c;
+	(*dst)[1][2] = f.d;
+	(*dst)[2][0] = f.e;
+	(*dst)[2][1] = f.f;
+	return (dst);
 }

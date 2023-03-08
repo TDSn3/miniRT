@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"header.h": "c"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/roberto/miniRT",
+			"binaryPath": "/home/roberto/miniRT/miniRT",
+			"binaryArgs": []
+		}
+	]
+}
