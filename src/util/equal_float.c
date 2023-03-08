@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   equal_double.c                                      :+:      :+:    :+:   */
+/*   equal_float.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 17:00:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 17:03:31 by tda-silv         ###   ########.fr       */
+/*   Created: 2023/03/08 21:32:14 by roberto           #+#    #+#             */
+/*   Updated: 2023/03/08 21:32:19 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   Test l'équivalence de deux double à l'aide d'EPSILON.					  */
 /*                                                                            */
 /* ************************************************************************** */
-int	equal_float(double a, double b)
+inline int	equal_float(double a, double b)
 {
 	if ((a - b) < EPSILON)
 		return (1);
