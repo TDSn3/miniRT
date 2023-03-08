@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:06:04 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:18:55 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,18 +143,18 @@ void			sto_sort(t_to **lst);
 
 int				is_shadowed(t_world *world, t_tuple point);
 
-void			main_exec_thread(t_dmet *dmet);
-void			*exec_thread1(void *data);
-void			*exec_thread2(void *data);
-void			*exec_thread3(void *data);
-void			*exec_thread4(void *data);
-void			*exec_thread5(void *data);
-void			*exec_thread6(void *data);
-void			*exec_thread7(void *data);
-void			*exec_thread8(void *data);
-void			*exec_thread9(void *data);
-void			*exec_thread10(void *data);
-void			*exec_thread11(void *data);
-void			*exec_thread12(void *data);
+// void			main_exec_thread(t_dmet *dmet);
+// void			*exec_thread1(void *data);
+// void			*exec_thread2(void *data);
+// void			*exec_thread3(void *data);
+// void			*exec_thread4(void *data);
+// void			*exec_thread5(void *data);
+// void			*exec_thread6(void *data);
+// void			*exec_thread7(void *data);
+// void			*exec_thread8(void *data);
+// void			*exec_thread9(void *data);
+// void			*exec_thread10(void *data);
+// void			*exec_thread11(void *data);
+// void			*exec_thread12(void *data);
 
 #endif

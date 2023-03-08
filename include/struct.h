@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:13:35 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:18:46 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,23 +201,23 @@ typedef struct s_all_data
 	t_object		*list_object;
 }	t_all_data;
 
-typedef struct s_data_thread
-{
-	t_all_data		*all_data;
-	t_camera const	*camera;
-	t_world			*world;
-	int				id_thread;
-	t_bgra			stock_img[HEIGHT][WIDHT];
-	pthread_mutex_t	mutex_print;
-}	t_dt;
+// typedef struct s_data_thread
+// {
+// 	t_all_data		*all_data;
+// 	t_camera const	*camera;
+// 	t_world			*world;
+// 	int				id_thread;
+// 	t_bgra			stock_img[HEIGHT][WIDHT];
+// 	pthread_mutex_t	mutex_print;
+// }	t_dt;
 
-typedef struct s_data_main_exec_thread
-{
-	t_dt	*dt;
-	t_ray	r;
-	t_tuple	color;
-	size_t	x;
-	size_t	y;
-}	t_dmet;
+// typedef struct s_data_main_exec_thread
+// {
+// 	t_dt	*dt;
+// 	t_ray	r;
+// 	t_tuple	color;
+// 	size_t	x;
+// 	size_t	y;
+// }	t_dmet;
 
 #endif
