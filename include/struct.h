@@ -6,15 +6,15 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:46:00 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:04:18 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 200
-# define WIDHT 200
+# define HEIGHT 800
+# define WIDHT 1000
 # define EPSILON 0.00001
 
 typedef enum e_type
