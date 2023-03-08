@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 23:23:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/22 23:12:54 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 05:45:30 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <header.h>
+// #include <header.h>
 
-void	set_transform(t_object *object, t_matrix4 *t)
-{
-	object->transform = *t;
-}
+// void	set_transform(t_object *object, t_matrix4 *t)
+// {
+// 	object->transform = *t;
+// }
