@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 18:18:59 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:22:29 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,8 @@ typedef struct s_ray
 
 typedef struct s_light
 {
-	union
-	{
-		struct
-		{
-			float	x;
-			float	y;
-			float	z;
-			float	w;
-		};
-		float		tab[4];
-		t_tuple		intensity;
-	};
-	union
-	{
-		struct
-		{
-			float	x2;
-			float	y2;
-			float	z2;
-			float	w2;
-		};
-		float		tab2[4];
-		t_tuple		position;
-	};
+	t_tuple		intensity;
+	t_tuple		position;
 }	t_light;
 
 typedef struct s_material
