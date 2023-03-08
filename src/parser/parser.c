@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 03:56:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/06 16:10:33 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:26:03 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include <parser.h>
 #include <libft.h>
 
-t_3f	parse_vec3(char *item)
+t_parsed_vector	parse_vec3(char *item)
 {
-	double		x;
-	double		y;
-	double		z;
-	char		**tokens;
-	const t_3f	invalid = (t_3f){.a = NAN, .b = NAN, .c = NAN};
+	double					x;
+	double					y;
+	double					z;
+	char					**tokens;
+	const t_parsed_vector	invalid =
+		(t_parsed_vector){.x = NAN, .y = NAN, .z = NAN};
 
 	tokens = ft_split(item, ',');
 	if (!tokens)
@@ -32,16 +33,16 @@ t_3f	parse_vec3(char *item)
 	z = ft_atod(tokens[2]);
 	if (isnan(x) || isnan(y) || isnan(z))
 		return (free_tokens(tokens), invalid);
-	return (free_tokens(tokens), (t_3f){.a = x, .b = y, .c = z});
+	return (free_tokens(tokens), (t_parsed_vector){.x = x, .y = y, .z = z});
 }
 
-t_bgra	parse_color(char *item)
+t_parsed_color	parse_color(char *item)
 {
-	char			**tokens;
-	int				r;
-	int				g;
-	int				b;
-	const t_bgra	invalid = (t_bgra){.a = 255};
+	char					**tokens;
+	int						r;
+	int						g;
+	int						b;
+	const t_parsed_color	invalid = (t_parsed_color){.a = 255};
 
 	tokens = ft_split(item, ',');
 	if (!tokens)
@@ -53,7 +54,8 @@ t_bgra	parse_color(char *item)
 	b = ft_atouc(tokens[2]);
 	if (r == -1 || g == -1 || b == -1)
 		return (free_tokens(tokens), invalid);
-	return (free_tokens(tokens), (t_bgra){.a = 0, .r = r, .g = g, .b = b});
+	return (free_tokens(tokens),
+		(t_parsed_color){.a = 0, .r = r, .g = g, .b = b});
 }
 
 int	is_invalid(const t_parameter type, void *param)
@@ -61,10 +63,11 @@ int	is_invalid(const t_parameter type, void *param)
 	if (type == DEC)
 		return (isnan(*(double *)param));
 	else if (type == DEC_3)
-		return (isnan(((t_3f *)param)->a) || isnan(((t_3f *)param)->b)
-			|| isnan(((t_3f *)param)->c));
+		return (isnan(((t_parsed_vector *)param)->x)
+			|| isnan(((t_parsed_vector *)param)->y)
+			|| isnan(((t_parsed_vector *)param)->z));
 	else if (type == COLOR)
-		return (((t_bgra *)param)->a == 255);
+		return (((t_parsed_color *)param)->a == 255);
 	return (1);
 }
 
@@ -80,9 +83,9 @@ int	parse_items(int n, char **tokens, const t_parameter *syntax, void **params)
 		if (syntax[i] == DEC)
 			*(double *)params[i] = ft_atod(tokens[i]);
 		else if (syntax[i] == DEC_3)
-			*(t_3f *)params[i] = parse_vec3(tokens[i]);
+			*(t_parsed_vector *)params[i] = parse_vec3(tokens[i]);
 		else if (syntax[i] == COLOR)
-			*(t_bgra *)params[i] = parse_color(tokens[i]);
+			*(t_parsed_color *)params[i] = parse_color(tokens[i]);
 		else
 			return (1);
 		if (is_invalid(syntax[i], params[i]))

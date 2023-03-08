@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/06 15:17:34 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/08 03:15:49 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	print_objects(t_parsed_object *objects)
 	while (objects)
 	{
 		if (objects->type == SPHERE)
-			printf("\tsphere: %f,%f,%f %f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->radius, objects->color.r, objects->color.g, objects->color.b);
+			printf("\tsphere: %f,%f,%f %f %d,%d,%d\n", objects->position.x, objects->position.y, objects->position.z, objects->radius, objects->color.r, objects->color.g, objects->color.b);
 		else if (objects->type == PLANE)
-			printf("\tplane: %f,%f,%f %f,%f,%f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->direction.a, objects->direction.b, objects->direction.c, objects->color.r, objects->color.g, objects->color.b);
+			printf("\tplane: %f,%f,%f %f,%f,%f %d,%d,%d\n", objects->position.x, objects->position.y, objects->position.z, objects->direction.x, objects->direction.y, objects->direction.z, objects->color.r, objects->color.g, objects->color.b);
 		else if (objects->type == CYLINDER)
-			printf("\tcylinder: %f,%f,%f %f,%f,%f %f %f %d,%d,%d\n", objects->position.a, objects->position.b, objects->position.c, objects->direction.a, objects->direction.b, objects->direction.c, objects->radius, objects->height, objects->color.r, objects->color.g, objects->color.b);
+			printf("\tcylinder: %f,%f,%f %f,%f,%f %f %f %d,%d,%d\n", objects->position.x, objects->position.y, objects->position.z, objects->direction.x, objects->direction.y, objects->direction.z, objects->radius, objects->height, objects->color.r, objects->color.g, objects->color.b);
 		objects = objects->next;
 	}
 }
@@ -54,9 +54,9 @@ int	main(int argc, char **argv)
 	if (parse_scene(argv[1], &scene))
 		return (free_objects(scene.objects), 2);
 	printf("Scene parsed successfully!\n");
-	printf("ambient: %f %d,%d,%d\n", scene.ambient.intensity, scene.ambient.color.r, scene.ambient.color.g, scene.ambient.color.b);
-	printf("camera: %f,%f,%f, %f,%f,%f %f\n", scene.camera.position.a, scene.camera.position.b, scene.camera.position.c, scene.camera.direction.a, scene.camera.direction.b, scene.camera.direction.c, scene.camera.fov_degrees);
-	printf("light: %f,%f,%f %f %d, %d, %d\n", scene.light.position.a, scene.light.position.b, scene.light.position.c, scene.light.intensity, scene.light.color.r, scene.light.color.g, scene.light.color.b);
+	// printf("ambient: %f %d,%d,%d\n", scene.ambient.intensity, scene.ambient.color.r, scene.ambient.color.g, scene.ambient.color.b);
+	// printf("camera: %f,%f,%f, %f,%f,%f %f\n", scene.camera.position.a, scene.camera.position.b, scene.camera.position.c, scene.camera.direction.a, scene.camera.direction.b, scene.camera.direction.c, scene.camera.fov_degrees);
+	// printf("light: %f,%f,%f %f %d, %d, %d\n", scene.light.position.a, scene.light.position.b, scene.light.position.c, scene.light.intensity, scene.light.color.r, scene.light.color.g, scene.light.color.b);
 	print_objects(scene.objects);
 	free_objects(scene.objects);
 	init_all(&all_data, &mwi, &data_img, &data_key);
