@@ -6,18 +6,18 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:23:13 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:30:27 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
-static float			give_discri(t_tuple vector,
-							t_tuple point, t_object sphere, float abc[3]);
+static double			give_discri(t_tuple vector,
+							t_tuple point, t_object sphere, double abc[3]);
 static t_intersection	intersect_plane(t_ray ray, t_object *plane);
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
-static void				swap(float *a, float *b);
+static void				swap(double *a, double *b);
 
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
@@ -47,8 +47,8 @@ t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 {
 	t_intersection	ret;
-	float			abc[3];
-	float			discriminant;
+	double			abc[3];
+	double			discriminant;
 
 	ret.object = sphere;
 	discriminant = give_discri(ray.vector, ray.point, *sphere, abc);
@@ -79,10 +79,10 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 /*   abc->c = (produit scalaire de sphere_to_ray et sphere_to_ray) -1         */
 /*                                                                            */
 /* ************************************************************************** */
-static float	give_discri(t_tuple vector,
-					t_tuple point, t_object sphere, float abc[3])
+static double	give_discri(t_tuple vector,
+					t_tuple point, t_object sphere, double abc[3])
 {
-	float	discriminant;
+	double	discriminant;
 	t_tuple	sphere_to_ray;
 
 	sphere_to_ray = t_tuple_minus(point, sphere.position);
@@ -96,7 +96,7 @@ static float	give_discri(t_tuple vector,
 static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 {
 	t_intersection	ret;
-	float			t;
+	double			t;
 
 	ret.object = plane;
 	if (ray.vector.y < EPSILON)
@@ -118,12 +118,12 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 {
 	t_intersection	ret;
-	float			abc[3];
-	float			discriminant;
-	float			t0;
-	float			t1;
-	float			y0;
-	float			y1;
+	double			abc[3];
+	double			discriminant;
+	double			t0;
+	double			t1;
+	double			y0;
+	double			y1;
 
 	ret.object = cylinder;
 	ret.t[0] = 0;
@@ -155,9 +155,9 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	return (ret);
 }
 
-static void	swap(float *a, float *b)
+static void	swap(double *a, double *b)
 {
-	float			stock;
+	double			stock;
 
 	stock = *a;
 	*a = *b;

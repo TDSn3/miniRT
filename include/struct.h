@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:22:25 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:20 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef union s_tuple
 {
 	struct
 	{
-		float	x;
-		float	y;
-		float	z;
-		float	w;
+		double	x;
+		double	y;
+		double	z;
+		double	w;
 	};
-	float		tuple[4];
+	double		tuple[4];
 }	t_tuple;
 
 typedef struct s_ray
@@ -51,11 +51,11 @@ typedef struct s_light
 typedef struct s_material
 {
 	t_tuple	color;
-	float	ambient;
+	double	ambient;
 	t_tuple	a_color;
-	float	diffuse;
-	float	specular;
-	float	shininess;
+	double	diffuse;
+	double	specular;
+	double	shininess;
 }	t_material;
 
 typedef union s_bgra
@@ -79,14 +79,14 @@ typedef union s_bgra
 /* ************************************************************************** */
 typedef struct s_camera
 {
-	float		hsize;
-	float		vsize;
-	float		field_of_view;
+	double		hsize;
+	double		vsize;
+	double		field_of_view;
 	t_matrix4	transform;
 	t_matrix4	inverse;
-	float		half_width;
-	float		half_height;
-	float		pixel_size;
+	double		half_width;
+	double		half_height;
+	double		pixel_size;
 }	t_camera;
 
 /* ************************************************************************** */
@@ -122,13 +122,13 @@ typedef struct s_world
 /* ************************************************************************** */
 typedef struct s_intersection
 {
-	float					t[3];
+	double					t[3];
 	t_object				*object;
 }	t_intersection;
 
 typedef struct s_t_and_object
 {
-	float					t;
+	double					t;
 	t_object				*object;
 	struct s_t_and_object	*prev;
 	struct s_t_and_object	*next;
@@ -136,13 +136,13 @@ typedef struct s_t_and_object
 
 typedef struct s_data_key
 {
-	float	c_add_pos_x;
-	float	c_add_pos_y;
-	float	c_add_pos_z;
-	float	c_add_to_x;
-	float	c_add_to_y;
-	float	c_add_to_z;
-	float	c_add_fov;
+	double	c_add_pos_x;
+	double	c_add_pos_y;
+	double	c_add_pos_z;
+	double	c_add_to_x;
+	double	c_add_to_y;
+	double	c_add_to_z;
+	double	c_add_fov;
 	int		key_a;
 	int		key_w;
 	int		key_s;
@@ -154,13 +154,13 @@ typedef struct s_data_key
 
 typedef struct s_data_parsing
 {
-	float	ambient;
+	double	ambient;
 	t_tuple	a_color;
 	t_tuple	c_position;
 	t_tuple	c_to;
-	float	c_fov;
+	double	c_fov;
 	t_tuple	l_position;
-	float	l_i;
+	double	l_i;
 	t_tuple	l_color;
 }	t_dp;
 

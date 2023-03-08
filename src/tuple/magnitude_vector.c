@@ -6,15 +6,15 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:31:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 19:11:22 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:33 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-float	magnitude_vector(t_tuple *tuple)
+double	magnitude_vector(t_tuple *tuple)
 {
-	float	v;
+	double	v;
 
 	// v = sqrtf(powf(tuple->x, 2)
 	// 		+ powf(tuple->y, 2)

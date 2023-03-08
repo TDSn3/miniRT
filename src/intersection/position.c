@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:18:49 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 18:15:02 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:24 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*   parcourue, puis l'ajoute à l'origine du rayon.							  */
 /*                                                                            */
 /* ************************************************************************** */
-t_tuple	position(t_tuple vector, t_tuple point, float t)
+t_tuple	position(t_tuple vector, t_tuple point, double t)
 {
 	t_tuple	next_pos;
 

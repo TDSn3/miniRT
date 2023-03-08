@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:26:19 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:37 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
 /* ************************************************************************** */
-	float		rayon_sp1;
+	double		rayon_sp1;
 
 	// sp1 = so_new(SPHERE, data_parsing);
 	sp1 = object_lst_new(SPHERE, &data_parsing);
@@ -157,7 +157,7 @@ static void	test(t_all_data *all_data)
 	translation((t_tuple){{9, 0, 30, 0}}, &translation1);
 	t_matrix4 shearing1;
 	// shearing by 20 on the y axis
-	float f6[6]= {20, 0, 0, 0, 0, 0};
+	double f6[6]= {20, 0, 0, 0, 0, 0};
 	shearing(f6, &shearing1);
 	multiply_matrix4(&translation1, &shearing1, &cy1->transform);
 	inverse_matrix4(&cy1->transform, &cy1->inverse);

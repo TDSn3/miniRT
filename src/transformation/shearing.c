@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 12:53:26 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:06:32 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:31 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 /*   f.f   zy   déplace z proportionnellement à y							  */
 /*                                                                            */
 /* ************************************************************************** */
-t_matrix4	*shearing(float const f[6], t_matrix4 *dst)
+t_matrix4	*shearing(double const f[6], t_matrix4 *dst)
 {
 	give_identity_matrix4(dst);
 	(*dst)[0][1] = f[0];

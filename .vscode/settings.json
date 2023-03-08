@@ -1,6 +1,7 @@
 {
 	"files.associations": {
-		"header.h": "c"
+		"header.h": "c",
+		"pthread.h": "c"
 	},
 	"makefile.launchConfigurations": [
 		{

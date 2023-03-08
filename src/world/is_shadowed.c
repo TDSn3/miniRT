@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:25:47 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:38 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 //int	is_shadowed(t_world *world, t_tuple point)
 //{
 //	t_tuple	v;
-//	float	distance;
+//	double	distance;
 //	t_tuple	direction;
 //	t_ray	r;
 //	t_to	*inter;
@@ -61,7 +61,7 @@
 int	is_shadowed(t_world const *world, t_tuple point)
 {
 	t_tuple	v;
-	float	distance;
+	double	distance;
 	t_tuple	direction;
 	t_ray	r;
 	t_to	inter;

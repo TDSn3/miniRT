@@ -6,18 +6,18 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:32:12 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 06:32:33 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:38 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-t_ray	ray_for_pixel(t_camera const *camera, float px, float py)
+t_ray	ray_for_pixel(t_camera const *camera, double px, double py)
 {
-	float		xoffset;
-	float		yoffset;
-	float		world_x;
-	float		world_y;
+	double		xoffset;
+	double		yoffset;
+	double		world_x;
+	double		world_y;
 	t_tuple		pixel;
 	t_tuple		origin;
 	t_tuple		direction;

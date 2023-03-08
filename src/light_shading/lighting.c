@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:25:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:25 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ t_tuple	lighting(t_material material, t_light const *light, t_tuple point, t_tup
 	t_tuple	effective_color;
 	t_tuple	lightv;
 	t_tuple	ambient;
-	float	light_dot_normal;
+	double	light_dot_normal;
 	t_tuple	diffuse;
 	t_tuple	specular;
 	t_tuple	refelctv;
-	float	reflect_dot_eye;
-	float	factor;
+	double	reflect_dot_eye;
+	double	factor;
 
 	effective_color = t_tuple_multi(material.color, light->intensity);
 	lightv = t_tuple_minus(light->position, point);

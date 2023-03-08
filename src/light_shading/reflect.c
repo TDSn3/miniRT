@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflect.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 13:48:49 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/21 16:53:16 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:26 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 t_tuple	reflect(t_tuple in_vector, t_tuple normal_vector)
 {
 	t_tuple	ret;
-	float	scal_prod;
+	double	scal_prod;
 	t_tuple	normal_mult_prod;
 
 	scal_prod = 2 * scalar_product_vector(&in_vector, &normal_vector);

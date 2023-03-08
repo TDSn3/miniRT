@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalization_vector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:56:06 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:09:48 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:34 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //t_tuple	normalization_vector(t_tuple tuple)
 //{
 //	t_tuple	ret;
-//	float	v;
+//	double	v;
 //
 //	v = magnitude_vector(&tuple);
 //	ret.x = tuple.x / v;
@@ -30,7 +30,7 @@
 t_tuple	normalization_vector(t_tuple tuple)
 {
 	t_tuple	ret;
-	float	len;
+	double	len;
 
 	len = sqrtf(tuple.x * tuple.x + tuple.y * tuple.y + tuple.z * tuple.z);
 	ret.x = tuple.x / len;

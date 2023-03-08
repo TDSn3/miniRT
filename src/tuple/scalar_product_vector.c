@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scalar_product_vector.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:27:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/20 19:27:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:34 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   Ou "dot product".														  */
 /*                                                                            */
 /* ************************************************************************** */
-float	scalar_product_vector(t_tuple *a, t_tuple *b)
+double	scalar_product_vector(t_tuple *a, t_tuple *b)
 {
 	return ((a->x * b->x) + (a->y * b->y) + (a->z * b->z) + (a->w * b->w));
 }

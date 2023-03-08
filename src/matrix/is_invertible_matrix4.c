@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:38:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:13:59 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:29 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_invertible_matrix4(t_matrix4 const *a)
 {
-	float	det;
+	double	det;
 
 	det = determinant_matrix4(a);
 	if (det == NAN)

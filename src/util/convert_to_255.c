@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_to_255.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 22:21:21 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:09:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:36 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_bgra	convert_to_255(t_tuple color)
 	return (converted_color);
 }
 
-float	conv_color(float color_255)
+double	conv_color(double color_255)
 {
 	return (color_255 / 255);
 }

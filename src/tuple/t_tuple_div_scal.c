@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_tuple_div_scal.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:12:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/18 22:27:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:35 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*   Divise un tuple par un scalaire.										  */
 /*                                                                            */
 /* ************************************************************************** */
-void	t_tuple_div_scal(t_tuple *a, t_tuple *left, float right)
+void	t_tuple_div_scal(t_tuple *a, t_tuple *left, double right)
 {
 	a->x = left->x / right;
 	a->y = left->y / right;

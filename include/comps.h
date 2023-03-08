@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   comps.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 12:46:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 08:49:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct s_comps
 {
-	float		t;
+	double		t;
 	t_object	object;
 	t_tuple		point;
 	t_tuple		eyev_vector;

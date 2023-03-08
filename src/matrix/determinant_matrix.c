@@ -6,21 +6,21 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 18:53:30 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:07:14 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:28 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-float	determinant_matrix2(t_matrix2 const (*a))
+double	determinant_matrix2(t_matrix2 const (*a))
 {
 	return (((*a)[0][0] * (*a)[1][1]) - ((*a)[0][1] * (*a)[1][0]));
 }
 
-float	determinant_matrix3(t_matrix3 const (*a))
+double	determinant_matrix3(t_matrix3 const (*a))
 {
 	size_t	i;
-	float	det;
+	double	det;
 
 	i = 0;
 	det = 0;
@@ -32,10 +32,10 @@ float	determinant_matrix3(t_matrix3 const (*a))
 	return (det);
 }
 
-float	determinant_matrix4(t_matrix4 const (*a))
+double	determinant_matrix4(t_matrix4 const (*a))
 {
 	size_t	i;
-	float	det;
+	double	det;
 
 	i = 0;
 	det = 0;

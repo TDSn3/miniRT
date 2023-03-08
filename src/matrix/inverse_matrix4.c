@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:54:20 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:08:24 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:28 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	div_by_det_all(t_matrix4 const *src, t_matrix4 *mtx)
 {
 	size_t		i;
 	size_t		j;
-	float		det;
+	double		det;
 
 	i = 0;
 	j = 0;

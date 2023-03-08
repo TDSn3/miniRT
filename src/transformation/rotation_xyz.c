@@ -6,16 +6,16 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 01:13:56 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:20:48 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:28:30 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #undef __STRICT_ANSI__
 #include <header.h>
 
-t_matrix4	*rotation_x(float deg, t_matrix4 *dst)
+t_matrix4	*rotation_x(double deg, t_matrix4 *dst)
 {
-	float		rad;
+	double		rad;
 
 	rad = deg * M_PI / 180.0;
 	give_identity_matrix4(dst);
@@ -26,9 +26,9 @@ t_matrix4	*rotation_x(float deg, t_matrix4 *dst)
 	return (dst);
 }
 
-t_matrix4	*rotation_y(float deg, t_matrix4 *dst)
+t_matrix4	*rotation_y(double deg, t_matrix4 *dst)
 {
-	float		rad;
+	double		rad;
 
 	rad = deg * M_PI / 180.0;
 	give_identity_matrix4(dst);
@@ -39,9 +39,9 @@ t_matrix4	*rotation_y(float deg, t_matrix4 *dst)
 	return (dst);
 }
 
-t_matrix4	*rotation_z(float deg, t_matrix4 *dst)
+t_matrix4	*rotation_z(double deg, t_matrix4 *dst)
 {
-	float		rad;
+	double		rad;
 
 	rad = deg * M_PI / 180.0;
 	give_identity_matrix4(dst);
