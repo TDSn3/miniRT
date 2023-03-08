@@ -43,16 +43,8 @@ FILENAMES	=								\
 		$(addprefix intersection/,			\
 			position						\
 			intersect						\
-			intersection					\
 			set_transform					\
 			intersect_caps					\
-			$(addprefix s_intersection_/,	\
-				si_add_back					\
-				si_size						\
-				si_new						\
-				si_last						\
-				si_clear					\
-			)								\
 		)									\
 		$(addprefix light_shading/,			\
 			normal_at						\
