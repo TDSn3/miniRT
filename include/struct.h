@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:20 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:46:00 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef enum e_type
 {
+	NONE,
 	SPHERE,
 	PLANE,
 	CYLINDER,
@@ -104,6 +105,7 @@ typedef struct s_object
 	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;
+	double			t;
 }	t_object;
 
 typedef struct s_world
@@ -126,13 +128,13 @@ typedef struct s_intersection
 	t_object				*object;
 }	t_intersection;
 
-typedef struct s_t_and_object
-{
-	double					t;
-	t_object				*object;
-	struct s_t_and_object	*prev;
-	struct s_t_and_object	*next;
-}	t_to;
+// typedef struct s_t_and_object
+// {
+// 	double					t;
+// 	t_object				*object;
+// 	struct s_t_and_object	*prev;
+// 	struct s_t_and_object	*next;
+// }	t_to;
 
 typedef struct s_data_key
 {

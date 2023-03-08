@@ -60,14 +60,6 @@ FILENAMES	=								\
 			render							\
 			is_shadowed						\
 			object_lst						\
-			$(addprefix s_t_and_object_/,	\
-				sto_add_back				\
-				sto_size					\
-				sto_new						\
-				sto_last					\
-				sto_clear					\
-				sto_sort					\
-			)								\
 		)									\
 		$(addprefix util/,					\
 			init_all 						\

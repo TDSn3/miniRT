@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:30:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:42:45 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ t_ray			transform_ray(t_tuple vector, t_tuple point,
 
 t_tuple			position(t_tuple vector, t_tuple point, double t);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
-t_to			intersection(double t, t_object *object);
+t_object		intersection(double t, t_object *object);
 void			set_transform(t_object *object, t_matrix4 *t);
 void			intersect_caps(
 					t_ray ray,
@@ -117,8 +117,8 @@ t_tuple			lighting(
 t_tuple			color_at(t_world const *w, t_ray r);
 
 // t_to			*intersect_world(t_world *world, t_ray ray);
-t_to			intersect_world(t_world const *world, t_ray ray);
-t_comps			prepare_computations(t_ray r, t_to *i);
+t_object		intersect_world(t_world const *world, t_ray ray);
+t_comps			prepare_computations(t_ray r, t_object const *i);
 t_tuple			shade_hit(t_world const *w, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
@@ -130,12 +130,12 @@ void			render(t_all_data *all_data,
 void			object_lst_clear(t_object **lst);
 t_object		*object_lst_new(t_type type, t_dp *dp);
 
-t_to			*sto_new(double t, t_object *object);
-int				sto_add_back(t_to **lst, t_to *new);
-t_to			*sto_last(t_to *lst);
-size_t			sto_size(t_to *lst);
-void			sto_clear(t_to **lst);
-void			sto_sort(t_to **lst);
+// t_to			*sto_new(double t, t_object *object);
+// int				sto_add_back(t_to **lst, t_to *new);
+// t_to			*sto_last(t_to *lst);
+// size_t			sto_size(t_to *lst);
+// void			sto_clear(t_to **lst);
+// void			sto_sort(t_to **lst);
 
 int				is_shadowed(t_world const *world, t_tuple point);
 

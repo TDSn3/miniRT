@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:38 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:47:01 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,11 @@
 
 int	is_shadowed(t_world const *world, t_tuple point)
 {
-	t_tuple	v;
-	double	distance;
-	t_tuple	direction;
-	t_ray	r;
-	t_to	inter;
+	t_tuple		v;
+	double		distance;
+	t_tuple		direction;
+	t_ray		r;
+	t_object	inter;
 
 	v = t_tuple_minus(world->light->position, point);
 	distance = magnitude_vector(&v);

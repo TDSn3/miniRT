@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prepare_computations.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:15:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:43:00 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@
 /*   éclairée correctement.													  */
 /*                                                                            */
 /* ************************************************************************** */
-t_comps	prepare_computations(t_ray r, t_to *i)
+t_comps	prepare_computations(t_ray r, t_object const *i)
 {
 	t_comps	comps;
 
-	comps.t = i->t;
-	comps.object = *i->object;
-	comps.point = position(r.vector, r.point, comps.t);
+	comps.object = *i;
+	comps.point = position(r.vector, r.point, comps.object.t);
 	comps.eyev_vector = t_tuple_nega(r.vector);
-	comps.normalv_vector = normal_at(*i->object, comps.point);
+	comps.normalv_vector = normal_at(*i, comps.point);
 	if (scalar_product_vector(&comps.normalv_vector, &comps.eyev_vector) < 0)
 	{
 		comps.inside = 1;
