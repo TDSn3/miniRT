@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:21:39 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 05:55:00 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ typedef struct s_camera
 	float		vsize;
 	float		field_of_view;
 	t_matrix4	transform;
+	t_matrix4	inverse;
 	float		half_width;
 	float		half_height;
 	float		pixel_size;
@@ -175,6 +176,7 @@ typedef struct s_object
 	t_type			type;
 	t_tuple			position;
 	t_matrix4		transform;
+	t_matrix4		inverse;
 	t_material		material;
 	float			cyl_min;
 	float			cyl_max;

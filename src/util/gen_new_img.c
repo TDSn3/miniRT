@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 04:23:36 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 05:57:26 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ static void	test(t_all_data *all_data)
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
 			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
 			(t_tuple){{0, 1, 0, 0}});
+	inverse_matrix4(&c.transform, &c.inverse);
 
 /* ************************************************************************** */
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
@@ -117,6 +118,7 @@ static void	test(t_all_data *all_data)
 	sp1->transform = multiply_matrix4(
 			translation((t_tuple){{0, 0, -30, 0}}),
 			scaling((t_tuple){{rayon_sp1, rayon_sp1, rayon_sp1, 0}}));
+	inverse_matrix4(&sp1->transform, &sp1->inverse);
 	sp1->material.color = (t_tuple){{conv_color(10), conv_color(0), conv_color(255), 0}};
 
 /* ************************************************************************** */
@@ -129,6 +131,7 @@ static void	test(t_all_data *all_data)
 //	pl1->transform = multiply_matrix4(pl1->transform, rotation_z(90));
 //	pl1->transform = multiply_matrix4(pl1->transform, translation((t_tuple){{0, 0, 0, 0}}));
 
+	inverse_matrix4(&pl1->transform, &pl1->inverse);
 	pl1->material.color = (t_tuple){{conv_color(150), conv_color(10), conv_color(10), 0}};
 	pl1->material.specular = 0.1;
 
@@ -142,6 +145,7 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
 	cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{9, 0, 30, 0}}));
+	inverse_matrix4(&cy1->transform, &cy1->inverse);
 
 	cy1->cyl_max = 20;
 	cy1->cyl_min = -20;
@@ -154,6 +158,7 @@ static void	test(t_all_data *all_data)
 	cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
 	cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
 	cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
+	inverse_matrix4(&cy2->transform, &cy2->inverse);
 	cy2->cyl_max = 10;
 	cy2->cyl_min = -10;
 	cy2->cyl_closed = 1;
