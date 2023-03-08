@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:20:05 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:22:25 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ typedef struct s_object
 typedef struct s_world
 {
 	t_object	*lst_object;
-	t_light		light;
+	t_light		*light;
 }	t_world;
 
 /* ************************************************************************** */
@@ -124,8 +124,6 @@ typedef struct s_intersection
 {
 	float					t[3];
 	t_object				*object;
-	struct s_intersection	*prev;
-	struct s_intersection	*next;
 }	t_intersection;
 
 typedef struct s_t_and_object

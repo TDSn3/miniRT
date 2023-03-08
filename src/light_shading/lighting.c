@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:58:39 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:25:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 /*   ambient         = contribution ambiante								  */
 /*                                                                            */
 /* ************************************************************************** */
-t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev_vector, t_tuple normalv_vector, int in_shadow)
+t_tuple	lighting(t_material material, t_light const *light, t_tuple point, t_tuple eyev_vector, t_tuple normalv_vector, int in_shadow)
 {
 	t_tuple	effective_color;
 	t_tuple	lightv;
@@ -33,8 +33,8 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	float	reflect_dot_eye;
 	float	factor;
 
-	effective_color = t_tuple_multi(material.color, light.intensity);
-	lightv = t_tuple_minus(light.position, point);
+	effective_color = t_tuple_multi(material.color, light->intensity);
+	lightv = t_tuple_minus(light->position, point);
 	lightv = normalization_vector(lightv);
 	ambient = t_tuple_multi_scal(effective_color, material.ambient);
 	ambient = t_tuple_plus(ambient, material.a_color);
@@ -49,7 +49,7 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	else
 	{
 		factor = powf(reflect_dot_eye, material.shininess);
-		specular = t_tuple_multi_scal(light.intensity, material.specular);
+		specular = t_tuple_multi_scal(light->intensity, material.specular);
 		specular = t_tuple_multi_scal(specular, factor);
 	}
 	if (in_shadow)

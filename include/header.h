@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:07:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:25:31 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,16 @@ t_tuple			normal_at(t_object object, t_tuple world_point);
 t_tuple			reflect(t_tuple in_vector, t_tuple normal_vector);
 t_tuple			lighting(
 					t_material material,
-					t_light light, t_tuple point,
+					t_light const *light, t_tuple point,
 					t_tuple eyev_vector,
 					t_tuple nomralv_vector,
 					int in_shadow);
-t_tuple			color_at(t_world *w, t_ray r);
+t_tuple			color_at(t_world const *w, t_ray r);
 
 // t_to			*intersect_world(t_world *world, t_ray ray);
 t_to			intersect_world(t_world const *world, t_ray ray);
 t_comps			prepare_computations(t_ray r, t_to *i);
-t_tuple			shade_hit(t_world w, t_comps comps);
+t_tuple			shade_hit(t_world const *w, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
 t_camera		give_camera(float hsize, float vsize, float field_of_view);

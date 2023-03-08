@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_at.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 14:56:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:25:23 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // 	return (ret);
 // }
 
-t_tuple	color_at(t_world *w, t_ray r)
+t_tuple	color_at(t_world const *w, t_ray r)
 {
 	t_to	inter;
 	t_comps	comps;
@@ -45,6 +45,6 @@ t_tuple	color_at(t_world *w, t_ray r)
 	if (inter.t == FLT_MAX || !inter.object)
 		return ((t_tuple){0});
 	comps = prepare_computations(r, &inter);
-	ret = shade_hit(*w, comps);
+	ret = shade_hit(w, comps);
 	return (ret);
 }

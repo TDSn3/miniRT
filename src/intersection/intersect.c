@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:10:19 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:23:13 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 	float			discriminant;
 
 	ret.object = sphere;
-	ret.next = NULL;
-	ret.prev = NULL;
 	discriminant = give_discri(ray.vector, ray.point, *sphere, abc);
 	if (discriminant < 0)
 	{
@@ -101,8 +99,6 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 	float			t;
 
 	ret.object = plane;
-	ret.next = NULL;
-	ret.prev = NULL;
 	if (ray.vector.y < EPSILON)
 	{
 		ret.t[0] = 0;
@@ -130,8 +126,6 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	float			y1;
 
 	ret.object = cylinder;
-	ret.next = NULL;
-	ret.prev = NULL;
 	ret.t[0] = 0;
 	ret.t[1] = 0;
 	ret.t[2] = 0;
