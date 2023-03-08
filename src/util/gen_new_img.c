@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:40:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:10:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ static void	test(t_all_data *all_data)
 
 
 	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
-	// view_transform(
-	// 		(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
-	// 		(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
-	// 		(t_tuple){{0, 1, 0, 0}}, &c.transform);
+	view_transform(
+			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
+			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
+			(t_tuple){{0, 1, 0, 0}}, &c.transform);
 	inverse_matrix4(&c.transform, &c.inverse);
 
 /* ************************************************************************** */
@@ -150,7 +150,7 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
-	// cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{9, 0, 30, 0}}));
+	translation((t_tuple){{9, 0, 30, 0}}, &cy1->transform);
 	inverse_matrix4(&cy1->transform, &cy1->inverse);
 
 	cy1->cyl_max = 20;
@@ -164,6 +164,15 @@ static void	test(t_all_data *all_data)
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
 	// cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
+	t_matrix4 rot_x;
+	rotation_x(90, &rot_x);
+	t_matrix4 rot_z;
+	rotation_z(45, &rot_z);
+	t_matrix4 translation_matrix_2;
+	translation((t_tuple){{10, 3, 20, 0}}, &translation_matrix_2);
+	t_matrix4 tmp;
+	multiply_matrix4(&rot_x, &rot_z, &tmp);
+	multiply_matrix4(&tmp, &translation_matrix_2, &cy2->transform);
 	inverse_matrix4(&cy2->transform, &cy2->inverse);
 	cy2->cyl_max = 10;
 	cy2->cyl_min = -10;
@@ -173,8 +182,8 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 
 	so_add_back(&sp1, pl1);
-	// so_add_back(&sp1, cy1);
-	// so_add_back(&sp1, cy2);
+	so_add_back(&sp1, cy1);
+	so_add_back(&sp1, cy2);
 	w.lst_object = sp1;
 
 	render(all_data, &c, &w);
