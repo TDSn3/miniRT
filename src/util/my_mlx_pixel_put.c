@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_mlx_pixel_put.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 13:14:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/02/28 14:09:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:57:26 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 /*   Systèmes de coordonnées ayant pour origine le centre de la fenêtre.	  */
 /*                                                                            */
 /* ************************************************************************** */
-void	my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color)
+void	my_mlx_pixel_put(t_all_data const *all_data, int x, int y, int color)
 {
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;

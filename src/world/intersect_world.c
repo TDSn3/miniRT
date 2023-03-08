@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:05:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:56:30 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 	return (ret);
 }*/
 
-t_to	intersect_world(t_world *world, t_ray ray)
+t_to	intersect_world(t_world const *world, t_ray ray)
 {
 	t_to			ret;
 	t_object		*cpy;

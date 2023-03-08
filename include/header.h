@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 20:30:32 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/08 20:56:41 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void			init_all(
 					t_mwi *mwi,
 					t_data_mlx_img *data_img,
 					t_dk *data_key);
-void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
+void			my_mlx_pixel_put(t_all_data const *all_data, int x, int y,
+					int color);
 int				equal_float(float a, float b);
-void			print_canvas(t_all_data *all_data);
+void			print_canvas(t_all_data const *all_data);
 t_bgra			convert_to_255(t_tuple color);
 float			conv_color(float color_255);
 int				key_press_hook(int keycode, t_all_data *d);
@@ -116,7 +117,7 @@ t_tuple			lighting(
 t_tuple			color_at(t_world *w, t_ray r);
 
 // t_to			*intersect_world(t_world *world, t_ray ray);
-t_to			intersect_world(t_world *world, t_ray ray);
+t_to			intersect_world(t_world const *world, t_ray ray);
 t_comps			prepare_computations(t_ray r, t_to *i);
 t_tuple			shade_hit(t_world w, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
@@ -136,6 +137,6 @@ size_t			sto_size(t_to *lst);
 void			sto_clear(t_to **lst);
 void			sto_sort(t_to **lst);
 
-int				is_shadowed(t_world *world, t_tuple point);
+int				is_shadowed(t_world const *world, t_tuple point);
 
 #endif

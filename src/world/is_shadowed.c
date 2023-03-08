@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_shadowed.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 12:35:39 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:56:17 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 //	}
 //}
 
-int	is_shadowed(t_world *world, t_tuple point)
+int	is_shadowed(t_world const *world, t_tuple point)
 {
 	t_tuple	v;
 	float	distance;
