@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:32:51 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:47:18 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,54 +50,64 @@ static void	test(t_all_data *all_data)
 	t_object	*pl1;
 	t_object	*cy1;
 	t_object	*cy2;
-	t_dp		data_parsing;
+	// t_dp		data_parsing;
 
 /* ************************************************************************** */
 /*   Lumière ambiante   A   0.2   255,255,255                                 */
 /* ************************************************************************** */
-	data_parsing.ambient = 0.05;
+	// data_parsing.ambient = 0.05;
+	all_data->ambient.intensity = 0.05;
 
-	data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
-	data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
-	data_parsing.a_color.z = conv_color(255) * data_parsing.ambient;
-	data_parsing.a_color.w = 0;
+	// data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
+	// data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
+	// data_parsing.a_color.z = conv_color(255) * data_parsing.ambient;
+	// data_parsing.a_color.w = 0;
+	all_data->ambient.color = (t_tuple){{0.05, 0.05, 0.05, 0}};
 
 /* ************************************************************************** */
 /*   Camera   C   0,0,20.6   0,0,1   70		                                  */
 /* ************************************************************************** */
-	data_parsing.c_position.x = 0; //+ all_data->data_key.c_add_pos_x;
-	data_parsing.c_position.y = -50; // + all_data->data_key.c_add_pos_y;
-	data_parsing.c_position.z = -20; // + all_data->data_key.c_add_pos_z;
+	// data_parsing.c_position.x = 0; //+ all_data->data_key.c_add_pos_x;
+	// data_parsing.c_position.y = -50; // + all_data->data_key.c_add_pos_y;
+	// data_parsing.c_position.z = -20; // + all_data->data_key.c_add_pos_z;
 
-	data_parsing.c_to.x = 0; // + all_data->data_key.c_add_to_x;
-	data_parsing.c_to.y = 1;// + all_data->data_key.c_add_to_y;
-	data_parsing.c_to.z = 0; // + all_data->data_key.c_add_to_z;
+	// data_parsing.c_to.x = 0; // + all_data->data_key.c_add_to_x;
+	// data_parsing.c_to.y = 1;// + all_data->data_key.c_add_to_y;
+	// data_parsing.c_to.z = 0; // + all_data->data_key.c_add_to_z;
 
-	data_parsing.c_fov = 70;// + all_data->data_key.c_add_fov;
+	// data_parsing.c_fov = 70;// + all_data->data_key.c_add_fov;
 
 
-	all_data->camera = give_camera(data_parsing.c_fov);
+	all_data->camera = give_camera(70);
 	view_transform(
-			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
-			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
+			(t_tuple){{0, -50, -20, 1}},
+			(t_tuple){{0, 1, 0, 1}},
 			(t_tuple){{0, 1, 0, 0}}, &all_data->camera.transform);
+	// all_data->camera = give_camera(data_parsing.c_fov);
+	// view_transform(
+	// 		(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
+	// 		(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
+	// 		(t_tuple){{0, 1, 0, 0}}, &all_data->camera.transform);
 	inverse_matrix4(&all_data->camera.transform, &all_data->camera.inverse);
 
 /* ************************************************************************** */
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
 /* ************************************************************************** */
-	data_parsing.l_position.x = 0;
-	data_parsing.l_position.y = -20;
-	data_parsing.l_position.z = 35;
+	// data_parsing.l_position.x = 0;
+	// data_parsing.l_position.y = -20;
+	// data_parsing.l_position.z = 35;
 
-	data_parsing.l_i = 1;
+	// data_parsing.l_i = 1;
 
-	data_parsing.l_color.x = conv_color(10);
-	data_parsing.l_color.y = conv_color(0);
-	data_parsing.l_color.z = conv_color(255);
+	// data_parsing.l_color.x = conv_color(10);
+	// data_parsing.l_color.y = conv_color(0);
+	// data_parsing.l_color.z = conv_color(255);
 
-	all_data->light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
-	all_data->light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
+	// all_data->light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
+	// all_data->light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
+	all_data->light.position = (t_tuple){{0, -20, 35, 1}};
+	all_data->light.intensity = (t_tuple){{1, 1, 1, 0}};
+	// all_data->light.color = (t_tuple){{conv_color(255), conv_color(255), conv_color(255), 0}};
 
 /* ************************************************************************** */
 /*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
@@ -105,7 +115,7 @@ static void	test(t_all_data *all_data)
 	double		rayon_sp1;
 
 	// sp1 = so_new(SPHERE, data_parsing);
-	sp1 = object_lst_new(SPHERE, &data_parsing);
+	sp1 = object_lst_new(SPHERE, &all_data->ambient);
 	all_data->objects = sp1; // IMPORTANT
 
 	rayon_sp1 = 10;
@@ -124,7 +134,7 @@ static void	test(t_all_data *all_data)
 /*   Plan   pl   0,0,0   0,0,1   0,0,255		                              */
 /* ************************************************************************** */
 	// pl1 = so_new(PLANE, data_parsing);
-	pl1 = object_lst_new(PLANE, &data_parsing);
+	pl1 = object_lst_new(PLANE, &all_data->ambient);
 
 //	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(10));
 //	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(10));
@@ -139,7 +149,7 @@ static void	test(t_all_data *all_data)
 // /*   Cylindre   cy   50,0,6   0,0,1   14.2   21.42   10,0,255		          */
 // /* ************************************************************************** */
 	// cy1 = so_new(CYLINDER, data_parsing);
-	cy1 = object_lst_new(CYLINDER, &data_parsing);
+	cy1 = object_lst_new(CYLINDER, &all_data->ambient);
 
 	// t_matrix4 tmp;
 	// multiply_matrix4(cy1->transform, rotation_x(40), &tmp);
@@ -163,7 +173,7 @@ static void	test(t_all_data *all_data)
 
 
 	// cy2 = so_new(CYLINDER, data_parsing);
-	cy2 = object_lst_new(CYLINDER, &data_parsing);
+	cy2 = object_lst_new(CYLINDER, &all_data->ambient);
 
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
 	// cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:31:30 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:37:00 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,17 +143,17 @@ typedef struct s_intersection
 // 	int		key_shift;
 // }	t_dk;
 
-typedef struct s_data_parsing
-{
-	double	ambient;
-	t_tuple	a_color;
-	t_tuple	c_position;
-	t_tuple	c_to;
-	double	c_fov;
-	t_tuple	l_position;
-	double	l_i;
-	t_tuple	l_color;
-}	t_dp;
+// typedef struct s_data_parsing
+// {
+// 	double	ambient;
+// 	t_tuple	a_color;
+// 	t_tuple	c_position;
+// 	t_tuple	c_to;
+// 	double	c_fov;
+// 	t_tuple	l_position;
+// 	double	l_i;
+// 	t_tuple	l_color;
+// }	t_dp;
 
 typedef struct s_mlx_data
 {
@@ -166,6 +166,12 @@ typedef struct s_mlx_data
 	int				endian;
 }	t_mlx_data;
 
+typedef struct s_ambient
+{
+	double		intensity;
+	t_tuple		color;
+}	t_ambient;
+
 typedef struct s_all_data
 {
 	t_mlx_data		mlx_data;
@@ -173,6 +179,7 @@ typedef struct s_all_data
 	t_object		*objects;
 	t_light			light;
 	t_camera		camera;
+	t_ambient		ambient;
 }	t_all_data;
 
 #endif

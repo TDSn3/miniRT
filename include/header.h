@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:19:54 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:34:29 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 			t_object const *object, t_light const *light);
 
 void			object_lst_clear(t_object **lst);
-t_object		*object_lst_new(t_type type, t_dp *dp);
+t_object		*object_lst_new(t_type type, t_ambient const *ambient);
 
 int	is_shadowed(t_object const *objects, t_light const *light, t_tuple point);
 
