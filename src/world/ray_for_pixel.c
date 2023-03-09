@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:32:12 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:38 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:22:47 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ t_ray	ray_for_pixel(t_camera const *camera, double px, double py)
 			(t_tuple){{world_x, world_y, -1, 1}});
 	origin = multiply_matrix4_tuple(&camera->inverse,
 			(t_tuple){{0, 0, 0, 1}});
-	direction = normalization_vector(t_tuple_minus(pixel, origin));
+	// direction = normalization_vector(t_tuple_minus(pixel, origin));
+	direction = t_tuple_minus(pixel, origin);
+	normalize_vector(&direction);
 	ret.point = origin;
 	ret.vector = direction;
 	return (ret);

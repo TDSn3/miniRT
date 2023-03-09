@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:25 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:20:29 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_tuple	lighting(t_material material, t_light const *light, t_tuple point, t_tup
 
 	effective_color = t_tuple_multi(material.color, light->intensity);
 	lightv = t_tuple_minus(light->position, point);
-	lightv = normalization_vector(lightv);
+	normalize_vector(&lightv);
 	ambient = t_tuple_multi_scal(effective_color, material.ambient);
 	ambient = t_tuple_plus(ambient, material.a_color);
 	light_dot_normal = scalar_product_vector(&lightv, &normalv_vector);

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:27:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 07:24:36 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:22:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,15 @@ t_matrix4	*view_transform(t_tuple from, t_tuple to, t_tuple up, t_matrix4 *dst)
 	t_tuple		true_up_vector;
 	t_matrix4	orientation;
 	t_matrix4	translation_matrix;
+	// t_tuple		up_normalized;
 
-	forward_vector = normalization_vector(t_tuple_minus(to, from));
-	left_vector = cross_product_vector(forward_vector,
-			normalization_vector(up));
-	true_up_vector = cross_product_vector(left_vector, forward_vector);
+	forward_vector = t_tuple_minus(to, from);
+	normalize_vector(&forward_vector);
+	// forward_vector = normalization_vector(t_tuple_minus(to, from));
+	// up_normalized = normalization_vector(up);
+	normalize_vector(&up);
+	left_vector = cross_product_vector(&forward_vector, &up);
+	true_up_vector = cross_product_vector(&left_vector, &forward_vector);
 	init_matrix4_orientation(&orientation,
 		forward_vector, left_vector, true_up_vector);
 	translation(t_tuple_nega(from), &translation_matrix);

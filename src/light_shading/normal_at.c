@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 04:23:19 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:19:43 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ static t_tuple	return_world_normal(t_matrix4 const *cpy, t_tuple object_normal)
 
 	world_normal = multiply_matrix4_tuple(cpy, object_normal);
 	world_normal.w = 0;
-	world_normal = normalization_vector(world_normal);
+	normalize_vector(&world_normal);
 	return (world_normal);
 }

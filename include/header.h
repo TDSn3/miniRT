@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:00:00 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:20:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ t_tuple			t_tuple_nega(t_tuple tuple);
 t_tuple			t_tuple_multi_scal(t_tuple left, double right);
 void			t_tuple_div_scal(t_tuple *a, t_tuple *left, double right);
 t_tuple			t_tuple_multi(t_tuple left, t_tuple right);
-double			magnitude_vector(t_tuple *tuple);
-t_tuple			normalization_vector(t_tuple tuple);
+double	magnitude_vector(t_tuple const *tuple);
+t_tuple	*normalize_vector(t_tuple *tuple);
+t_tuple	normalization_vector(t_tuple const *tuple);
 double			scalar_product_vector(t_tuple *a, t_tuple *b);
-t_tuple			cross_product_vector(t_tuple a, t_tuple b);
+t_tuple	cross_product_vector(t_tuple const *a, t_tuple const *b);
 
 int				equal_matrix4(t_matrix4 const *a, t_matrix4 const *b);
 t_matrix4		*multiply_matrix4(t_matrix4 const *left, t_matrix4 const *right,
