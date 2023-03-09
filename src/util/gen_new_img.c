@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:43:50 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:05:51 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ static void	test(t_all_data *all_data);
 
 int	gen_new_img(t_all_data *all_data)
 {
-	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
+	// t_mwi			*mwi;
+	// t_data_mlx_img	*data_img;
 
 
-	data_img = all_data->data_img;
-	mwi = all_data->mwi;
-	data_img -> img = mlx_new_image(mwi -> mlx, WIDTH, HEIGHT);
-	data_img -> addr = mlx_get_data_addr(
-			mwi -> data_img -> img,
-			&mwi -> data_img -> bits_per_pixel,
-			&mwi -> data_img -> line_length,
-			&mwi -> data_img -> endian);
+	// data_img = all_data->data_img;
+	// mwi = all_data->mwi;
+	// data_img -> img = mlx_new_image(mwi -> mlx, WIDTH, HEIGHT);
+	// data_img -> addr = mlx_get_data_addr(
+	// 		mwi -> data_img -> img,
+	// 		&mwi -> data_img -> bits_per_pixel,
+	// 		&mwi -> data_img -> line_length,
+	// 		&mwi -> data_img -> endian);
 
 //	pixel_put ***********************************************************************
 
@@ -35,14 +35,8 @@ int	gen_new_img(t_all_data *all_data)
 
 // //	*********************************************************************************
 
-	mlx_put_image_to_window(
-		mwi -> mlx,
-		mwi -> win,
-		mwi -> data_img -> img,
-		0,
-		0);
-	mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
-	mwi -> data_img -> img = NULL;
+	// mlx_destroy_image(mwi -> mlx, mwi -> data_img -> img);
+	// mwi -> data_img -> img = NULL;
 	printf("%sNew image%s\n", COLOR_BOLD_YELLOW, COLOR_RESET);
 	return (0);
 }
@@ -71,15 +65,15 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Camera   C   0,0,20.6   0,0,1   70		                                  */
 /* ************************************************************************** */
-	data_parsing.c_position.x = 0 + all_data->data_key->c_add_pos_x;
-	data_parsing.c_position.y = -50 + all_data->data_key->c_add_pos_y;
-	data_parsing.c_position.z = -20 + all_data->data_key->c_add_pos_z;
+	data_parsing.c_position.x = 0 + all_data->data_key.c_add_pos_x;
+	data_parsing.c_position.y = -50 + all_data->data_key.c_add_pos_y;
+	data_parsing.c_position.z = -20 + all_data->data_key.c_add_pos_z;
 
-	data_parsing.c_to.x = 0 + all_data->data_key->c_add_to_x;
-	data_parsing.c_to.y = 1 + all_data->data_key->c_add_to_y;
-	data_parsing.c_to.z = 0 + all_data->data_key->c_add_to_z;
+	data_parsing.c_to.x = 0 + all_data->data_key.c_add_to_x;
+	data_parsing.c_to.y = 1 + all_data->data_key.c_add_to_y;
+	data_parsing.c_to.z = 0 + all_data->data_key.c_add_to_z;
 
-	data_parsing.c_fov = 70 + all_data->data_key->c_add_fov;
+	data_parsing.c_fov = 70 + all_data->data_key.c_add_fov;
 
 
 	c = give_camera(data_parsing.c_fov);

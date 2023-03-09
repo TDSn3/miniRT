@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:50:58 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:55:03 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,29 +155,21 @@ typedef struct s_data_parsing
 	t_tuple	l_color;
 }	t_dp;
 
-typedef struct s_data_mlx_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data_mlx_img;
-
-typedef struct s_mlx_win_img
+typedef struct s_mlx_data
 {
 	void			*mlx;
 	void			*win;
-	t_data_mlx_img	*data_img;
-	int				win_widht;
-	int				win_height;
-}	t_mwi;
+	void			*img;
+	unsigned int	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}	t_mlx_data;
 
 typedef struct s_all_data
 {
-	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
-	t_dk			*data_key;
+	t_mlx_data		mlx_data;
+	t_dk			data_key;
 	t_object		*list_object;
 }	t_all_data;
 

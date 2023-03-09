@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:42:13 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:55:30 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,7 @@
 # include "struct.h"
 # include "colors.h"
 
-void			init_all(
-					t_all_data *all_data,
-					t_mwi *mwi,
-					t_data_mlx_img *data_img,
-					t_dk *data_key);
+void			init_all(t_all_data *all_data);
 int				equal_float(double a, double b);
 void			print_canvas(t_all_data const *all_data);
 t_bgra			convert_to_255(t_tuple color);

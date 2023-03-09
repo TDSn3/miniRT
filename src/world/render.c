@@ -22,7 +22,7 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 	unsigned int	*img;
 
 	i = -1;
-	img = (unsigned int *)all_data->data_img->addr;
+	img = all_data->mlx_data.addr;
 	while (++i < HEIGHT)
 	{
 		j = -1;
@@ -33,4 +33,12 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 			*img++ = color.bgra;
 		}
 	}
+	mlx_put_image_to_window(all_data->mlx_data.mlx, all_data->mlx_data.win,
+		all_data->mlx_data.img, 0, 0);
+	// mlx_put_image_to_window(
+	// 	mwi -> mlx,
+	// 	mwi -> win,
+	// 	mwi -> data_img -> img,
+	// 	0,
+	// 	0);
 }

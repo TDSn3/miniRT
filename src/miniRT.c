@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:47:08 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:08:27 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ void	free_objects(t_parsed_object *objects)
 int	main(int argc, char **argv)
 {
 	t_all_data		all_data;
-	t_mwi			mwi;
-	t_data_mlx_img	data_img;
-	t_dk			data_key;
 	t_parsed_scene	scene;
 
 	(void)argc;
@@ -61,17 +58,16 @@ int	main(int argc, char **argv)
 	// printf("light: %f,%f,%f %f %d, %d, %d\n", scene.light.position.a, scene.light.position.b, scene.light.position.c, scene.light.intensity, scene.light.color.r, scene.light.color.g, scene.light.color.b);
 	print_objects(scene.objects);
 	free_objects(scene.objects);
-	init_all(&all_data, &mwi, &data_img, &data_key);
+	init_all(&all_data);
 	gen_new_img(&all_data);
-	mlx_hook(mwi.win, 17, 0L, red_button, &all_data);
-	mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);
-	mlx_hook(mwi.win, 3, 1L << 1L, key_release_hook, &all_data);
-	mlx_mouse_hook(mwi.win, mouse_hook, &all_data);
-	mlx_loop(mwi.mlx);
-	if (all_data.mwi->data_img->img)
-		mlx_destroy_image(all_data.mwi->mlx, all_data.mwi->data_img->img);
-	mlx_destroy_window(all_data.mwi->mlx, all_data.mwi->win);
-	mlx_destroy_display(all_data.mwi->mlx);
-	free(all_data.mwi->mlx);
+	mlx_hook(all_data.mlx_data.win, 17, 0L, red_button, &all_data);
+	mlx_hook(all_data.mlx_data.win, 2, 1L << 0L, key_press_hook, &all_data);
+	mlx_hook(all_data.mlx_data.win, 3, 1L << 1L, key_release_hook, &all_data);
+	mlx_mouse_hook(all_data.mlx_data.win, mouse_hook, &all_data);
+	mlx_loop(all_data.mlx_data.mlx);
+	mlx_destroy_image(all_data.mlx_data.mlx, all_data.mlx_data.img);
+	mlx_destroy_window(all_data.mlx_data.mlx, all_data.mlx_data.win);
+	mlx_destroy_display(all_data.mlx_data.mlx);
+	free(all_data.mlx_data.mlx);
 	object_lst_clear(&all_data.list_object);
 }
