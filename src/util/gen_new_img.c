@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:05:51 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:23:59 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	gen_new_img(t_all_data *all_data)
 
 static void	test(t_all_data *all_data)
 {
-	t_world		w;
-	t_camera	c;
-	t_light		light;
+	// t_world		w;
+	// t_camera	c;
+	// t_light		light;
 	t_object	*sp1;
 	t_object	*pl1;
 	t_object	*cy1;
@@ -76,12 +76,12 @@ static void	test(t_all_data *all_data)
 	data_parsing.c_fov = 70 + all_data->data_key.c_add_fov;
 
 
-	c = give_camera(data_parsing.c_fov);
+	all_data->camera = give_camera(data_parsing.c_fov);
 	view_transform(
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
 			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
-			(t_tuple){{0, 1, 0, 0}}, &c.transform);
-	inverse_matrix4(&c.transform, &c.inverse);
+			(t_tuple){{0, 1, 0, 0}}, &all_data->camera.transform);
+	inverse_matrix4(&all_data->camera.transform, &all_data->camera.inverse);
 
 /* ************************************************************************** */
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
@@ -96,9 +96,8 @@ static void	test(t_all_data *all_data)
 	data_parsing.l_color.y = conv_color(0);
 	data_parsing.l_color.z = conv_color(255);
 
-	light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
-	light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
-	w.light = &light;
+	all_data->light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
+	all_data->light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
 
 /* ************************************************************************** */
 /*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
@@ -107,7 +106,7 @@ static void	test(t_all_data *all_data)
 
 	// sp1 = so_new(SPHERE, data_parsing);
 	sp1 = object_lst_new(SPHERE, &data_parsing);
-	all_data->list_object = sp1; // IMPORTANT
+	all_data->objects = sp1; // IMPORTANT
 
 	rayon_sp1 = 10;
 	t_matrix4 translation_matrix;
@@ -189,16 +188,16 @@ static void	test(t_all_data *all_data)
 	// so_add_back(&sp1, pl1);
 	// so_add_back(&sp1, cy1);
 	// so_add_back(&sp1, cy2);
-	w.lst_object = sp1;
+	all_data->objects = sp1;
 	sp1->next = pl1;
 	pl1->next = cy1;
 	cy1->next = cy2;
 
-	render(all_data, &c, &w);
+	// render(all_data, &c, &w);
 	// so_clear(&sp1);
-	object_lst_clear(&sp1);
+	// object_lst_clear(&sp1);
 
-	all_data->list_object = NULL;
+	// all_data->list_object = NULL;
 
-	printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
+	// printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
 }

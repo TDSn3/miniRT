@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:55:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:22:51 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,11 @@ typedef struct s_object
 	double			t;
 }	t_object;
 
-typedef struct s_world
-{
-	t_object	*lst_object;
-	t_light		*light;
-}	t_world;
+// typedef struct s_world
+// {
+// 	t_object	*lst_object;
+// 	t_light		*light;
+// }	t_world;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -170,7 +170,9 @@ typedef struct s_all_data
 {
 	t_mlx_data		mlx_data;
 	t_dk			data_key;
-	t_object		*list_object;
+	t_object		*objects;
+	t_light			light;
+	t_camera		camera;
 }	t_all_data;
 
 #endif

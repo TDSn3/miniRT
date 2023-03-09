@@ -13,7 +13,7 @@
 #include <header.h>
 
 void	render(t_all_data const *all_data, t_camera const *camera,
-			t_world const *world)
+			t_object const *objects, t_light const *light)
 {
 	size_t			i;
 	size_t			j;
@@ -29,16 +29,10 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 		while (++j < WIDTH)
 		{
 			r = ray_for_pixel(camera, j, i);
-			color = convert_to_255(color_at(world, &r));
+			color = convert_to_255(color_at(objects, light, &r));
 			*img++ = color.bgra;
 		}
 	}
 	mlx_put_image_to_window(all_data->mlx_data.mlx, all_data->mlx_data.win,
 		all_data->mlx_data.img, 0, 0);
-	// mlx_put_image_to_window(
-	// 	mwi -> mlx,
-	// 	mwi -> win,
-	// 	mwi -> data_img -> img,
-	// 	0,
-	// 	0);
 }
