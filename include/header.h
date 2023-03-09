@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:34:29 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:00:00 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ t_matrix4		*multiply_matrix4(t_matrix4 const *left, t_matrix4 const *right,
 					t_matrix4 *dst);
 t_tuple			multiply_matrix4_tuple(t_matrix4 const *left,
 					t_tuple const right);
-t_matrix4		*give_identity_matrix4(t_matrix4 *dst);
+// t_matrix4		*give_identity_matrix4(t_matrix4 *dst);
+double	*identity_matrix(size_t n, double *dst);
 t_matrix4		*transpose_matrix4(t_matrix4 const *a, t_matrix4 *dst);
 double			determinant_matrix2(t_matrix2 const *a);
 double			determinant_matrix3(t_matrix3 const *a);

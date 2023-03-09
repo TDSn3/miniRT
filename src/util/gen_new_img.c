@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 04:20:20 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 04:25:06 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	test(t_all_data *all_data)
 	view_transform(
 			(t_tuple){{0, -50, -20, 1}},
 			(t_tuple){{0, 1, 0, 1}},
-			(t_tuple){{0, 1, 0, 0}}, &all_data->camera.transform);
+			(t_tuple){{0, -1, 0, 0}}, &all_data->camera.transform);
 	// all_data->camera = give_camera(data_parsing.c_fov);
 	// view_transform(
 	// 		(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
