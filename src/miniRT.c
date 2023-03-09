@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:25:10 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:30:31 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,10 @@ int	main(int argc, char **argv)
 	init_all(&all_data);
 	gen_new_img(&all_data);
 	mlx_hook(all_data.mlx_data.win, 17, 0L, red_button, &all_data);
-	mlx_hook(all_data.mlx_data.win, 2, 1L << 0L, key_press_hook, &all_data);
-	mlx_hook(all_data.mlx_data.win, 3, 1L << 1L, key_release_hook, &all_data);
-	mlx_mouse_hook(all_data.mlx_data.win, mouse_hook, &all_data);
+	mlx_key_hook(all_data.mlx_data.win, key_press_hook, &all_data);
+	// mlx_hook(all_data.mlx_data.win, 2, 1L << 0L, key_press_hook, &all_data);
+	// mlx_hook(all_data.mlx_data.win, 3, 1L << 1L, key_release_hook, &all_data);
+	// mlx_mouse_hook(all_data.mlx_data.win, mouse_hook, &all_data);
 	render(&all_data, &all_data.camera, all_data.objects, &all_data.light);
 	mlx_loop(all_data.mlx_data.mlx);
 	mlx_destroy_image(all_data.mlx_data.mlx, all_data.mlx_data.img);

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:00:32 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:27:43 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,21 @@
 /*   124 || 65363      →													  */
 /*                                                                      	  */
 /* ************************************************************************** */
-int	key_release_hook(int keycode, t_all_data *d)
-{
-	if (keycode == 97 || keycode == 0)
-		d->data_key.key_a = 0;
-	if (keycode == 119 || keycode == 13)
-		d->data_key.key_w = 0;
-	if (keycode == 115 || keycode == 1)
-		d->data_key.key_s = 0;
-	if (keycode == 100 || keycode == 2)
-		d->data_key.key_d = 0;
-	if (keycode == 65362 || keycode == 126)
-		d->data_key.key_up = 0;
-	if (keycode == 65364 || keycode == 125)
-		d->data_key.key_down = 0;
-	if (keycode == 65505 || keycode == 257)
-		d->data_key.key_shift = 0;
-	return (0);
-}
+// int	key_release_hook(int keycode, t_all_data *d)
+// {
+// 	if (keycode == 97 || keycode == 0)
+// 		d->data_key.key_a = 0;
+// 	if (keycode == 119 || keycode == 13)
+// 		d->data_key.key_w = 0;
+// 	if (keycode == 115 || keycode == 1)
+// 		d->data_key.key_s = 0;
+// 	if (keycode == 100 || keycode == 2)
+// 		d->data_key.key_d = 0;
+// 	if (keycode == 65362 || keycode == 126)
+// 		d->data_key.key_up = 0;
+// 	if (keycode == 65364 || keycode == 125)
+// 		d->data_key.key_down = 0;
+// 	if (keycode == 65505 || keycode == 257)
+// 		d->data_key.key_shift = 0;
+// 	return (0);
+// }
