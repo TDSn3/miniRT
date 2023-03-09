@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:09:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 03:32:23 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:43:06 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_all(
 	mwi->win = NULL;
 	mwi->data_img = data_img;
 	mwi->data_img->img = NULL;
-	mwi->win_widht = WIDHT;
+	mwi->win_widht = WIDTH;
 	mwi->win_height = HEIGHT;
 	*data_key = (t_dk){0};
 	all_data->mwi = mwi;

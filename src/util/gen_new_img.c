@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:57:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:43:50 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	gen_new_img(t_all_data *all_data)
 
 	data_img = all_data->data_img;
 	mwi = all_data->mwi;
-	data_img -> img = mlx_new_image(mwi -> mlx, WIDHT, HEIGHT);
+	data_img -> img = mlx_new_image(mwi -> mlx, WIDTH, HEIGHT);
 	data_img -> addr = mlx_get_data_addr(
 			mwi -> data_img -> img,
 			&mwi -> data_img -> bits_per_pixel,
@@ -82,7 +82,7 @@ static void	test(t_all_data *all_data)
 	data_parsing.c_fov = 70 + all_data->data_key->c_add_fov;
 
 
-	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
+	c = give_camera(data_parsing.c_fov);
 	view_transform(
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
 			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},

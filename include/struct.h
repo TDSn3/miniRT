@@ -6,15 +6,15 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:31:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:41:52 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 800
-# define WIDHT 1000
+# define HEIGHT 200
+# define WIDTH 200
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -79,8 +79,6 @@ typedef union s_bgra
 /* ************************************************************************** */
 typedef struct s_camera
 {
-	double		hsize;
-	double		vsize;
 	double		field_of_view;
 	t_matrix4	transform;
 	t_matrix4	inverse;

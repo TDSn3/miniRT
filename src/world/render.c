@@ -23,10 +23,10 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 
 	i = -1;
 	img = (unsigned int *)all_data->data_img->addr;
-	while (++i < camera->hsize)
+	while (++i < WIDTH)
 	{
 		j = -1;
-		while (++j < camera->vsize)
+		while (++j < HEIGHT)
 		{
 			r = ray_for_pixel(camera, j, i);
 			color = convert_to_255(color_at(world, &r));

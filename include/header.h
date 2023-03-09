@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:39:09 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:42:13 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_comps	prepare_computations(t_ray const *r, t_object const *i);
 t_tuple			shade_hit(t_world const *w, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
-t_camera		give_camera(double hsize, double vsize, double field_of_view);
+t_camera	give_camera(double field_of_view);
 t_ray			ray_for_pixel(t_camera const *camera, double px, double py);
 void			render(t_all_data const *all_data,
 					t_camera const *camera, t_world const *world);
