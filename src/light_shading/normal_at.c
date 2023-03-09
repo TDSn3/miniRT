@@ -6,13 +6,13 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:25 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 04:23:19 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static t_tuple	return_wolrd_normal(t_matrix4 const *cpy, t_tuple object_normal);
+static t_tuple	return_world_normal(t_matrix4 const *cpy, t_tuple object_normal);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -48,10 +48,10 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 	}
 	inverse_matrix4(&object.transform, &cpy);
 	transpose_matrix4(&cpy, &transposed);
-	return (return_wolrd_normal(&transposed, object_normal));
+	return (return_world_normal(&transposed, object_normal));
 }
 
-static t_tuple	return_wolrd_normal(t_matrix4 const *cpy, t_tuple object_normal)
+static t_tuple	return_world_normal(t_matrix4 const *cpy, t_tuple object_normal)
 {
 	t_tuple		world_normal;
 
