@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:37:00 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:48:42 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_object
 	t_matrix4		inverse;
 	t_material		material;
 	int				cyl_closed;
-	struct s_object	*prev;
+	// struct s_object	*prev;
 	struct s_object	*next;
 	double			t;
 }	t_object;
