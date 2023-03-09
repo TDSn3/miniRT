@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:22:51 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 03:31:30 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,23 +125,23 @@ typedef struct s_intersection
 	t_object				*object;
 }	t_intersection;
 
-typedef struct s_data_key
-{
-	double	c_add_pos_x;
-	double	c_add_pos_y;
-	double	c_add_pos_z;
-	double	c_add_to_x;
-	double	c_add_to_y;
-	double	c_add_to_z;
-	double	c_add_fov;
-	int		key_a;
-	int		key_w;
-	int		key_s;
-	int		key_d;
-	int		key_up;
-	int		key_down;
-	int		key_shift;
-}	t_dk;
+// typedef struct s_data_key
+// {
+// 	double	c_add_pos_x;
+// 	double	c_add_pos_y;
+// 	double	c_add_pos_z;
+// 	double	c_add_to_x;
+// 	double	c_add_to_y;
+// 	double	c_add_to_z;
+// 	double	c_add_fov;
+// 	int		key_a;
+// 	int		key_w;
+// 	int		key_s;
+// 	int		key_d;
+// 	int		key_up;
+// 	int		key_down;
+// 	int		key_shift;
+// }	t_dk;
 
 typedef struct s_data_parsing
 {
@@ -169,7 +169,7 @@ typedef struct s_mlx_data
 typedef struct s_all_data
 {
 	t_mlx_data		mlx_data;
-	t_dk			data_key;
+	// t_dk			data_key;
 	t_object		*objects;
 	t_light			light;
 	t_camera		camera;
