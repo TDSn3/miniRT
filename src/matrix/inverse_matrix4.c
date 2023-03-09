@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 21:54:20 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:28 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:05:54 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,12 @@ static void	cofactor_all(t_matrix4 const *src, t_matrix4 *mtx)
 	size_t		i;
 	size_t		j;
 
-	i = 0;
-	j = 0;
-	while (i < 4)
+	i = -1;
+	while (++i < 4)
 	{
-		while (j < 4)
-		{
+		j = -1;
+		while (++j < 4)
 			(*mtx)[i][j] = cofactor_matrix4(src, i, j);
-			j++;
-		}
-		j = 0;
-		i++;
 	}
 }
 
