@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:33:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:39:09 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_ray			transform_ray(t_tuple vector, t_tuple point,
 					t_matrix4 const *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, double t);
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object const *object);
 t_object		intersection(double t, t_object *object);
 void			set_transform(t_object *object, t_matrix4 *t);
 void			intersect_caps(
@@ -112,10 +112,10 @@ t_tuple			lighting(
 					t_tuple eyev_vector,
 					t_tuple nomralv_vector,
 					int in_shadow);
-t_tuple			color_at(t_world const *w, t_ray r);
+t_tuple	color_at(t_world const *w, t_ray const *r);
 
-t_object		intersect_world(t_world const *world, t_ray ray);
-t_comps			prepare_computations(t_ray r, t_object const *i);
+t_object	intersect_world(t_object const *objects, t_ray const *ray);
+t_comps	prepare_computations(t_ray const *r, t_object const *i);
 t_tuple			shade_hit(t_world const *w, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
@@ -127,6 +127,6 @@ void			render(t_all_data const *all_data,
 void			object_lst_clear(t_object **lst);
 t_object		*object_lst_new(t_type type, t_dp *dp);
 
-int				is_shadowed(t_world const *world, t_tuple point);
+int	is_shadowed(t_world const *world, t_tuple point);
 
 #endif

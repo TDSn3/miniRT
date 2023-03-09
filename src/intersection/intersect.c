@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:40:37 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:34:35 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_intersection	intersect_cylinder(t_ray const *ray,
 static void				swap(double *a, double *b);
 
 
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object const *object)
 {
 	t_ray			ray;
 

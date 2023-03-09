@@ -29,7 +29,7 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 		while (++j < camera->vsize)
 		{
 			r = ray_for_pixel(camera, j, i);
-			color = convert_to_255(color_at(world, r));
+			color = convert_to_255(color_at(world, &r));
 			*img++ = color.bgra;
 		}
 	}

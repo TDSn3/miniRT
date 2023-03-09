@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:46:08 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:36:18 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,29 @@
 	return (ret);
 }*/
 
-t_object	intersect_world(t_world const *world, t_ray ray)
+t_object	intersect_world(t_object const *objects, t_ray const *ray)
 {
 	t_object		ret;
-	t_object		*cpy;
+	t_object const	*obj;
 	t_intersection	t;
 
 	ret.t = FLT_MAX;
-	ret.type = NONE;
 
-	cpy = world->lst_object;
-	while (cpy)
+	obj = objects;
+	while (obj)
 	{
-		t = intersect(ray.vector, ray.point, cpy);
+		t = intersect(ray->vector, ray->point, obj);
 		if (t.t[1] && t.t[1] < ret.t)
 		{
-			ret = *cpy;
+			ret = *obj;
 			ret.t = t.t[1];
 		}
 		if (t.t[2] && t.t[2] < ret.t)
 		{
-			ret = *cpy;
+			ret = *obj;
 			ret.t = t.t[2];
 		}
-		cpy = cpy->next;
+		obj = obj->next;
 	}
 	return (ret);
 }
