@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:32:01 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:51:20 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static t_intersection	intersect_plane(t_ray const *ray,
 static t_intersection	intersect_cylinder(t_ray const *ray,
 							t_object const *cylinder);
 static void				swap(double *a, double *b);
-
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object const *object)
 {
@@ -117,7 +116,8 @@ static t_intersection	intersect_plane(t_ray const *ray, t_object const *plane)
 	return (ret);
 }
 
-static t_intersection	intersect_cylinder(t_ray const *ray, t_object const *cylinder)
+static t_intersection	intersect_cylinder(t_ray const *ray,
+												t_object const *cylinder)
 {
 	t_intersection	ret;
 	double			abc[3];
@@ -131,14 +131,11 @@ static t_intersection	intersect_cylinder(t_ray const *ray, t_object const *cylin
 	ret.t[0] = 0;
 	ret.t[1] = 0;
 	ret.t[2] = 0;
-	// abc[0] = powf(ray->vector.x, 2) + powf(ray->vector.z, 2);
 	abc[0] = ray->vector.x * ray->vector.x + ray->vector.z * ray->vector.z;
 	if (equal_float(abc[0], 0))
 		return (ret);
-	abc[1] = 2 * ray->point.x * ray->vector.x + 2 * ray->point.z * ray->vector.z;
-	// abc[2] = powf(ray->point.x, 2) + powf(ray->point.z, 2) - 1;
+	abc[1] = 2 * (ray->point.x * ray->vector.x + ray->point.z * ray->vector.z);
 	abc[2] = ray->point.x * ray->point.x + ray->point.z * ray->point.z - 1;
-	// discriminant = powf(abc[1], 2) - 4 * abc[0] * abc[2];
 	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	if (discriminant < 0)
 		return (ret);

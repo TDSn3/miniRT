@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:46:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:39:58 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:54:02 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_matrix4	*translation(t_tuple const *vector, t_matrix4 *dst)
 {
-	// give_identity_matrix4(dst);
 	identity_matrix(4, (double *)dst);
 	(*dst)[0][3] = vector->x;
 	(*dst)[1][3] = vector->y;

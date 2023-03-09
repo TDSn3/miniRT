@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 03:56:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/08 03:26:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:53:29 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_parsed_vector	parse_vec3(char *item)
 	double					y;
 	double					z;
 	char					**tokens;
-	const t_parsed_vector	invalid =
-		(t_parsed_vector){.x = NAN, .y = NAN, .z = NAN};
+	const t_parsed_vector	invalid
+		= (t_parsed_vector){.x = NAN, .y = NAN, .z = NAN};
 
 	tokens = ft_split(item, ',');
 	if (!tokens)

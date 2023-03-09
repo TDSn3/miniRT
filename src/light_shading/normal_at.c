@@ -6,13 +6,14 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:32:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:52:47 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static t_tuple	return_world_normal(t_matrix4 const *cpy, t_tuple object_normal);
+static t_tuple	return_world_normal(t_matrix4 const *cpy,
+					t_tuple object_normal);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -25,7 +26,6 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 	t_tuple		object_point;
 	t_tuple		object_normal;
 	t_matrix4	cpy;
-	// t_matrix4	stock;
 	t_matrix4	transposed;
 	double		dist;
 
@@ -36,9 +36,8 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 		object_normal = (t_tuple){{0, 1, 0, 0}};
 	else
 	{
-		// dist = powf(object_point.x, 2) + powf(object_point.z, 2);
-		dist = object_point.x * object_point.x +
-			object_point.z * object_point.z;
+		dist = object_point.x * object_point.x
+			+ object_point.z * object_point.z;
 		if (dist < 1 && object_point.y >= +1. - EPSILON)
 			object_normal = (t_tuple){{0, 1, 0, 0}};
 		else if (dist < 1 && object_point.y <= -1. + EPSILON)

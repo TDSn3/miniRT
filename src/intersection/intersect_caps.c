@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:41:40 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:49:27 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ static int	check_cap(t_ray const *ray, double t);
 /* ************************************************************************** */
 /*                                                                            */
 /*   ATTENTION																  */
-/*   ray->vector.y >= -0.1 && ray->vector.y <= 0.1                              */
+/*   ray->vector.y >= -0.1 && ray->vector.y <= 0.1                            */
 /*                                                                            */
 /* ************************************************************************** */
-void	intersect_caps(t_ray const *ray, t_object const *object, t_intersection *ret)
+void	intersect_caps(t_ray const *ray, t_object const *object,
+			t_intersection *ret)
 {
 	double	t;
 

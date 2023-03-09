@@ -36,7 +36,6 @@ FILENAMES	=								\
 			translation						\
 			scaling							\
 			rotation_xyz					\
-			shearing						\
 			transform_ray					\
 		)									\
 		$(addprefix intersection/,			\
