@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:47:52 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:49:02 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	key_press_hook(int keycode, t_all_data *d)
 {
 	printf("%sKey pressed : %d%s\n", COLOR_MAGENTA, keycode, COLOR_RESET);
 	if (keycode == 53 || keycode == 65307)
-		return(mlx_loop_end(d->mwi->mlx), 0);
+		return (mlx_loop_end(d->mwi->mlx), 0);
 	if (keycode == 65362 || keycode == 126)
 	{
 		d->data_key->c_add_pos_y -= 1;

@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:41:52 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:50:58 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCT_H
 
 # define HEIGHT 200
-# define WIDTH 200
+# define WIDTH 400
 # define EPSILON 0.00001
 
 typedef enum e_type
