@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:20:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:46:03 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,17 @@ int				gen_new_img(t_all_data *all_data);
 
 void			init_point(t_tuple *tuple, double x, double y, double z);
 void			init_vector(t_tuple *tuple, double x, double y, double z);
-t_tuple			t_tuple_plus(t_tuple left, t_tuple right);
-t_tuple			t_tuple_minus(t_tuple left, t_tuple right);
-t_tuple			t_tuple_nega(t_tuple tuple);
-t_tuple			t_tuple_multi_scal(t_tuple left, double right);
+t_tuple	t_tuple_plus(t_tuple const *left, t_tuple const *right);
+t_tuple	t_tuple_minus(t_tuple const *left, t_tuple const *right);
+t_tuple	t_tuple_nega(t_tuple const *tuple);
+// t_tuple			t_tuple_multi_scal(t_tuple left, double right);
+t_tuple	t_tuple_scale(t_tuple const *left, double right);
 void			t_tuple_div_scal(t_tuple *a, t_tuple *left, double right);
-t_tuple			t_tuple_multi(t_tuple left, t_tuple right);
+// t_tuple			t_tuple_multi(t_tuple left, t_tuple right);
+t_tuple	t_tuple_dot(t_tuple const *left, t_tuple const *right);
+
 double	magnitude_vector(t_tuple const *tuple);
-t_tuple	*normalize_vector(t_tuple *tuple);
+void	normalize_vector(t_tuple *tuple);
 t_tuple	normalization_vector(t_tuple const *tuple);
 double			scalar_product_vector(t_tuple *a, t_tuple *b);
 t_tuple	cross_product_vector(t_tuple const *a, t_tuple const *b);
@@ -82,7 +85,7 @@ double			minor_matrix4(t_matrix4 const *src, size_t x_del, size_t y_del);
 int				is_invertible_matrix4(t_matrix4 const *a);
 t_matrix4		*inverse_matrix4(t_matrix4 const *src, t_matrix4 *dst);
 
-t_matrix4		*translation(t_tuple vector, t_matrix4 *dst);
+t_matrix4	*translation(t_tuple const *vector, t_matrix4 *dst);
 t_matrix4		*scaling(t_tuple vector, t_matrix4 *dst);
 t_matrix4		*rotation_x(double deg, t_matrix4 *dst);
 t_matrix4		*rotation_y(double deg, t_matrix4 *dst);

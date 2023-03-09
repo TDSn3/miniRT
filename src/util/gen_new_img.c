@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 04:25:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:42:07 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,9 @@ static void	test(t_all_data *all_data)
 
 	rayon_sp1 = 10;
 	t_matrix4 translation_matrix;
-	translation((t_tuple){{0, 0, -30, 0}}, &translation_matrix);
+	t_tuple translation_tuple = (t_tuple){{0, 0, -30, 0}};
+	translation(&translation_tuple, &translation_matrix);
+	// translation((t_tuple){{0, 0, -30, 0}}, &translation_matrix);
 	t_matrix4 scaling_matrix;
 	scaling((t_tuple){{rayon_sp1, rayon_sp1, rayon_sp1, 0}}, &scaling_matrix);
 	multiply_matrix4(&translation_matrix, &scaling_matrix, &sp1->transform);
@@ -157,7 +159,9 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
 	// t_matrix4 translation1;
-	translation((t_tuple){{9, 0, 30, 0}}, &cy1->transform);
+	t_tuple translation_tuple1 = (t_tuple){{9, 0, 30, 0}};
+	translation(&translation_tuple1, &cy1->transform);
+	// translation((t_tuple){{9, 0, 30, 0}}, &cy1->transform);
 	cy1->transform[0][0] *= 10;
 	cy1->transform[1][1] *= 10;
 	// t_matrix4 shearing1;

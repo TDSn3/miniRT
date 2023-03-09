@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:12:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:35 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:28:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 /*   Divise un tuple par un scalaire.										  */
 /*                                                                            */
 /* ************************************************************************** */
-void	t_tuple_div_scal(t_tuple *a, t_tuple *left, double right)
-{
-	a->x = left->x / right;
-	a->y = left->y / right;
-	a->z = left->z / right;
-	a->w = left->w / right;
-}
+// void	t_tuple_div_scal(t_tuple *a, t_tuple *left, double right)
+// {
+// 	a->x = left->x / right;
+// 	a->y = left->y / right;
+// 	a->z = left->z / right;
+// 	a->w = left->w / right;
+// }

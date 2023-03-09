@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:34:35 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:32:01 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static double	give_discri(t_tuple vector,
 	double	discriminant;
 	t_tuple	sphere_to_ray;
 
-	sphere_to_ray = t_tuple_minus(point, sphere.position);
+	sphere_to_ray = t_tuple_minus(&point, &sphere.position);
 	abc[0] = scalar_product_vector(&vector, &vector);
 	abc[1] = 2 * scalar_product_vector(&vector, &sphere_to_ray);
 	abc[2] = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;

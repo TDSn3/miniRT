@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 02:38:22 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:38:31 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@
 t_comps	prepare_computations(t_ray const *r, t_object const *i)
 {
 	t_comps	comps;
+	t_tuple	epsilon;
 
 	comps.object = *i;
 	comps.point = position(r->vector, r->point, comps.object.t);
-	comps.eyev_vector = t_tuple_nega(r->vector);
+	comps.eyev_vector = t_tuple_nega(&r->vector);
 	comps.normalv_vector = normal_at(*i, comps.point);
 	if (scalar_product_vector(&comps.normalv_vector, &comps.eyev_vector) < 0)
 	{
 		comps.inside = 1;
-		comps.normalv_vector = t_tuple_nega(comps.normalv_vector);
+		comps.normalv_vector = t_tuple_nega(&comps.normalv_vector);
 	}
 	else
 		comps.inside = 0;
-	comps.over_point = t_tuple_plus(comps.point,
-			t_tuple_multi_scal(comps.normalv_vector, EPSILON));
+	epsilon = t_tuple_scale(&comps.normalv_vector, EPSILON);
+	comps.over_point = t_tuple_plus(&comps.point, &epsilon);
+	// comps.over_point = t_tuple_plus(&comps.point,
+	// 		t_tuple_scale(&comps.normalv_vector, EPSILON));
 	return (comps);
 }

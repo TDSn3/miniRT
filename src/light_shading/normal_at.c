@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 12:12:37 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:19:43 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:32:12 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 
 	object_point = multiply_matrix4_tuple(&object.inverse, world_point);
 	if (object.type == SPHERE)
-		object_normal = t_tuple_minus(object_point, object.position);
+		object_normal = t_tuple_minus(&object_point, &object.position);
 	else if (object.type == PLANE)
 		object_normal = (t_tuple){{0, 1, 0, 0}};
 	else
