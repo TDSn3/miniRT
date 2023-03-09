@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:47:18 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 04:20:20 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	test(t_all_data *all_data)
 	t_object	*sp1;
 	t_object	*pl1;
 	t_object	*cy1;
-	t_object	*cy2;
+	// t_object	*cy2;
 	// t_dp		data_parsing;
 
 /* ************************************************************************** */
@@ -156,13 +156,15 @@ static void	test(t_all_data *all_data)
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
 //	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
 //	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
-	t_matrix4 translation1;
-	translation((t_tuple){{9, 0, 30, 0}}, &translation1);
-	t_matrix4 shearing1;
+	// t_matrix4 translation1;
+	translation((t_tuple){{9, 0, 30, 0}}, &cy1->transform);
+	cy1->transform[0][0] *= 10;
+	cy1->transform[1][1] *= 10;
+	// t_matrix4 shearing1;
 	// shearing by 20 on the y axis
-	double f6[6]= {20, 0, 0, 0, 0, 0};
-	shearing(f6, &shearing1);
-	multiply_matrix4(&translation1, &shearing1, &cy1->transform);
+	// double f6[6]= {20, 0, 0, 0, 0, 0};
+	// shearing(f6, &shearing1);
+	// multiply_matrix4(&translation1, &shearing1, &cy1->transform);
 	inverse_matrix4(&cy1->transform, &cy1->inverse);
 
 	// cy1->cyl_max = 20;
@@ -172,26 +174,26 @@ static void	test(t_all_data *all_data)
 	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
 
 
-	// cy2 = so_new(CYLINDER, data_parsing);
-	cy2 = object_lst_new(CYLINDER, &all_data->ambient);
+	// // cy2 = so_new(CYLINDER, data_parsing);
+	// cy2 = object_lst_new(CYLINDER, &all_data->ambient);
 
-	// cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
-	// cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
-	// cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
-	t_matrix4 rot_x;
-	rotation_x(90, &rot_x);
-	t_matrix4 rot_z;
-	rotation_z(45, &rot_z);
-	t_matrix4 translation_matrix_2;
-	translation((t_tuple){{10, 3, 20, 0}}, &translation_matrix_2);
-	t_matrix4 tmp;
-	multiply_matrix4(&rot_x, &rot_z, &tmp);
-	multiply_matrix4(&tmp, &translation_matrix_2, &cy2->transform);
-	inverse_matrix4(&cy2->transform, &cy2->inverse);
-	// cy2->cyl_max = 10;
-	// cy2->cyl_min = -10;
-	cy2->cyl_closed = 1;
-	cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
+	// // cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
+	// // cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
+	// // cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
+	// t_matrix4 rot_x;
+	// rotation_x(90, &rot_x);
+	// t_matrix4 rot_z;
+	// rotation_z(45, &rot_z);
+	// t_matrix4 translation_matrix_2;
+	// translation((t_tuple){{10, 3, 20, 0}}, &translation_matrix_2);
+	// t_matrix4 tmp;
+	// multiply_matrix4(&rot_x, &rot_z, &tmp);
+	// multiply_matrix4(&tmp, &translation_matrix_2, &cy2->transform);
+	// inverse_matrix4(&cy2->transform, &cy2->inverse);
+	// // cy2->cyl_max = 10;
+	// // cy2->cyl_min = -10;
+	// cy2->cyl_closed = 1;
+	// cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
 
 /* ************************************************************************** */
 
@@ -201,7 +203,7 @@ static void	test(t_all_data *all_data)
 	all_data->objects = sp1;
 	sp1->next = pl1;
 	pl1->next = cy1;
-	cy1->next = cy2;
+	// cy1->next = cy2;
 
 	// render(all_data, &c, &w);
 	// so_clear(&sp1);
