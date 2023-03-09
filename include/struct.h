@@ -6,15 +6,15 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:38:16 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:00:32 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 800
-# define WIDHT 1000
+# define HEIGHT 200
+# define WIDTH 200
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -78,10 +78,13 @@ typedef union s_bgra
 /*   field_of_view   angle qui décrit ce que la caméra peut voir              */
 /*                                                                            */
 /* ************************************************************************** */
+
+typedef double	t_matrix4[4][4];
+typedef double	t_matrix3[3][3];
+typedef double	t_matrix2[2][2];
+
 typedef struct s_camera
 {
-	double		hsize;
-	double		vsize;
 	double		field_of_view;
 	t_matrix4	transform;
 	t_matrix4	inverse;
@@ -107,12 +110,6 @@ typedef struct s_object
 	struct s_object	*next;
 	double			t;
 }	t_object;
-
-typedef struct s_world
-{
-	t_object	*lst_object;
-	t_light		*light;
-}	t_world;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -146,42 +143,36 @@ typedef struct s_data_key
 	int		key_shift;
 }	t_dk;
 
-typedef struct s_data_parsing
+typedef struct s_ambient
 {
-	double	ambient;
-	t_tuple	a_color;
-	t_tuple	c_position;
-	t_tuple	c_to;
-	double	c_fov;
-	t_tuple	l_position;
-	double	l_i;
-	t_tuple	l_color;
-}	t_dp;
+	double	intensity;
+	t_tuple	color;
+}	t_ambient;
 
-typedef struct s_data_mlx_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data_mlx_img;
-
-typedef struct s_mlx_win_img
+typedef struct s_mlx_data
 {
 	void			*mlx;
 	void			*win;
-	t_data_mlx_img	*data_img;
-	int				win_widht;
-	int				win_height;
-}	t_mwi;
+	void			*img;
+	unsigned int	*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}	t_mlx_data;
+
+typedef struct s_scene
+{
+	t_camera	camera;
+	t_light		light;
+	t_ambient	ambient;
+	t_object	*objects;
+}	t_scene;
 
 typedef struct s_all_data
 {
-	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
-	t_dk			*data_key;
-	t_object		*list_object;
+	t_mlx_data		mlx_data;
+	t_dk			data_key;
+	t_scene			scene;
 }	t_all_data;
 
 #endif

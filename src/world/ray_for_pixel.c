@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:32:12 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:28:38 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 00:30:15 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ t_ray	ray_for_pixel(t_camera const *camera, double px, double py)
 
 	xoffset = (px + 0.5) * camera->pixel_size;
 	yoffset = (py + 0.5) * camera->pixel_size;
-	world_x = camera->half_width - xoffset;
-	world_y = camera->half_height - yoffset;
+	world_x = WIDTH/2 - xoffset;
+	world_y = HEIGHT/2 - yoffset;
 	// inverse_matrix4(&camera->transform, &cam_transform_inv);
 	pixel = multiply_matrix4_tuple(&camera->inverse,
 			(t_tuple){{world_x, world_y, -1, 1}});

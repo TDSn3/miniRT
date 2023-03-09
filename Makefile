@@ -1,5 +1,5 @@
 NAME		= miniRT
-CFLAGS		= -O3 -Werror -Wall -Wextra -Wshadow -MMD -D_REENTRANT -DLinux -I include -I libmlx -I libft
+CFLAGS		= -g3 -Werror -Wall -Wextra -Wshadow -MMD -D_REENTRANT -DLinux -I include -I libmlx -I libft
 LDFLAGS		= -Llibmlx -Llibft
 LDLIBS		= -lpthread -pthread -lmlx -lXext -lX11 -lm
 

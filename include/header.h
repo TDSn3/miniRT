@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 22:33:06 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/09 02:02:26 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@
 # include "comps.h"
 # include "struct.h"
 # include "colors.h"
+# include "parser.h"
 
-void			init_all(
-					t_all_data *all_data,
-					t_mwi *mwi,
-					t_data_mlx_img *data_img,
-					t_dk *data_key);
+int	init_all(t_mlx_data *mlx_data, t_dk *data_key, t_scene *scene,
+		t_parsed_scene const *parsed_scene);
 int				equal_float(double a, double b);
-void			print_canvas(t_all_data const *all_data);
+// void			print_canvas(t_all_data const *all_data);
 t_bgra			convert_to_255(t_tuple color);
 double			conv_color(double color_255);
 int				key_press_hook(int keycode, t_all_data *d);
 int				key_release_hook(int keycode, t_all_data *d);
 int				mouse_hook(int mousecode, int x, int y, t_all_data *d);
 int				red_button(t_all_data *d);
-int				gen_new_img(t_all_data *all_data);
+// int				gen_new_img(t_all_data *all_data);
+void	gen_new_img(t_mlx_data const *mlx_data, t_scene const *scene);
+
 
 void			init_point(t_tuple *tuple, double x, double y, double z);
 void			init_vector(t_tuple *tuple, double x, double y, double z);
@@ -96,7 +96,7 @@ t_ray			transform_ray(t_tuple vector, t_tuple point,
 					t_matrix4 const *mtx);
 
 t_tuple			position(t_tuple vector, t_tuple point, double t);
-t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
+t_intersection	intersect(t_tuple vector, t_tuple point, t_object const *object);
 t_object		intersection(double t, t_object *object);
 void			set_transform(t_object *object, t_matrix4 *t);
 void			intersect_caps(
@@ -112,21 +112,19 @@ t_tuple			lighting(
 					t_tuple eyev_vector,
 					t_tuple nomralv_vector,
 					int in_shadow);
-t_tuple			color_at(t_world const *w, t_ray r);
+t_tuple	color_at(t_object const *objects, t_light const *light, t_ray const *r);
 
-t_object		intersect_world(t_world const *world, t_ray ray);
-t_comps			prepare_computations(t_ray r, t_object const *i);
-t_tuple			shade_hit(t_world const *w, t_comps comps);
+t_object		intersect_world(t_object const *objects, t_ray const *ray);
+t_comps			prepare_computations(t_ray const *r, t_object const *i);
+t_tuple			shade_hit(t_object const *objects, t_light const *light, t_comps comps);
 t_matrix4		*view_transform(t_tuple from, t_tuple to, t_tuple up,
 					t_matrix4 *dst);
 t_camera		give_camera(double hsize, double vsize, double field_of_view);
 t_ray			ray_for_pixel(t_camera const *camera, double px, double py);
-void			render(t_all_data const *all_data,
-					t_camera const *camera, t_world const *world);
-
+void	render(unsigned int *img_addr, t_camera const *camera,
+			t_object const *objects, t_light const *light);
 void			object_lst_clear(t_object **lst);
-t_object		*object_lst_new(t_type type, t_dp *dp);
+t_object		*object_lst_new(t_type type, t_ambient const *ambient);
 
-int				is_shadowed(t_world const *world, t_tuple point);
-
+int	is_shadowed(t_object const *objects, t_light const *light, t_tuple point);
 #endif

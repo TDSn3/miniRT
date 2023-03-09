@@ -12,25 +12,23 @@
 
 #include <header.h>
 
-void	render(t_all_data const *all_data, t_camera const *camera,
-			t_world const *world)
+void	render(unsigned int *img_addr, t_camera const *camera,
+			t_object const *objects, t_light const *light)
 {
 	size_t			i;
 	size_t			j;
 	t_ray			r;
 	t_bgra			color;
-	unsigned int	*img;
 
 	i = -1;
-	img = (unsigned int *)all_data->data_img->addr;
-	while (++i < camera->hsize)
+	while (++i < HEIGHT)
 	{
 		j = -1;
-		while (++j < camera->vsize)
+		while (++j < WIDTH)
 		{
-			r = ray_for_pixel(camera, j, i);
-			color = convert_to_255(color_at(world, r));
-			*img++ = color.bgra;
+			r = ray_for_pixel(camera, i, j);
+			color = convert_to_255(color_at(objects, light, &r));
+			*img_addr++ = color.bgra;
 		}
 	}
 }
