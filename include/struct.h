@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:48:42 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 05:40:05 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ typedef enum e_type
 	PLANE,
 	CYLINDER,
 }	t_type;
+
+typedef double	t_matrix4[4][4];
+typedef double	t_matrix3[3][3];
+typedef double	t_matrix2[2][2];
 
 typedef union s_tuple
 {
@@ -100,16 +104,10 @@ typedef struct s_object
 	t_matrix4		inverse;
 	t_material		material;
 	int				cyl_closed;
-	// struct s_object	*prev;
 	struct s_object	*next;
 	double			t;
 }	t_object;
 
-// typedef struct s_world
-// {
-// 	t_object	*lst_object;
-// 	t_light		*light;
-// }	t_world;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -125,36 +123,6 @@ typedef struct s_intersection
 	t_object				*object;
 }	t_intersection;
 
-// typedef struct s_data_key
-// {
-// 	double	c_add_pos_x;
-// 	double	c_add_pos_y;
-// 	double	c_add_pos_z;
-// 	double	c_add_to_x;
-// 	double	c_add_to_y;
-// 	double	c_add_to_z;
-// 	double	c_add_fov;
-// 	int		key_a;
-// 	int		key_w;
-// 	int		key_s;
-// 	int		key_d;
-// 	int		key_up;
-// 	int		key_down;
-// 	int		key_shift;
-// }	t_dk;
-
-// typedef struct s_data_parsing
-// {
-// 	double	ambient;
-// 	t_tuple	a_color;
-// 	t_tuple	c_position;
-// 	t_tuple	c_to;
-// 	double	c_fov;
-// 	t_tuple	l_position;
-// 	double	l_i;
-// 	t_tuple	l_color;
-// }	t_dp;
-
 typedef struct s_mlx_data
 {
 	void			*mlx;
@@ -166,20 +134,13 @@ typedef struct s_mlx_data
 	int				endian;
 }	t_mlx_data;
 
-typedef struct s_ambient
-{
-	double		intensity;
-	t_tuple		color;
-}	t_ambient;
 
 typedef struct s_all_data
 {
 	t_mlx_data		mlx_data;
-	// t_dk			data_key;
 	t_object		*objects;
 	t_light			light;
 	t_camera		camera;
-	t_ambient		ambient;
 }	t_all_data;
 
 #endif

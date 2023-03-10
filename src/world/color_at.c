@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:18:47 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 06:06:22 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_tuple	color_at(t_object const *objects, t_light const *light, t_ray const *r)
 	t_tuple		ret;
 
 	inter = intersect_world(objects, r);
-	if (inter.t == FLT_MAX)
+	if (isinf(inter.t))
 		return ((t_tuple){0});
 	comps = prepare_computations(r, &inter);
 	ret = shade_hit(objects, light, comps);

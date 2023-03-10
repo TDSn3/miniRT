@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:46:03 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 05:40:47 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # include "comps.h"
 # include "struct.h"
 # include "colors.h"
+# include "parser.h"
 
-void			init_all(t_all_data *all_data);
 int				equal_float(double a, double b);
 void			print_canvas(t_all_data const *all_data);
 t_bgra			convert_to_255(t_tuple color);
@@ -126,7 +126,7 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 			t_object const *object, t_light const *light);
 
 void			object_lst_clear(t_object **lst);
-t_object		*object_lst_new(t_type type, t_ambient const *ambient);
+t_object	*object_lst_new(t_type type, double a_intensity, t_tuple a_color);
 
 int	is_shadowed(t_object const *objects, t_light const *light, t_tuple point);
 

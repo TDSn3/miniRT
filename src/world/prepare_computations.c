@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:38:31 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 06:02:42 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,5 @@ t_comps	prepare_computations(t_ray const *r, t_object const *i)
 		comps.inside = 0;
 	epsilon = t_tuple_scale(&comps.normalv_vector, EPSILON);
 	comps.over_point = t_tuple_plus(&comps.point, &epsilon);
-	// comps.over_point = t_tuple_plus(&comps.point,
-	// 		t_tuple_scale(&comps.normalv_vector, EPSILON));
 	return (comps);
 }

@@ -6,14 +6,14 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:37:38 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/08 20:33:59 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 06:23:57 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "struct.h"
+# include "header.h"
 
 typedef enum e_parameter {
 	DEC,
@@ -87,4 +87,11 @@ int		count_tokens(char **tokens);
 int		parse_items(int n, char **tokens, const t_parameter *syntax,
 			void **params);
 
+void	print_objects(t_parsed_scene const *scene);
+int	init_all_data(t_all_data *all_data, t_parsed_scene *scene);
+int	init_camera(t_camera *camera, t_parsed_camera *parsed_camera);
+int	init_light(t_light *light, t_parsed_light *parsed_light);
+t_object	*init_objects(t_parsed_object *parsed_objects,
+				t_parsed_ambient *parsed_ambient);
+void	free_objects(t_parsed_object *objects);
 #endif

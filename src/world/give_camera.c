@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:42:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:55:59 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 06:10:03 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_camera	give_camera(double field_of_view)
 	double		half_view;
 	double		aspect;
 
+	ret = (t_camera){0};
 	ret.field_of_view = field_of_view;
 	identity_matrix(4, (double *)&ret.transform);
 	inverse_matrix4(&ret.transform, &ret.inverse);
