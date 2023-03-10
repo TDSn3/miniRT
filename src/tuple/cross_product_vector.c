@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cross_product_vector.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 21:51:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:11:10 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 21:27:19 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+#include <assert.h>
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -19,6 +20,7 @@
 /* ************************************************************************** */
 t_tuple	cross_product_vector(t_tuple const *a, t_tuple const *b)
 {
+	assert(a->w == 0 && b->w == 0);
 	return ((t_tuple){
 		.x = a->y * b->z - a->z * b->y,
 		.y = a->z * b->x - a->x * b->z,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:09:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/10 06:44:43 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 21:47:12 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_all_data(t_all_data *all_data, t_parsed_scene *scene)
 	if (!scene->objects)
 		return (printf("Error\nNo objects in scene\n"), 1);
 	all_data->objects = init_objects(scene->objects, &scene->ambient);
+	free_objects(scene->objects);
 	if (!all_data->objects)
 		return (printf("Error\nFailed to initialize objects\n"), 1);
 	return (0);

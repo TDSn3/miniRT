@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/10 05:40:05 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 22:19:00 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_camera
 typedef struct s_object
 {
 	t_type			type;
-	t_tuple			position;
+	// t_tuple			position;
 	t_matrix4		transform;
 	t_matrix4		inverse;
 	t_material		material;

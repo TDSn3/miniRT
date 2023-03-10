@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   magnitude_vector.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:31:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:13:12 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 21:26:23 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+#include <assert.h>
 
 double	magnitude_vector(t_tuple const *tuple)
 {
+	assert(tuple->w == 0);
 	return (sqrtf(
 			tuple->x * tuple->x
 			+ tuple->y * tuple->y

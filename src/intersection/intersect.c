@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 15:51:20 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 23:00:36 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,13 @@ static double	give_discri(t_tuple vector,
 {
 	double	discriminant;
 	t_tuple	sphere_to_ray;
+	t_tuple origin;
 
-	sphere_to_ray = t_tuple_minus(&point, &sphere.position);
-	abc[0] = scalar_product_vector(&vector, &vector);
-	abc[1] = 2 * scalar_product_vector(&vector, &sphere_to_ray);
+	(void)sphere;
+	origin = (t_tuple){{0, 0, 0, 1}};
+	sphere_to_ray = t_tuple_minus(&point, &origin);
+	abc[0] = scalar_product_vector(&vector, &sphere_to_ray);
+	abc[1] = 2 * scalar_product_vector(&sphere_to_ray, &sphere_to_ray);
 	abc[2] = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
 	discriminant = abc[1] * abc[1] - 4 * abc[0] * abc[2];
 	return (discriminant);

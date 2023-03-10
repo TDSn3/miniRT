@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   object_lst.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:44:40 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/10 05:40:33 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 23:08:43 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	object_lst_clear(t_object **lst)
 	}
 }
 
-t_object	*object_lst_new(t_type type, double a_intensity, t_tuple a_color)
+t_object	*object_lst_new(t_type type, t_parsed_ambient const *ambient)
 {
 	t_object	*obj;
 
@@ -33,12 +33,11 @@ t_object	*object_lst_new(t_type type, double a_intensity, t_tuple a_color)
 		return (NULL);
 	*obj = (t_object){0};
 	obj->type = type;
-	obj->position = (t_tuple){{0, 0, 0, 1}};
 	identity_matrix(4, (double *)&obj->transform);
 	inverse_matrix4(&obj->transform, &obj->inverse);
-	obj->material.color = (t_tuple){{1, 0.2, 1, 0}};
-	obj->material.ambient = a_intensity;
-	obj->material.a_color = a_color;
+	obj->material.ambient = ambient->intensity;
+	obj->material.a_color = (t_tuple){{ambient->color.b, ambient->color.g,
+		ambient->color.r, 0}};
 	obj->material.diffuse = 0.9;
 	obj->material.specular = 0.9;
 	obj->material.shininess = 200;
