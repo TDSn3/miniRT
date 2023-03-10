@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 05:17:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/10 23:02:41 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/10 23:37:38 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_camera(t_camera *camera, t_parsed_camera *parsed_camera)
 {
 	*camera = give_camera(parsed_camera->fov_degrees);
 	view_transform(
-		(t_tuple){{0, -50, 20, 1}},
+		(t_tuple){{0, -50, -20, 1}},
 		(t_tuple){{0, 1, 0, 1}},
 		(t_tuple){{0, -1, 0, 0}}, &camera->transform);
 	inverse_matrix4(&camera->transform, &camera->inverse);
