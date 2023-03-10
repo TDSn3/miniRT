@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   key_press_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/09 03:29:35 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 19:23:50 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+#include <X11/keysym.h>
 
 // static void	awsd_shift(int keycode, t_all_data *d);
 // static void	part_two(int keycode, t_all_data *d);
@@ -40,7 +41,12 @@
 int	key_press_hook(int keycode, t_all_data *d)
 {
 	printf("%sKey pressed : %d%s\n", COLOR_MAGENTA, keycode, COLOR_RESET);
-	if (keycode == 53 || keycode == 65307)
+	if (keycode == XK_r)
+	{
+		printf("refresh image\n");
+		render(&d->mlx_data, &d->camera, d->objects, &d->light);
+	}
+	else if (keycode == XK_Escape)
 		return (mlx_loop_end(d->mlx_data.mlx), 0);
 	return (0);
 }
