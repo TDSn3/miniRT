@@ -1,0 +1,12 @@
+{
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/mnt/nfs/homes/rcatini/miniRT-1",
+			"binaryPath": "/mnt/nfs/homes/rcatini/miniRT-1/miniRT",
+			"binaryArgs": ["scenes/minimal.rt"]
+		}
+	],
+	"files.associations": {
+		"keysymdef.h": "c"
+	}
+}
