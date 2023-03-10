@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 05:17:32 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/10 06:51:27 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 07:16:16 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_common_params(t_object *object, t_parsed_object *parsed_object,
 
 void	init_sphere(t_object *object, t_parsed_object *parsed_object)
 {
+	printf("init sphere\n");
 	(void)object;
 	(void)parsed_object;
 	// TODO: get radius from parsed_objects and set transform matrix (scale)
@@ -36,6 +37,7 @@ void	init_sphere(t_object *object, t_parsed_object *parsed_object)
 
 void	init_plane(t_object *object, t_parsed_object *parsed_object)
 {
+	printf("init plane\n");
 	(void)object;
 	(void)parsed_object;
 	// TODO: get normal from parsed_objects and set transform matrix (rotate)
@@ -43,6 +45,7 @@ void	init_plane(t_object *object, t_parsed_object *parsed_object)
 
 void	init_cylinder(t_object *object, t_parsed_object *parsed_object)
 {
+	printf("init cylinder\n");
 	(void)object;
 	(void)parsed_object;
 	object->cyl_closed = 1;

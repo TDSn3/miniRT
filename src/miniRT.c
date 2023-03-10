@@ -6,7 +6,7 @@
 /*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/10 06:51:13 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/10 07:14:53 by roberto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,12 @@ int	main(int argc, char **argv)
 		return (printf("Usage: ./miniRT <scene_file.rt>\n"), 1);
 	if (get_parsed_scene(argv[1], &parsed_scene))
 		return (1);
-	init_all_data(&all_data, &parsed_scene);
+	if (init_all_data(&all_data, &parsed_scene))
+		return (1);
 	mlx_hook(all_data.mlx_data.win, 17, 0L, red_button, &all_data);
 	mlx_key_hook(all_data.mlx_data.win, key_press_hook, &all_data);
-	render(&all_data, &all_data.camera, all_data.objects, &all_data.light);
+	render(&all_data.mlx_data, &all_data.camera, all_data.objects,
+		&all_data.light);
 	mlx_loop_and_exit(&all_data.mlx_data);
 	object_lst_clear(&all_data.objects);
 }

@@ -12,7 +12,7 @@
 
 #include <header.h>
 
-void	render(t_all_data const *all_data, t_camera const *camera,
+void	render(t_mlx_data *mlx_data, t_camera const *camera,
 			t_object const *objects, t_light const *light)
 {
 	size_t			i;
@@ -22,7 +22,7 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 	unsigned int	*img;
 
 	i = -1;
-	img = all_data->mlx_data.addr;
+	img = mlx_data->addr;
 	while (++i < HEIGHT)
 	{
 		j = -1;
@@ -33,6 +33,5 @@ void	render(t_all_data const *all_data, t_camera const *camera,
 			*img++ = color.bgra;
 		}
 	}
-	mlx_put_image_to_window(all_data->mlx_data.mlx, all_data->mlx_data.win,
-		all_data->mlx_data.img, 0, 0);
+	mlx_put_image_to_window(mlx_data->mlx, mlx_data->win, mlx_data->img, 0, 0);
 }
