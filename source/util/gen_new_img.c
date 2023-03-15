@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 15:43:53 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:07:22 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ static void	test(t_all_data *all_data)
 	data_parsing.c_to.z = all_data->parsed_scene->camera.direction.z
 		+ all_data->data_key->c_add_to_z;
 
-	data_parsing.c_fov = all_data->parsed_scene->camera.fov_degrees
-		+ all_data->data_key->c_add_fov;
+	data_parsing.c_fov = deg_to_rad(all_data->parsed_scene->camera.fov_degrees
+		+ all_data->data_key->c_add_fov);
 
 	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
 	c.transform = view_transform(
