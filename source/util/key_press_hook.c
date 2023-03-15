@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 12:15:05 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:10:10 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	part_two(int keycode, t_all_data *d)
 		mlx_destroy_window(d->mwi->mlx, d->mwi->win);
 		mlx_destroy_display(d->mwi->mlx);
 		free(d->mwi->mlx);
-		so_clear(d -> list_object);
+		so_clear(&d -> list_object);
 		exit (0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 11:35:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:06:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ typedef struct s_all_data
 	t_data_mlx_img	*data_img;
 	t_dk			*data_key;
 	int				gen_img;
-	t_object		**list_object;
+	t_object		*list_object;
 	t_parsed_scene	*parsed_scene;
 }	t_all_data;
 

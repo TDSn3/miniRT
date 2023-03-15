@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 12:35:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:20:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,6 @@ static void	test(t_all_data *all_data)
 	t_world		w;
 	t_camera	c;
 	t_light		light;
-	t_object	*sp1;
-	t_object	*pl1;
-	t_object	*cy1;
-	t_object	*cy2;
 	t_dp		data_parsing;
 
 /* ************************************************************************** */
@@ -120,82 +116,71 @@ static void	test(t_all_data *all_data)
 
 
 	t_parsed_object *cpy;
+	t_object		*last_object;
 
 	cpy = all_data->parsed_scene->objects;
 	while (cpy)
 	{
-		printf("%sNew object%s\n", COLOR_BOLD_MAGENTA, COLOR_RESET);
-//		so_add_back(all_data->list_object, pl1);
+		printf("%sNew object", COLOR_BOLD_MAGENTA);
+		if (so_add_back(&all_data->list_object, so_new(cpy->type, data_parsing)))
+			return ; // a compléter
+		last_object = so_last(all_data->list_object);
+		if (!last_object)
+			continue ;
+		if (cpy->type == SPHERE)
+		{
+			printf(" SPHERE%s\n", COLOR_RESET);
+			last_object->transform = multiply_matrix4(
+					translation((t_tuple){{
+						cpy->position.x, cpy->position.y, cpy->position.z, 0}}),
+					scaling((t_tuple){{
+						cpy->radius, cpy->radius, cpy->radius, 0}}));
+		}
+		else if (cpy->type == PLANE)
+		{
+			printf(" PLANE%s\n", COLOR_RESET);
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_x(cpy->direction.x));
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_y(cpy->direction.y));
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_z(cpy->direction.z));
+			last_object->transform = multiply_matrix4(last_object->transform,
+					translation((t_tuple){{cpy->position.x,
+						cpy->position.y, cpy->position.z, 0}}));
+			last_object->material.specular = 0.1;
+		}
+		else
+		{
+			printf(" CYLINDER%s\n", COLOR_RESET);
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_x(cpy->direction.x));
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_y(cpy->direction.y));
+			last_object->transform = multiply_matrix4(
+					last_object->transform, rotation_z(cpy->direction.z));
+			last_object->transform = multiply_matrix4(
+					last_object->transform, scaling((t_tuple){{
+						cpy->radius, cpy->radius, cpy->radius, 0}}));
+			last_object->transform = multiply_matrix4(last_object->transform,
+					translation((t_tuple){{cpy->position.x,
+						cpy->position.y, cpy->position.z, 0}}));
+			last_object->cyl_max = cpy->height / 2;
+			last_object->cyl_min = cpy->height / 2 * -1;
+			last_object->cyl_closed = 1;
+		}
+		last_object->material.color = (t_tuple){{
+			conv_color(cpy->color.r),
+			conv_color(cpy->color.g),
+			conv_color(cpy->color.b), 0}};
 		cpy = cpy->next;
 	}
 
 
 
-/* ************************************************************************** */
-/*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
-/* ************************************************************************** */
-	double		rayon_sp1;
-
-	sp1 = so_new(SPHERE, data_parsing);
-	all_data->list_object = &sp1; // IMPORTANT
-
-	rayon_sp1 = 10;
-	sp1->transform = multiply_matrix4(
-			translation((t_tuple){{0, 0, -30, 0}}),
-			scaling((t_tuple){{rayon_sp1, rayon_sp1, rayon_sp1, 0}}));
-	sp1->material.color = (t_tuple){{conv_color(10), conv_color(0), conv_color(255), 0}};
-
-/* ************************************************************************** */
-/*   Plan   pl   0,0,0   0,0,1   0,0,255		                              */
-/* ************************************************************************** */
-	pl1 = so_new(PLANE, data_parsing);
-
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_x(10));
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_y(10));
-//	pl1->transform = multiply_matrix4(pl1->transform, rotation_z(90));
-//	pl1->transform = multiply_matrix4(pl1->transform, translation((t_tuple){{0, 0, 0, 0}}));
-
-	pl1->material.color = (t_tuple){{conv_color(150), conv_color(10), conv_color(10), 0}};
-	pl1->material.specular = 0.1;
-
-/* ************************************************************************** */
-/*   Cylindre   cy   50,0,6   0,0,1   14.2   21.42   10,0,255		          */
-/* ************************************************************************** */
-	cy1 = so_new(CYLINDER, data_parsing);
-
-	cy1->transform = multiply_matrix4(cy1->transform, rotation_x(40));
-//	cy1->transform = multiply_matrix4(cy1->transform, rotation_y(5));
-//	cy1->transform = multiply_matrix4(cy1->transform, rotation_z(10));
-//	cy1->transform = multiply_matrix4(cy1->transform, scaling((t_tuple){{1.2, 1.2, 1.2, 0}}));
-	cy1->transform = multiply_matrix4(cy1->transform, translation((t_tuple){{9, 0, 30, 0}}));
-
-	cy1->cyl_max = 20;
-	cy1->cyl_min = -20;
-	cy1->cyl_closed = 1;
-	cy1->material.color = (t_tuple){{conv_color(10), conv_color(255), conv_color(0), 0}};
-
-
-	cy2 = so_new(CYLINDER, data_parsing);
-
-	cy2->transform = multiply_matrix4(cy2->transform, rotation_x(90));
-	cy2->transform = multiply_matrix4(cy2->transform, rotation_z(45));
-	cy2->transform = multiply_matrix4(cy2->transform, translation((t_tuple){{10, 3, 20, 0}}));
-	cy2->cyl_max = 10;
-	cy2->cyl_min = -10;
-	cy2->cyl_closed = 1;
-	cy2->material.color = (t_tuple){{conv_color(80), conv_color(150), conv_color(3), 0}};
-
-/* ************************************************************************** */
-
-	so_add_back(&sp1, pl1);
-	so_add_back(&sp1, cy1);
-	so_add_back(&sp1, cy2);
-	w.lst_object = sp1;
-
+	w.lst_object = all_data->list_object;
 	render(all_data, c, &w);
-	so_clear(&sp1);
-
+	so_clear(&all_data->list_object);
 	all_data->list_object = NULL;
-
 	printf("%sEnd of test()%s\n", COLOR_BLUE, COLOR_RESET);
 }
