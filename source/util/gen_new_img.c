@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 15:20:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:43:53 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static void	test(t_all_data *all_data)
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
 			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
 			(t_tuple){{0, 1, 0, 0}});
+	inverse_matrix4(c.transform, &c.inverse);
 
 /* ************************************************************************** */
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
@@ -135,6 +136,7 @@ static void	test(t_all_data *all_data)
 						cpy->position.x, cpy->position.y, cpy->position.z, 0}}),
 					scaling((t_tuple){{
 						cpy->radius, cpy->radius, cpy->radius, 0}}));
+			inverse_matrix4(last_object->transform, &last_object->inverse);
 		}
 		else if (cpy->type == PLANE)
 		{
@@ -148,6 +150,7 @@ static void	test(t_all_data *all_data)
 			last_object->transform = multiply_matrix4(last_object->transform,
 					translation((t_tuple){{cpy->position.x,
 						cpy->position.y, cpy->position.z, 0}}));
+			inverse_matrix4(last_object->transform, &last_object->inverse);
 			last_object->material.specular = 0.1;
 		}
 		else
@@ -165,6 +168,7 @@ static void	test(t_all_data *all_data)
 			last_object->transform = multiply_matrix4(last_object->transform,
 					translation((t_tuple){{cpy->position.x,
 						cpy->position.y, cpy->position.z, 0}}));
+			inverse_matrix4(last_object->transform, &last_object->inverse);
 			last_object->cyl_max = cpy->height / 2;
 			last_object->cyl_min = cpy->height / 2 * -1;
 			last_object->cyl_closed = 1;

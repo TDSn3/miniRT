@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 16:39:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:44:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,8 @@ static void				swap(double *a, double *b);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 {
 	t_ray			ray;
-	t_matrix4		inv_mtx;
 
-	inverse_matrix4(object->transform, &inv_mtx);
-	ray = transform_ray(vector, point, &inv_mtx);
+	ray = transform_ray(vector, point, &object->inverse);
 	if (object->type == SPHERE)
 		return (intersect_sphere(ray, object));
 	else if (object->type == PLANE)

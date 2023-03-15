@@ -6,15 +6,15 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 14:06:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:48:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 200
-# define WIDHT 200
+# define HEIGHT 500
+# define WIDHT 500
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -160,6 +160,7 @@ typedef struct s_camera
 	double		vsize;
 	double		field_of_view;
 	t_matrix4	transform;
+	t_matrix4	inverse;
 	double		half_width;
 	double		half_height;
 	double		pixel_size;
@@ -175,6 +176,7 @@ typedef struct s_object
 	t_type			type;
 	t_tuple			position;
 	t_matrix4		transform;
+	t_matrix4		inverse;
 	t_material		material;
 	double			cyl_min;
 	double			cyl_max;
