@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:01 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 11:31:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:31:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ static int	get_parsed_scene(char *filename, t_parsed_scene *scene)
 	*scene = (t_parsed_scene){0};
 	if (parse_scene(filename, scene))
 		return (free_objects(scene->objects), 2);
-	print_objects(scene);
+//	print_objects(scene);
 	return (0);
 }

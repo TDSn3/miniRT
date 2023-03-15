@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 11:42:01 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:35:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,24 +66,33 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 	data_parsing.ambient = all_data->parsed_scene->ambient.intensity;
 
-	data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
-	data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
-	data_parsing.a_color.z = conv_color(255) * data_parsing.ambient;
+	data_parsing.a_color.x = conv_color(
+			all_data->parsed_scene->ambient.color.r) * data_parsing.ambient;
+	data_parsing.a_color.y = conv_color(
+			all_data->parsed_scene->ambient.color.g) * data_parsing.ambient;
+	data_parsing.a_color.z = conv_color(
+			all_data->parsed_scene->ambient.color.b) * data_parsing.ambient;
 	data_parsing.a_color.w = 0;
 
 /* ************************************************************************** */
 /*   Camera   C   0,0,20.6   0,0,1   70		                                  */
 /* ************************************************************************** */
-	data_parsing.c_position.x = 0 + all_data->data_key->c_add_pos_x;
-	data_parsing.c_position.y = -50 + all_data->data_key->c_add_pos_y;
-	data_parsing.c_position.z = -20 + all_data->data_key->c_add_pos_z;
+	data_parsing.c_position.x = all_data->parsed_scene->camera.position.x
+		+ all_data->data_key->c_add_pos_x;
+	data_parsing.c_position.y = all_data->parsed_scene->camera.position.y
+		+ all_data->data_key->c_add_pos_y;
+	data_parsing.c_position.z = all_data->parsed_scene->camera.position.z
+		+ all_data->data_key->c_add_pos_z;
 
-	data_parsing.c_to.x = 0 + all_data->data_key->c_add_to_x;
-	data_parsing.c_to.y = 1 + all_data->data_key->c_add_to_y;
-	data_parsing.c_to.z = 0 + all_data->data_key->c_add_to_z;
+	data_parsing.c_to.x = all_data->parsed_scene->camera.direction.x
+		+ all_data->data_key->c_add_to_x;
+	data_parsing.c_to.y = all_data->parsed_scene->camera.direction.y
+		+ all_data->data_key->c_add_to_y;
+	data_parsing.c_to.z = all_data->parsed_scene->camera.direction.z
+		+ all_data->data_key->c_add_to_z;
 
-	data_parsing.c_fov = 70 + all_data->data_key->c_add_fov;
-
+	data_parsing.c_fov = all_data->parsed_scene->camera.fov_degrees
+		+ all_data->data_key->c_add_fov;
 
 	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
 	c.transform = view_transform(
@@ -94,19 +103,33 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Lumière   L   0,0,20.6   0.6   10,0,255	  	                          */
 /* ************************************************************************** */
-	data_parsing.l_position.x = 0;
-	data_parsing.l_position.y = -20;
-	data_parsing.l_position.z = 35;
+	data_parsing.l_position.x = all_data->parsed_scene->light.position.x;
+	data_parsing.l_position.y = all_data->parsed_scene->light.position.y;
+	data_parsing.l_position.z = all_data->parsed_scene->light.position.z;
 
-	data_parsing.l_i = 1;
+	data_parsing.l_i = all_data->parsed_scene->light.intensity;
 
-	data_parsing.l_color.x = conv_color(10);
-	data_parsing.l_color.y = conv_color(0);
-	data_parsing.l_color.z = conv_color(255);
+	data_parsing.l_color.x = conv_color(all_data->parsed_scene->light.color.r);
+	data_parsing.l_color.y = conv_color(all_data->parsed_scene->light.color.g);
+	data_parsing.l_color.z = conv_color(all_data->parsed_scene->light.color.b);
 
 	light.position = (t_tuple){{data_parsing.l_position.x, data_parsing.l_position.y, data_parsing.l_position.z, 1}};
 	light.intensity = (t_tuple){{data_parsing.l_i, data_parsing.l_i, data_parsing.l_i, 0}};
 	w.light = light;
+
+
+
+	t_parsed_object *cpy;
+
+	cpy = all_data->parsed_scene->objects;
+	while (cpy)
+	{
+		printf("%sNew object%s\n", COLOR_BOLD_MAGENTA, COLOR_RESET);
+//		so_add_back(all_data->list_object, pl1);
+		cpy = cpy->next;
+	}
+
+
 
 /* ************************************************************************** */
 /*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
