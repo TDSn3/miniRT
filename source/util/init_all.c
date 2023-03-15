@@ -6,11 +6,13 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 19:09:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 18:30:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:42:35 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
+
+int	init_scene(t_all_data *all_data);
 
 void	init_all(
 	t_all_data *all_data,

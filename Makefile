@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/15 09:20:46 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/15 10:26:34 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
+CFLAGS		= -g3 -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 # --tool=helgrind -Wconversion -Wno-error=conversion
 
 # **************************************************************************** #
@@ -33,11 +33,10 @@ CFLAGS		= -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 #   Linux                                                                      #
 # **************************************************************************** #
 
-I_HEADERS	= -I $(INC_DIR) -I mlx_linux -I libft
-L_LIB		= -lpthread -pthread -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm -lz
+I_HEADERS	= -I libft -I $(INC_DIR) -I mlx_linux
 
 LDFLAGS		= -L mlx_linux -L libft
-LDLIBS		= -lmlx_Linux -lXext -lX11 -lm -lz -lpthread -pthread
+LDLIBS		= -lft -lmlx_Linux -lXext -lX11 -lm -lz -lpthread -pthread
 
 # **************************************************************************** #
 #   MacOs                                                                      #
@@ -146,6 +145,13 @@ NAME_FILE	= $(addprefix tuple/,												\
 								 exec_thread_5_8								\
 								 exec_thread_9_12								\
 			   )																\
+			  $(addprefix parser/,												\
+								 parser											\
+								 parse_file										\
+								 parse_globals									\
+								 parse_objects									\
+								 parse_utils									\
+			   )																\
 			   main																\
 
 SRC			= $(addsuffix .c, $(addprefix $(SRC_DIR), $(NAME_FILE)))
@@ -172,7 +178,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(I_HEADERS) $(L_LIB) -o $(NAME)
+	$(CC) $(OBJ) $(I_HEADERS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 
 clean:
 	cd mlx_linux; make clean

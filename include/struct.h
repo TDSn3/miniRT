@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 17:43:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:35:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,16 @@ typedef struct s_material
 	float	shininess;
 }	t_material;
 
-typedef union s_bgra
+typedef union u_bgra
 {
 	struct
 	{
-		int8_t	b;
-		int8_t	g;
-		int8_t	r;
-		int8_t	a;
+		unsigned char	b;
+		unsigned char	g;
+		unsigned char	r;
+		unsigned char	a;
 	};
-	int32_t		bgra;
+	unsigned int		bgra;
 }	t_bgra;
 
 typedef union s_3f
@@ -213,12 +213,6 @@ typedef struct s_t_and_object
 	struct s_t_and_object	*next;
 }	t_to;
 
-//typedef struct s_t_and_direct_object
-//{
-//	float		t;
-//	t_object	object;
-//}	t_tdo;
-
 typedef struct s_data_key
 {
 	float	c_add_pos_x;
@@ -267,6 +261,7 @@ typedef struct s_mlx_win_img
 	int				win_height;
 }	t_mwi;
 
+typedef struct s_parsed_scene	t_parsed_scene;
 typedef struct s_all_data
 {
 	t_mwi			*mwi;
@@ -274,6 +269,7 @@ typedef struct s_all_data
 	t_dk			*data_key;
 	int				gen_img;
 	t_object		**list_object;
+	t_parsed_scene	*parsed_scene;
 }	t_all_data;
 
 typedef struct s_data_thread

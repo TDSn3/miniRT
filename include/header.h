@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 09:31:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 10:30:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # include "comps.h"
 # include "struct.h"
 # include "colors.h"
+# include "parser.h"
 
 void			init_all(
 					t_all_data *all_data,
