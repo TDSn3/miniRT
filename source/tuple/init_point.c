@@ -12,7 +12,7 @@
 
 #include <header.h>
 
-void	init_point(t_tuple *tuple, float x, float y, float z)
+void	init_point(t_tuple *tuple, double x, double y, double z)
 {
 	tuple->x = x;
 	tuple->y = y;

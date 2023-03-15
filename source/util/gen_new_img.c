@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 18:29:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:42:01 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Lumière ambiante   A   0.2   255,255,255                                 */
 /* ************************************************************************** */
-	data_parsing.ambient = 0.05;
+	data_parsing.ambient = all_data->parsed_scene->ambient.intensity;
 
 	data_parsing.a_color.x = conv_color(255) * data_parsing.ambient;
 	data_parsing.a_color.y = conv_color(255) * data_parsing.ambient;
@@ -111,7 +111,7 @@ static void	test(t_all_data *all_data)
 /* ************************************************************************** */
 /*   Sphère   sp   0,0,20.6   12.6   10,0,255		                          */
 /* ************************************************************************** */
-	float		rayon_sp1;
+	double		rayon_sp1;
 
 	sp1 = so_new(SPHERE, data_parsing);
 	all_data->list_object = &sp1; // IMPORTANT

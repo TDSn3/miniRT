@@ -17,7 +17,7 @@
 /*   Divise un tuple par un scalaire.										  */
 /*                                                                            */
 /* ************************************************************************** */
-void	t_tuple_div_scal(t_tuple *a, t_tuple *left, float right)
+void	t_tuple_div_scal(t_tuple *a, t_tuple *left, double right)
 {
 	a->x = left->x / right;
 	a->y = left->y / right;

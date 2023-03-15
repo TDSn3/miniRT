@@ -26,7 +26,7 @@ t_tuple	normal_at(t_object object, t_tuple world_point)
 	t_tuple		object_normal;
 	t_matrix4	cpy;
 	t_matrix4	stock;
-	float		dist;
+	double		dist;
 
 	object_point = multiply_matrix4_tuple(*inverse_matrix4(object.transform,
 				&stock), world_point);

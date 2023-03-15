@@ -29,7 +29,7 @@
 //int	is_shadowed(t_world *world, t_tuple point)
 //{
 //	t_tuple	v;
-//	float	distance;
+//	double	distance;
 //	t_tuple	direction;
 //	t_ray	r;
 //	t_to	*inter;
@@ -61,7 +61,7 @@
 int	is_shadowed(t_world *world, t_tuple point)
 {
 	t_tuple	v;
-	float	distance;
+	double	distance;
 	t_tuple	direction;
 	t_ray	r;
 	t_to	inter;

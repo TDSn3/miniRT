@@ -12,10 +12,10 @@
 
 #include <header.h>
 
-t_matrix4	rotation_x(float deg)
+t_matrix4	rotation_x(double deg)
 {
 	t_matrix4	mtx;
-	float		rad;
+	double		rad;
 
 	rad = deg_to_rad(deg);
 	mtx = give_identity_matrix4();
@@ -26,10 +26,10 @@ t_matrix4	rotation_x(float deg)
 	return (mtx);
 }
 
-t_matrix4	rotation_y(float deg)
+t_matrix4	rotation_y(double deg)
 {
 	t_matrix4	mtx;
-	float		rad;
+	double		rad;
 
 	rad = deg_to_rad(deg);
 	mtx = give_identity_matrix4();
@@ -40,10 +40,10 @@ t_matrix4	rotation_y(float deg)
 	return (mtx);
 }
 
-t_matrix4	rotation_z(float deg)
+t_matrix4	rotation_z(double deg)
 {
 	t_matrix4	mtx;
-	float		rad;
+	double		rad;
 
 	rad = deg_to_rad(deg);
 	mtx = give_identity_matrix4();

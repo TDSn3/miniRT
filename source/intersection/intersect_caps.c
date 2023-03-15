@@ -12,7 +12,7 @@
 
 #include <header.h>
 
-static int	check_cap(t_ray ray, float t);
+static int	check_cap(t_ray ray, double t);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -22,7 +22,7 @@ static int	check_cap(t_ray ray, float t);
 /* ************************************************************************** */
 void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 {
-	float	t;
+	double	t;
 
 	if (!object->cyl_closed || (ray.vector.y >= -0.1 && ray.vector.y <= 0.1))
 		return ;
@@ -44,10 +44,10 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 	}
 }
 
-static int	check_cap(t_ray ray, float t)
+static int	check_cap(t_ray ray, double t)
 {
-	float	x;
-	float	z;
+	double	x;
+	double	z;
 
 	x = ray.point.x + t * ray.vector.x;
 	z = ray.point.z + t * ray.vector.z;

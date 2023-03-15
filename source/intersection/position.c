@@ -22,7 +22,7 @@
 /*   parcourue, puis l'ajoute à l'origine du rayon.							  */
 /*                                                                            */
 /* ************************************************************************** */
-t_tuple	position(t_tuple vector, t_tuple point, float t)
+t_tuple	position(t_tuple vector, t_tuple point, double t)
 {
 	t_tuple	next_pos;
 

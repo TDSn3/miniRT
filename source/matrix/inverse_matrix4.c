@@ -51,7 +51,7 @@ static void	div_by_det_all(t_matrix4 *src, t_matrix4 *mtx)
 {
 	size_t		i;
 	size_t		j;
-	float		det;
+	double		det;
 
 	i = 0;
 	j = 0;

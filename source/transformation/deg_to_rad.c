@@ -19,12 +19,12 @@
 /*   rad(π * 2) = 360														  */
 /*                                                                            */
 /* ************************************************************************** */
-float	deg_to_rad(float deg)
+double	deg_to_rad(double deg)
 {
 	return ((M_PI / 180.0) * deg);
 }
 
-float	rad_to_deg(float rad)
+double	rad_to_deg(double rad)
 {
 	return ((180.0 * rad) / M_PI);
 }

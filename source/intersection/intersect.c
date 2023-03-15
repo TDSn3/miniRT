@@ -13,11 +13,11 @@
 #include <header.h>
 
 static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
-static float			give_discri(t_tuple vector,
+static double			give_discri(t_tuple vector,
 							t_tuple point, t_object sphere, t_3f *abc);
 static t_intersection	intersect_plane(t_ray ray, t_object *plane);
 static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
-static void				swap(float *a, float *b);
+static void				swap(double *a, double *b);
 
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
@@ -48,7 +48,7 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 {
 	t_intersection	ret;
 	t_3f			abc;
-	float			discriminant;
+	double			discriminant;
 
 	ret.object = sphere;
 	ret.next = NULL;
@@ -81,10 +81,10 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 /*   abc->c = (produit scalaire de sphere_to_ray et sphere_to_ray) -1         */
 /*                                                                            */
 /* ************************************************************************** */
-static float	give_discri(t_tuple vector,
+static double	give_discri(t_tuple vector,
 					t_tuple point, t_object sphere, t_3f *abc)
 {
-	float	discriminant;
+	double	discriminant;
 	t_tuple	sphere_to_ray;
 
 	sphere_to_ray = t_tuple_minus(point, sphere.position);
@@ -98,7 +98,7 @@ static float	give_discri(t_tuple vector,
 static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 {
 	t_intersection	ret;
-	float			t;
+	double			t;
 
 	ret.object = plane;
 	ret.next = NULL;
@@ -123,11 +123,11 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 {
 	t_intersection	ret;
 	t_3f			abc;
-	float			discriminant;
-	float			t0;
-	float			t1;
-	float			y0;
-	float			y1;
+	double			discriminant;
+	double			t0;
+	double			t1;
+	double			y0;
+	double			y1;
 
 	ret.object = cylinder;
 	ret.next = NULL;
@@ -136,7 +136,7 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	ret.t.b = 0;
 	ret.t.c = 0;
 	abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
-	if (equal_float(abc.a, 0))
+	if (equal_double(abc.a, 0))
 		return (ret);
 	abc.b = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
 	abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
@@ -158,9 +158,9 @@ static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	return (ret);
 }
 
-static void	swap(float *a, float *b)
+static void	swap(double *a, double *b)
 {
-	float			stock;
+	double			stock;
 
 	stock = *a;
 	*a = *b;

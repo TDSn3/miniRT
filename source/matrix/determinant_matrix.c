@@ -12,15 +12,15 @@
 
 #include <header.h>
 
-float	determinant_matrix2(t_matrix2 a)
+double	determinant_matrix2(t_matrix2 a)
 {
 	return ((a.tab[0][0] * a.tab[1][1]) - (a.tab[0][1] * a.tab[1][0]));
 }
 
-float	determinant_matrix3(t_matrix3 a)
+double	determinant_matrix3(t_matrix3 a)
 {
 	size_t	i;
-	float	det;
+	double	det;
 
 	i = 0;
 	det = 0;
@@ -32,10 +32,10 @@ float	determinant_matrix3(t_matrix3 a)
 	return (det);
 }
 
-float	determinant_matrix4(t_matrix4 a)
+double	determinant_matrix4(t_matrix4 a)
 {
 	size_t	i;
-	float	det;
+	double	det;
 
 	i = 0;
 	det = 0;

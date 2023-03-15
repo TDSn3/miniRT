@@ -15,17 +15,17 @@
 
 typedef struct s_matrix4
 {
-	float	tab[4][4];
+	double	tab[4][4];
 }	t_matrix4;
 
 typedef struct s_matrix3
 {
-	float	tab[3][3];
+	double	tab[3][3];
 }	t_matrix3;
 
 typedef struct s_matrix2
 {
-	float	tab[2][2];
+	double	tab[2][2];
 }	t_matrix2;
 
 #endif

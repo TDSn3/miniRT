@@ -40,7 +40,7 @@ t_bgra	convert_to_255(t_tuple color)
 	return (converted_color);
 }
 
-float	conv_color(float color_255)
+double	conv_color(double color_255)
 {
 	return (color_255 / 255);
 }

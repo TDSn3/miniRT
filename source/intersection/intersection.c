@@ -16,7 +16,7 @@
 /*   t   distance entre l'origine d'un rayon et l'intersection                */
 /*                                                                            */
 /* ************************************************************************** */
-t_to	intersection(float t, t_object *object)
+t_to	intersection(double t, t_object *object)
 {
 	return ((t_to){t, object, NULL, NULL});
 }

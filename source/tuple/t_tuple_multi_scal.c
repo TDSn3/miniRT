@@ -17,7 +17,7 @@
 /*   Multiplie un tuple par un scalaire.									  */
 /*                                                                            */
 /* ************************************************************************** */
-t_tuple	t_tuple_multi_scal(t_tuple left, float right)
+t_tuple	t_tuple_multi_scal(t_tuple left, double right)
 {
 	t_tuple	ret;
 

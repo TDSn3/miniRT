@@ -12,12 +12,12 @@
 
 #include <header.h>
 
-t_ray	ray_for_pixel(t_camera camera, float px, float py)
+t_ray	ray_for_pixel(t_camera camera, double px, double py)
 {
-	float		xoffset;
-	float		yoffset;
-	float		world_x;
-	float		world_y;
+	double		xoffset;
+	double		yoffset;
+	double		world_x;
+	double		world_y;
 	t_tuple		pixel;
 	t_tuple		origin;
 	t_tuple		direction;

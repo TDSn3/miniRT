@@ -12,10 +12,10 @@
 
 #include <header.h>
 
-float	cofactor_matrix3(t_matrix3 src, size_t x_row, size_t y_column)
+double	cofactor_matrix3(t_matrix3 src, size_t x_row, size_t y_column)
 {
-	float	minor;
-	float	sign;
+	double	minor;
+	double	sign;
 
 	if ((x_row + y_column) % 2 == 0)
 		sign = 1;
@@ -25,10 +25,10 @@ float	cofactor_matrix3(t_matrix3 src, size_t x_row, size_t y_column)
 	return (minor * sign);
 }
 
-float	cofactor_matrix4(t_matrix4 src, size_t x_row, size_t y_column)
+double	cofactor_matrix4(t_matrix4 src, size_t x_row, size_t y_column)
 {
-	float	minor;
-	float	sign;
+	double	minor;
+	double	sign;
 
 	if ((x_row + y_column) % 2 == 0)
 		sign = 1;

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 12:31:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:50:30 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_to	intersect_world(t_world *world, t_ray ray)
 	t_object		*cpy;
 	t_intersection	t;
 
-	ret.t = FLT_MAX;
+	ret.t = DBL_MAX;
 	ret.object = NULL;
 	cpy = world->lst_object;
 	while (cpy)

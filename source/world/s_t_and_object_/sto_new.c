@@ -12,7 +12,7 @@
 
 #include <header.h>
 
-t_to	*sto_new(float t, t_object *object)
+t_to	*sto_new(double t, t_object *object)
 {
 	t_to	*ln;
 

@@ -20,11 +20,11 @@
 /*   agrandissant une zone plus petite de la scène.							  */
 /*                                                                            */
 /* ************************************************************************** */
-t_camera	give_camera(float hsize, float vsize, float field_of_view)
+t_camera	give_camera(double hsize, double vsize, double field_of_view)
 {
 	t_camera	ret;
-	float		half_view;
-	float		aspect;
+	double		half_view;
+	double		aspect;
 
 	ret.hsize = hsize;
 	ret.vsize = vsize;

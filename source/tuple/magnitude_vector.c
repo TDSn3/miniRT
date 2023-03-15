@@ -12,9 +12,9 @@
 
 #include <header.h>
 
-float	magnitude_vector(t_tuple *tuple)
+double	magnitude_vector(t_tuple *tuple)
 {
-	float	v;
+	double	v;
 
 	v = sqrtf(powf(tuple->x, 2)
 			+ powf(tuple->y, 2)

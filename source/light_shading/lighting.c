@@ -26,12 +26,12 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	t_tuple	effective_color;
 	t_tuple	lightv;
 	t_tuple	ambient;
-	float	light_dot_normal;
+	double	light_dot_normal;
 	t_tuple	diffuse;
 	t_tuple	specular;
 	t_tuple	refelctv;
-	float	reflect_dot_eye;
-	float	factor;
+	double	reflect_dot_eye;
+	double	factor;
 
 	effective_color = t_tuple_multi(material.color, light.intensity);
 	lightv = t_tuple_minus(light.position, point);

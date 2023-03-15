@@ -17,7 +17,7 @@
 //t_tuple	normalization_vector(t_tuple tuple)
 //{
 //	t_tuple	ret;
-//	float	v;
+//	double	v;
 //
 //	v = magnitude_vector(&tuple);
 //	ret.x = tuple.x / v;
@@ -30,7 +30,7 @@
 t_tuple	normalization_vector(t_tuple tuple)
 {
 	t_tuple	ret;
-	float	len;
+	double	len;
 
 	len = sqrtf(tuple.x * tuple.x + tuple.y * tuple.y + tuple.z * tuple.z);
 	ret.x = tuple.x / len;

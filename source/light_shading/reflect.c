@@ -20,7 +20,7 @@
 t_tuple	reflect(t_tuple in_vector, t_tuple normal_vector)
 {
 	t_tuple	ret;
-	float	scal_prod;
+	double	scal_prod;
 	t_tuple	normal_mult_prod;
 
 	scal_prod = 2 * scalar_product_vector(&in_vector, &normal_vector);

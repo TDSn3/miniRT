@@ -14,7 +14,7 @@
 
 int	is_invertible_matrix4(t_matrix4 a)
 {
-	float	det;
+	double	det;
 
 	det = determinant_matrix4(a);
 	if (det == NAN)
