@@ -6,13 +6,14 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 18:53:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/15 09:31:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
+# include <libft.h>
 # include <mlx.h>
 # include <math.h>
 # include <unistd.h>
