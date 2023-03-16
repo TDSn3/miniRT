@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/15 10:26:34 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/16 14:15:55 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,7 +125,6 @@ NAME_FILE	= $(addprefix tuple/,												\
 											    sto_new							\
 											    sto_last						\
 											    sto_clear						\
-											    sto_sort						\
 					 )															\
 			   )																\
 			  $(addprefix util/,												\
@@ -138,6 +137,10 @@ NAME_FILE	= $(addprefix tuple/,												\
 							   mouse_hook										\
 							   red_button										\
 							   gen_new_img										\
+							   init_ambiant										\
+							   init_camera										\
+							   init_light										\
+							   init_object										\
 			   )																\
 			  $(addprefix thread/,												\
 			 					 main_exec_thread								\

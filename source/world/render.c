@@ -12,33 +12,7 @@
 
 #include <header.h>
 
-// void	render(t_all_data *all_data, t_camera camera, t_world *world)
-// {
-// 	t_ray	r;
-// 	t_tuple	color;
-// 	size_t	x;
-// 	size_t	y;
-//
-// 	x = 0;
-// 	y = 0;
-// 	while (y < camera.vsize)
-// 	{
-// 		while (x < camera.hsize)
-// 		{
-// 			r = ray_for_pixel(camera, x, y);
-// 			color = color_at(world, r);
-// 			my_mlx_pixel_put(all_data, x - camera.hsize / 2,
-//				y - camera.vsize / 2, convert_to_255(color).bgra);
-// 			x++;
-// 		}
-// 		x = 0;
-// 		y++;
-// 	}
-// }
-//
-//   TEST THREAD
-
-int	return_err(void)
+static int	return_err(void)
 {
 	printf("Error : thread no createdn");
 	return (1);

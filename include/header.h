@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 11:49:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:15:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,6 @@ int				sto_add_back(t_to **lst, t_to *new);
 t_to			*sto_last(t_to *lst);
 size_t			sto_size(t_to *lst);
 void			sto_clear(t_to **lst);
-void			sto_sort(t_to **lst);
 
 int				is_shadowed(t_world *world, t_tuple point);
 
@@ -154,5 +153,15 @@ void			*exec_thread9(void *data);
 void			*exec_thread10(void *data);
 void			*exec_thread11(void *data);
 void			*exec_thread12(void *data);
+
+void			init_ambiant(t_all_data *all_data, t_dp *data_parsing);
+void			init_camera(t_all_data *all_data,
+					t_dp *data_parsing, t_camera *c);
+void			init_light(
+					t_all_data *all_data,
+					t_dp *data_parsing,
+					t_light *light,
+					t_world *w);
+int				init_object(t_all_data *all_data, t_dp *data_parsing);
 
 #endif
