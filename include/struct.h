@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 15:48:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:56:37 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define STRUCT_H
 
 # define HEIGHT 500
-# define WIDHT 500
+# define WIDTH 500
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -280,7 +280,7 @@ typedef struct s_data_thread
 	t_camera		camera;
 	t_world			*world;
 	int				id_thread;
-	t_bgra			stock_img[HEIGHT][WIDHT];
+	t_bgra			stock_img[HEIGHT][WIDTH];
 	pthread_mutex_t	mutex_print;
 }	t_dt;
 

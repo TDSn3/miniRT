@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:33:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 13:45:37 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 14:50:30 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_camera(t_all_data *all_data, t_dp *data_parsing, t_camera *c)
 		+ all_data->data_key->c_add_to_z;
 	data_parsing->c_fov = deg_to_rad(all_data->parsed_scene->camera.fov_degrees
 			+ all_data->data_key->c_add_fov);
-	*c = give_camera(HEIGHT, WIDHT, data_parsing->c_fov);
+	*c = give_camera(HEIGHT, WIDTH, data_parsing->c_fov);
 	init_matrix(data_parsing, c);
 	inverse_matrix4(c->transform, &c->inverse);
 }
