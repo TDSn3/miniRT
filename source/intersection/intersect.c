@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 15:44:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 11:31:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 		t = -ray.point.y / ray.vector.y;
 		ret.t.a = 2;
 		ret.t.b = t;
-		ret.t.c = 0;
+		ret.t.c = t;
 	}
 	return (ret);
 }

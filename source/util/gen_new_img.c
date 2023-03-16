@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 17:07:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 10:04:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	test(t_all_data *all_data)
 	c = give_camera(HEIGHT, WIDHT, data_parsing.c_fov);
 	c.transform = view_transform(
 			(t_tuple){{data_parsing.c_position.x, data_parsing.c_position.y, data_parsing.c_position.z, 1}},
-			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 1}},
+			(t_tuple){{data_parsing.c_to.x, data_parsing.c_to.y, data_parsing.c_to.z, 0}},
 			(t_tuple){{0, 1, 0, 0}});
 	inverse_matrix4(c.transform, &c.inverse);
 
