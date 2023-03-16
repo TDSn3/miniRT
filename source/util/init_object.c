@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:01:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 14:13:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:36:04 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,24 @@ int	init_object(t_all_data *all_data, t_dp *data_parsing)
 		else if (cpy->type == PLANE)
 		{
 			printf(" PLANE%s\n", COLOR_RESET);
+			last_object->transform = multiply_matrix4(last_object->transform,
+					translation((t_tuple){{cpy->position.x,
+						cpy->position.y, cpy->position.z, 0}}));
 			last_object->transform = multiply_matrix4(
 					last_object->transform, rotation_x(cpy->direction.x));
 			last_object->transform = multiply_matrix4(
 					last_object->transform, rotation_y(cpy->direction.y));
 			last_object->transform = multiply_matrix4(
 					last_object->transform, rotation_z(cpy->direction.z));
-			last_object->transform = multiply_matrix4(last_object->transform,
-					translation((t_tuple){{cpy->position.x,
-						cpy->position.y, cpy->position.z, 0}}));
 			inverse_matrix4(last_object->transform, &last_object->inverse);
 			last_object->material.specular = 0.1;
 		}
 		else
 		{
 			printf(" CYLINDER%s\n", COLOR_RESET);
+			last_object->transform = multiply_matrix4(last_object->transform,
+					translation((t_tuple){{cpy->position.x,
+						cpy->position.y, cpy->position.z, 0}}));
 			last_object->transform = multiply_matrix4(
 					last_object->transform, rotation_x(cpy->direction.x));
 			last_object->transform = multiply_matrix4(
@@ -64,9 +67,6 @@ int	init_object(t_all_data *all_data, t_dp *data_parsing)
 			last_object->transform = multiply_matrix4(
 					last_object->transform, scaling((t_tuple){{
 						cpy->radius, cpy->radius, cpy->radius, 0}}));
-			last_object->transform = multiply_matrix4(last_object->transform,
-					translation((t_tuple){{cpy->position.x,
-						cpy->position.y, cpy->position.z, 0}}));
 			inverse_matrix4(last_object->transform, &last_object->inverse);
 			last_object->cyl_max = cpy->height / 2;
 			last_object->cyl_min = cpy->height / 2 * -1;

@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:47:05 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 14:14:58 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:42:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	gen_new_img(t_all_data *all_data)
 	{
 		data_img = all_data->data_img;
 		mwi = all_data->mwi;
-		data_img -> img = mlx_new_image(mwi -> mlx, 1080, 720);
+		data_img -> img = mlx_new_image(mwi -> mlx, WIDTH, HEIGHT);
 		data_img -> addr = mlx_get_data_addr(
 				mwi -> data_img -> img,
 				&mwi -> data_img -> bits_per_pixel,
