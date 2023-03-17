@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:48:57 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 14:17:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:10:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ t_tuple	color_at(t_world *w, t_ray r)
 	if (inter.t == DBL_MAX || inter.t < 0) // inter.t < 0 a verifier
 		return ((t_tuple){0});
 	comps = prepare_computations(r, &inter);
-	ret = shade_hit(*w, comps);
+	ret = shade_hit(w, comps);
 	return (ret);
 }

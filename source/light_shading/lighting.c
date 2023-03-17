@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:01:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/17 21:01:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	ambient = t_tuple_multi_scal(effective_color, material.ambient);
 	ambient = t_tuple_plus(ambient, material.a_color);
 	light_dot_normal = scalar_product_vector(&lightv, &normalv_vector);
-	if (light_dot_normal <= 0)
+	if (light_dot_normal <= 0 || in_shadow)
 		return (ambient);
 	diffuse = t_tuple_multi_scal(effective_color, material.diffuse * light_dot_normal);
 	refelctv = reflect(t_tuple_nega(lightv), normalv_vector);
@@ -52,8 +52,5 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 		specular = t_tuple_multi_scal(light.intensity, material.specular);
 		specular = t_tuple_multi_scal(specular, factor);
 	}
-	if (in_shadow)
-		return (ambient);
-	else
-		return (t_tuple_plus(t_tuple_plus(ambient, diffuse), specular));
+	return (t_tuple_plus(t_tuple_plus(ambient, diffuse), specular));
 }
