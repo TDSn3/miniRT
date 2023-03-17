@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:43:34 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 21:05:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/17 19:26:02 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static int	exec_all_thread(t_dt *dt)
 	{
 		printf("%sthread %d%s\n", COLOR_BOLD_RED, i, COLOR_RESET);
 		pthread_join(t[i++], NULL);
-
 //		pthread_join(t[0], NULL);
 //		i++;
 	}
