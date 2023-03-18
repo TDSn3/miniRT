@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/16 19:59:23 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/18 11:07:58 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,21 +32,21 @@ CFLAGS		= -g3 -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 # **************************************************************************** #
 #   Linux                                                                      #
 # **************************************************************************** #
-#
-#I_HEADERS	= -I libft -I $(INC_DIR) -I mlx_linux
-#
-#LDFLAGS		= -L mlx_linux -L libft
-#LDLIBS		= -lft -lmlx_Linux -lXext -lX11 -lm -lz -lpthread -pthread
-#
+
+I_HEADERS	= -I libft -I $(INC_DIR) -I mlx_linux
+
+LDFLAGS		= -L mlx_linux -L libft
+LDLIBS		= -lft -lmlx_Linux -lXext -lX11 -lm -lz -lpthread -pthread
+
 # **************************************************************************** #
 #   MacOs                                                                      #
 # **************************************************************************** #
-
-I_HEADERS	= -I $(INC_DIR) -I mlx_macos -I libft
-
-LDFLAGS		= -L mlx_macos -L libft
-LDLIBS		= -lft -lmlx -lmlx -framework OpenGL -framework AppKit -lpthread -pthread
-
+#
+#I_HEADERS	= -I $(INC_DIR) -I mlx_macos -I libft
+#
+#LDFLAGS		= -L mlx_macos -L libft
+#LDLIBS		= -lft -lmlx -lmlx -framework OpenGL -framework AppKit -lpthread -pthread
+#
 # **************************************************************************** #
 
 NAME_FILE	= $(addprefix tuple/,												\
@@ -174,8 +174,8 @@ DEPENDS		= $(addsuffix .d, $(addprefix $(OBJ_DIR), $(NAME_FILE)))
 # **************************************************************************** #
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c Makefile
-#	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
-	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
+	@cd mlx_linux; make >> /dev/null 2>> /dev/null; cd ..
+#	@cd mlx_macos; make >> /dev/null 2>> /dev/null; cd ..
 	@cd libft; make >> /dev/null 2>> /dev/null; cd ..
 	@ mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(I_HEADERS) -MMD -MP -c $< -o $@
@@ -186,8 +186,8 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(I_HEADERS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 
 clean:
-#	cd mlx_linux; make clean
-	cd mlx_macos; make clean
+	cd mlx_linux; make clean
+#	cd mlx_macos; make clean
 	cd libft; make clean
 	rm -rf $(OBJ_DIR)
 
