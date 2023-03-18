@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:09:59 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 13:01:49 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:52:35 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ t_to	intersect_world(t_world *world, t_ray ray)
 	while (cpy)
 	{
 		t = intersect(ray.vector, ray.point, cpy);
-		if (t.t.b && t.t.b < ret.t && t.t.b > 0) // t.t.b > 0 a voir
+		if (t.t.b && t.t.b < ret.t && !equal_double(t.t.b, 0))
 		{
 			ret.t = t.t.b;
 			ret.object = cpy;
 		}
-		if (t.t.c && t.t.c < ret.t && t.t.b > 0) // t.t.c > 0 a voir
+		if (t.t.c && t.t.c < ret.t && !equal_double(t.t.c, 0))
 		{
 			ret.t = t.t.c;
 			ret.object = cpy;

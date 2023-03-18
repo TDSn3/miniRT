@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 12:40:41 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:45:49 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_shadowed(t_world *world, t_tuple point)
 	r.point = point;
 	r.vector = direction;
 	inter = intersect_world(world, r);
-	if (inter.t < distance && inter.t > 0)
+	if (inter.t < distance && !equal_double(inter.t, 0))
 		return (1);
 	else
 		return (0);
