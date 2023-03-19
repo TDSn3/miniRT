@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/18 16:51:40 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/19 12:05:20 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -g3 -Werror -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
+CFLAGS		= -g3  -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
 # --tool=helgrind -Wconversion -Wno-error=conversion
 
 # **************************************************************************** #

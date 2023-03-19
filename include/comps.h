@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 12:46:53 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/15 10:02:05 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/19 09:53:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_comps
 	t_tuple		normalv_vector;
 	int			inside;
 	t_tuple		over_point;
+	double		distance;
 }	t_comps;
 
 #endif

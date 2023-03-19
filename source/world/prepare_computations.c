@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:42:11 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 17:04:10 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/19 10:06:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 /*   éclairée correctement.													  */
 /*                                                                            */
 /* ************************************************************************** */
-t_comps	prepare_computations(t_ray r, t_to *i)
+t_comps	prepare_computations(t_world *w, t_ray r, t_to *i)
 {
 	t_comps	comps;
+	t_tuple	v;
 
 	comps.t = i->t;
 	comps.object = *i->object;
@@ -42,5 +43,7 @@ t_comps	prepare_computations(t_ray r, t_to *i)
 		comps.inside = 0;
 	comps.over_point = t_tuple_plus(comps.point,
 			t_tuple_multi_scal(comps.normalv_vector, EPSILON * 1000));
+	v = t_tuple_minus(w->light.position, comps.over_point);
+	comps.distance = magnitude_vector(&v);
 	return (comps);
 }

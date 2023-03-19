@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:09:43 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 16:45:49 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/19 10:13:23 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,19 @@
 /*   et la source de lumière, et le point est dans l'ombre.					  */
 /*                                                                            */
 /* ************************************************************************** */
-int	is_shadowed(t_world *world, t_tuple point)
+int	is_shadowed(t_world *world, t_tuple point, t_comps comps)
 {
 	t_tuple	v;
-	double	distance;
 	t_tuple	direction;
 	t_ray	r;
 	t_to	inter;
 
 	v = t_tuple_minus(world->light.position, point);
-	distance = magnitude_vector(&v);
 	direction = normalization_vector(v);
 	r.point = point;
 	r.vector = direction;
 	inter = intersect_world(world, r);
-	if (inter.t < distance && !equal_double(inter.t, 0))
+	if (inter.t < comps.distance && !equal_double(inter.t, 0))
 		return (1);
 	else
 		return (0);
