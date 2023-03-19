@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/19 12:45:39 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/19 13:25:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,16 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	t_tuple	refelctv;
 	double	reflect_dot_eye;
 	double	factor;
-
 	double	attenuation_factor;
 	double	constant_factor;
 	double	linear_factor;
 	double	quadratic_factor;
 
-	constant_factor = 1;
-	linear_factor = 1;
-	quadratic_factor = 0.001;
+	constant_factor = 20;
+	linear_factor = 0.07;
+	quadratic_factor = 0.0001;
 	attenuation_factor = 30 / (constant_factor + linear_factor * comps.distance + quadratic_factor * comps.distance * comps.distance);
-//	light.intensity = t_tuple_multi_scal(light.intensity, attenuation_factor);
-
-
+	light.intensity = t_tuple_multi_scal(light.intensity, attenuation_factor);
 	effective_color = t_tuple_multi(material.color, light.intensity);
 	lightv = t_tuple_minus(light.position, point);
 	lightv = normalization_vector(lightv);
@@ -52,9 +49,7 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 	ambient = t_tuple_plus(ambient, material.a_color);
 	light_dot_normal = scalar_product_vector(&lightv, &normalv_vector);
 	if (light_dot_normal <= 0 || in_shadow)
-		return (ambient);
-	light.intensity = t_tuple_multi_scal(light.intensity, attenuation_factor);
-	effective_color = t_tuple_multi(material.color, light.intensity);
+		return (material.a_color);
 	diffuse = t_tuple_multi_scal(effective_color, material.diffuse * light_dot_normal);
 	refelctv = reflect(t_tuple_nega(lightv), normalv_vector);
 	reflect_dot_eye = scalar_product_vector(&refelctv, &eyev_vector);
@@ -66,5 +61,5 @@ t_tuple	lighting(t_material material, t_light light, t_tuple point, t_tuple eyev
 		specular = t_tuple_multi_scal(light.intensity, material.specular);
 		specular = t_tuple_multi_scal(specular, factor);
 	}
-	return (t_tuple_plus(t_tuple_plus(ambient, diffuse), specular));
+	return (t_tuple_plus(t_tuple_plus(material.a_color, diffuse), specular));
 }
