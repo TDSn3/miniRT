@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_globals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:08:39 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/15 10:02:57 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:29:58 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*parse_ambient(t_parsed_scene *scene, char **tokens)
 	params[1] = &scene->ambient.color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), "Invalid ambient syntax");
+	if (scene->ambient.intensity < 0 || scene->ambient.intensity > 1)
+		return (free_tokens(--tokens), "Incorrect ambient intensity");
 	scene->ambient.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }
@@ -40,6 +42,10 @@ char	*parse_camera(t_parsed_scene *scene, char **tokens)
 	params[2] = &scene->camera.fov_degrees;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), "Invalid camera syntax");
+	if (scene->camera.fov_degrees < 0 || scene->camera.fov_degrees > 180)
+		return (free_tokens(--tokens), "Incorrect camera fov");
+	if (magnitude_vector(&scene->camera.direction) == 0)
+		return (free_tokens(--tokens), "Incorrect camera direction");
 	scene->camera.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }
@@ -56,6 +62,8 @@ char	*parse_light(t_parsed_scene *scene, char **tokens)
 	params[2] = &scene->light.color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), "Invalid light syntax");
+	if (scene->light.intensity < 0 || scene->light.intensity > 1)
+		return (free_tokens(--tokens), "Incorrect light intensity");
 	scene->light.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }

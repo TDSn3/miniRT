@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/08 03:29:40 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/20 23:34:02 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*parse_sphere(t_parsed_scene *scene, char **tokens)
 	params[2] = &sphere->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), free(sphere), "Invalid sphere syntax");
+	if (sphere->radius < 0)
+		return (free_tokens(--tokens), free(sphere), "Incorrect sphere radius");
 	sphere->type = SPHERE;
 	sphere->radius /= 2;
 	sphere->next = scene->objects;
@@ -48,10 +50,23 @@ char	*parse_plane(t_parsed_scene *scene, char **tokens)
 	params[2] = &plane->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), free(plane), "Invalid plane syntax");
+	if (vector_length(plane->direction) == 0)
+		return (free_tokens(--tokens), free(plane), "Incorrect plane normal");
 	plane->type = PLANE;
 	plane->next = scene->objects;
 	scene->objects = plane;
 	return (free_tokens(--tokens), NULL);
+}
+
+int	cylinder_is_valid(t_parsed_object *cylinder)
+{
+	if (vector_length(cylinder->direction) == 0)
+		return (0);
+	if (cylinder->radius < 0)
+		return (0);
+	if (cylinder->height < 0)
+		return (0);
+	return (1);
 }
 
 char	*parse_cylinder(t_parsed_scene *scene, char **tokens)
@@ -71,6 +86,8 @@ char	*parse_cylinder(t_parsed_scene *scene, char **tokens)
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), free(cylinder),
 			"Invalid cylinder syntax");
+	if (!cylinder_is_valid(cylinder))
+		return (free_tokens(--tokens), free(cylinder), "Incorrect cylinder");
 	cylinder->type = CYLINDER;
 	cylinder->radius /= 2;
 	cylinder->next = scene->objects;
