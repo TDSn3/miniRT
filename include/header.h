@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 11:12:32 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 12:22:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ t_matrix4		*inverse_matrix4(t_matrix4 src, t_matrix4 *dst);
 t_tuple			transform(t_matrix4 mtx, t_tuple point);
 t_matrix4		translation(t_tuple vector);
 t_matrix4		scaling(t_tuple vector);
+t_matrix4		diameter_cylinder(double diameter);
 t_matrix4		rotation_x(double deg);
 t_matrix4		rotation_y(double deg);
 t_matrix4		rotation_z(double deg);
