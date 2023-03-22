@@ -269,7 +269,6 @@ typedef struct s_all_data
 	t_mwi			*mwi;
 	t_data_mlx_img	*data_img;
 	t_dk			*data_key;
-	int				gen_img;
 	t_object		*list_object;
 	t_parsed_scene	*parsed_scene;
 }	t_all_data;

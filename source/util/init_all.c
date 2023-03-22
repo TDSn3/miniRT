@@ -30,7 +30,6 @@ void	init_all(
 	all_data->mwi = mwi;
 	all_data->data_img = data_img;
 	all_data->data_key = data_key;
-	all_data->gen_img = 1;
 	all_data->list_object = NULL;
 	mwi->mlx = mlx_init();
 	mwi->win = mlx_new_window(mwi->mlx,

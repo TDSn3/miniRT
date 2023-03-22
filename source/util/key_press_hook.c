@@ -57,7 +57,7 @@ int	key_press_hook(int keycode, t_all_data *d)
 		d->data_key->c_add_fov -= 1;
 	awsd_shift(keycode, d);
 	part_two(keycode, d);
-	d->gen_img = 1;
+	gen_new_img(d);
 	return (0);
 }
 

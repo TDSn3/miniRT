@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 	mlx_hook(mwi.win, 2, 1L << 0L, key_press_hook, &all_data);
 	mlx_hook(mwi.win, 3, 1L << 1L, key_release_hook, &all_data);
 	mlx_mouse_hook(mwi.win, mouse_hook, &all_data);
-	mlx_loop_hook(mwi.mlx, gen_new_img, &all_data);
+	gen_new_img(&all_data);
 	mlx_loop(mwi.mlx);
 	return (0);
 }
