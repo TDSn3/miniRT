@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 02:43:21 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/20 23:34:02 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/22 08:23:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ char	*parse_plane(t_parsed_scene *scene, char **tokens)
 	params[2] = &plane->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), free(plane), "Invalid plane syntax");
-	if (vector_length(plane->direction) == 0)
-		return (free_tokens(--tokens), free(plane), "Incorrect plane normal");
+//	if (vector_length(plane->direction) == 0)									// ! vector_length() manquant !
+//		return (free_tokens(--tokens), free(plane), "Incorrect plane normal");	//
 	plane->type = PLANE;
 	plane->next = scene->objects;
 	scene->objects = plane;
@@ -60,8 +60,8 @@ char	*parse_plane(t_parsed_scene *scene, char **tokens)
 
 int	cylinder_is_valid(t_parsed_object *cylinder)
 {
-	if (vector_length(cylinder->direction) == 0)
-		return (0);
+//	if (vector_length(cylinder->direction) == 0)								// ! vector_length() manquant !
+//		return (0);																//
 	if (cylinder->radius < 0)
 		return (0);
 	if (cylinder->height < 0)
