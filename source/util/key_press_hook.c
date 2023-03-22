@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 11:18:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:18:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	awsd_shift(int keycode, t_all_data *d);
 static void	part_two(int keycode, t_all_data *d);
+static void	part_three(t_all_data *d);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -63,17 +64,16 @@ int	key_press_hook(int keycode, t_all_data *d)
 static void	part_two(int keycode, t_all_data *d)
 {
 	if (d->data_key->key_a && d->data_key->key_shift)
-		d->data_key->c_add_to_x -= 1;
-	if (d->data_key->key_w && d->data_key->key_shift)
-		d->data_key->c_add_to_z += 1;
-	if (d->data_key->key_s && d->data_key->key_shift)
-		d->data_key->c_add_to_z -= 1;
-	if (d->data_key->key_d && d->data_key->key_shift)
-		d->data_key->c_add_to_x += 1;
-	if (d->data_key->key_up && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_x += 1;
 		d->data_key->c_add_to_y += 1;
-	if (d->data_key->key_down && d->data_key->key_shift)
-		d->data_key->c_add_to_y -= 1;
+	}
+	if (d->data_key->key_w && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_z -= 1;
+		d->data_key->c_add_to_x += 1;
+	}
+	part_three(d);
 	if (keycode == 53 || keycode == 65307)
 	{
 		if (d->mwi->data_img->img)
@@ -84,6 +84,30 @@ static void	part_two(int keycode, t_all_data *d)
 		so_clear(&d -> list_object);
 		free_objects(d->parsed_scene->objects);
 		exit (0);
+	}
+}
+
+static void	part_three(t_all_data *d)
+{
+	if (d->data_key->key_s && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_z += 1;
+		d->data_key->c_add_to_x -= 1;
+	}
+	if (d->data_key->key_d && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_x -= 1;
+		d->data_key->c_add_to_y -= 1;
+	}
+	if (d->data_key->key_up && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_y -= 1;
+		d->data_key->c_add_to_z += 1;
+	}
+	if (d->data_key->key_down && d->data_key->key_shift)
+	{
+		d->data_key->c_add_pos_y += 1;
+		d->data_key->c_add_to_z -= 1;
 	}
 }
 

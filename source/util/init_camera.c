@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:33:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 20:51:11 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:06:22 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ static void	init_matrix(t_dp *data_parsing, t_camera *c)
 			data_parsing->c_to.x,
 			data_parsing->c_to.y,
 			data_parsing->c_to.z,
-			0
-		}},
-			(t_tuple){{
-			0,
-			1,
-			0,
 			0
 		}});
 }

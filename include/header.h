@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 12:22:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:06:44 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ t_tuple			color_at(t_world *w, t_ray r);
 t_to			intersect_world(t_world *world, t_ray ray);
 t_comps			prepare_computations(t_world *w, t_ray r, t_to *i);
 t_tuple			shade_hit(t_world *w, t_comps comps);
-t_matrix4		view_transform(t_tuple from, t_tuple to, t_tuple up);
+t_matrix4		view_transform(t_tuple from, t_tuple to);
 t_camera		give_camera(double hsize, double vsize, double field_of_view);
 t_ray			ray_for_pixel(t_camera camera, double px, double py);
 void			render(t_all_data *all_data, t_camera camera, t_world *world);
