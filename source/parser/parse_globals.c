@@ -44,8 +44,9 @@ char	*parse_camera(t_parsed_scene *scene, char **tokens)
 		return (free_tokens(--tokens), "Invalid camera syntax");
 	if (scene->camera.fov_degrees < 0 || scene->camera.fov_degrees > 180)
 		return (free_tokens(--tokens), "Incorrect camera fov");
-//	if (magnitude_vector(&scene->camera.direction) == 0)				// ! passing argument 1 of ‘magnitude_vector’ from incompatible pointer type !
-//		return (free_tokens(--tokens), "Incorrect camera direction");	//
+	if (!scene->camera.direction.x && !scene->camera.direction.y
+		&& !scene->camera.direction.z)
+		return (free_tokens(--tokens), "Camera direction is null");
 	scene->camera.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }

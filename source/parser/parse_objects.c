@@ -50,8 +50,8 @@ char	*parse_plane(t_parsed_scene *scene, char **tokens)
 	params[2] = &plane->color;
 	if (parse_items(sizeof(syntax) / sizeof(*syntax), tokens, syntax, params))
 		return (free_tokens(--tokens), free(plane), "Invalid plane syntax");
-//	if (vector_length(plane->direction) == 0)									// ! vector_length() manquant !
-//		return (free_tokens(--tokens), free(plane), "Incorrect plane normal");	//
+	if (!plane->direction.x && !plane->direction.y && !plane->direction.z)
+		return (free_tokens(--tokens), free(plane), "Incorrect plane normal");
 	plane->type = PLANE;
 	plane->next = scene->objects;
 	scene->objects = plane;
@@ -60,8 +60,9 @@ char	*parse_plane(t_parsed_scene *scene, char **tokens)
 
 int	cylinder_is_valid(t_parsed_object *cylinder)
 {
-//	if (vector_length(cylinder->direction) == 0)								// ! vector_length() manquant !
-//		return (0);																//
+	if (!cylinder->direction.x && !cylinder->direction.y
+		&& !cylinder->direction.z)
+		return (0);
 	if (cylinder->radius < 0)
 		return (0);
 	if (cylinder->height < 0)
