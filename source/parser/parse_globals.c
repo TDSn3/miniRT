@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_globals.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:08:39 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/20 23:29:58 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/22 11:29:16 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ char	*parse_camera(t_parsed_scene *scene, char **tokens)
 		return (free_tokens(--tokens), "Invalid camera syntax");
 	if (scene->camera.fov_degrees < 0 || scene->camera.fov_degrees > 180)
 		return (free_tokens(--tokens), "Incorrect camera fov");
-	if (magnitude_vector(&scene->camera.direction) == 0)
-		return (free_tokens(--tokens), "Incorrect camera direction");
+//	if (magnitude_vector(&scene->camera.direction) == 0)				// ! passing argument 1 of ‘magnitude_vector’ from incompatible pointer type !
+//		return (free_tokens(--tokens), "Incorrect camera direction");	//
 	scene->camera.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }

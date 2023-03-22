@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 10:01:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:12:32 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ t_ray			transform_ray(t_tuple vector, t_tuple point, t_matrix4 *mtx);
 t_tuple			position(t_tuple vector, t_tuple point, double t);
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object);
 t_to			intersection(double t, t_object *object);
+t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
 void			set_transform(t_object *object, t_matrix4 *t);
 void			intersect_caps(
 					t_ray ray,

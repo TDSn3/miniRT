@@ -6,7 +6,7 @@
 /*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/18 13:21:01 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:26:42 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere);
 static double			give_discri(t_tuple vector,
 							t_tuple point, t_object sphere, t_3f *abc);
 static t_intersection	intersect_plane(t_ray ray, t_object *plane);
-static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder);
-static void				swap(double *a, double *b);
-
 
 t_intersection	intersect(t_tuple vector, t_tuple point, t_object *object)
 {
@@ -116,52 +113,4 @@ static t_intersection	intersect_plane(t_ray ray, t_object *plane)
 		ret.t.c = t;
 	}
 	return (ret);
-}
-
-static t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
-{
-	t_intersection	ret;
-	t_3f			abc;
-	double			discriminant;
-	double			t0;
-	double			t1;
-	double			y0;
-	double			y1;
-
-	ret.object = cylinder;
-	ret.next = NULL;
-	ret.prev = NULL;
-	ret.t.a = 0;
-	ret.t.b = 0;
-	ret.t.c = 0;
-	abc.a = powf(ray.vector.x, 2) + powf(ray.vector.z, 2);
-	if (equal_double(abc.a, 0))
-		return (ret);
-	abc.b = 2 * ray.point.x * ray.vector.x + 2 * ray.point.z * ray.vector.z;
-	abc.c = powf(ray.point.x, 2) + powf(ray.point.z, 2) - 1;
-	discriminant = powf(abc.b, 2) - 4 * abc.a * abc.c;
-	if (discriminant < 0)
-		return (ret);
-	ret.t.a = 2;
-	t0 = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
-	t1 = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
-	if (t0 > t1)
-		swap(&t0, &t1);
-	y0 = ray.point.y + t0 * ray.vector.y;
-	if (cylinder->cyl_min < y0 && y0 < cylinder->cyl_max)
-		ret.t.b = t0;
-	y1 = ray.point.y + t1 * ray.vector.y;
-	if (cylinder->cyl_min < y1 && y1 < cylinder->cyl_max)
-		ret.t.c = t1;
-	intersect_caps(ray, cylinder, &ret);
-	return (ret);
-}
-
-static void	swap(double *a, double *b)
-{
-	double			stock;
-
-	stock = *a;
-	*a = *b;
-	*b = stock;
 }
