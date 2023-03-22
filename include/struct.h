@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/10 05:40:05 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/22 11:27:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
 
-# define HEIGHT 200
-# define WIDTH 400
+# define HEIGHT 240
+# define WIDTH 427
 # define EPSILON 0.00001
 
 typedef enum e_type
@@ -23,10 +23,6 @@ typedef enum e_type
 	PLANE,
 	CYLINDER,
 }	t_type;
-
-typedef double	t_matrix4[4][4];
-typedef double	t_matrix3[3][3];
-typedef double	t_matrix2[2][2];
 
 typedef union s_tuple
 {
@@ -42,14 +38,58 @@ typedef union s_tuple
 
 typedef struct s_ray
 {
-	t_tuple		vector;
-	t_tuple		point;
+	union
+	{
+		struct
+		{
+			double	x;
+			double	y;
+			double	z;
+			double	w;
+		};
+		double		tab[4];
+		t_tuple		vector;
+	};
+	union
+	{
+		struct
+		{
+			double	x2;
+			double	y2;
+			double	z2;
+			double	w2;
+		};
+		double		tab2[4];
+		t_tuple		point;
+	};
 }	t_ray;
 
 typedef struct s_light
 {
-	t_tuple		intensity;
-	t_tuple		position;
+	union
+	{
+		struct
+		{
+			double	x;
+			double	y;
+			double	z;
+			double	w;
+		};
+		double		tab[4];
+		t_tuple		intensity;
+	};
+	union
+	{
+		struct
+		{
+			double	x2;
+			double	y2;
+			double	z2;
+			double	w2;
+		};
+		double		tab2[4];
+		t_tuple		position;
+	};
 }	t_light;
 
 typedef struct s_material
@@ -62,7 +102,7 @@ typedef struct s_material
 	double	shininess;
 }	t_material;
 
-typedef union s_bgra
+typedef union u_bgra
 {
 	struct
 	{
@@ -74,6 +114,39 @@ typedef union s_bgra
 	unsigned int		bgra;
 }	t_bgra;
 
+typedef union s_3f
+{
+	struct
+	{
+		double	a;
+		double	b;
+		double	c;
+	};
+	double		f[3];
+}	t_3f;
+
+typedef union s_6f
+{
+	struct
+	{
+		double	a;
+		double	b;
+		double	c;
+		double	d;
+		double	e;
+		double	f;
+	};
+	double		t[6];
+}	t_6f;
+
+typedef struct s_ijkl
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	l;
+}	t_ijkl;
+
 /* ************************************************************************** */
 /*                                                                            */
 /*   hsize   		 taille horizontale du canevas en pixels                  */
@@ -83,6 +156,8 @@ typedef union s_bgra
 /* ************************************************************************** */
 typedef struct s_camera
 {
+	double		hsize;
+	double		vsize;
 	double		field_of_view;
 	t_matrix4	transform;
 	t_matrix4	inverse;
@@ -103,11 +178,18 @@ typedef struct s_object
 	t_matrix4		transform;
 	t_matrix4		inverse;
 	t_material		material;
+	double			cyl_min;
+	double			cyl_max;
 	int				cyl_closed;
+	struct s_object	*prev;
 	struct s_object	*next;
-	double			t;
 }	t_object;
 
+typedef struct s_world
+{
+	t_object	*lst_object;
+	t_light		light;
+}	t_world;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -119,28 +201,96 @@ typedef struct s_object
 /* ************************************************************************** */
 typedef struct s_intersection
 {
-	double					t[3];
+	t_3f					t;
 	t_object				*object;
+	struct s_intersection	*prev;
+	struct s_intersection	*next;
 }	t_intersection;
 
-typedef struct s_mlx_data
+typedef struct s_t_and_object
+{
+	double					t;
+	t_object				*object;
+	struct s_t_and_object	*prev;
+	struct s_t_and_object	*next;
+}	t_to;
+
+typedef struct s_data_key
+{
+	double	c_add_pos_x;
+	double	c_add_pos_y;
+	double	c_add_pos_z;
+	double	c_add_to_x;
+	double	c_add_to_y;
+	double	c_add_to_z;
+	double	c_add_fov;
+	int		key_a;
+	int		key_w;
+	int		key_s;
+	int		key_d;
+	int		key_up;
+	int		key_down;
+	int		key_shift;
+}	t_dk;
+
+typedef struct s_data_parsing
+{
+	double	ambient;
+	t_tuple	a_color;
+	t_tuple	c_position;
+	t_tuple	c_to;
+	double	c_fov;
+	t_tuple	l_position;
+	double	l_i;
+	t_tuple	l_color;
+}	t_dp;
+
+typedef struct s_data_mlx_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data_mlx_img;
+
+typedef struct s_mlx_win_img
 {
 	void			*mlx;
 	void			*win;
-	void			*img;
-	unsigned int	*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
-}	t_mlx_data;
+	t_data_mlx_img	*data_img;
+	int				win_widht;
+	int				win_height;
+}	t_mwi;
 
-
+typedef struct s_parsed_scene	t_parsed_scene;
 typedef struct s_all_data
 {
-	t_mlx_data		mlx_data;
-	t_object		*objects;
-	t_light			light;
-	t_camera		camera;
+	t_mwi			*mwi;
+	t_data_mlx_img	*data_img;
+	t_dk			*data_key;
+	int				gen_img;
+	t_object		*list_object;
+	t_parsed_scene	*parsed_scene;
 }	t_all_data;
+
+typedef struct s_data_thread
+{
+	t_all_data		*all_data;
+	t_camera		camera;
+	t_world			*world;
+	int				id_thread;
+	t_bgra			stock_img[HEIGHT][WIDTH];
+	pthread_mutex_t	mutex_print;
+}	t_dt;
+
+typedef struct s_data_main_exec_thread
+{
+	t_dt	*dt;
+	t_ray	r;
+	t_tuple	color;
+	size_t	x;
+	size_t	y;
+}	t_dmet;
 
 #endif

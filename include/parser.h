@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:37:38 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/10 06:23:57 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/16 14:17:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "header.h"
+# include "struct.h"
 
 typedef enum e_parameter {
 	DEC,
@@ -74,24 +74,19 @@ typedef struct s_parsed_scene
 
 typedef char	*(*t_parse)(t_parsed_scene *, char **);
 
-int		parse_scene(char *filename, t_parsed_scene *scene);
-char	*parse_sphere(t_parsed_scene *scene, char **tokens);
-char	*parse_plane(t_parsed_scene *scene, char **tokens);
-char	*parse_cylinder(t_parsed_scene *scene, char **tokens);
-char	*parse_ambient(t_parsed_scene *scene, char **tokens);
-char	*parse_camera(t_parsed_scene *scene, char **tokens);
-char	*parse_light(t_parsed_scene *scene, char **tokens);
-void	free_tokens(char **tokens);
-void	clean_line(char *line);
-int		count_tokens(char **tokens);
-int		parse_items(int n, char **tokens, const t_parameter *syntax,
-			void **params);
+int			parse_scene(char *filename, t_parsed_scene *scene);
+char		*parse_sphere(t_parsed_scene *scene, char **tokens);
+char		*parse_plane(t_parsed_scene *scene, char **tokens);
+char		*parse_cylinder(t_parsed_scene *scene, char **tokens);
+char		*parse_ambient(t_parsed_scene *scene, char **tokens);
+char		*parse_camera(t_parsed_scene *scene, char **tokens);
+char		*parse_light(t_parsed_scene *scene, char **tokens);
+void		free_tokens(char **tokens);
+void		clean_line(char *line);
+int			count_tokens(char **tokens);
+int			parse_items(int n, char **tokens, const t_parameter *syntax,
+				void **params);
 
-void	print_objects(t_parsed_scene const *scene);
-int	init_all_data(t_all_data *all_data, t_parsed_scene *scene);
-int	init_camera(t_camera *camera, t_parsed_camera *parsed_camera);
-int	init_light(t_light *light, t_parsed_light *parsed_light);
-t_object	*init_objects(t_parsed_object *parsed_objects,
-				t_parsed_ambient *parsed_ambient);
-void	free_objects(t_parsed_object *objects);
+void		free_objects(t_parsed_object *objects);
+
 #endif

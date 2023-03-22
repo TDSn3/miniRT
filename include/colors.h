@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roberto <roberto@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:22:38 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/08 21:49:22 by roberto          ###   ########.fr       */
+/*   Updated: 2023/03/15 09:32:24 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COLORS_H
 
 # define COLOR_RESET			"\033[0m"
+# define COLOR_RED				"\033[31m"
 # define COLOR_GREEN			"\033[32m"
 # define COLOR_YELLOW			"\033[33m"
 # define COLOR_BLUE				"\033[34m"
