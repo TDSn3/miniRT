@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   view_transform.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:27:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 15:05:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:46:20 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
-static void	init_matrix4_orientation(t_matrix4 *orientation);
+// static void	init_matrix4_orientation(t_matrix4 *orientation);
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -21,25 +21,32 @@ static void	init_matrix4_orientation(t_matrix4 *orientation);
 /*   up     direction vers le haut de la camera								  */
 /*                                                                            */
 /* ************************************************************************** */
-t_matrix4	view_transform(t_tuple from, t_tuple to)
+t_matrix4	view_transform(t_tuple position, t_tuple forward)
 {
 	t_matrix4	orientation;
+	t_tuple		up;
+	t_tuple		left;
 
-	printf("%f %f %f\n", to.x, to.y, to.z);
-	init_matrix4_orientation(&orientation);
-	orientation = multiply_matrix4(orientation, rotation_x(to.x));
-	orientation = multiply_matrix4(orientation, rotation_y(to.y));
-	orientation = multiply_matrix4(orientation, rotation_z(to.z));
-	orientation = multiply_matrix4(
-			orientation, translation(t_tuple_nega(from)));
+	forward = normalization_vector(forward);
+	up = (t_tuple){{0, 1, 0, 0}};
+	left = cross_product_vector(forward, up);
+	up = cross_product_vector(left, forward);
+	up = normalization_vector(up);
+	left = normalization_vector(left);
+	orientation = (t_matrix4){{
+	{left.x, up.x, -forward.x, position.x},
+	{left.y, up.y, -forward.y, position.y},
+	{left.z, up.z, -forward.z, position.z},
+	{0, 0, 0, 1}
+	}};
 	return (orientation);
 }
 
-static void	init_matrix4_orientation(t_matrix4 *orientation)
-{
-	*orientation = (t_matrix4){0};
-	orientation->tab[0][0] = -1;
-	orientation->tab[1][1] = 1;
-	orientation->tab[2][2] = -1;
-	orientation->tab[3][3] = 1;
-}
+// static void	init_matrix4_orientation(t_matrix4 *orientation)
+// {
+// 	*orientation = (t_matrix4){0};
+// 	orientation->tab[0][0] = -1;
+// 	orientation->tab[1][1] = 1;
+// 	orientation->tab[2][2] = -1;
+// 	orientation->tab[3][3] = 1;
+// }

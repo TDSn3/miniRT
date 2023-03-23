@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
+#    By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/30 09:01:22 by tda-silv          #+#    #+#              #
-#    Updated: 2023/03/22 11:12:55 by tda-silv         ###   ########.fr        #
+#    Updated: 2023/03/23 19:40:55 by rcatini          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC_DIR		= include/
 
 CC			= gcc
 
-CFLAGS		= -g3  -Wall -Wextra -Wshadow -D_REENTRANT -DLinux -g
+CFLAGS		= -g3  -Wall -Wextra -Werror -Wshadow -D_REENTRANT -DLinux -g
 # --tool=helgrind -Wconversion -Wno-error=conversion
 
 # **************************************************************************** #

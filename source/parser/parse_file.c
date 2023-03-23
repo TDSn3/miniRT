@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/20 23:21:39 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/23 19:20:06 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*parse_line(char *line, t_parsed_scene *scene)
 	tokens = ft_split(line, ' ');
 	if (!tokens)
 		return ("Memory allocation error");
-	if (tokens[0] == NULL)
+	if (tokens[0] == NULL || tokens[0][0] == '#')
 		return (free_tokens(tokens), NULL);
 	i = -1;
 	while (types[++i])

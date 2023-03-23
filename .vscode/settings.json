@@ -1,9 +1,9 @@
 {
 	"makefile.launchConfigurations": [
 		{
-			"cwd": "/mnt/nfs/homes/rcatini/miniRT-1",
-			"binaryPath": "/mnt/nfs/homes/rcatini/miniRT-1/miniRT",
-			"binaryArgs": ["scenes/minimal.rt"]
+			"cwd": "/mnt/nfs/homes/rcatini/miniRT",
+			"binaryPath": "/mnt/nfs/homes/rcatini/miniRT/miniRT",
+			"binaryArgs": ["scenes/roberto.rt"]
 		}
 	],
 	"files.associations": {
