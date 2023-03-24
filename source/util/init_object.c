@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:01:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 17:10:41 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 18:32:09 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	init_object(t_all_data *all_data, t_dp *data_parsing)
 	cpy = all_data->parsed_scene->objects;
 	while (cpy)
 	{
-		printf("%sNew object", COLOR_BOLD_MAGENTA);
 		if (so_add_back(&all_data->list_object, so_new(
 					cpy->type, *data_parsing)))
 			return (1);
@@ -46,19 +45,18 @@ int	init_object(t_all_data *all_data, t_dp *data_parsing)
 
 static void	init_sphere(t_parsed_object *cpy, t_object *last_object)
 {
-	printf(" SPHERE%s\n", COLOR_RESET);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{cpy->radius, 0, 0, 0},
-	{0, cpy->radius, 0, 0},
-	{0, 0, cpy->radius, 0},
-	{0, 0, 0, 1}}},last_object->transform);
+			(t_matrix4){{
+		{cpy->radius, 0, 0, 0},
+		{0, cpy->radius, 0, 0},
+		{0, 0, cpy->radius, 0},
+		{0, 0, 0, 1}}}, last_object->transform);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{1, 0, 0, cpy->position.x},
-	{0, 1, 0, cpy->position.y},
-	{0, 0, 1, cpy->position.z},
-	{0, 0, 0, 1}}},last_object->transform);
+			(t_matrix4){{
+		{1, 0, 0, cpy->position.x},
+		{0, 1, 0, cpy->position.y},
+		{0, 0, 1, cpy->position.z},
+		{0, 0, 0, 1}}}, last_object->transform);
 	inverse_matrix4(last_object->transform, &last_object->inverse);
 }
 
@@ -89,17 +87,17 @@ static void	init_plane(t_parsed_object *cpy, t_object *last_object)
 	horizontal_2 = cross_product_vector(vertical, horizontal_1);
 	horizontal_1 = cross_product_vector(horizontal_2, vertical);
 	last_object->transform = multiply_matrix4((t_matrix4){{
-	{horizontal_1.x, vertical.x, horizontal_2.x, 0},
-	{horizontal_1.y, vertical.y, horizontal_2.y, 0},
-	{horizontal_1.z, vertical.z, horizontal_2.z, 0},
-	{0, 0, 0, 1}
-	}}, last_object->transform);
+		{horizontal_1.x, vertical.x, horizontal_2.x, 0},
+		{horizontal_1.y, vertical.y, horizontal_2.y, 0},
+		{horizontal_1.z, vertical.z, horizontal_2.z, 0},
+		{0, 0, 0, 1}
+		}}, last_object->transform);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{1, 0, 0, cpy->position.x},
-	{0, 1, 0, cpy->position.y},
-	{0, 0, 1, cpy->position.z},
-	{0, 0, 0, 1}}},last_object->transform);
+			(t_matrix4){{
+		{1, 0, 0, cpy->position.x},
+		{0, 1, 0, cpy->position.y},
+		{0, 0, 1, cpy->position.z},
+		{0, 0, 0, 1}}}, last_object->transform);
 	inverse_matrix4(last_object->transform, &last_object->inverse);
 	last_object->material.specular = 0.1;
 }
@@ -117,67 +115,17 @@ static void	init_cylinder(t_parsed_object *cpy, t_object *last_object)
 	horizontal_2 = cross_product_vector(vertical, horizontal_1);
 	horizontal_1 = cross_product_vector(horizontal_2, vertical);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{cpy->radius, 0, 0, 0},
-	{0, cpy->height/2, 0, 0},
-	{0, 0, cpy->radius, 0},
-	{0, 0, 0, 1}}},last_object->transform);
+			(t_matrix4){{{cpy->radius, 0, 0, 0}, {0, cpy->height / 2, 0, 0},
+		{0, 0, cpy->radius, 0}, {0, 0, 0, 1}}}, last_object->transform);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{horizontal_1.x, vertical.x, horizontal_2.x, 0},
-	{horizontal_1.y, vertical.y, horizontal_2.y, 0},
-	{horizontal_1.z, vertical.z, horizontal_2.z, 0},
-	{0, 0, 0, 1}}}, last_object->transform);
+			(t_matrix4){{
+		{horizontal_1.x, vertical.x, horizontal_2.x, 0},
+		{horizontal_1.y, vertical.y, horizontal_2.y, 0},
+		{horizontal_1.z, vertical.z, horizontal_2.z, 0},
+		{0, 0, 0, 1}}}, last_object->transform);
 	last_object->transform = multiply_matrix4(
-	(t_matrix4){{
-	{1, 0, 0, cpy->position.x},
-	{0, 1, 0, cpy->position.y},
-	{0, 0, 1, cpy->position.z},
-	{0, 0, 0, 1}}},last_object->transform);
+			(t_matrix4){{{1, 0, 0, cpy->position.x}, {0, 1, 0, cpy->position.y},
+		{0, 0, 1, cpy->position.z}, {0, 0, 0, 1}}}, last_object->transform);
 	inverse_matrix4(last_object->transform, &last_object->inverse);
 	last_object->cyl_closed = 1;
 }
-
-// static void	init_sphere(t_parsed_object *cpy, t_object *last_object)
-// {
-// 	printf(" SPHERE%s\n", COLOR_RESET);
-// 	last_object->transform = multiply_matrix4(
-// 			translation((t_tuple){{
-// 				cpy->position.x, cpy->position.y, cpy->position.z, 0}}),
-// 			scaling((t_tuple){{
-// 				cpy->radius, cpy->radius, cpy->radius, 0}}));
-// 	inverse_matrix4(last_object->transform, &last_object->inverse);
-// }
-
-// static void	init_plane(t_parsed_object *cpy, t_object *last_object)
-// {
-// 	printf(" PLANE%s\n", COLOR_RESET);
-// 	last_object->transform = multiply_matrix4(last_object->transform,
-// 			translation((t_tuple){{cpy->position.x,
-// 				cpy->position.y, cpy->position.z, 0}}));
-// 	last_object->transform = multiply_matrix4(
-// 			last_object->transform, rotation_x(rad_to_deg(asin(cpy->direction.y))));
-// 	last_object->transform = multiply_matrix4(
-// 			last_object->transform, rotation_y(rad_to_deg(atan2(cpy->direction.x, cpy->direction.z))));
-// 	inverse_matrix4(last_object->transform, &last_object->inverse);
-// 	last_object->material.specular = 0.1;
-// }
-
-// static void	init_cylinder(t_parsed_object *cpy, t_object *last_object)
-// {
-// 	printf(" CYLINDER%s\n", COLOR_RESET);
-// 	last_object->transform = multiply_matrix4(last_object->transform,
-// 			translation((t_tuple){{cpy->position.x,
-// 				cpy->position.y, cpy->position.z, 0}}));
-// 	printf("%f\n", cpy->radius);
-// 	last_object->transform = multiply_matrix4(
-// 			last_object->transform, rotation_x(rad_to_deg(asin(cpy->direction.y))));
-// 	last_object->transform = multiply_matrix4(
-// 			last_object->transform, rotation_y(rad_to_deg(atan2(cpy->direction.x, cpy->direction.z))));
-// 	last_object->transform = multiply_matrix4(
-// 			last_object->transform, diameter_cylinder(cpy->radius));
-// 	inverse_matrix4(last_object->transform, &last_object->inverse);
-// 	last_object->cyl_max = cpy->height / 2;
-// 	last_object->cyl_min = cpy->height / 2 * -1;
-// 	last_object->cyl_closed = 1;
-// }

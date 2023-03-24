@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 15:56:20 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 19:18:25 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,6 @@ typedef struct s_object
 	t_matrix4		transform;
 	t_matrix4		inverse;
 	t_material		material;
-	// double			cyl_min;
-	// double			cyl_max;
 	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;
@@ -245,51 +243,46 @@ typedef struct s_data_parsing
 	t_tuple	l_color;
 }	t_dp;
 
-typedef struct s_data_mlx_img
+typedef struct s_mlx_win_img
 {
+	void	*mlx;
+	void	*win;
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_data_mlx_img;
-
-typedef struct s_mlx_win_img
-{
-	void			*mlx;
-	void			*win;
-	t_data_mlx_img	*data_img;
-	int				win_widht;
-	int				win_height;
+	int		win_widht;
+	int		win_height;
 }	t_mwi;
 
 typedef struct s_parsed_scene	t_parsed_scene;
+
 typedef struct s_all_data
 {
 	t_mwi			*mwi;
-	t_data_mlx_img	*data_img;
 	t_dk			*data_key;
 	t_object		*list_object;
 	t_parsed_scene	*parsed_scene;
 }	t_all_data;
 
-typedef struct s_data_thread
-{
-	t_all_data		*all_data;
-	t_camera		camera;
-	t_world			*world;
-	int				id_thread;
-	t_bgra			stock_img[HEIGHT][WIDTH];
-	pthread_mutex_t	mutex_print;
-}	t_dt;
+// typedef struct s_data_thread
+// {
+// 	t_all_data		*all_data;
+// 	t_camera		camera;
+// 	t_world			*world;
+// 	int				id_thread;
+// 	t_bgra			stock_img[HEIGHT][WIDTH];
+// 	pthread_mutex_t	mutex_print;
+// }	t_dt;
 
-typedef struct s_data_main_exec_thread
-{
-	t_dt	*dt;
-	t_ray	r;
-	t_tuple	color;
-	size_t	x;
-	size_t	y;
-}	t_dmet;
+// typedef struct s_data_main_exec_thread
+// {
+// 	t_dt	*dt;
+// 	t_ray	r;
+// 	t_tuple	color;
+// 	size_t	x;
+// 	size_t	y;
+// }	t_dmet;
 
 #endif

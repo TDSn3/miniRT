@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 15:18:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:08:38 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,8 @@ static void	part_two(int keycode, t_all_data *d)
 	part_three(d);
 	if (keycode == 53 || keycode == 65307)
 	{
-		if (d->mwi->data_img->img)
-			mlx_destroy_image(d->mwi->mlx, d->mwi->data_img->img);
-		mlx_destroy_window(d->mwi->mlx, d->mwi->win);
-		mlx_destroy_display(d->mwi->mlx);
-		free(d->mwi->mlx);
-		so_clear(&d -> list_object);
-		free_objects(d->parsed_scene->objects);
-		exit (0);
+		mlx_loop_end(d->mwi->mlx);
+		return ;
 	}
 }
 

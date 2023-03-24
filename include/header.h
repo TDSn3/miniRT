@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 08:50:32 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 19:18:38 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@
 # include "colors.h"
 # include "parser.h"
 
-void			init_all(
+int				init_all(
 					t_all_data *all_data,
 					t_mwi *mwi,
-					t_data_mlx_img *data_img,
 					t_dk *data_key);
 void			my_mlx_pixel_put(t_all_data *all_data, int x, int y, int color);
 int				equal_double(double a, double b);
@@ -136,19 +135,19 @@ void			sto_clear(t_to **lst);
 
 int				is_shadowed(t_world *world, t_tuple point, t_comps comps);
 
-void			main_exec_thread(t_dmet *dmet);
-void			*exec_thread1(void *data);
-void			*exec_thread2(void *data);
-void			*exec_thread3(void *data);
-void			*exec_thread4(void *data);
-void			*exec_thread5(void *data);
-void			*exec_thread6(void *data);
-void			*exec_thread7(void *data);
-void			*exec_thread8(void *data);
-void			*exec_thread9(void *data);
-void			*exec_thread10(void *data);
-void			*exec_thread11(void *data);
-void			*exec_thread12(void *data);
+// void			main_exec_thread(t_dmet *dmet);
+// void			*exec_thread1(void *data);
+// void			*exec_thread2(void *data);
+// void			*exec_thread3(void *data);
+// void			*exec_thread4(void *data);
+// void			*exec_thread5(void *data);
+// void			*exec_thread6(void *data);
+// void			*exec_thread7(void *data);
+// void			*exec_thread8(void *data);
+// void			*exec_thread9(void *data);
+// void			*exec_thread10(void *data);
+// void			*exec_thread11(void *data);
+// void			*exec_thread12(void *data);
 
 void			init_ambiant(t_all_data *all_data, t_dp *data_parsing);
 void			init_camera(t_all_data *all_data,
