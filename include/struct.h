@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 19:18:25 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:20:42 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define HEIGHT 240
 # define WIDTH 427
-# define EPSILON 0.00001
+# define EPSILON 0.0000001
 
 typedef enum e_type
 {
@@ -164,6 +164,7 @@ typedef struct s_camera
 	double		half_width;
 	double		half_height;
 	double		pixel_size;
+	t_tuple		position;
 }	t_camera;
 
 /* ************************************************************************** */

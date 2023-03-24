@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   give_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:42:14 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/16 20:56:35 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:34:48 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_camera	give_camera(double hsize, double vsize, double field_of_view)
 	ret.vsize = vsize;
 	ret.field_of_view = field_of_view;
 	ret.transform = give_identity_matrix4();
-	half_view = tanf(field_of_view / 2);
+	half_view = tan(field_of_view / 2);
 	aspect = hsize / vsize;
 	if (aspect >= 1)
 	{

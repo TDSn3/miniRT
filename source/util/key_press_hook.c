@@ -6,14 +6,14 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 19:08:38 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 19:52:14 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 
 static void	awsd_shift(int keycode, t_all_data *d);
-static void	part_two(int keycode, t_all_data *d);
+static void	part_two(t_all_data *d);
 static void	part_three(t_all_data *d);
 
 /* ************************************************************************** */
@@ -40,6 +40,11 @@ static void	part_three(t_all_data *d);
 /* ************************************************************************** */
 int	key_press_hook(int keycode, t_all_data *d)
 {
+	if (keycode == 53 || keycode == 65307)
+	{
+		mlx_loop_end(d->mwi->mlx);
+		return (0);
+	}
 	printf("%sKey pressed : %d%s\n", COLOR_MAGENTA, keycode, COLOR_RESET);
 	if (keycode == 65362 || keycode == 126)
 	{
@@ -56,12 +61,12 @@ int	key_press_hook(int keycode, t_all_data *d)
 	if (keycode == 112 || keycode == 35)
 		d->data_key->c_add_fov -= 1;
 	awsd_shift(keycode, d);
-	part_two(keycode, d);
+	part_two(d);
 	gen_new_img(d);
 	return (0);
 }
 
-static void	part_two(int keycode, t_all_data *d)
+static void	part_two(t_all_data *d)
 {
 	if (d->data_key->key_a && d->data_key->key_shift)
 	{
@@ -74,11 +79,6 @@ static void	part_two(int keycode, t_all_data *d)
 		d->data_key->c_add_to_x += 1;
 	}
 	part_three(d);
-	if (keycode == 53 || keycode == 65307)
-	{
-		mlx_loop_end(d->mwi->mlx);
-		return ;
-	}
 }
 
 static void	part_three(t_all_data *d)

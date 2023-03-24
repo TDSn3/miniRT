@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:33:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 15:06:22 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:22:15 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	init_camera(t_all_data *all_data, t_dp *data_parsing, t_camera *c)
 	data_parsing->c_fov = deg_to_rad(all_data->parsed_scene->camera.fov_degrees
 			+ all_data->data_key->c_add_fov);
 	*c = give_camera(HEIGHT, WIDTH, data_parsing->c_fov);
+	c->position = (t_tuple){{
+		data_parsing->c_position.x,
+		data_parsing->c_position.y,
+		data_parsing->c_position.z,
+		1
+	}};
 	init_matrix(data_parsing, c);
 	inverse_matrix4(c->transform, &c->inverse);
 }
