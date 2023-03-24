@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_new.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/04 19:13:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:58:33 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_object	*so_new(t_type type, t_dp dp)
 	ln->type = type;
 	ln->position = (t_tuple){{0, 0, 0, 1}};
 	ln->transform = give_identity_matrix4();
-	ln->cyl_min = -INFINITY;
-	ln->cyl_max = INFINITY;
+	// ln->cyl_min = -INFINITY;
+	// ln->cyl_max = INFINITY;
 	ln->cyl_closed = 0;
 	ln->material.color = (t_tuple){{1, 0.2, 1, 0}};
 	ln->material.ambient = dp.ambient;

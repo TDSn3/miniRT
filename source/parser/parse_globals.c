@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:08:39 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/23 19:52:50 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:50:06 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ char	*parse_camera(t_parsed_scene *scene, char **tokens)
 	if (!scene->camera.direction.x && !scene->camera.direction.y
 		&& !scene->camera.direction.z)
 		return (free_tokens(--tokens), "Camera direction is null");
-	if (!scene->camera.direction.x && scene->camera.direction.y
-		&& !scene->camera.direction.z)
-		return (free_tokens(--tokens), "Camera direction is vertical");
+	// if (!scene->camera.direction.x && scene->camera.direction.y
+	// 	&& !scene->camera.direction.z)
+	// 	return (free_tokens(--tokens), "Camera direction is vertical");
 	scene->camera.initialized = 1;
 	return (free_tokens(--tokens), NULL);
 }

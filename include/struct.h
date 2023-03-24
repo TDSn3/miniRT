@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 12:06:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 11:27:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:56:20 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,8 +178,8 @@ typedef struct s_object
 	t_matrix4		transform;
 	t_matrix4		inverse;
 	t_material		material;
-	double			cyl_min;
-	double			cyl_max;
+	// double			cyl_min;
+	// double			cyl_max;
 	int				cyl_closed;
 	struct s_object	*prev;
 	struct s_object	*next;

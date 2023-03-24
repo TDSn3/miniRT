@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_caps.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/02 11:57:51 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:58:01 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 
 	if (!object->cyl_closed || (ray.vector.y >= -0.1 && ray.vector.y <= 0.1))
 		return ;
-	t = (object->cyl_min - ray.point.y) / ray.vector.y;
+	t = (-1 - ray.point.y) / ray.vector.y;
 	if (check_cap(ray, t))
 	{
 		if (ret->t.c == 0)
@@ -34,7 +34,7 @@ void	intersect_caps(t_ray ray, t_object *object, t_intersection *ret)
 		else if (ret->t.b == 0)
 			ret->t.b = t;
 	}
-	t = (object->cyl_max - ray.point.y) / ray.vector.y;
+	t = (1 - ray.point.y) / ray.vector.y;
 	if (check_cap(ray, t))
 	{
 		if (ret->t.b == 0)

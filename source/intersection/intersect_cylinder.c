@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_cylinder.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 11:11:27 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 11:24:03 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:57:34 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ t_intersection	intersect_cylinder(t_ray ray, t_object *cylinder)
 	if (ty.a > ty.b)
 		swap(&ty.a, &ty.b);
 	ty.c = ray.point.y + ty.a * ray.vector.y;
-	if (cylinder->cyl_min < ty.c && ty.c < cylinder->cyl_max)
+	if (-1 < ty.c && ty.c < 1)
 		ret.t.b = ty.a;
 	ty.d = ray.point.y + ty.b * ray.vector.y;
-	if (cylinder->cyl_min < ty.d && ty.d < cylinder->cyl_max)
+	if (-1 < ty.d && ty.d < 1)
 		ret.t.c = ty.b;
 	intersect_caps(ray, cylinder, &ret);
 	return (ret);
