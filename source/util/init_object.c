@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:01:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 19:45:14 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/24 21:49:34 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,5 @@ static void	init_cylinder(t_parsed_object *cpy, t_object *last_object)
 			(t_matrix4){{{1, 0, 0, cpy->position.x}, {0, 1, 0, cpy->position.y},
 		{0, 0, 1, cpy->position.z}, {0, 0, 0, 1}}}, last_object->transform);
 	inverse_matrix4(last_object->transform, &last_object->inverse);
-	last_object->cyl_closed = 1;
+	last_object->cyl_closed = 0;
 }
