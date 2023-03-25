@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/25 17:26:30 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 18:45:15 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ int	parse_scene(char *filename, t_parsed_scene *scene)
 		error_msg = parse_line(line, scene);
 		if (error_msg)
 		{
-			close(fd);
 			printf("Error\n%s:\t%s\n", error_msg, line);
-			free(line);
-			return (1);
+			return (close(fd), free(line), 1);
 		}
 		free(line);
 		line = get_next_line(fd);
