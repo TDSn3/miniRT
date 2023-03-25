@@ -6,13 +6,13 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:58:36 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/25 18:41:43 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 18:58:34 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
-# define STRICT_NORMALIZATION_CHECK 0
+# define STRICT_NORMALIZATION_CHECK 1
 
 # include <libft.h>
 # include <mlx.h>
