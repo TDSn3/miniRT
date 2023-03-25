@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:45:35 by rcatini           #+#    #+#             */
-/*   Updated: 2023/03/23 19:20:06 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 17:26:30 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,14 @@ int	validate_scene(t_parsed_scene *scene)
 
 int	parse_scene(char *filename, t_parsed_scene *scene)
 {
+	size_t	filename_len;
 	int		fd;
 	char	*line;
 	char	*error_msg;
 
+	filename_len = ft_strlen(filename);
+	if (filename_len < 4 || ft_strncmp(filename + filename_len - 3, ".rt", 4))
+		return (printf("Error\nInvalid file extension\n"), 1);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (printf("Error\n%s\n", strerror(errno)));
