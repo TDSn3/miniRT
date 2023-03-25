@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press_hook.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 08:36:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 19:52:14 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 13:34:15 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ static void	part_two(t_all_data *d)
 	if (d->data_key->key_a && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_x += 1;
-		d->data_key->c_add_to_y += 1;
+		d->data_key->c_add_to_x += 0.02;
 	}
 	if (d->data_key->key_w && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_z -= 1;
-		d->data_key->c_add_to_x += 1;
+		d->data_key->c_add_to_z += 0.02;
 	}
 	part_three(d);
 }
@@ -86,22 +86,22 @@ static void	part_three(t_all_data *d)
 	if (d->data_key->key_s && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_z += 1;
-		d->data_key->c_add_to_x -= 1;
+		d->data_key->c_add_to_z -= 0.02;
 	}
 	if (d->data_key->key_d && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_x -= 1;
-		d->data_key->c_add_to_y -= 1;
+		d->data_key->c_add_to_x -= 0.02;
 	}
 	if (d->data_key->key_up && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_y -= 1;
-		d->data_key->c_add_to_z += 1;
+		d->data_key->c_add_to_y += 0.02;
 	}
 	if (d->data_key->key_down && d->data_key->key_shift)
 	{
 		d->data_key->c_add_pos_y += 1;
-		d->data_key->c_add_to_z -= 1;
+		d->data_key->c_add_to_y -= 0.02;
 	}
 }
 
