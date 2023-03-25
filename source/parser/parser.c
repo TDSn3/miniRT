@@ -3,15 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 03:56:35 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/15 10:11:54 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:26:11 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <header.h>
 #include <parser.h>
+
+int	valid_orientation(t_parsed_vector orientation)
+{
+	double	norm;
+
+	if (isnan(orientation.x) || isnan(orientation.y) || isnan(orientation.z))
+		return (0);
+	if (!orientation.x && !orientation.y && !orientation.z)
+		return (0);
+	if (fabs(orientation.x) > 1 || fabs(orientation.y) > 1
+		|| fabs(orientation.z) > 1)
+		return (0);
+	norm = sqrt(pow(orientation.x, 2) + pow(orientation.y, 2)
+			+ pow(orientation.z, 2));
+	if (norm < 1 - EPSILON || norm > 1 + EPSILON)
+	{
+		if (STRICT_NORMALIZATION_CHECK)
+			return (0);
+		printf("Warning: orientation vector will be automatically normalized");
+		printf(" (norm is %f)\n", norm);
+	}
+	return (1);
+}
 
 t_parsed_vector	parse_vec3(char *item)
 {

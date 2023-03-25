@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 09:37:38 by roberto           #+#    #+#             */
-/*   Updated: 2023/03/16 14:17:28 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/25 18:21:28 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void		clean_line(char *line);
 int			count_tokens(char **tokens);
 int			parse_items(int n, char **tokens, const t_parameter *syntax,
 				void **params);
-
+int			valid_orientation(t_parsed_vector orientation);
 void		free_objects(t_parsed_object *objects);
 
 #endif
