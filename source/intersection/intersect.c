@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:51:45 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 11:26:42 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:49:46 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static t_intersection	intersect_sphere(t_ray ray, t_object *sphere)
 	else
 	{
 		ret.t.a = 2;
-		ret.t.b = (-abc.b - sqrtf(discriminant)) / (2 * abc.a);
-		ret.t.c = (-abc.b + sqrtf(discriminant)) / (2 * abc.a);
+		ret.t.b = (-abc.b - sqrt(discriminant)) / (2 * abc.a);
+		ret.t.c = (-abc.b + sqrt(discriminant)) / (2 * abc.a);
 	}
 	return (ret);
 }
@@ -86,7 +86,7 @@ static double	give_discri(t_tuple vector,
 	abc->a = scalar_product_vector(&vector, &vector);
 	abc->b = 2 * scalar_product_vector(&vector, &sphere_to_ray);
 	abc->c = scalar_product_vector(&sphere_to_ray, &sphere_to_ray) - 1;
-	discriminant = powf(abc->b, 2) - 4 * abc->a * abc->c;
+	discriminant = pow(abc->b, 2) - 4 * abc->a * abc->c;
 	return (discriminant);
 }
 

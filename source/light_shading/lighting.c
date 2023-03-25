@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 17:28:02 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/22 09:56:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/25 16:48:25 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static t_tuple	specular(t_tuple lightv, t_comps comps, t_light light)
 		specular_ret = (t_tuple){{0, 0, 0, 0}};
 	else
 	{
-		factor = powf(reflect_dot_eye, comps.object.material.shininess);
+		factor = pow(reflect_dot_eye, comps.object.material.shininess);
 		specular_ret = t_tuple_multi_scal(
 				light.intensity, comps.object.material.specular);
 		specular_ret = t_tuple_multi_scal(specular_ret, factor);

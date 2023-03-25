@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:24:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/24 15:58:01 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 16:48:25 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,5 @@ static int	check_cap(t_ray ray, double t)
 
 	x = ray.point.x + t * ray.vector.x;
 	z = ray.point.z + t * ray.vector.z;
-	return (powf(x, 2) + powf(z, 2) <= 1);
+	return (pow(x, 2) + pow(z, 2) <= 1);
 }
