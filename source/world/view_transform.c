@@ -6,7 +6,7 @@
 /*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:27:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/25 16:10:50 by rcatini          ###   ########.fr       */
+/*   Updated: 2023/03/25 16:27:50 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_matrix4	view_transform(t_tuple position, t_tuple forward)
 	left = cross_product_vector(forward, up);
 	up = cross_product_vector(left, forward);
 	orientation = (t_matrix4){{
-		{left.x, left.y, left.z, 0},
-		{up.x, up.y, up.z, 0},
-		{-forward.x, -forward.y, -forward.z, 0},
-		{0, 0, 0, 1}}};
+	{left.x, left.y, left.z, 0},
+	{up.x, up.y, up.z, 0},
+	{-forward.x, -forward.y, -forward.z, 0},
+	{0, 0, 0, 1}}};
 	orientation = multiply_matrix4(orientation,
 			(t_matrix4){{
 		{1, 0, 0, -position.x},
