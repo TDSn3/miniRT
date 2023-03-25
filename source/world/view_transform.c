@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view_transform.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rcatini <rcatini@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:27:48 by tda-silv          #+#    #+#             */
-/*   Updated: 2023/03/25 12:36:08 by tda-silv         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:36:07 by rcatini          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,5 @@ t_matrix4	view_transform(t_tuple position, t_tuple forward)
 		{0, 1, 0, -position.y},
 		{0, 0, 1, position.z},
 		{0, 0, 0, 1}}}, orientation);
-	printf("determinant: %f\n", determinant_matrix4(orientation));
 	return (orientation);
 }
